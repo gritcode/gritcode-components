@@ -1,7 +1,7 @@
 Gritcode Components
 =========
 
-Gritcode Components extend Bootstrap 4 with [vuestrap](http://kzima.github.io/vuestrap#readme) web components built with Vue.js and Webpack.
+Gritcode Components extend Bootstrap 4 with [vuestrap](https://github.com/kzima/vuestrap/#readme) web components built with Vue.js and Webpack.
 
 DEMO
 =========

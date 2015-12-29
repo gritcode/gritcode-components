@@ -1,0 +1,5 @@
+<div class="btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{model ? 'active' : ''}}">
+    <button class="btn btn-block {{btnVariant}} {{btnSize}}" v-on:click="hide">{{text.on}}</button><!--
+    --><span class="handle" v-on:click="toggle"></span><!--
+    --><button class="btn btn-block btn-default {{btnSize}}" v-on:click="show">{{text.off}}</button>
+</div>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- main vue docs -->
+<!--[if IE 9]>
+<html lang="en" class="ie9" id="docs" v-on:click="closeDropdownsAndPopovers">
+<![endif]-->
+<!--[if !IE 9]>-->
+<html lang="en" id="docs" v-on:click="closeDropdownsAndPopovers">
+<!--<![endif]-->
+	<head>
+		<title v-text="pageTitle">Grictode Components Docs</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="assets/favicon.ico" rel="shortcut icon" type="image/x-icon">
+		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/tomorrow.min.css">
+
+		<style>
+			/* required for the off-canvas drawer */
+			html, body {
+				height: 100%;
+			}
+			html {
+				font-size: 16px;
+			}
+			body {
+				margin: auto;
+				padding: 0;
+			}
+			h1, h2, h3 {
+				font-family: 'Source Sans Pro', sans-serif;
+				color: #563d7c;
+			}
+			h2 {
+				padding-bottom: 0.3rem;
+				border-bottom: 1px solid #42b983;
+			}
+			h3 {
+				font-size: 1.3rem !important;
+			}
+			#docs-pages > .navbar {
+				padding: 0.2em 0 !important;
+				line-height: 3em;
+			}
+			#docs-pages > .navbar .navbar-brand {
+				padding: 0 !important;
+			}
+			#docs-pages > .navbar .navbar-brand img {
+				height: 2.5em;
+			}
+			#docs-pages > .container {
+				padding-top: 5em;
+			}
+			[v-cloak] {
+				display: none;
+			}
+			.list-group-item.active {
+				color: #42b983 !important;
+				border-color: #42b983 !important;
+				background-color: transparent !important;
+			}
+			/* offcanvas menu */
+			.navbar a.list-group-item {
+			  width: 100%;
+			  color: #C5C5C5;
+			  text-align: inherit;
+			  background-color: rgba(255, 255, 255, 0);
+  			border: 1px solid rgba(221, 221, 221, 0.04);
+  			border-right: 0;
+			  border-left: 0;
+			}
+		</style>
+	</head>
+
+	<body v-cloak>
+		
+		<vs-offcanvas-wrapper id="main" :animation="animation" :align="align">
+
+			<vs-offcanvas-drawer>
+				<!-- drawer with navbar -->
+				<div class="navbar navbar-collapse navbar-dark navbar-primary bg-inverse navbar-static-top navbar-full navbar-offcanvas-drawer">
+			    <!-- close button -->
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close" v-on:click="$root.$broadcast('toggle::offcanvas-drawer', 'main')">
+		        <span aria-hidden="true">×</span>
+		        <span class="sr-only">Close</span>
+			    </button>
+			    <div class="m-b clearfix"></div>
+			    <div class="list-group list-group-flush">
+					  <a href="#{{item.url}}" 
+					    v-bind:class="{
+					      'list-group-item': true, 
+					    }" 
+					    v-for="item in routes">
+					    {{item.title}}
+					  </a>
+					</div>
+			  </div>
+			</vs-offcanvas-drawer>
+
+			<!-- content -->
+			<div id="docs-pages">
+				<docs-pages :routes="routes" :page-title.sync="pageTitle"></docs-pages>
+			</div>
+
+		</vs-offcanvas-wrapper>
+
+		<!-- footer -->
+		<script src="build/build.js"></script>
+
+	</body>
+</html>

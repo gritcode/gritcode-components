@@ -1,0 +1,9 @@
+<span class="gritcode-sorter">
+	<a href="#" v-on:click.prevent="setSort" >
+		<slot></slot>
+		<span v-show="sortBy == model.sortBy" class="icon">
+			<vs-icon name="chevron-top" v-show="orderAsc"></vs-icon>
+			<vs-icon name="chevron-bottom" v-show="!orderAsc"></vs-icon>
+		</span>
+	</a>
+</span>

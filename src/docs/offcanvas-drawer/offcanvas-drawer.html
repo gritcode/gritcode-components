@@ -1,0 +1,28 @@
+<docs-demo :meta="meta" :snippet="snippet">
+
+	<!-- Html controls start-->
+	<div slot="controls">
+		<label>animation
+			<select v-model="$root.animation">
+				<option v-for="option in $root.animations" v-bind:value="option.value">
+			    {{ option.text }}
+			  </option>
+			</select>
+		</label>
+		<label>align
+			<select v-model="$root.align">
+				<option v-for="option in $root.aligns" v-bind:value="option.value">
+			    {{ option.text }}
+			  </option>
+			</select>
+		</label>
+	</div>
+	<!-- Html controls end-->
+	
+	<!-- Html markup start-->
+	<div slot="markup">
+		<button v-on:click="$root.$broadcast('toggle::offcanvas-drawer', 'main')" >toggle drawer</button>
+	</div>
+	<!-- Html markup end-->
+
+</docs-demo>	

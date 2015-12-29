@@ -1,0 +1,14 @@
+<vs-dropdown-multiselect 
+  size="md" 
+  :list="[
+    {text: 'Australia', value: 'AU'},
+    {text: 'China', value: 'CN'},
+    {text: 'Germany', value: 'DE'},
+  ]"
+  :model.sync="model" 
+  default-text="Select Countries"
+  default-text-multiple="countries selected"
+  variant="default"
+  :max-count="2"
+  return-object>
+</vs-dropdown-multiselect>

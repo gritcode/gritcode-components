@@ -1,0 +1,83 @@
+{
+	"name": "dropdown-multiselect",
+	"title": "Dropdown Multiselect",
+	"description": "Dropdown Multi Select allows to select one or more items from the list.",
+	"dependencies": ["vuestrap/buttons"],
+	"category": "components",
+	"browserSupport": {
+		"browsers": ["IE9+", "Android 4.3"]
+	},
+	"options": [
+		{
+			"name": "model",
+			"type": "Array",
+			"default": "''",
+			"required": false,
+			"description": "A result of the selection. Can return objects in the array (see <code>return-object</code> attribute)."
+		},
+		{
+			"name": "list",
+			"type": "Array",
+			"default": "[]",
+			"required": true,
+			"description": "A list of selectable items."
+		},
+		{
+			"name": "position",
+			"type": "String",
+			"values": ["left", "right"],
+			"default": "left",
+			"required": false,
+			"description": "Vertical position of the dropdown list against the dropdown button. It becomes handy when dropdown floats to the right."
+		},
+		{
+			"name": "caret",
+			"type": "Boolean",
+			"default": "true",
+			"required": false,
+			"description": "Show/hide down caret."
+		},
+		{
+			"name": "default-text",
+			"type": "String",
+			"default": "Plase select one",
+			"required": false,
+			"description": "Default text shown before selection is made."
+		},
+		{
+			"name": "default-text-multiple",
+			"type": "String",
+			"default": "items slected",
+			"required": false,
+			"description": "Default text shown after selection is made."
+		},
+		{
+			"name": "max-count",
+			"type": "Number",
+			"default": "1",
+			"required": false,
+			"description": "Force <code>default-text-multiple</code> to be shown when more than <code>max-count</code> items selected."
+		},
+		{
+			"name": "return-object",
+			"type": "Boolean",
+			"default": "false",
+			"required": false,
+			"description": "If set to true, a full objects will be returned in the model array. By default only <code>values</code> are returned."
+		},
+		{
+			"name": "size",
+			"type": "String",
+			"values": ["sm","md","lg"],
+			"default": "md",
+			"description": "Size of the button."
+		}, 
+		{
+			"name": "variant",
+			"type": "String",
+			"values": ["secondary","primary","success","info","warning","danger","link"],
+			"default": "success",
+			"description": "Button color context."
+		}
+	]
+}

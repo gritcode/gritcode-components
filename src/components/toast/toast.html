@@ -1,0 +1,7 @@
+<div class="toast toast-gritcode {{activeToast ? 'active' : ''}} {{toastPosition}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}" v-on:mouseover="pause" v-on:mouseout="animate">
+  <span v-html="message"></span>
+  <div v-bind:class="{'progress-bar': true, active: activeProgressBar}" v-bind:style="style" v-show="!hideProgress"></div>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close" v-on:click="clear">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

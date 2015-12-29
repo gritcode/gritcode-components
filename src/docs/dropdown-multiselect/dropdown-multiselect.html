@@ -1,0 +1,53 @@
+<docs-demo :meta="meta" :snippet="snippet">
+
+	<!-- Html controls start-->
+	<div slot="controls">
+		<label>caret <input type="checkbox" v-model="caret"></label>
+		<label>dropup <input type="checkbox" v-model="dropup"></label>
+		<label>
+			size 
+			<select v-model="size">
+				<option v-for="option in sizes" v-bind:value="option.value">
+			    {{ option.text }}
+			  </option>
+			</select>
+		</label>
+		<label>
+			variant 
+			<select v-model="variant">
+				<option v-for="option in variants" v-bind:value="option.value">
+			    {{ option.text }}
+			  </option>
+			</select>
+		</label>
+		<label>
+			position 
+			<select v-model="position">
+				<option v-for="option in positions" v-bind:value="option.value">
+			    {{ option.text }}
+			  </option>
+			</select>
+		</label>
+	</div>
+	<!-- Html controls end-->
+	
+	<!-- Html markup start-->
+	<div slot="markup" class="clearfix">
+		<vs-dropdown-multiselect 
+			:size="size" 
+			:list="list"
+			:model.sync="model" 
+			default-text="Select Countries"
+			default-text-multiple="countries selected"
+			:variant="variant"
+			:position="position"
+			:dropup="dropup"
+			:max-count="2"
+			:caret="caret"
+			return-object
+			v-bind:class="{'pull-right': position == 'right'}">
+		</vs-dropdown-multiselect>
+	</div>
+	<!-- Html markup end-->
+
+</docs-demo>	

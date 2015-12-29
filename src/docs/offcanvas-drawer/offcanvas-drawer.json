@@ -1,0 +1,33 @@
+{
+	"name": "offcanvas drawer",
+	"title": "Offcanvas Drawer",
+	"description": "A toggable drawer that pushes page conent aside.",
+	"dependencies": ["vuestrap/buttons"],
+	"category": "components",
+	"browserSupport": {
+		"browsers": ["IE9+", "Android 4.3"]
+	},
+	"options": [
+		{
+			"name": "id",
+			"type": "String",
+			"default": "success",
+			"description": "An Id of the drawer instance."
+		}, 
+		{
+      "name" : "align",
+      "type": "String",
+      "default": false,
+      "values": ["left", "right"],
+      "description": "Removes progressbar from the toast."
+    },
+    {
+      "name" : "animation",
+      "type": "String",
+      "default": false,
+      "values": ["none", "ease","linear","ease-in","ease-out","ease-in-out","bounce","snappy","out-of-orbit"],
+      "description": "Absolute position within the parent element."
+    }
+	]
+}
+

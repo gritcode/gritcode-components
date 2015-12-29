@@ -1,0 +1,13 @@
+<!-- trigger examples -->
+<button v-on:click="$broadcast('show::toast', {message: 'Default'})">default</button>
+<button v-on:click="$broadcast('show::toast', {success: 'Success!'})">success</button>
+<button v-on:click="$broadcast('show::toast', {error: 'Error!'})">error</button>
+<button v-on:click="$broadcast('show::toast', {info: 'Info.'})">info</button>
+
+<!-- toast element -->
+<vs-toast 
+  :hide-progress="true" 
+  :duration="6000" 
+  position="bottom left" 
+  context="default">
+</vs-toast>

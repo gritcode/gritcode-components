@@ -1,0 +1,40 @@
+{
+	"name": "button-toggle",
+	"title": "Button Toggle",
+	"description": "Simple on/off toggle in form of a button.",
+	"dependencies": ["vuestrap/buttons"],
+	"category": "components",
+	"browserSupport": {
+		"browsers": ["IE9+", "Android 4.3"]
+	},
+	"options": [
+		{
+			"name": "model",
+			"type": "Boolean",
+			"default": "''",
+			"required": false,
+			"description": "Returns either <code>true</code> or <code>false</code>."
+		},
+		{
+			"name": "text",
+			"type": "Object",
+			"default": "",
+			"required": true,
+			"description": "Text shown in the button for <code>on</code> and <code>off</code> option."
+		},
+		{
+			"name": "size",
+			"type": "String",
+			"values": ["sm","md","lg"],
+			"default": "md",
+			"description": "Size of the button."
+		}, 
+		{
+			"name": "variant",
+			"type": "String",
+			"values": ["secondary","primary","success","info","warning","danger","link"],
+			"default": "success",
+			"description": "Button color context."
+		}
+	]
+}

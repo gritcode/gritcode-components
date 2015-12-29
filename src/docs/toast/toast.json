@@ -1,0 +1,40 @@
+{
+	"name": "toast",
+	"title": "Toast",
+	"description": "A subtle notification with a queue support.",
+	"note": "Only one toast is shown at a time. All other toast will be queued and shown one after another.",
+	"dependencies": ["vuestrap/buttons"],
+	"category": "components",
+	"browserSupport": {
+		"browsers": ["IE9+", "Android 4.3"]
+	},
+	"options": [
+		{
+			"name": "context",
+			"type": "String",
+			"values": ["success","info","warning","danger","light","dark"],
+			"default": "success",
+			"description": "Type of the toast."
+		}, 
+		{
+      "name" : "hide-progressbar",
+      "type": "Boolean",
+      "default": false,
+      "description": "Removes progressbar from the toast."
+    },
+    {
+      "name" : "position",
+      "type": "String",
+      "default": false,
+      "values": ["top left","top right","bottom left","bottom right"],
+      "description": "Absolute position within the parent element."
+    }, 
+    {
+      "name" : "on-ajax-errors",
+      "type": "String",
+      "default": false,
+      "description": "If set to true you can communicate any api errors to the user via toast and <code>show::ajax</code> event. "
+    }
+	]
+}
+

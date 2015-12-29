@@ -1,0 +1,65 @@
+// mixin
+@mixin padding($padding-right, $padding-left) {
+    padding-left: $padding-left;
+    padding-right: $padding-right;
+}
+
+.btn-toggle-gritcode {
+    position: relative;
+    overflow: hidden;
+    padding: 0 !important;
+    border: 0;
+    .btn {
+        margin: 0;
+        display: inline-block;
+        outline: none;
+        transition: transform .35s;
+        transform: translate(-100%, 0);
+        transform: translate3d(-100%, 0, 0);
+        -ms-transform: translate(-100%, 0);
+        &:active,
+        &:hover,
+        &:visited,
+        &:focus {
+            outline: none;
+        }
+        @include padding($btn-padding-x - 0.2rem, $btn-padding-x)
+        &.btn-sm {
+            @include padding($btn-padding-x-sm - 0.2rem, $btn-padding-x-sm)
+        }
+        &.btn-lg {
+            @include padding($btn-padding-x-lg - 0.2rem, $btn-padding-x-lg)
+        }
+    }
+    &.active {
+        .btn {
+            transform: translate(0, 0);
+            transform: translate3d(0, 0, 0);
+            -ms-transform: translate(0, 0);
+            @include padding($btn-padding-x, $btn-padding-x - 0.2rem)
+            &.btn-sm {
+                @include padding($btn-padding-x-sm, $btn-padding-x-sm - 0.2rem)
+            }
+            &.btn-lg {
+                @include padding($btn-padding-x-lg, $btn-padding-x-lg - 0.2rem)
+            }
+        }
+        .handle {
+            left: calc(100% - 12px);
+        }
+    }
+    .handle {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background-color: #fff;
+        position: absolute;
+        margin: 1px;
+        height: calc(100% - 2px);
+        padding: 0;
+        width: 10px;
+        left: 0%;
+        top: 0;
+        z-index: 2;
+        transition: left .35s;
+    }
+}

@@ -1,0 +1,16 @@
+<div class="dropdown-multiselect-gritcode" v-bind:class="{open: show, dropdown: !dropup, dropup: dropup}">
+    <button
+        id="dLabel"
+        class="btn dropdown {{dropdownToggle}} {{btnVariant}} {{btnSize}}"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="show"
+        v-on:click="toggle($event)">
+        <span class="checked-items" v-html="displayItem"></span>
+    </button>
+    <ul class="dropdown-menu" v-bind:class="{'dropdown-menu-right' : position == 'right'}" aria-labelledby="dLabel">
+        <li v-for="item in list">
+            <button class="dropdown-item" v-on:click.stop="select($index)" title="{{item.text}}">{{item.text}} <vs-icon name="check" v-show="checked($index) !== false" class="pull-right"></vs-icon></button>
+        </li>
+    </ul>
+</div>

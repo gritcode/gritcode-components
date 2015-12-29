@@ -1,0 +1,20 @@
+{
+	"name": "truncate",
+	"title": "Truncate",
+	"description": "Truncate text that is too long.",
+	"dependencies": ["vuestrap/buttons"],
+	"category": "components",
+	"browserSupport": {
+		"browsers": ["IE9+", "Android 4.3"]
+	},
+	"options": [
+		{
+			"name": "width",
+			"type": "String",
+			"default": "20em",
+			"required": true,
+			"description": "Any text that is longer than <code>width</code> will be CSS truncated."
+		}
+	]
+}
+

@@ -1,0 +1,54 @@
+// variables
+$dropdown-multiselect-width: 200px !default;
+$dropdown-multiselect-dropdown-width: auto !default;
+$dropdown-multiselect-menu-height: 200px !default;
+
+// core styling
+.dropdown-multiselect-gritcode {
+  .dropdown-toggle {
+    width: $dropdown-multiselect-width;
+    .checked-items {
+      width: $dropdown-multiselect-width - 50px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: inline-block;
+      float: left;
+    }
+  }
+  .dropdown-menu {
+    max-height: $dropdown-multiselect-menu-height;
+    overflow-y: auto;
+    margin: 0;
+    width: $dropdown-multiselect-dropdown-width;
+
+    // custom styling in chrome for a nicer scroller
+    &::-webkit-scrollbar-track
+    {
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar
+    {
+      width: 10px;
+      background-color: #F5F5F5;
+    }
+
+    &::-webkit-scrollbar-thumb
+    {
+      background-color: #ccc;
+    }
+    .dropdown-item {
+      padding: 0.3em 1.5em 0.3em 0.4em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      .icons {
+        position: absolute;
+        right: 0.3em;
+        top: 0.5em;
+      }
+    }
+  }
+}

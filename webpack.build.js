@@ -18,13 +18,16 @@ config.plugins = [
   new ExtractTextPlugin(fileName + '.css')
 ]
 
-// plugins for production
-if (ENV === 'dist') {
+if (ENV) {
   config.plugins.push(new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: '"production"'
+      NODE_ENV: '"' + ENV + '"'
     }
   }))
+}
+
+// plugins for production
+if (ENV === 'dist') {
   config.plugins.push(new webpack.optimize.UglifyJsPlugin({
 	  sourceMap: false,
 	  compress: {

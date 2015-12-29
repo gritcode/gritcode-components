@@ -5897,7 +5897,7 @@
 /* 83 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"spinner spinner-gritcode {{spinnerSize}} {{fixed ? 'spinner-fixed' : ''}}\" v-show=\"true\"> \r\n\t<div class=\"spinner-wrapper\">\r\n\t  <div class=\"spinner-circle\"></div>\r\n\t  <div class=\"spinner-text\">{{text}}</div>\r\n  </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"spinner spinner-gritcode {{spinnerSize}} {{fixed ? 'spinner-fixed' : ''}}\" v-show=\"active\"> \r\n\t<div class=\"spinner-wrapper\">\r\n\t  <div class=\"spinner-circle\"></div>\r\n\t  <div class=\"spinner-text\">{{text}}</div>\r\n  </div>\r\n</div>\r\n";
 
 /***/ },
 /* 84 */
@@ -6548,6 +6548,9 @@
 	      'default': function _default() {
 	        if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev') {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
+	        }
+	        if (process.env.NODE_ENV === 'docs') {
+	          return 'assets/icons.min.svg';
 	        }
 	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
 	      }

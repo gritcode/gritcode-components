@@ -6,7 +6,7 @@ Gritcode Components extend Bootstrap 4 with [vuestrap](http://kzima.github.io/vu
 DEMO
 =========
 
-[Documentation](http://kzima.github.io/gritcode-components/#/alert)
+[Documentation](http://gritcode.github.io/gritcode-components/#/toast)
 
 QUICK USE
 =========
@@ -16,7 +16,7 @@ For compiled components, use it within your Vue instance like this:
 ```js
 new Vue({
 	el: '#app',
-	components: { 'alert': gritcode.alert }
+	components: { 'toast': gritcode.toast }
 })
 ```
 
@@ -25,7 +25,7 @@ new Vue({
 If you chosen to work with source components, just import* desired component like so:
 
 ```js
-import alert from 'vuestrap-alert/src/components/alert'
+import toast from 'gritcode-components/src/components/toast'
 ```
 
 and then load it in your Vue instance:
@@ -33,7 +33,7 @@ and then load it in your Vue instance:
 ```js
 new Vue({
 	el: '#app',
-	components: { 'vs-alert': alert }
+	components: { 'vs-toast': toast }
 })
 ```
 
@@ -41,7 +41,7 @@ new Vue({
 
 You can then use icon component in your html, like so:
 ```html
-<vs-alert>Hello</vs-alert>
+<vs-toast></vs-toast>
 ```
 
 TODO

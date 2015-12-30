@@ -73,7 +73,7 @@ export default {
       clearTimeout(this.animation)
       // show next toast from the queue
       if (this.queue.length > 0) {
-        setTimeout(() => {
+        this._toastAnimation = setTimeout(() => {
           const toast = this.queue.shift()
           this.show(toast)
         }, TOAST_ANIMATION)
@@ -134,5 +134,9 @@ export default {
     'show::toast'(options) {
       this.addToQueue(options)
     }
+  },
+  destroyed() {
+    clearTimeout(this._animation)
+    clearTimeout(this._toastAnimation)
   },
 }

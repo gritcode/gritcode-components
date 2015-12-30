@@ -56,7 +56,7 @@ export default {
     },
     hide() {
       const delay = 0
-      setTimeout(() => {
+      this._spinnerAnimation = setTimeout(() => {
         this.active = false
         this.$root.$broadcast('hidden::spinner')
       }, this.getMinWait(delay))
@@ -75,5 +75,8 @@ export default {
     'end::ajax'() {
       this.hide()
     }
-  }
+  },
+  destroyed() {
+    clearTimeout(this._spinnerAnimation)
+  },
 }

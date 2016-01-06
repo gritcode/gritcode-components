@@ -1,6 +1,6 @@
 {
   "name": "gritcode-components",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Web components built with Vuestrap.",
   "library": "gritcode-components",
   "repository": {
@@ -29,7 +29,7 @@
   },
   "peerDependencies": {
     "vuestrap": "^1.0.0",
-    "vuestrap-icons": "^0.4.9"
+    "vuestrap-icons": "^0.4.14"
   },
   "dependencies": {
     "vue": "^1.0.12"

@@ -2479,7 +2479,7 @@ input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
   width: 100%; }
-.vuestrap-icons {
+.icons-vuestrap {
   font-size: 1.5rem;
   line-height: 1.5rem;
   width: 1.5rem;
@@ -2487,26 +2487,26 @@ input[type="button"].btn-block {
   display: inline-block;
   vertical-align: middle;
   position: relative; }
-  .vuestrap-icons .icon {
+  .icons-vuestrap .icon {
     width: 100%;
     height: 100%;
     top: 0%;
     left: 0%;
     position: absolute;
     z-index: 2; }
-  .vuestrap-icons .icon-background {
+  .icons-vuestrap .icon-background {
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1; }
-  .vuestrap-icons.icons-bg-fill .icon, .vuestrap-icons.icons-bg-outline .icon {
+  .icons-vuestrap.icons-bg-fill .icon, .icons-vuestrap.icons-bg-outline .icon {
     width: 50%;
     height: 50%;
     top: 25%;
     left: 25%; }
-  .vuestrap-icons .text {
+  .icons-vuestrap .text {
     position: relative;
     color: #fff;
     z-index: 3;
@@ -2515,190 +2515,190 @@ input[type="button"].btn-block {
     height: 100%;
     display: table;
     text-align: center; }
-    .vuestrap-icons .text > span {
+    .icons-vuestrap .text > span {
       display: table-cell;
       vertical-align: middle; }
-  .vuestrap-icons.icons-right {
+  .icons-vuestrap.icons-right {
     margin-left: 0.2em;
     margin-right: 0; }
-  .vuestrap-icons.icons-left {
+  .icons-vuestrap.icons-left {
     margin-left: 0;
     margin-right: 0.2em; }
-  .vuestrap-icons .hidden {
+  .icons-vuestrap .hidden {
     display: none; }
 
-.vuestrap-icons.icons-sm {
+.icons-vuestrap.icons-sm {
   font-size: 1rem;
   line-height: 1rem;
   width: 1rem;
   height: 1rem; }
 
-.vuestrap-icons.icons-md {
+.icons-vuestrap.icons-md {
   font-size: 1.5rem;
   line-height: 1.5rem;
   width: 1.5rem;
   height: 1.5rem; }
 
-.vuestrap-icons.icons-lg {
+.icons-vuestrap.icons-lg {
   font-size: 2rem;
   line-height: 2rem;
   width: 2rem;
   height: 2rem; }
 
-.vuestrap-icons.icons-xl {
+.icons-vuestrap.icons-xl {
   font-size: 3rem;
   line-height: 3rem;
   width: 3rem;
   height: 3rem; }
 
-.vuestrap-icons.icons-xxl {
+.icons-vuestrap.icons-xxl {
   font-size: 3.5rem;
   line-height: 3.5rem;
   width: 3.5rem;
   height: 3.5rem; }
 
-.vuestrap-icons .icon {
+.icons-vuestrap .icon {
   fill: #818a91; }
 
-.vuestrap-icons.icons-bg-fill .icon {
+.icons-vuestrap.icons-bg-fill .icon {
   fill: #fff; }
 
-.vuestrap-icons.icons-bg-fill .icon-background {
+.icons-vuestrap.icons-bg-fill .icon-background {
   fill: #818a91; }
 
-.vuestrap-icons.icons-bg-fill .text {
+.icons-vuestrap.icons-bg-fill .text {
   color: #fff; }
 
-.vuestrap-icons.icons-bg-outline .icon-background {
+.icons-vuestrap.icons-bg-outline .icon-background {
   fill: #818a91; }
 
-.vuestrap-icons.icons-bg-outline .text {
+.icons-vuestrap.icons-bg-outline .text {
   color: #818a91; }
 
-.vuestrap-icons.icons-primary .icon {
+.icons-vuestrap.icons-primary .icon {
   fill: #563d7c; }
 
-.vuestrap-icons.icons-primary.icons-bg-fill .icon {
+.icons-vuestrap.icons-primary.icons-bg-fill .icon {
   fill: #fff; }
 
-.vuestrap-icons.icons-primary.icons-bg-fill .icon-background {
+.icons-vuestrap.icons-primary.icons-bg-fill .icon-background {
   fill: #563d7c; }
 
-.vuestrap-icons.icons-primary.icons-bg-fill .text {
+.icons-vuestrap.icons-primary.icons-bg-fill .text {
   color: #fff; }
 
-.vuestrap-icons.icons-primary.icons-bg-outline .icon-background {
+.icons-vuestrap.icons-primary.icons-bg-outline .icon-background {
   fill: #563d7c; }
 
-.vuestrap-icons.icons-primary.icons-bg-outline .text {
+.icons-vuestrap.icons-primary.icons-bg-outline .text {
   color: #563d7c; }
 
-.vuestrap-icons.icons-info .icon {
+.icons-vuestrap.icons-info .icon {
   fill: #5bc0de; }
 
-.vuestrap-icons.icons-info.icons-bg-fill .icon {
+.icons-vuestrap.icons-info.icons-bg-fill .icon {
   fill: #fff; }
 
-.vuestrap-icons.icons-info.icons-bg-fill .icon-background {
+.icons-vuestrap.icons-info.icons-bg-fill .icon-background {
   fill: #5bc0de; }
 
-.vuestrap-icons.icons-info.icons-bg-fill .text {
+.icons-vuestrap.icons-info.icons-bg-fill .text {
   color: #fff; }
 
-.vuestrap-icons.icons-info.icons-bg-outline .icon-background {
+.icons-vuestrap.icons-info.icons-bg-outline .icon-background {
   fill: #5bc0de; }
 
-.vuestrap-icons.icons-info.icons-bg-outline .text {
+.icons-vuestrap.icons-info.icons-bg-outline .text {
   color: #5bc0de; }
 
-.vuestrap-icons.icons-success .icon {
+.icons-vuestrap.icons-success .icon {
   fill: #42b983; }
 
-.vuestrap-icons.icons-success.icons-bg-fill .icon {
+.icons-vuestrap.icons-success.icons-bg-fill .icon {
   fill: #fff; }
 
-.vuestrap-icons.icons-success.icons-bg-fill .icon-background {
+.icons-vuestrap.icons-success.icons-bg-fill .icon-background {
   fill: #42b983; }
 
-.vuestrap-icons.icons-success.icons-bg-fill .text {
+.icons-vuestrap.icons-success.icons-bg-fill .text {
   color: #fff; }
 
-.vuestrap-icons.icons-success.icons-bg-outline .icon-background {
+.icons-vuestrap.icons-success.icons-bg-outline .icon-background {
   fill: #42b983; }
 
-.vuestrap-icons.icons-success.icons-bg-outline .text {
+.icons-vuestrap.icons-success.icons-bg-outline .text {
   color: #42b983; }
 
-.vuestrap-icons.icons-warning .icon {
+.icons-vuestrap.icons-warning .icon {
   fill: #f0ad4e; }
 
-.vuestrap-icons.icons-warning.icons-bg-fill .icon {
+.icons-vuestrap.icons-warning.icons-bg-fill .icon {
   fill: #fff; }
 
-.vuestrap-icons.icons-warning.icons-bg-fill .icon-background {
+.icons-vuestrap.icons-warning.icons-bg-fill .icon-background {
   fill: #f0ad4e; }
 
-.vuestrap-icons.icons-warning.icons-bg-fill .text {
+.icons-vuestrap.icons-warning.icons-bg-fill .text {
   color: #fff; }
 
-.vuestrap-icons.icons-warning.icons-bg-outline .icon-background {
+.icons-vuestrap.icons-warning.icons-bg-outline .icon-background {
   fill: #f0ad4e; }
 
-.vuestrap-icons.icons-warning.icons-bg-outline .text {
+.icons-vuestrap.icons-warning.icons-bg-outline .text {
   color: #f0ad4e; }
 
-.vuestrap-icons.icons-danger .icon {
+.icons-vuestrap.icons-danger .icon {
   fill: #d9534f; }
 
-.vuestrap-icons.icons-danger.icons-bg-fill .icon {
+.icons-vuestrap.icons-danger.icons-bg-fill .icon {
   fill: #fff; }
 
-.vuestrap-icons.icons-danger.icons-bg-fill .icon-background {
+.icons-vuestrap.icons-danger.icons-bg-fill .icon-background {
   fill: #d9534f; }
 
-.vuestrap-icons.icons-danger.icons-bg-fill .text {
+.icons-vuestrap.icons-danger.icons-bg-fill .text {
   color: #fff; }
 
-.vuestrap-icons.icons-danger.icons-bg-outline .icon-background {
+.icons-vuestrap.icons-danger.icons-bg-outline .icon-background {
   fill: #d9534f; }
 
-.vuestrap-icons.icons-danger.icons-bg-outline .text {
+.icons-vuestrap.icons-danger.icons-bg-outline .text {
   color: #d9534f; }
 
-.vuestrap-icons.icons-dark .icon {
+.icons-vuestrap.icons-dark .icon {
   fill: #000; }
 
-.vuestrap-icons.icons-dark.icons-bg-fill .icon {
+.icons-vuestrap.icons-dark.icons-bg-fill .icon {
   fill: #fff; }
 
-.vuestrap-icons.icons-dark.icons-bg-fill .icon-background {
+.icons-vuestrap.icons-dark.icons-bg-fill .icon-background {
   fill: #000; }
 
-.vuestrap-icons.icons-dark.icons-bg-fill .text {
+.icons-vuestrap.icons-dark.icons-bg-fill .text {
   color: #fff; }
 
-.vuestrap-icons.icons-dark.icons-bg-outline .icon-background {
+.icons-vuestrap.icons-dark.icons-bg-outline .icon-background {
   fill: #000; }
 
-.vuestrap-icons.icons-dark.icons-bg-outline .text {
+.icons-vuestrap.icons-dark.icons-bg-outline .text {
   color: #000; }
 
-.vuestrap-icons.icons-light .icon {
+.icons-vuestrap.icons-light .icon {
   fill: #fff; }
 
-.vuestrap-icons.icons-light.icons-bg-fill .icon {
+.icons-vuestrap.icons-light.icons-bg-fill .icon {
   fill: #000; }
 
-.vuestrap-icons.icons-light.icons-bg-fill .icon-background {
+.icons-vuestrap.icons-light.icons-bg-fill .icon-background {
   fill: #fff; }
 
-.vuestrap-icons.icons-light.icons-bg-fill .text {
+.icons-vuestrap.icons-light.icons-bg-fill .text {
   color: #000; }
 
-.vuestrap-icons.icons-light.icons-bg-outline .icon-background {
+.icons-vuestrap.icons-light.icons-bg-outline .icon-background {
   fill: #fff; }
 
-.vuestrap-icons.icons-light.icons-bg-outline .text {
+.icons-vuestrap.icons-light.icons-bg-outline .text {
   color: #fff; }
 
 .btn.disabled svg {

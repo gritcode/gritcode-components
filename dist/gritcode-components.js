@@ -334,14 +334,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _buttonToggleHtml2 = _interopRequireDefault(_buttonToggleHtml);
 	
+	var ANIMATION = 350; // in ms
+	
 	exports['default'] = {
 	    template: _buttonToggleHtml2['default'],
 	    replace: true,
-	    data: function data() {
-	        return {
-	            something: 'djdj'
-	        };
-	    },
 	    computed: {
 	        btnVariant: function btnVariant() {
 	            return !this.variant || this.variant === 'default' ? 'btn-primary' : 'btn-' + this.variant;
@@ -350,7 +347,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return !this.size || this.size === 'default' ? '' : 'btn-' + this.size;
 	        }
 	    },
+	    data: function data() {
+	        return {
+	            active: this.model
+	        };
+	    },
 	    props: {
+	        id: String,
 	        model: {
 	            type: Boolean,
 	            twoWay: true
@@ -370,14 +373,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    },
 	    methods: {
-	        show: function show() {
-	            this.model = true;
-	        },
-	        hide: function hide() {
-	            this.model = false;
-	        },
-	        toggle: function toggle() {
-	            this.model = !this.model;
+	        toggle: function toggle(value) {
+	            var _this = this;
+	
+	            this.active = value || !this.active;
+	            setTimeout(function () {
+	                _this.model = _this.active;
+	                _this.$dispatch('toggled::button-toggle', { id: _this.id, value: _this.model });
+	            }, ANIMATION);
 	        }
 	    }
 	};
@@ -394,7 +397,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{model ? 'active' : ''}}\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click=\"hide\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click=\"toggle\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click=\"show\">{{text.off}}</button>\r\n</div>\r\n";
+	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click=\"toggle\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
 
 /***/ },
 /* 14 */
@@ -684,13 +687,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    path: {
 	      type: String,
 	      'default': function _default() {
-	        if (true) {
+	        if (false) {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
 	        if (false) {
-	          return 'node_modules/vuestrap-icons/assets/icons.min.svg';
+	          return 'assets/icons.min.svg';
 	        }
-	        return 'assets/icons.min.svg';
+	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
 	      }
 	    }
 	  }
@@ -708,7 +711,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 26 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"icons vuestrap-icons {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
+	module.exports = "<span class=\"icons icons-vuestrap {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
 /* 27 */
@@ -998,6 +1001,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.fixed = options.fixed;
 	      }
 	
+	      // block scrolling when spinner is on
+	      this._body.style.overflowY = 'hidden';
+	
 	      // activate spinner
 	      this._started = new Date();
 	      this.active = true;
@@ -1029,6 +1035,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  destroyed: function destroyed() {
 	    clearTimeout(this._spinnerAnimation);
+	    this._body.style.overflowY = this._bodyOverflow;
+	  },
+	  ready: function ready() {
+	    this._body = document.querySelector('body');
+	    this._bodyOverflow = this._body.style.overflowY || '';
 	  }
 	};
 	module.exports = exports['default'];

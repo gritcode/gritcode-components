@@ -4455,7 +4455,7 @@
 
 	module.exports = {
 		"name": "gritcode-components",
-		"version": "0.1.3",
+		"version": "0.1.4",
 		"description": "Web components built with Vuestrap.",
 		"library": "gritcode-components",
 		"repository": {
@@ -4484,7 +4484,7 @@
 		},
 		"peerDependencies": {
 			"vuestrap": "^1.0.0",
-			"vuestrap-icons": "^0.4.9"
+			"vuestrap-icons": "^0.4.14"
 		},
 		"dependencies": {
 			"vue": "^1.0.12"
@@ -5736,6 +5736,9 @@
 	        this.fixed = options.fixed;
 	      }
 
+	      // block scrolling when spinner is on
+	      this._body.style.overflowY = 'hidden';
+
 	      // activate spinner
 	      this._started = new Date();
 	      this.active = true;
@@ -5767,6 +5770,11 @@
 	  },
 	  destroyed: function destroyed() {
 	    clearTimeout(this._spinnerAnimation);
+	    this._body.style.overflowY = this._bodyOverflow;
+	  },
+	  ready: function ready() {
+	    this._body = document.querySelector('body');
+	    this._bodyOverflow = this._body.style.overflowY || '';
 	  }
 	};
 	module.exports = exports['default'];
@@ -6468,9 +6476,9 @@
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
 	        if (true) {
-	          return 'node_modules/vuestrap-icons/assets/icons.min.svg';
+	          return 'assets/icons.min.svg';
 	        }
-	        return 'assets/icons.min.svg';
+	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
 	      }
 	    }
 	  }
@@ -6512,7 +6520,7 @@
 
 
 	// module
-	exports.push([module.id, ".vuestrap-icons {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem;\n  display: inline-block;\n  vertical-align: middle;\n  position: relative; }\n  .vuestrap-icons .icon {\n    width: 100%;\n    height: 100%;\n    top: 0%;\n    left: 0%;\n    position: absolute;\n    z-index: 2; }\n  .vuestrap-icons .icon-background {\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 1; }\n  .vuestrap-icons.icons-bg-fill .icon, .vuestrap-icons.icons-bg-outline .icon {\n    width: 50%;\n    height: 50%;\n    top: 25%;\n    left: 25%; }\n  .vuestrap-icons .text {\n    position: relative;\n    color: #fff;\n    z-index: 3;\n    font-size: 70%;\n    width: 100%;\n    height: 100%;\n    display: table;\n    text-align: center; }\n    .vuestrap-icons .text > span {\n      display: table-cell;\n      vertical-align: middle; }\n  .vuestrap-icons.icons-right {\n    margin-left: 0.2em;\n    margin-right: 0; }\n  .vuestrap-icons.icons-left {\n    margin-left: 0;\n    margin-right: 0.2em; }\n  .vuestrap-icons .hidden {\n    display: none; }\n\n.vuestrap-icons.icons-sm {\n  font-size: 1rem;\n  line-height: 1rem;\n  width: 1rem;\n  height: 1rem; }\n\n.vuestrap-icons.icons-md {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem; }\n\n.vuestrap-icons.icons-lg {\n  font-size: 2rem;\n  line-height: 2rem;\n  width: 2rem;\n  height: 2rem; }\n\n.vuestrap-icons.icons-xl {\n  font-size: 3rem;\n  line-height: 3rem;\n  width: 3rem;\n  height: 3rem; }\n\n.vuestrap-icons.icons-xxl {\n  font-size: 3.5rem;\n  line-height: 3.5rem;\n  width: 3.5rem;\n  height: 3.5rem; }\n\n.vuestrap-icons .icon {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-bg-fill .icon-background {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-bg-outline .icon-background {\n  fill: #818a91; }\n\n.vuestrap-icons.icons-bg-outline .text {\n  color: #818a91; }\n\n.vuestrap-icons.icons-primary .icon {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .icon-background {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-primary.icons-bg-outline .icon-background {\n  fill: #563d7c; }\n\n.vuestrap-icons.icons-primary.icons-bg-outline .text {\n  color: #563d7c; }\n\n.vuestrap-icons.icons-info .icon {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .icon-background {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-info.icons-bg-outline .icon-background {\n  fill: #5bc0de; }\n\n.vuestrap-icons.icons-info.icons-bg-outline .text {\n  color: #5bc0de; }\n\n.vuestrap-icons.icons-success .icon {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .icon-background {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-success.icons-bg-outline .icon-background {\n  fill: #42b983; }\n\n.vuestrap-icons.icons-success.icons-bg-outline .text {\n  color: #42b983; }\n\n.vuestrap-icons.icons-warning .icon {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .icon-background {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-warning.icons-bg-outline .icon-background {\n  fill: #f0ad4e; }\n\n.vuestrap-icons.icons-warning.icons-bg-outline .text {\n  color: #f0ad4e; }\n\n.vuestrap-icons.icons-danger .icon {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .icon-background {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-danger.icons-bg-outline .icon-background {\n  fill: #d9534f; }\n\n.vuestrap-icons.icons-danger.icons-bg-outline .text {\n  color: #d9534f; }\n\n.vuestrap-icons.icons-dark .icon {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .icon-background {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-fill .text {\n  color: #fff; }\n\n.vuestrap-icons.icons-dark.icons-bg-outline .icon-background {\n  fill: #000; }\n\n.vuestrap-icons.icons-dark.icons-bg-outline .text {\n  color: #000; }\n\n.vuestrap-icons.icons-light .icon {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .icon {\n  fill: #000; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .icon-background {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-fill .text {\n  color: #000; }\n\n.vuestrap-icons.icons-light.icons-bg-outline .icon-background {\n  fill: #fff; }\n\n.vuestrap-icons.icons-light.icons-bg-outline .text {\n  color: #fff; }\n\n.btn.disabled svg {\n  opacity: 0.5; }\n\n.btn:hover svg {\n  fill: #fff; }\n", ""]);
+	exports.push([module.id, ".icons-vuestrap {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem;\n  display: inline-block;\n  vertical-align: middle;\n  position: relative; }\n  .icons-vuestrap .icon {\n    width: 100%;\n    height: 100%;\n    top: 0%;\n    left: 0%;\n    position: absolute;\n    z-index: 2; }\n  .icons-vuestrap .icon-background {\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top: 0;\n    left: 0;\n    z-index: 1; }\n  .icons-vuestrap.icons-bg-fill .icon, .icons-vuestrap.icons-bg-outline .icon {\n    width: 50%;\n    height: 50%;\n    top: 25%;\n    left: 25%; }\n  .icons-vuestrap .text {\n    position: relative;\n    color: #fff;\n    z-index: 3;\n    font-size: 70%;\n    width: 100%;\n    height: 100%;\n    display: table;\n    text-align: center; }\n    .icons-vuestrap .text > span {\n      display: table-cell;\n      vertical-align: middle; }\n  .icons-vuestrap.icons-right {\n    margin-left: 0.2em;\n    margin-right: 0; }\n  .icons-vuestrap.icons-left {\n    margin-left: 0;\n    margin-right: 0.2em; }\n  .icons-vuestrap .hidden {\n    display: none; }\n\n.icons-vuestrap.icons-sm {\n  font-size: 1rem;\n  line-height: 1rem;\n  width: 1rem;\n  height: 1rem; }\n\n.icons-vuestrap.icons-md {\n  font-size: 1.5rem;\n  line-height: 1.5rem;\n  width: 1.5rem;\n  height: 1.5rem; }\n\n.icons-vuestrap.icons-lg {\n  font-size: 2rem;\n  line-height: 2rem;\n  width: 2rem;\n  height: 2rem; }\n\n.icons-vuestrap.icons-xl {\n  font-size: 3rem;\n  line-height: 3rem;\n  width: 3rem;\n  height: 3rem; }\n\n.icons-vuestrap.icons-xxl {\n  font-size: 3.5rem;\n  line-height: 3.5rem;\n  width: 3.5rem;\n  height: 3.5rem; }\n\n.icons-vuestrap .icon {\n  fill: #818a91; }\n\n.icons-vuestrap.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-bg-fill .icon-background {\n  fill: #818a91; }\n\n.icons-vuestrap.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-bg-outline .icon-background {\n  fill: #818a91; }\n\n.icons-vuestrap.icons-bg-outline .text {\n  color: #818a91; }\n\n.icons-vuestrap.icons-primary .icon {\n  fill: #563d7c; }\n\n.icons-vuestrap.icons-primary.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-primary.icons-bg-fill .icon-background {\n  fill: #563d7c; }\n\n.icons-vuestrap.icons-primary.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-primary.icons-bg-outline .icon-background {\n  fill: #563d7c; }\n\n.icons-vuestrap.icons-primary.icons-bg-outline .text {\n  color: #563d7c; }\n\n.icons-vuestrap.icons-info .icon {\n  fill: #5bc0de; }\n\n.icons-vuestrap.icons-info.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-info.icons-bg-fill .icon-background {\n  fill: #5bc0de; }\n\n.icons-vuestrap.icons-info.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-info.icons-bg-outline .icon-background {\n  fill: #5bc0de; }\n\n.icons-vuestrap.icons-info.icons-bg-outline .text {\n  color: #5bc0de; }\n\n.icons-vuestrap.icons-success .icon {\n  fill: #42b983; }\n\n.icons-vuestrap.icons-success.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-success.icons-bg-fill .icon-background {\n  fill: #42b983; }\n\n.icons-vuestrap.icons-success.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-success.icons-bg-outline .icon-background {\n  fill: #42b983; }\n\n.icons-vuestrap.icons-success.icons-bg-outline .text {\n  color: #42b983; }\n\n.icons-vuestrap.icons-warning .icon {\n  fill: #f0ad4e; }\n\n.icons-vuestrap.icons-warning.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-warning.icons-bg-fill .icon-background {\n  fill: #f0ad4e; }\n\n.icons-vuestrap.icons-warning.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-warning.icons-bg-outline .icon-background {\n  fill: #f0ad4e; }\n\n.icons-vuestrap.icons-warning.icons-bg-outline .text {\n  color: #f0ad4e; }\n\n.icons-vuestrap.icons-danger .icon {\n  fill: #d9534f; }\n\n.icons-vuestrap.icons-danger.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-danger.icons-bg-fill .icon-background {\n  fill: #d9534f; }\n\n.icons-vuestrap.icons-danger.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-danger.icons-bg-outline .icon-background {\n  fill: #d9534f; }\n\n.icons-vuestrap.icons-danger.icons-bg-outline .text {\n  color: #d9534f; }\n\n.icons-vuestrap.icons-dark .icon {\n  fill: #000; }\n\n.icons-vuestrap.icons-dark.icons-bg-fill .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-dark.icons-bg-fill .icon-background {\n  fill: #000; }\n\n.icons-vuestrap.icons-dark.icons-bg-fill .text {\n  color: #fff; }\n\n.icons-vuestrap.icons-dark.icons-bg-outline .icon-background {\n  fill: #000; }\n\n.icons-vuestrap.icons-dark.icons-bg-outline .text {\n  color: #000; }\n\n.icons-vuestrap.icons-light .icon {\n  fill: #fff; }\n\n.icons-vuestrap.icons-light.icons-bg-fill .icon {\n  fill: #000; }\n\n.icons-vuestrap.icons-light.icons-bg-fill .icon-background {\n  fill: #fff; }\n\n.icons-vuestrap.icons-light.icons-bg-fill .text {\n  color: #000; }\n\n.icons-vuestrap.icons-light.icons-bg-outline .icon-background {\n  fill: #fff; }\n\n.icons-vuestrap.icons-light.icons-bg-outline .text {\n  color: #fff; }\n\n.btn.disabled svg {\n  opacity: 0.5; }\n\n.btn:hover svg {\n  fill: #fff; }\n", ""]);
 
 	// exports
 
@@ -6521,7 +6529,7 @@
 /* 101 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"icons vuestrap-icons {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
+	module.exports = "<span class=\"icons icons-vuestrap {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
 /* 102 */
@@ -6813,14 +6821,11 @@
 
 	var _buttonToggleHtml2 = _interopRequireDefault(_buttonToggleHtml);
 
+	var ANIMATION = 350; // in ms
+
 	exports['default'] = {
 	    template: _buttonToggleHtml2['default'],
 	    replace: true,
-	    data: function data() {
-	        return {
-	            something: 'djdj'
-	        };
-	    },
 	    computed: {
 	        btnVariant: function btnVariant() {
 	            return !this.variant || this.variant === 'default' ? 'btn-primary' : 'btn-' + this.variant;
@@ -6829,7 +6834,13 @@
 	            return !this.size || this.size === 'default' ? '' : 'btn-' + this.size;
 	        }
 	    },
+	    data: function data() {
+	        return {
+	            active: this.model
+	        };
+	    },
 	    props: {
+	        id: String,
 	        model: {
 	            type: Boolean,
 	            twoWay: true
@@ -6849,14 +6860,14 @@
 	        }
 	    },
 	    methods: {
-	        show: function show() {
-	            this.model = true;
-	        },
-	        hide: function hide() {
-	            this.model = false;
-	        },
-	        toggle: function toggle() {
-	            this.model = !this.model;
+	        toggle: function toggle(value) {
+	            var _this = this;
+
+	            this.active = value || !this.active;
+	            setTimeout(function () {
+	                _this.model = _this.active;
+	                _this.$dispatch('toggled::button-toggle', { id: _this.id, value: _this.model });
+	            }, ANIMATION);
 	        }
 	    }
 	};
@@ -6906,7 +6917,7 @@
 /* 110 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{model ? 'active' : ''}}\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click=\"hide\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click=\"toggle\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click=\"show\">{{text.off}}</button>\r\n</div>\r\n";
+	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click=\"toggle\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
 
 /***/ }
 /******/ ]);

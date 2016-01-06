@@ -49,6 +49,9 @@ export default {
         this.fixed = options.fixed
       }
 
+      // block scrolling when spinner is on
+      this._body.style.overflowY = 'hidden'
+
       // activate spinner
       this._started = new Date()
       this.active = true
@@ -78,5 +81,10 @@ export default {
   },
   destroyed() {
     clearTimeout(this._spinnerAnimation)
+    this._body.style.overflowY = this._bodyOverflow
   },
+  ready() {
+    this._body = document.querySelector('body')
+    this._bodyOverflow = this._body.style.overflowY || ''
+  }
 }

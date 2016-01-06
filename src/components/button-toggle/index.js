@@ -1,23 +1,26 @@
 import './button-toggle.scss'
 import template from './button-toggle.html'
 
+const ANIMATION = 350 // in ms
+
 export default {
     template: template,
     replace: true,
+    computed: {
+        btnVariant() {
+            return !this.variant || this.variant === 'default' ? 'btn-primary' : 'btn-' + this.variant
+        },
+        btnSize() {
+            return !this.size || this.size === 'default' ? '' : 'btn-' + this.size
+        }
+    },
     data() {
       return {
-        something: 'djdj',
+        active: this.model,
       }
     },
-    computed: {
-    	btnVariant() {
-    		return !this.variant || this.variant === 'default' ? 'btn-primary' : 'btn-' + this.variant
-    	},
-    	btnSize() {
-    		return !this.size || this.size === 'default' ? '' : 'btn-' + this.size
-    	}
-    },
     props: {
+        id: String,
         model: {
             type: Boolean,
             twoWay: true,
@@ -32,19 +35,17 @@ export default {
         },
         text: {
             type: Object,
-            default: '', 
+            default: '',
             required: true,
         }
     },
     methods: {
-        show() {
-            this.model = true
-        },
-        hide() {
-            this.model = false
-        },
-        toggle() {
-            this.model = !this.model
+        toggle(value) {
+            this.active = value || !this.active
+            setTimeout(() => {
+                this.model = this.active
+                this.$dispatch('toggled::button-toggle', {id: this.id, value: this.model})
+            }, ANIMATION)
         }
     }
 }

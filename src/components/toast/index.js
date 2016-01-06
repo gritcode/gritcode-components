@@ -4,6 +4,9 @@ import './toast.scss'
 // import template
 import template from './toast.html'
 
+// this delays trigger of the first toast (queue)
+const DEBOUNCE = 300 // in ms
+
 // hide toast after default duration
 const DURATION = 6000 // in ms
 
@@ -57,6 +60,10 @@ export default {
     hideProgress: {
       type: Boolean,
       default: false,
+    },
+    debounce: {
+      type: Number,
+      default: DEBOUNCE,
     }
   },
   methods: {
@@ -93,6 +100,9 @@ export default {
       if (options.context) {
         this.context = options.context
       }
+      if (options.debounce) {
+        this.debounce = options.debounce
+      }
       if (options.success) {
         this.context = 'success'
         this.message = options.success
@@ -121,13 +131,15 @@ export default {
         this.queue.push(options)
       } else {
         // if first toast, show it
-        this.show(options)
+        setTimeout(() => {
+          this.show(options)
+        }, this.debounce)
       }
     }
   },
   events: {
     'end::ajax'(options) {
-      if (this.onAjaxErrors && options.error) {
+      if (this.onAjaxErrors && options && options.error) {
         this.addToQueue(options)
       }
     },

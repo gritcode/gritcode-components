@@ -147,6 +147,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _toastHtml2 = _interopRequireDefault(_toastHtml);
 	
+	// this delays trigger of the first toast (queue)
+	var DEBOUNCE = 300; // in ms
+	
 	// hide toast after default duration
 	var DURATION = 6000; // in ms
 	
@@ -200,6 +203,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    hideProgress: {
 	      type: Boolean,
 	      'default': false
+	    },
+	    debounce: {
+	      type: Number,
+	      'default': DEBOUNCE
 	    }
 	  },
 	  methods: {
@@ -218,7 +225,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      clearTimeout(this.animation);
 	      // show next toast from the queue
 	      if (this.queue.length > 0) {
-	        setTimeout(function () {
+	        this._toastAnimation = setTimeout(function () {
 	          var toast = _this.queue.shift();
 	          _this.show(toast);
 	        }, TOAST_ANIMATION);
@@ -239,6 +246,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	      if (options.context) {
 	        this.context = options.context;
+	      }
+	      if (options.debounce) {
+	        this.debounce = options.debounce;
 	      }
 	      if (options.success) {
 	        this.context = 'success';
@@ -263,24 +273,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	      });
 	    },
 	    addToQueue: function addToQueue(options) {
+	      var _this3 = this;
+	
 	      if (this.animationInProgress || this.queue.length > 0) {
 	        // if some other toast is curently animating, add it to the queue
 	        this.queue.push(options);
 	      } else {
 	        // if first toast, show it
-	        this.show(options);
+	        setTimeout(function () {
+	          _this3.show(options);
+	        }, this.debounce);
 	      }
 	    }
 	  },
 	  events: {
 	    'end::ajax': function endAjax(options) {
-	      if (this.onAjaxErrors && options.error) {
+	      if (this.onAjaxErrors && options && options.error) {
 	        this.addToQueue(options);
 	      }
 	    },
 	    'show::toast': function showToast(options) {
 	      this.addToQueue(options);
 	    }
+	  },
+	  destroyed: function destroyed() {
+	    clearTimeout(this._animation);
+	    clearTimeout(this._toastAnimation);
 	  }
 	};
 	module.exports = exports['default'];
@@ -670,9 +688,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
 	        if (false) {
-	          return 'assets/icons.min.svg';
+	          return 'node_modules/vuestrap-icons/assets/icons.min.svg';
 	        }
-	        return 'node_modules/vuestrap-icons/assets/icons.min.svg';
+	        return 'assets/icons.min.svg';
 	      }
 	    }
 	  }
@@ -989,7 +1007,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this = this;
 	
 	      var delay = 0;
-	      setTimeout(function () {
+	      this._spinnerAnimation = setTimeout(function () {
 	        _this.active = false;
 	        _this.$root.$broadcast('hidden::spinner');
 	      }, this.getMinWait(delay));
@@ -1008,6 +1026,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    'end::ajax': function endAjax() {
 	      this.hide();
 	    }
+	  },
+	  destroyed: function destroyed() {
+	    clearTimeout(this._spinnerAnimation);
 	  }
 	};
 	module.exports = exports['default'];

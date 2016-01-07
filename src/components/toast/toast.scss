@@ -21,7 +21,7 @@ $toast-background-danger: $brand-danger !default;
   min-height: 48px;
   min-width: 288px;
   max-width: 600px;
-  padding: 16px 34px 16px 24px;
+  padding: 16px 24px 16px 24px;
   box-sizing: border-box;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   border-radius: 2px;
@@ -36,6 +36,7 @@ $toast-background-danger: $brand-danger !default;
   transform: translateY(100px);
   -ms-transform: translateY(100px);
   z-index: 9999;
+  display: table;
 	&.active {	
 		visibility: visible;
 	  opacity: 1;
@@ -68,13 +69,13 @@ $toast-background-danger: $brand-danger !default;
 			width: 100%;
 		}
 	}
-	.close {
-		margin-left: 10px;
-		position: absolute;
-	  right: 15px;
-	  top: 50%;
-	  margin-top: -10px;
+	.message, .action {
+    vertical-align: middle;
+		display: table-cell;
 	}
+  .action {
+    text-align: right;
+  }
 }
 
 // contexts

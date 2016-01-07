@@ -16,12 +16,15 @@ export default {
     },
     data() {
       return {
-        active: this.model,
+        active: true,
       }
     },
     props: {
-        id: String,
         model: {
+            type: Boolean,
+            twoWay: true,
+        },
+        disabled: {
             type: Boolean,
             twoWay: true,
         },
@@ -37,15 +40,18 @@ export default {
             type: Object,
             default: '',
             required: true,
-        }
+        },
     },
     methods: {
         toggle(value) {
             this.active = value || !this.active
             setTimeout(() => {
                 this.model = this.active
-                this.$dispatch('toggled::button-toggle', {id: this.id, value: this.model})
+                this.$dispatch('toggled::button-toggle', this.model)
             }, ANIMATION)
         }
+    },
+    ready() {
+        this.active = this.model
     }
 }

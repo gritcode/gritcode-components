@@ -1804,7 +1804,7 @@ a.text-danger:focus, a.text-danger:hover {
   min-height: 48px;
   min-width: 288px;
   max-width: 600px;
-  padding: 16px 34px 16px 24px;
+  padding: 16px 24px 16px 24px;
   box-sizing: border-box;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
   border-radius: 2px;
@@ -1822,7 +1822,8 @@ a.text-danger:focus, a.text-danger:hover {
   -webkit-transform: translateY(100px);
           transform: translateY(100px);
   -ms-transform: translateY(100px);
-  z-index: 9999; }
+  z-index: 9999;
+  display: table; }
   .toast-gritcode.active {
     visibility: visible;
     opacity: 1;
@@ -1853,12 +1854,11 @@ a.text-danger:focus, a.text-danger:hover {
     transition: width 3s; }
     .toast-gritcode .progress-bar.active {
       width: 100%; }
-  .toast-gritcode .close {
-    margin-left: 10px;
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    margin-top: -10px; }
+  .toast-gritcode .message, .toast-gritcode .action {
+    vertical-align: middle;
+    display: table-cell; }
+  .toast-gritcode .action {
+    text-align: right; }
 
 .toast-gritcode {
   background-color: #818a91;

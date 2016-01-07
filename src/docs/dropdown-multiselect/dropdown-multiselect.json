@@ -66,6 +66,12 @@
 			"description": "If set to true, a full objects will be returned in the model array. By default only <code>values</code> are returned."
 		},
 		{
+			"name": "disabled",
+			"type": "Boolean",
+			"default": false,
+			"description": "Make button look inactive by adding the disabled boolean attribute."
+		},
+		{
 			"name": "size",
 			"type": "String",
 			"values": ["sm","md","lg"],

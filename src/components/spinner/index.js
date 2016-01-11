@@ -61,6 +61,7 @@ export default {
       const delay = 0
       this._spinnerAnimation = setTimeout(() => {
         this.active = false
+        this._body.style.overflowY = this._bodyOverflow
         this.$root.$broadcast('hidden::spinner')
       }, this.getMinWait(delay))
     }

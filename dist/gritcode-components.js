@@ -403,7 +403,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\" :disabled=\"disabled\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click=\"toggle\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
+	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\" :disabled=\"disabled\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click=\"toggle()\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
 
 /***/ },
 /* 14 */
@@ -1021,6 +1021,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var delay = 0;
 	      this._spinnerAnimation = setTimeout(function () {
 	        _this.active = false;
+	        _this._body.style.overflowY = _this._bodyOverflow;
 	        _this.$root.$broadcast('hidden::spinner');
 	      }, this.getMinWait(delay));
 	    }

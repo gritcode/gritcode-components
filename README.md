@@ -44,6 +44,16 @@ You can then use icon component in your html, like so:
 <vs-toast></vs-toast>
 ```
 
+THEMING
+=========
+To be able to use your app theme with component's scss variables, you will need to use [vuestrap-theme-loader](https://github.com/kzima/vueastrap-theme-loader) in your webpack config file.
+
+```js
+npm install vuestrap-theme-loader --save-dev
+```
+
+See [vuestrap-starter](https://github.com/kzima/vuestrap-starter) for a webpack config example with theme loader.
+
 TODO
 =========
 - document events

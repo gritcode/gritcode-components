@@ -12,6 +12,7 @@ import dropdownMultiselect from './dropdown-multiselect'
 import {offcanvasDrawer, offcanvasWrapper} from './offcanvas-drawer'
 import spinner from './spinner'
 import truncate from './truncate'
+import fileUpload from './file-upload'
 
 const gritcode = {
 	toast,
@@ -21,6 +22,7 @@ const gritcode = {
 	offcanvasDrawer,
 	spinner,
 	truncate,
+	fileUpload
 }
 
 // export all components under global variable

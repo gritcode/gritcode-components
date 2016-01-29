@@ -63,7 +63,7 @@
 			"type": "Boolean",
 			"default": "false",
 			"required": false,
-			"description": "If set to true, a full objects will be returned in the model array. By default only <code>values</code> are returned."
+			"description": "If set to true, a full object will be returned in the model array. By default only <code>values</code> are returned."
 		},
 		{
 			"name": "disabled",

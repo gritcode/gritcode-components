@@ -1,0 +1,77 @@
+{
+	"name": "file-upload",
+	"title": "File Upload",
+	"description": "File Upload widget allows for multiple file selection, drag&drop support and progress monitoring. Files are uploaded via XMLHttpRequests if supported and uses iframes as fallback for legacy browsers.",
+	"note": "File Upload is inspired by <a href='https://css-tricks.com/drag-and-drop-file-uploading/'>this</a> css-tricks article.",
+	"category": "components",
+	"browserSupport": {
+		"browsers": ["IE9+*", "Android 4.3"],
+		"note": "* IE9 will use iFrame to post files without browser refresh and it will work only with same-orgin requests. Drag and drop falls back to just input and only one file can be selected at a time."
+	},
+	"options": [
+		{
+			"name": "accept",
+			"type": "Array/Object",
+			"default": "''",
+			"required": false,
+			"description": "String of mime types to limit to certain extensions for file types, i.e. '.doc,image/*'. See this <a href='http://www.w3schools.com/tags/att_input_accept.asp'>resource</a> for more info."
+		},
+		{
+			"name": "ajax",
+			"type": "Boolean",
+			"default": "''",
+			"description": "This is an ajax api url. If not set, File Upload will act just like a regular file input and can be embedded within a form."
+		},
+		{
+			"name": "auto-submit",
+			"type": "Boolean",
+			"default": false,
+			"description": "If set to true, files will be uploaded via ajax right after file selection. It also hides an upload button."
+		},
+		{
+			"name": "id",
+			"type": "String",
+			"default": "",
+			"required": false,
+			"description": "Use id if you want to use events."
+		},
+		{
+			"name": "method",
+			"type": "String",
+			"default": "POST",
+			"required": false,
+			"description": "A method of the ajax request."
+		},
+		{
+			"name": "model",
+			"type": "Array/Object",
+			"default": "''",
+			"required": false,
+			"description": "After ajax request, File Upload will return a response from the server with file paths."
+		},
+		{
+			"name": "multiple",
+			"type": "Boolean",
+			"default": false,
+			"description": "If set to true, one more files are allowed to be dragged-over/selected. On IE9, user will have to upload one file at a time."
+		},
+		{
+			"name": "file-list",
+			"type": "FileList",
+			"default": "null",
+			"required": false,
+			"description": "A list of selected files. Share this object with other components like <code>&lt;image-preview></code> or <code>&lt;text-preview></code>"
+		},
+		{
+			"name": "hide-button",
+			"type": "Boolean",
+			"default": false,
+			"description": "This could be handy if you want to submit ajax request using 'submit::file-upload' event."
+		},
+		{
+			"name": "text",
+			"type": "Object",
+			"description": "Allows to modify text within the component. Default values:<br><code>{action: 'Choose a file'</code><br><code>drag: 'or drag it here.'</code><br><code>selected: 'files selected'</code><br><code>button: 'Upload'</code><br><code>uploading: 'Uploading...;'</code><br><code>done: 'Done!'</code><br><code>restart: 'Upload more?'</code><br><code>retry: 'Try again!'}</code>"
+		}
+	]
+}

@@ -1,0 +1,91 @@
+// variables
+$gritcode-file-upload-background: #c8dadf;
+$gritcode-file-upload-background-dragover: #fff;
+$gritcode-file-upload-background-dragover-outline:#c8dadf;
+$gritcode-file-upload-button-color: #e5edf1;
+$gritcode-file-upload-button-background: #39bfd3;
+$gritcode-file-upload-button-border: none;
+$gritcode-file-upload-icon-color: #92b0b3; 
+$gritcode-file-upload-label-color: #39bfd3;
+
+// animation
+@keyframes appear-from-inside
+{
+    from    { transform: scale( 0 ); }
+    75%     { transform: scale( 1.1 ); }
+    to      { transform: scale( 1 ); }
+}
+
+// core
+.gritcode-file-upload {
+    text-align: center;
+    font-size: 1.25rem; /* 20 */
+    background-color: $gritcode-file-upload-background;
+    position: relative;
+    padding: 100px 20px;
+    &.advanced-upload {
+        outline: 2px dashed #92b0b3;
+        outline-offset: -10px;
+        transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    }
+    
+    .input {
+        .icon {
+            width: 100%;
+            height: 80px;
+            fill: $gritcode-file-upload-icon-color;
+            display: block;
+            margin-bottom: 40px;
+        }
+        .btn-primary {
+            font-weight: 700;
+            color: $gritcode-file-upload-button-color;
+            background-color: $gritcode-file-upload-button-background;
+            border: $gritcode-file-upload-button-border;
+            display: block;
+            padding: 8px 16px;
+            margin: 40px auto 0;
+        }
+    }
+
+    .state {
+        .state-uploading {
+            font-style: italic;
+        }
+    }
+
+    .animate  {
+        animation: appear-from-inside .25s ease-in-out;
+    }
+
+    &.is-dragover {
+        outline-offset: -20px;
+        outline-color: $gritcode-file-upload-background-dragover-outline;
+        background-color: $gritcode-file-upload-background-dragover;
+    }
+
+    input[type="file"] {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+        + label {
+            margin-bottom: 0;
+            max-width: 80%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: pointer;
+            display: inline-block;
+            overflow: hidden;
+            &:hover, &:focus {
+                color: $gritcode-file-upload-label-color;
+            }
+        }
+        &:focus + label, &.has-focus + label {
+            outline: 1px dotted #000;
+            outline: -webkit-focus-ring-color auto 5px;
+        }
+    }
+}

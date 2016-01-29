@@ -13,6 +13,11 @@ module.exports = {
   module: {
     loaders: [{
       test: /\.js$/,
+      include: [
+        path.resolve('./src'),
+        path.resolve('./node_modules/vuestrap'),
+        path.resolve('./node_modules/vuestrap-base-components')
+      ],
       loader: 'babel'
     }, {
       test: /\.html$/,

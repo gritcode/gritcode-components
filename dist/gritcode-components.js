@@ -94,6 +94,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _truncate2 = _interopRequireDefault(_truncate);
 	
+	var _fileUpload = __webpack_require__(40);
+	
+	var _fileUpload2 = _interopRequireDefault(_fileUpload);
+	
 	var gritcode = {
 		toast: _toast2['default'],
 		buttonToggle: _buttonToggle2['default'],
@@ -101,7 +105,8 @@ return /******/ (function(modules) { // webpackBootstrap
 		offcanvasWrapper: _offcanvasDrawer.offcanvasWrapper,
 		offcanvasDrawer: _offcanvasDrawer.offcanvasDrawer,
 		spinner: _spinner2['default'],
-		truncate: _truncate2['default']
+		truncate: _truncate2['default'],
+		fileUpload: _fileUpload2['default']
 	};
 	
 	// export all components under global variable
@@ -1113,6 +1118,382 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"truncate truncate-gritcode\" v-bind:style=\"{width: truncateWidth}\"><slot></slot></span>\r\n";
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// based on href='https://css-tricks.com/drag-and-drop-file-uploading/'
+	
+	// import dependencies
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	__webpack_require__(41);
+	
+	__webpack_require__(43);
+	
+	__webpack_require__(46);
+	
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(23);
+	
+	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
+	
+	var _fileUploadHtml = __webpack_require__(49);
+	
+	var _fileUploadHtml2 = _interopRequireDefault(_fileUploadHtml);
+	
+	var _srcUtilsHelpersJs = __webpack_require__(50);
+	
+	// export component object
+	exports['default'] = {
+	  template: _fileUploadHtml2['default'],
+	  replace: true,
+	  data: function data() {
+	    return {
+	      state: null,
+	      dragover: false,
+	      progress: '0%',
+	      errorMessage: ''
+	    };
+	  },
+	  props: {
+	    accept: {
+	      type: String,
+	      'default': ''
+	    },
+	    ajax: {
+	      type: String,
+	      'default': ''
+	    },
+	    autoSubmit: {
+	      type: Boolean,
+	      'default': false
+	    },
+	    id: {
+	      type: String,
+	      'default': ''
+	    },
+	    method: {
+	      type: String,
+	      'default': 'POST'
+	    },
+	    model: {
+	      'default': null
+	    },
+	    multiple: {
+	      type: Boolean,
+	      'default': false
+	    },
+	    fileList: {
+	      'default': null
+	    },
+	    hideButton: {
+	      type: Boolean,
+	      'default': false
+	    },
+	    text: {
+	      type: Object,
+	      'default': function _default() {
+	        return {
+	          action: 'Choose a file',
+	          drag: 'or drag it here.',
+	          selected: 'files selected',
+	          button: 'Upload',
+	          uploading: 'Uploading...',
+	          done: 'Done!',
+	          more: 'Upload more?',
+	          retry: 'Try again!'
+	        };
+	      }
+	    }
+	  },
+	  computed: {
+	    advancedUpload: function advancedUpload() {
+	      var div = document.createElement('div');
+	      return ('draggable' in div || 'ondragstart' in div && 'ondrop' in div) && 'FormData' in window && 'FileReader' in window;
+	    },
+	    displaySelectionText: function displaySelectionText() {
+	      if (!this.fileList.length) return '';
+	      return this.fileList.length > 1 ? this.fileList.length + ' ' + this.text.selected : this.fileList[0].name;
+	    }
+	  },
+	  methods: {
+	    setError: function setError(message) {
+	      this.state = 'error';
+	      this.errorMessage = message;
+	      this.$dispatch('completed::file-upload', { error: this.errorMessage });
+	    },
+	    parseResponse: function parseResponse(response) {
+	      var data = null;
+	      try {
+	        data = JSON.parse(response);
+	      } catch (e) {
+	        // if no json returned we assume success
+	        this.setError('Unexpected response from the server');
+	      }
+	      // set either success or error based on data returned from the server
+	      if (data.success === true) {
+	        this.state = 'success';
+	        this.model = data.data;
+	        this.$dispatch('completed::file-upload', { model: this.model });
+	      } else {
+	        this.setError(data.error);
+	      }
+	    },
+	    submitForm: function submitForm() {
+	      var _this = this;
+	
+	      if (!this.fileList.length) return;
+	      if (this.ajax) {
+	        this.state = 'uploading';
+	        if (this.advancedUpload) {
+	          (function () {
+	            // ajax file upload for modern browsers
+	
+	            // gathering the form data
+	            var ajaxData = new FormData();
+	            // Loop through each of the selected files.
+	            for (var i = 0; i < _this.fileList.length; i++) {
+	              var file = _this.fileList[i];
+	
+	              // Check the file type.
+	              if (_this.accept && !file.type.match(_this.accept)) {
+	                continue;
+	              }
+	
+	              // Add the file to the request.
+	              ajaxData.append('files[]', file, file.name);
+	            }
+	
+	            // ajax request
+	            var xhr = new XMLHttpRequest();
+	            // xhr.setRequestHeader('Content-Length')
+	            xhr.open(_this.method, _this.ajax, true);
+	
+	            xhr.onload = function () {
+	              _this.state = null;
+	              if (xhr.status >= 200 && xhr.status < 400) {
+	                _this.parseResponse(xhr.responseText);
+	              } else {
+	                _this.parseResponse(xhr.responseText);
+	              }
+	            };
+	
+	            xhr.upload.onprogress = function (e) {
+	              _this.progress = parseInt(e.loaded / e.total * 100, 10) + '%';
+	            };
+	
+	            xhr.onerror = function () {
+	              _this.setError('There was an error with ajax request');
+	            };
+	
+	            // Send request to server
+	            xhr.send(ajaxData);
+	          })();
+	        } else {
+	          // fallback Ajax solution upload for older browsers but only if same-origin
+	          if ((0, _srcUtilsHelpersJs.testSameOrigin)(this.ajax)) {
+	            (function () {
+	              var iframeName = 'uploadiframe' + new Date().getTime();
+	              var iframe = document.createElement('iframe');
+	
+	              iframe.setAttribute('name', iframeName);
+	              iframe.style.display = 'none';
+	
+	              document.body.appendChild(iframe);
+	              _this.$el.setAttribute('target', iframeName);
+	
+	              iframe.addEventListener('load', function () {
+	                _this.state = 'uploading';
+	                // this will not work on cross origin requests when using iframe
+	                _this.parseResponse(iframe.contentDocument.body.innerHTML);
+	                _this.$el.removeAttribute('target');
+	                iframe.parentNode.removeChild(iframe);
+	              });
+	              _this.$el.submit();
+	            })();
+	          } else {
+	            // we cannot guarantee a success in case of cross-origin request within iframe
+	            // browsers will block access to the iframe.contentDocument.body.innerHTML so we can't tell if the request was a success
+	            // TODO: add redirect functionality, similar to the https://github.com/blueimp/jQuery-File-Upload/wiki/Cross-domain-uploads#cross-site-iframe-transport-uploads
+	            this.setError('Cross-origin requests are not supported within iframe');
+	          }
+	        }
+	      }
+	    },
+	    restart: function restart() {
+	      this.fileList = [];
+	      this.state = null;
+	    },
+	    onChange: function onChange(e) {
+	      if (this.advancedUpload) {
+	        this.fileList = e.target.files;
+	        if (this.autoSubmit) {
+	          this.submitForm();
+	        }
+	      } else {
+	        this.fileList.push({ name: this._input.value.replace(/^.*\\/, '') });
+	      }
+	    }
+	  },
+	  components: {
+	    vsIcon: _vuestrapIconsSrcComponentsIcons2['default']
+	  },
+	  events: {
+	    'submit::file-upload': function submitFileUpload(id) {
+	      if (this.id === id) {
+	        this.submitForm();
+	      }
+	    }
+	  },
+	  ready: function ready() {
+	    var _this2 = this;
+	
+	    this._input = this.$el.querySelector('input');
+	    if (this.advancedUpload) {
+	      var events = ['drag', 'dragstart', 'dragend', 'dragleave', 'drop', 'dragover', 'dragenter'];
+	      events.forEach(function (event) {
+	        _this2.$el.addEventListener(event, function (e) {
+	          // preventing the unwanted behaviours
+	          e.preventDefault();
+	          e.stopPropagation();
+	        });
+	      });
+	
+	      // drag start
+	      events = ['dragover', 'dragenter'];
+	      events.forEach(function (event) {
+	        _this2.$el.addEventListener(event, function () {
+	          _this2.dragover = true;
+	        });
+	      });
+	
+	      // drag end
+	      events = ['dragend', 'dragleave', 'drop'];
+	      events.forEach(function (event) {
+	        _this2.$el.addEventListener(event, function (e) {
+	          _this2.dragover = false;
+	          if (event === 'drop') {
+	            _this2.fileList = e.dataTransfer.files; // the files that were dropped
+	            if (_this2.autoSubmit) {
+	              _this2.submitForm();
+	            }
+	          }
+	        });
+	      });
+	    }
+	  },
+	  beforeDestroy: function beforeDestroy() {
+	    var _this3 = this;
+	
+	    var events = ['drag', 'dragstart', 'dragend', 'dragleave', 'drop', 'dragover', 'dragenter'];
+	    events.forEach(function (event) {
+	      _this3.$el.removeEventListener(event);
+	    });
+	  }
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 41 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 42 */,
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// import dependencies
+	'use strict';
+	
+	__webpack_require__(44);
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 45 */,
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// import dependencies
+	'use strict';
+	
+	__webpack_require__(47);
+	
+	__webpack_require__(20);
+
+/***/ },
+/* 47 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 48 */,
+/* 49 */
+/***/ function(module, exports) {
+
+	module.exports = "<div id=\"{{id}}\" class=\"gritcode-file-upload {{advancedUpload ? 'advanced-upload' : ''}} {{dragover ? 'is-dragover' : ''}}\">\r\n    <div class=\"input\" v-show=\"state == null\">\r\n        <svg class=\"icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"43\" viewBox=\"0 0 50 43\" v-if=\"advancedUpload\">\r\n            <path d=\"M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z\" />\r\n        </svg>\r\n        <input \r\n            type=\"file\" \r\n            name=\"files[]\" \r\n            id=\"file\"\r\n            accept=\"accept\" \r\n            v-bind:multiple=\"multiple && advancedUpload\" \r\n            v-on:change=\"onChange($event)\" />\r\n        <label for=\"file\">\r\n            <span v-if=\"fileList.length == 0\"><strong>{{text.action}}</strong><span v-if=\"advancedUpload\"> {{text.drag}}</span></span>\r\n            <span v-if=\"fileList.length > 0\" class=\"\">{{displaySelectionText}}</span>\r\n        </label>\r\n        <button type=\"submit\" class=\"btn btn-primary\" v-if=\"!hideButton && !autoSubmit\" v-on:click.prevent=\"submitForm($event)\">{{text.button}}</button>\r\n    </div>\r\n    <div class=\"state\" v-show=\"state != null\">\r\n        <span class=\"state-uploading animate\" v-show=\"state == 'uploading'\">{{text.uploading}}<span v-if=\"advancedUpload\">{{progress}}</span></span>\r\n        <span class=\"state-success animate\" v-show=\"state == 'success'\">\r\n            {{text.done}} <a href=\"#\" v-on:click.prevent=\"restart\" role=\"button\" v-show=\"multiple\">{{text.more}}</a>\r\n        </span>\r\n        <span class=\"state-error animate\" v-show=\"state == 'error'\">\r\n            Error! <span>{{errorMessage}}</span> <a href=\"#\" v-on:click.prevent=\"restart\">{{text.retry}}</a>\r\n        </span>\r\n    </div>\r\n</div>";
+
+/***/ },
+/* 50 */
+/***/ function(module, exports) {
+
+	/**
+	 * Other utilities for demo pages
+	 *
+	 */
+	
+	// pulled from http://stackoverflow.com/questions/1349404/generate-a-string-of-5-random-characters-in-javascript
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	exports.makeid = makeid;
+	exports.csstransitions = csstransitions;
+	
+	function makeid() {
+	  var text = '';
+	  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	
+	  for (var i = 0; i < 5; i++) {
+	    text += possible.charAt(Math.floor(Math.random() * possible.length));
+	  }
+	  return text;
+	}
+	
+	// check if browser supports css3 transitions
+	
+	function csstransitions() {
+	  var style = document.documentElement.style;
+	  return style.webkitTransition !== undefined || style.MozTransition !== undefined || style.OTransition !== undefined || style.MsTransition !== undefined || style.transition !== undefined;
+	}
+	
+	/**
+	 * test if given url is same origin than app url
+	 * @param  {string} url to compare with app url
+	 * @return {boolean}
+	 */
+	var testSameOrigin = function testSameOrigin(url) {
+	  var loc = window.location;
+	  var a = document.createElement('a');
+	  a.href = url;
+	  return a.hostname == loc.hostname && a.port == loc.port && a.protocol == loc.protocol;
+	};
+	exports.testSameOrigin = testSameOrigin;
 
 /***/ }
 /******/ ])

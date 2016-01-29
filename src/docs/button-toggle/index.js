@@ -3,7 +3,7 @@ import template from './button-toggle.html'
 import snippet from './snippet.html'
 import vsButtonToggle from 'src/components/button-toggle'
 import docsDemo from 'vuestrap-docs/src/components/demo'
-import {sizes, variants} from 'utils'
+import {sizes, variants} from 'src/utils'
 
 export default {
   route: {

@@ -3,7 +3,7 @@ import template from './dropdown-multiselect.html'
 import snippet from './snippet.html'
 import vsDropdownMultiselect from 'src/components/dropdown-multiselect'
 import docsDemo from 'vuestrap-docs/src/components/demo'
-import {positions, sizes, variants} from 'utils'
+import {positions, sizes, variants} from 'src/utils'
 
 export default {
   route: {

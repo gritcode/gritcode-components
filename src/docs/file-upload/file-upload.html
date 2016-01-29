@@ -1,0 +1,25 @@
+<docs-demo :meta="meta" :snippet="snippet">
+
+	<!-- Html controls start-->
+	<div slot="controls">
+		<label>multiple <input type="checkbox" v-model="multiple"></label>
+		<label>hide button <input type="checkbox" v-model="hideButton"></label>
+		<label>auto submit <input type="checkbox" v-model="autoSubmit"></label>
+	</div>
+	<!-- Html controls end-->
+	
+	<!-- Html markup start-->
+	<div slot="markup" class="clearfix">
+		<vs-file-upload 
+    	id="some-file"
+    	model="model" 
+    	:ajax="ajaxUrl" 
+    	:multiple="multiple" 
+    	:auto-submit="autoSubmit" 
+    	:hide-button="hideButton" 
+    	:file-list.sync="fileList">
+    </vs-file-upload>
+	</div>
+	<!-- Html markup end-->
+
+</docs-demo>	

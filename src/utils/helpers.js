@@ -14,7 +14,7 @@ export function makeid() {
   return text
 }
 
-// check if browser support css3 transitions
+// check if browser supports css3 transitions
 export function csstransitions() {
   const style = document.documentElement.style
   return (
@@ -24,4 +24,19 @@ export function csstransitions() {
       style.MsTransition !== undefined ||
       style.transition !== undefined
   )
+}
+
+
+/**
+ * test if given url is same origin than app url
+ * @param  {string} url to compare with app url
+ * @return {boolean}
+ */
+export const testSameOrigin = (url) => {
+    const loc = window.location
+    const a = document.createElement('a')
+    a.href = url
+    return a.hostname == loc.hostname &&
+           a.port == loc.port &&
+           a.protocol == loc.protocol
 }

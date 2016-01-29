@@ -1,6 +1,6 @@
 import meta from './spinner.json'
 import template from './spinner.html'
-import {sizes} from 'utils'
+import {sizes} from 'src/utils'
 import snippet from './snippet.html'
 import vsSpinner from 'src/components/spinner'
 import docsDemo from 'vuestrap-docs/src/components/demo'

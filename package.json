@@ -1,6 +1,6 @@
 {
   "name": "gritcode-components",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "Web components built with Vuestrap.",
   "library": "gritcode-components",
   "repository": {
@@ -8,9 +8,13 @@
     "url": "git+https://github.com/gritcode/gritcode-components.git"
   },
   "scripts": {
-    "dev": "webpack -w --colors --progress --config webpack.build.js --env dev",
-    "dist": "webpack --colors --progress --config  webpack.build.js --env docs && webpack --colors --progress --config webpack.build.js --env dev && webpack --colors --progress --config webpack.build.js --env dist",
-    "docs": "webpack-dev-server --port 8082 --inline --hot --quiet --config webpack.build.js --env docs"
+    "build": "npm run docs && npm run dev && npm run dev-bundle && npm run dist && npm run dist-bundle",
+    "dist": "webpack --colors --progress --config webpack.build.js --env production",
+    "dist-bundle": "webpack --colors --progress --config webpack.build.js --env production --bundle true",
+    "dev": "webpack --colors --progress --config webpack.build.js --env development",
+    "dev-bundle": "webpack --colors --progress --config webpack.build.js --env development --bundle true",
+    "docs": "webpack --colors --progress --config  webpack.build.js --env docs",
+    "serve-docs": "webpack-dev-server --inline --hot --quiet --config webpack.build.js --env docs"
   },
   "keywords": [
     "Bootstrap4",
@@ -44,9 +48,16 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "highlightjs-loader": "^0.2.3",
     "html-loader": "^0.3.0",
+    "jasmine-core": "^2.4.1",
     "json-loader": "^0.5.4",
+    "karma": "^0.13.19",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.3",
+    "karma-webpack": "^1.7.0",
+    "nightwatch": "^0.8.15",
     "node-sass": "^3.4.1",
     "optimist": "^0.6.1",
+    "phantomjs": "^1.9.19",
     "sass-loader": "^3.1.1",
     "style-loader": "^0.13.0",
     "vuestrap-docs": "^0.2.2",

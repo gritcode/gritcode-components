@@ -65,7 +65,7 @@ export default {
               button: 'Upload',
               uploading: 'Uploading...',
               done: 'Done!',
-              more: 'Upload more?',
+              restart: 'Upload more?',
               retry: 'Try again!',
             }
           }
@@ -78,7 +78,11 @@ export default {
       },
       displaySelectionText() {
         if (!this.fileList.length) return ''
-        return this.fileList.length > 1 ? `${this.fileList.length} ${this.text.selected}` : this.fileList[0].name
+        let result = this.fileList.length > 1 ? `${this.fileList.length} ${this.text.selected}` : this.fileList[0].name
+        if (this.state === 'retry') {
+          result += ` (change)`
+        }
+        return result
       }
     },
     methods: {
@@ -181,11 +185,18 @@ export default {
           }
         }
       },
-      restart() {
-        this.state = null
+      retry() {
+        this.state = 'retry'
         trigger(this._input, 'change')
       },
+      restart() {
+        this.state = null
+        this.fileList = []
+      },
       onChange(e) {
+        if (this.state === 'retry') {
+          this.state = null
+        }
         if (this.advancedUpload) {
           this.fileList = e.target.files
           if (this.autoSubmit) {

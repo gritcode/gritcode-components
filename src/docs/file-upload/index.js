@@ -20,7 +20,7 @@ export default {
       multiple: true,
       hideButton: false,
       autoSubmit: false,
-      ajaxUrl: (process.env.NODE_ENV === 'production') ? 'http://mosquito.ie:3004/upload' : 'http://localhost:3004/upload'
+      ajaxUrl: (process.env.NODE_ENV === 'docs') ? 'http://mosquito.ie:3004/upload' : 'http://localhost:3004/upload'
     }
   },
   components: {

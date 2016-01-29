@@ -18,11 +18,11 @@ export function makeid() {
 export function csstransitions() {
   const style = document.documentElement.style
   return (
-      style.webkitTransition !== undefined ||
-      style.MozTransition !== undefined ||
-      style.OTransition !== undefined ||
-      style.MsTransition !== undefined ||
-      style.transition !== undefined
+    style.webkitTransition !== undefined ||
+    style.MozTransition !== undefined ||
+    style.OTransition !== undefined ||
+    style.MsTransition !== undefined ||
+    style.transition !== undefined
   )
 }
 
@@ -33,10 +33,32 @@ export function csstransitions() {
  * @return {boolean}
  */
 export const testSameOrigin = (url) => {
-    const loc = window.location
-    const a = document.createElement('a')
-    a.href = url
-    return a.hostname == loc.hostname &&
-           a.port == loc.port &&
-           a.protocol == loc.protocol
+  const loc = window.location
+  const a = document.createElement('a')
+  a.href = url
+  return a.hostname == loc.hostname &&
+         a.port == loc.port &&
+         a.protocol == loc.protocol
+}
+
+/**
+ * trigger
+ *
+ * @param {Element} el
+ * @param {String} event
+ * @param {Object} [args]
+ */
+export const trigger = (el, event, args) => {
+  const e = document.createEvent('HTMLEvents')
+  e.initEvent(event, true, false)
+
+  if (args) {
+    for (const prop in args) {
+      e[prop] = args[prop]
+    }
+  }
+
+  // Due to Firefox bug, events fired on disabled
+  // non-attached form controls can throw errors
+  try { el.dispatchEvent(e) } catch (e) {}
 }

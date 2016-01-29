@@ -11287,7 +11287,7 @@
 
 	module.exports = {
 		"name": "gritcode-components",
-		"version": "0.2.0",
+		"version": "0.2.1",
 		"description": "Web components built with Vuestrap.",
 		"library": "gritcode-components",
 		"repository": {
@@ -11301,7 +11301,7 @@
 			"dev": "webpack --colors --progress --config webpack.build.js --env development",
 			"dev-bundle": "webpack --colors --progress --config webpack.build.js --env development --bundle true",
 			"docs": "webpack --colors --progress --config  webpack.build.js --env docs",
-			"serve-docs": "webpack-dev-server --inline --hot --quiet --config webpack.build.js --env docs"
+			"serve-docs": "webpack-dev-server --port 8084 --inline --hot --quiet --config webpack.build.js --env docs"
 		},
 		"keywords": [
 			"Bootstrap4",
@@ -11561,7 +11561,7 @@
 /* 43 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"jumbotron\">\r\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\r\n  <p>{{pkg.description}}</p>\r\n</div>\r\n<h2>Installation</h2>\r\n<div class=\"row\">\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Compiled</h3>\r\n    <p>Minified CSS and JavaScript with no  documentation or original source files.</p>\r\n    <code>bower install {{pkg.name}} --save-dev</code>\r\n  </div>\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Source</h3>\r\n    <p>Source Sass, JavaScript, and documentation files.</p>\r\n    <code>npm install {{pkg.name}} --save-dev</code>\r\n   </div>\r\n</div>\r\n\r\n<div class=\"m-b-lg\"></div>\r\n<h2>Usage</h2>\r\n<p>For compiled components, use it within your Vue instance like this:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}': {{pkg.library}}.{{componentNameCamelCase}} }})</code></p>\r\n\r\n<div class=\"m-b\"></div>\r\n<strong>OR</strong>\r\n<div class=\"m-b\"></div>\r\n\r\n<p>If you chosen to work with source components, just import* desired component like so:</p>\r\n<p><code>import {{componentNameCamelCase}} from '{{pkg.name}}/src/components/{{componentName}}'</code></p>\r\n<p>and then load it in your Vue instance:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}' : {{componentNameCamelCase}} }})</code></p>\r\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>\r\n\r\n<h2>Theming</h2>\r\n<p>To be able to use your app theme with component's scss variables, you will need to use <a href=\"https://github.com/kzima/vueastrap-theme-loader\">vuestrap-theme-loader</a> in your webpack config file. </p>\r\n\r\n<p><code>npm install vuestrap-theme-loader --save-dev</code></p>\r\n\r\n<p>See <a href=\"https://github.com/kzima/vuestrap-starter\">vuestrap-starter</a> for a webpack config example with theme loader.</p>";
+	module.exports = "<div class=\"jumbotron\">\r\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\r\n  <p>{{pkg.description}}</p>\r\n</div>\r\n<h2>Installation</h2>\r\n<div class=\"row\">\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Compiled</h3>\r\n    <p>Minified CSS and JavaScript with no  documentation or original source files.</p>\r\n    <code>bower install {{pkg.name}} --save-dev</code>\r\n  </div>\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Source</h3>\r\n    <p>Source Sass, JavaScript, and documentation files.</p>\r\n    <code>npm install {{pkg.name}} --save-dev</code>\r\n   </div>\r\n</div>\r\n\r\n<div class=\"m-b-lg\"></div>\r\n<h2>Usage</h2>\r\n<p>For compiled components, use it within your Vue instance like this:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}': {{pkg.library}}.{{componentNameCamelCase}} }})</code></p>\r\n\r\n<div class=\"m-b\"></div>\r\n<strong>OR</strong>\r\n<div class=\"m-b\"></div>\r\n\r\n<p>If you chosen to work with source components, just import* desired component like so:</p>\r\n<p><code>import {{componentNameCamelCase}} from '{{pkg.name}}/src/components/{{componentName}}'</code></p>\r\n<p>and then load it in your Vue instance:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}' : {{componentNameCamelCase}} }})</code></p>\r\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>\r\n\r\n<h2 class=\"m-t\">Theming</h2>\r\n<p>To be able to use your app theme with component's scss variables, you will need to use <a href=\"https://github.com/kzima/vueastrap-theme-loader\">vuestrap-theme-loader</a> in your webpack config file. </p>\r\n\r\n<p><code>npm install vuestrap-theme-loader --save-dev</code></p>\r\n\r\n<p>See <a href=\"https://github.com/kzima/vuestrap-starter\">vuestrap-starter</a> for a webpack config example with theme loader.</p>";
 
 /***/ },
 /* 44 */
@@ -13833,7 +13833,7 @@
 	      multiple: true,
 	      hideButton: false,
 	      autoSubmit: false,
-	      ajaxUrl:  false ? 'http://mosquito.ie:3004/upload' : 'http://localhost:3004/upload'
+	      ajaxUrl:  true ? 'http://mosquito.ie:3004/upload' : 'http://localhost:3004/upload'
 	    };
 	  },
 	  components: {
@@ -14107,7 +14107,9 @@
 	            };
 
 	            xhr.upload.onprogress = function (e) {
-	              _this.progress = parseInt(e.loaded / e.total * 100, 10) + '%';
+	              var loaded = e.loaded ? e.loaded : 0;
+	              var total = e.total ? e.total : 1;
+	              _this.progress = parseInt(loaded / total * 100, 10) + '%';
 	            };
 
 	            xhr.onerror = function () {
@@ -14149,8 +14151,8 @@
 	      }
 	    },
 	    restart: function restart() {
-	      this.fileList = [];
 	      this.state = null;
+	      (0, _srcUtilsHelpersJs.trigger)(this._input, 'change');
 	    },
 	    onChange: function onChange(e) {
 	      if (this.advancedUpload) {
@@ -14313,7 +14315,32 @@
 	  a.href = url;
 	  return a.hostname == loc.hostname && a.port == loc.port && a.protocol == loc.protocol;
 	};
+
 	exports.testSameOrigin = testSameOrigin;
+	/**
+	 * trigger
+	 *
+	 * @param {Element} el
+	 * @param {String} event
+	 * @param {Object} [args]
+	 */
+	var trigger = function trigger(el, event, args) {
+	  var e = document.createEvent('HTMLEvents');
+	  e.initEvent(event, true, false);
+
+	  if (args) {
+	    for (var prop in args) {
+	      e[prop] = args[prop];
+	    }
+	  }
+
+	  // Due to Firefox bug, events fired on disabled
+	  // non-attached form controls can throw errors
+	  try {
+	    el.dispatchEvent(e);
+	  } catch (e) {}
+	};
+	exports.trigger = trigger;
 
 /***/ }
 /******/ ]);

@@ -6,7 +6,7 @@ import 'vuestrap/components/labels'
 import 'vuestrap/components/alert'
 import vsIcon from 'vuestrap-icons/src/components/icons'
 import template from './file-upload.html'
-import {testSameOrigin} from 'src/utils/helpers.js'
+import {testSameOrigin, trigger} from 'src/utils/helpers.js'
 
 // export component object
 export default {
@@ -141,7 +141,9 @@ export default {
             }
 
             xhr.upload.onprogress = (e) => {
-              this.progress = parseInt((e.loaded / e.total) * 100, 10) + '%'
+              const loaded = e.loaded ? e.loaded : 0
+              const total = e.total ? e.total : 1
+              this.progress = parseInt((loaded / total) * 100, 10) + '%'
             }
 
             xhr.onerror = () => {
@@ -180,8 +182,8 @@ export default {
         }
       },
       restart() {
-        this.fileList = []
         this.state = null
+        trigger(this._input, 'change')
       },
       onChange(e) {
         if (this.advancedUpload) {

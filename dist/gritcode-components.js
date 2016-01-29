@@ -1286,7 +1286,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            };
 	
 	            xhr.upload.onprogress = function (e) {
-	              _this.progress = parseInt(e.loaded / e.total * 100, 10) + '%';
+	              var loaded = e.loaded ? e.loaded : 0;
+	              var total = e.total ? e.total : 1;
+	              _this.progress = parseInt(loaded / total * 100, 10) + '%';
 	            };
 	
 	            xhr.onerror = function () {
@@ -1328,8 +1330,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	      }
 	    },
 	    restart: function restart() {
-	      this.fileList = [];
 	      this.state = null;
+	      (0, _srcUtilsHelpersJs.trigger)(this._input, 'change');
 	    },
 	    onChange: function onChange(e) {
 	      if (this.advancedUpload) {
@@ -1493,7 +1495,32 @@ return /******/ (function(modules) { // webpackBootstrap
 	  a.href = url;
 	  return a.hostname == loc.hostname && a.port == loc.port && a.protocol == loc.protocol;
 	};
+	
 	exports.testSameOrigin = testSameOrigin;
+	/**
+	 * trigger
+	 *
+	 * @param {Element} el
+	 * @param {String} event
+	 * @param {Object} [args]
+	 */
+	var trigger = function trigger(el, event, args) {
+	  var e = document.createEvent('HTMLEvents');
+	  e.initEvent(event, true, false);
+	
+	  if (args) {
+	    for (var prop in args) {
+	      e[prop] = args[prop];
+	    }
+	  }
+	
+	  // Due to Firefox bug, events fired on disabled
+	  // non-attached form controls can throw errors
+	  try {
+	    el.dispatchEvent(e);
+	  } catch (e) {}
+	};
+	exports.trigger = trigger;
 
 /***/ }
 /******/ ])

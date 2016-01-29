@@ -11,7 +11,9 @@
     "dist/gritcode-components.min.js",
     "dist/gritcode-components.css",
     "dist/gritcode-components.css.map",
-    "dist/gritcode-components.min.css"
+    "dist/gritcode-components.min.css",
+    "dist/gritcode-components-bundle.js",
+    "dist/gritcode-components-bundle.min.js",
   ],
   "moduleType": [
     "amd",
@@ -34,6 +36,7 @@
     "gulpfile.js",
     "index.html",
     "webpack*.js",
-    "utils"
+    "utils",
+    "dist/docs.js"
   ]
 }

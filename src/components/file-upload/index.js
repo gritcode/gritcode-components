@@ -41,6 +41,10 @@ export default {
           type: String,
           default: 'POST',
         },
+        inputName: {
+          type: String,
+          default: 'files',
+        },
         model: {
           default: null,
         },
@@ -127,7 +131,7 @@ export default {
               }
 
               // Add the file to the request.
-              ajaxData.append('files[]', file, file.name)
+              ajaxData.append(this.inputName + '[]', file, file.name)
             }
 
             // ajax request

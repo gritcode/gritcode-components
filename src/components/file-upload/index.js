@@ -41,7 +41,7 @@ export default {
           type: String,
           default: 'POST',
         },
-        inputName: {
+        name: {
           type: String,
           default: 'files',
         },
@@ -131,7 +131,7 @@ export default {
               }
 
               // Add the file to the request.
-              ajaxData.append(this.inputName + '[]', file, file.name)
+              ajaxData.append(this.name + '[]', file, file.name)
             }
 
             // ajax request

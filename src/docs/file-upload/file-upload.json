@@ -43,6 +43,13 @@
 			"description": "A method of the ajax request."
 		},
 		{
+			"name": "name",
+			"type": "String",
+			"default": "files",
+			"required": false,
+			"description": "The value of name attribute for the file input."
+		},
+		{
 			"name": "model",
 			"type": "Array/Object",
 			"default": "''",

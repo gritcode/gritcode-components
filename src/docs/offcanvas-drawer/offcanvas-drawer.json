@@ -17,14 +17,14 @@
 		{
       "name" : "align",
       "type": "String",
-      "default": false,
+      "default": "false",
       "values": ["left", "right"],
       "description": "Removes progressbar from the toast."
     },
     {
       "name" : "animation",
       "type": "String",
-      "default": false,
+      "default": "false",
       "values": ["none", "ease","linear","ease-in","ease-out","ease-in-out","bounce","snappy","out-of-orbit"],
       "description": "Absolute position within the parent element."
     }

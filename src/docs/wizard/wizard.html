@@ -1,0 +1,106 @@
+<docs-demo :meta="meta" :snippet="snippet">
+
+	<!-- Html controls start-->
+	<div slot="controls">
+		<label>icons <input type="checkbox" v-model="icons"></label>
+	</div>
+	<!-- Html controls end-->
+	
+	<!-- Html markup start-->
+	<div slot="markup">
+		
+		<!-- icons -->
+		<vs-wizard :current-index.sync="currentStep" v-if="icons">
+			<vs-wizard-step 
+				title="Personal Information" 
+				description="Enter your details"
+				:progress="progress.step1" 
+				icon="person">
+			</vs-wizard-step>
+			<vs-wizard-step 
+				title="Payment" 
+				description="Pay with credit card or Paypal" 
+				:progress="progress.step2"
+				icon="credit-card">
+			</vs-wizard-step>
+			<vs-wizard-step 
+				title="Confirmation" 
+				description="Your order details" 
+				:progress="progress.step3"
+				:disable-previous="true"
+				icon="check">
+			</vs-wizard-step>
+		</vs-wizard>
+
+		<!-- no icons -->
+		<vs-wizard :current-index.sync="currentStep" v-if="!icons">
+			<vs-wizard-step 
+				title="Personal Information" 
+				description="Enter your details"
+				:progress="progress.step1">
+			</vs-wizard-step>
+			<vs-wizard-step 
+				title="Payment" 
+				description="Pay with credit card or Paypal" 
+				:progress="progress.step2">
+			</vs-wizard-step>
+			<vs-wizard-step 
+				title="Confirmation" 
+				description="Your order details" 
+				:progress="progress.step3"
+				:disable-previous="true">
+			</vs-wizard-step>
+		</vs-wizard>
+		<hr class="hidden-xs-down">
+		<form class="m-b row clearfix" v-if="currentStep == 0">
+			<div class="col-xs-12 col-md-8 col-md-offset-2">  
+				<fieldset class="form-group">
+			    <label for="firstName">First Name</label>
+			    <input autocomplete="off" type="text" class="form-control" id="firstName" placeholder="e.g. Jon" v-model="models.firstName">
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="lastName">Last Name</label>
+			    <input autocomplete="off" type="text" class="form-control" id="lastName" placeholder="e.g. Doe" v-model="models.lastName">
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="email">Email address</label>
+			    <input autocomplete="off" type="text" class="form-control" id="email" placeholder="e.g. joe@doe.com" v-model="models.email">
+			  </fieldset>
+			  <button class="btn btn-default pull-right" v-bind:disabled="progress.step1 < 100" v-on:click="currentStep++">Next</button>
+		 	</div>
+	  </form>
+	  <form class="m-b row clearfix" v-if="currentStep == 1">
+	  	<div class="col-xs-12 col-md-8 col-md-offset-2">  		
+				<fieldset class="form-group">
+			    <label for="cardType">Card Type</label>
+			    <input autocomplete="off" type="text" class="form-control" id="cardType" placeholder="e.g. Visa" v-model="models.cardType">
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="cardNumber">Card Number</label>
+			    <input autocomplete="off" type="text" class="form-control" id="cardNumber" placeholder="4141 4141 4141 4141" v-model="models.cardNumber">
+			  </fieldset>
+			  <fieldset class="form-group">
+			    <label for="cardHolder">Card Holder Name</label>
+			    <input autocomplete="off" type="text" class="form-control" id="cardHolder" placeholder="e.g. Joe Doe" v-model="models.cardHolder">
+			  </fieldset>
+			  <div class="row">	  	
+				  <fieldset class="form-group col-xs-6">
+				    <label for="cardExpiryMonth">Expiry Month</label>
+				    <input autocomplete="off" type="text" class="form-control" id="cardExpiryMonth" placeholder="e.g. Joe Doe" v-model="models.cardExpiryMonth">
+				  </fieldset>
+				  <fieldset class="form-group col-xs-6">
+				    <label for="cardExpiryMonth">Expiry Year</label>
+				    <input autocomplete="off" type="text" class="form-control" id="cardExpiryYear" placeholder="e.g. Joe Doe" v-model="models.cardExpiryYear">
+				  </fieldset>
+			  </div>
+		  	<button class="btn btn-default pull-right" v-bind:disabled="progress.step2 < 100" v-on:click="currentStep++">Next</button>
+	  	</div>		
+	  </form>
+	  <div class='text-center clearfix' v-if="currentStep == 2">
+			<h3 class="m-y-lg">Success! Your order is on its way...</h3>
+			<button v-on:click="startAgain">Start again</button>
+	  </div>
+	</div>
+	<!-- Html markup end-->
+
+</docs-demo>	

@@ -25,7 +25,7 @@
 		{
 			"name": "auto-submit",
 			"type": "Boolean",
-			"default": false,
+			"default": "false",
 			"description": "If set to true, files will be uploaded via ajax right after file selection. It also hides an upload button."
 		},
 		{

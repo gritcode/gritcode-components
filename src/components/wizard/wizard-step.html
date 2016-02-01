@@ -1,0 +1,16 @@
+<div v-bind:class="{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}" v-bind:style="{width: 100/$parent.countItems + '%'}" v-on:click="changeCurrentIndex()">
+	<div class="wizard-progress">
+		<div class="wizard-progress-value" v-bind:style="{width: progress + '%'}"></div>
+	</div>
+	<div class="wizard-icon">
+		<div class="icon-icon"><vs-icon :name="icon" v-if="icon"></vs-icon></div>
+		<div class="icon-number" v-if="!icon">{{iconNumber || index +1}}</div>
+	</div>
+	<div class="wizard-content">
+		<div class="title">{{title}}</div>
+		<div class="description">{{description}}</div>
+	</div>
+	<div class="step-info">
+		Step {{index+1}}/{{$parent.countItems}}
+	</div>
+</div>

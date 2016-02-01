@@ -1,0 +1,62 @@
+{
+	"name": "wizard",
+	"title": "Wizard",
+	"description": ".",
+	"dependencies": ["vuestrap/buttons"],
+	"category": "components",
+	"browserSupport": {
+		"browsers": ["IE9+", "Android 4.3"]
+	},
+	"options": [
+		{
+			"name": "current-index",
+			"type": "Number",
+			"default": "0",
+			"required": false,
+			"description": "Use this option on <code>&lt;vs-wizard></code> to control active step."
+		},
+		{
+			"name": "title",
+			"type": "String",
+			"default": "md",
+			"required": false,
+			"description": "Sets title on the <code>&lt;vs-wizard-step></code> element."
+		},
+		{
+			"name": "description",
+			"type": "String",
+			"default": "md",
+			"required": false,
+			"description": "Sets description on the <code>&lt;vs-wizard-step></code> element."
+		},
+		{
+			"name": "disable-previous",
+			"type": "Boolean",
+			"default": "false",
+			"required": false,
+			"description": "This option can be handy on the last step if you don't want users to go back to previous step, i.e. after payment."
+		},
+		{
+			"name": "icon",
+			"type": "String",
+			"default": "''",
+			"required": false,
+			"description": "Sets svg icon on the <code>&lt;vs-wizard-step></code> element. This component uses <a href='https://github.com/kzima/vuestrap-icons/'>vuestrap-icons</a>. If no icon is specified, wizard will auto fall back to numbers."
+		},
+		{
+			"name": "progress",
+			"type": "Number",
+			"default": "''",
+			"required": false,
+			"description": "Sets progress bar on the <code>&lt;vs-wizard-step></code> element. Pass a value from 0 to 100 to show a progress within each step."
+		},
+		{
+			"name": "valid",
+			"type": "Number",
+			"default": "''",
+			"required": false,
+			"description": "Sets valid state on the <code>&lt;vs-wizard-step></code> element. When set to true, progress will be forced to 100, and next step will become clickable."
+		}
+	]
+}
+

@@ -1,12 +1,10 @@
-// based on href='https://css-tricks.com/drag-and-drop-file-uploading/'
+// inspired by href='https://css-tricks.com/drag-and-drop-file-uploading/'
 
 // import dependencies
 import './file-upload.scss'
 import 'vuestrap/components/labels'
-import 'vuestrap/components/alert'
-import vsIcon from 'vuestrap-icons/src/components/icons'
 import template from './file-upload.html'
-import {testSameOrigin, trigger} from 'src/utils/helpers.js'
+import {testSameOrigin, trigger} from '../../utils/helpers.js'
 
 // export component object
 export default {
@@ -157,7 +155,7 @@ export default {
             // Send request to server
             xhr.send(ajaxData)
           } else {
-            // fallback Ajax solution upload for older browsers but only if same-origin
+            // fallback Ajax solution for older browsers for same-origin requests
             if (testSameOrigin(this.ajax)) {
               const iframeName  = 'uploadiframe' + new Date().getTime()
               const iframe = document.createElement('iframe')
@@ -206,9 +204,6 @@ export default {
           this.fileList.push({name: this._input.value.replace(/^.*\\/, '')})
         }
       }
-    },
-    components: {
-      vsIcon
     },
     events: {
       'submit::file-upload'(id) {

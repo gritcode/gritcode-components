@@ -7,6 +7,7 @@ import offcanvasDrawer from 'src/docs/offcanvas-drawer'
 import dropdownMultiselect from 'src/docs/dropdown-multiselect'
 import buttonToggle from 'src/docs/button-toggle'
 import fileUpload from 'src/docs/file-upload'
+import wizard from 'src/docs/wizard'
 
 export default {
 	pages: [
@@ -18,5 +19,6 @@ export default {
 		dropdownMultiselect,
 		buttonToggle,
 		fileUpload,
+		wizard,
 	]
 }

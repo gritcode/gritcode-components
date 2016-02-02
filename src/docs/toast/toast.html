@@ -22,11 +22,26 @@
 	
 	<!-- Html markup start-->
 	<div slot="markup">
-		<vs-toast :hide-progress="hideProgress" :duration="duration" :position="position"></vs-toast>
-		<button v-on:click="$root.$broadcast('show::toast', {message: 'Default'})">default</button>
-		<button v-on:click="$root.$broadcast('show::toast', {success: 'Success!'})">success</button>
-		<button v-on:click="$root.$broadcast('show::toast', {error: 'Error!'})">error</button>
-		<button v-on:click="$root.$broadcast('show::toast', {info: 'Info.'})">info</button>
+		<button v-on:click="$root.$broadcast('show::toast', {
+			message: 'Default', 
+			hideProgress: hideProgress,
+			position: position
+		})">default</button>
+		<button v-on:click="$root.$broadcast('show::toast', {
+			success: 'Success!', 
+			hideProgress: hideProgress,
+			position: position
+			})">success</button>
+		<button v-on:click="$root.$broadcast('show::toast', {
+			error: 'Error!', 
+			hideProgress: hideProgress,
+			position: position
+			})">error</button>
+		<button v-on:click="$root.$broadcast('show::toast', {
+			info: 'Info.', 
+			hideProgress: hideProgress,
+			position: position
+			})">info</button>
 	</div>
 	<!-- Html markup end-->
 

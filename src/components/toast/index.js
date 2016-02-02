@@ -20,9 +20,6 @@ export default {
     toastContext() {
       return !this.context ? `` : `toast-${this.context}`
     },
-    toastPosition() {
-      return !this.position ? `bottom left` : this.position
-    }
   },
   data() {
     return {
@@ -73,18 +70,20 @@ export default {
       this.style.transition = 'width 0.1s'
     },
     clear() {
-      this.activeToast = false
-      this.activeProgressBar = false
-      this.animationInProgress = false
-      this.style.transition = 'width 0s'
-      clearTimeout(this.animation)
-      // show next toast from the queue
-      if (this.queue.length > 0) {
-        this._toastAnimation = setTimeout(() => {
-          const toast = this.queue.shift()
-          this.show(toast)
-        }, TOAST_ANIMATION)
-      }
+      setTimeout(() => {
+        this.activeProgressBar = false
+        this.animationInProgress = false
+        this.style.transition = 'width 0s'
+        this.activeToast = false
+        clearTimeout(this.animation)
+        // show next toast from the queue
+        if (this.queue.length > 0) {
+          this._toastAnimation = setTimeout(() => {
+            const toast = this.queue.shift()
+            this.show(toast)
+          }, TOAST_ANIMATION)
+        }
+      })
     },
     animate() {
       this.style.transition = 'width ' + this.duration / 1000 + 's'
@@ -92,17 +91,14 @@ export default {
       this.animation = setTimeout(this.clear, this.duration)
     },
     show(options) {
+      console.log(options);
       this.context = 'default'
       this.animationInProgress = true
-      if (options.message) {
-        this.message = options.message
-      }
-      if (options.context) {
-        this.context = options.context
-      }
-      if (options.debounce) {
-        this.debounce = options.debounce
-      }
+      this.message = options.message || 'Done!'
+      this.context = options.context || ''
+      this.debounce = options.debounce || DEBOUNCE
+      this.hideProgress = options.hideProgress || false
+      this.position = options.position || 'bottom left'
       if (options.success) {
         this.context = 'success'
         this.message = options.success
@@ -123,7 +119,7 @@ export default {
       setTimeout(() => {
         this.activeToast = true
         this.animate()
-      })
+      }, 100)
     },
     addToQueue(options) {
       if (this.animationInProgress || this.queue.length > 0) {

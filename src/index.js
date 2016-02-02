@@ -11,6 +11,7 @@ import docsPages from 'vuestrap-docs/src/components/docs'
 
 // drawer example
 import {offcanvasWrapper as vsOffcanvasWrapper, offcanvasDrawer as vsOffcanvasDrawer} from 'src/components/offcanvas-drawer'
+import vsToast from 'src/components/toast'
 
 // import utils
 import {getRoutes} from 'vuestrap-docs/utils'
@@ -60,6 +61,7 @@ window.docs = new Vue({
 		docsPages,
 		vsOffcanvasWrapper,
 		vsOffcanvasDrawer,
+    vsToast,
 	},
 })
 

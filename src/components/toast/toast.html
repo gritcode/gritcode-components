@@ -1,4 +1,4 @@
-<div class="toast toast-gritcode {{activeToast ? 'active' : ''}} {{toastPosition}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}" v-on:mouseover="pause" v-on:mouseout="animate">
+<div class="toast toast-gritcode {{activeToast ? 'active' : ''}} {{position}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}" v-on:mouseover="pause" v-on:mouseout="animate">
   <div v-html="message"></div>
   <div class="action">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close" v-on:click="clear">

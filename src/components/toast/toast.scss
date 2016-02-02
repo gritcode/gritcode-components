@@ -16,7 +16,7 @@ $toast-background-danger: $brand-danger !default;
 
 // core styling
 .toast-gritcode {
-	display: block;
+  display: table;
   position: fixed;
   min-height: 48px;
   min-width: 288px;
@@ -36,7 +36,6 @@ $toast-background-danger: $brand-danger !default;
   transform: translateY(100px);
   -ms-transform: translateY(100px);
   z-index: 9999;
-  display: table;
 	&.active {	
 		visibility: visible;
 	  opacity: 1;

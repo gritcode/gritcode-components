@@ -69,13 +69,17 @@
 
 	var _srcComponentsOffcanvasDrawer = __webpack_require__(37);
 
+	var _srcComponentsToast = __webpack_require__(41);
+
+	var _srcComponentsToast2 = _interopRequireDefault(_srcComponentsToast);
+
 	// import utils
 
 	var _vuestrapDocsUtils = __webpack_require__(34);
 
 	// import demo pages compatibile with docs component
 
-	var _srcDocs = __webpack_require__(41);
+	var _srcDocs = __webpack_require__(45);
 
 	var _srcDocs2 = _interopRequireDefault(_srcDocs);
 
@@ -109,7 +113,8 @@
 	  components: {
 	    docsPages: _vuestrapDocsSrcComponentsDocs2['default'],
 	    vsOffcanvasWrapper: _srcComponentsOffcanvasDrawer.offcanvasWrapper,
-	    vsOffcanvasDrawer: _srcComponentsOffcanvasDrawer.offcanvasDrawer
+	    vsOffcanvasDrawer: _srcComponentsOffcanvasDrawer.offcanvasDrawer,
+	    vsToast: _srcComponentsToast2['default']
 	  }
 	});
 
@@ -11452,7 +11457,7 @@
 
 	module.exports = {
 		"name": "gritcode-components",
-		"version": "0.3.0",
+		"version": "0.3.1",
 		"description": "Web components built with Vuestrap.",
 		"library": "gritcode-components",
 		"repository": {
@@ -11640,6 +11645,225 @@
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// import styling
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	__webpack_require__(42);
+
+	// import template
+
+	var _toastHtml = __webpack_require__(44);
+
+	var _toastHtml2 = _interopRequireDefault(_toastHtml);
+
+	// this delays trigger of the first toast (queue)
+	var DEBOUNCE = 300; // in ms
+
+	// hide toast after default duration
+	var DURATION = 6000; // in ms
+
+	// this transition time is set in scss and defines how long it takes to animate in/out the toast element
+	var TOAST_ANIMATION = 300; // in ms
+
+	exports['default'] = {
+	  template: _toastHtml2['default'],
+	  replace: true,
+	  computed: {
+	    toastContext: function toastContext() {
+	      return !this.context ? '' : 'toast-' + this.context;
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      activeToast: false,
+	      activeProgressBar: false,
+	      animation: null,
+	      animationInProgress: false,
+	      queue: [],
+	      style: {
+	        transition: 'width 0s'
+	      }
+	    };
+	  },
+	  props: {
+	    context: {
+	      type: String,
+	      'default': ''
+	    },
+	    duration: {
+	      type: Number,
+	      'default': DURATION
+	    },
+	    message: {
+	      type: String,
+	      'default': 'Done!'
+	    },
+	    onAjaxErrors: {
+	      type: Boolean,
+	      'default': false
+	    },
+	    position: {
+	      type: String,
+	      'default': 'bottom left'
+	    },
+	    hideProgress: {
+	      type: Boolean,
+	      'default': false
+	    },
+	    debounce: {
+	      type: Number,
+	      'default': DEBOUNCE
+	    }
+	  },
+	  methods: {
+	    pause: function pause() {
+	      this.activeProgressBar = false;
+	      clearTimeout(this.animation);
+	      this.style.transition = 'width 0.1s';
+	    },
+	    clear: function clear() {
+	      var _this = this;
+
+	      setTimeout(function () {
+	        _this.activeProgressBar = false;
+	        _this.animationInProgress = false;
+	        _this.style.transition = 'width 0s';
+	        _this.activeToast = false;
+	        clearTimeout(_this.animation);
+	        // show next toast from the queue
+	        if (_this.queue.length > 0) {
+	          _this._toastAnimation = setTimeout(function () {
+	            var toast = _this.queue.shift();
+	            _this.show(toast);
+	          }, TOAST_ANIMATION);
+	        }
+	      });
+	    },
+	    animate: function animate() {
+	      this.style.transition = 'width ' + this.duration / 1000 + 's';
+	      this.activeProgressBar = true;
+	      this.animation = setTimeout(this.clear, this.duration);
+	    },
+	    show: function show(options) {
+	      var _this2 = this;
+
+	      console.log(options);
+	      this.context = 'default';
+	      this.animationInProgress = true;
+	      this.message = options.message || 'Done!';
+	      this.context = options.context || '';
+	      this.debounce = options.debounce || DEBOUNCE;
+	      this.hideProgress = options.hideProgress || false;
+	      this.position = options.position || 'bottom left';
+	      if (options.success) {
+	        this.context = 'success';
+	        this.message = options.success;
+	      }
+	      if (options.info) {
+	        this.context = 'info';
+	        this.message = options.info;
+	      }
+	      if (options.warning) {
+	        this.context = 'warning';
+	        this.message = options.warning;
+	      }
+	      if (options.error) {
+	        this.context = 'danger';
+	        this.message = options.error;
+	      }
+	      // wait for dom element
+	      setTimeout(function () {
+	        _this2.activeToast = true;
+	        _this2.animate();
+	      }, 100);
+	    },
+	    addToQueue: function addToQueue(options) {
+	      var _this3 = this;
+
+	      if (this.animationInProgress || this.queue.length > 0) {
+	        // if some other toast is curently animating, add it to the queue
+	        this.queue.push(options);
+	      } else {
+	        // if first toast, show it
+	        setTimeout(function () {
+	          _this3.show(options);
+	        }, this.debounce);
+	      }
+	    }
+	  },
+	  events: {
+	    'end::ajax': function endAjax(options) {
+	      if (this.onAjaxErrors && options && options.error) {
+	        this.addToQueue(options);
+	      }
+	    },
+	    'show::toast': function showToast(options) {
+	      this.addToQueue(options);
+	    }
+	  },
+	  destroyed: function destroyed() {
+	    clearTimeout(this._animation);
+	    clearTimeout(this._toastAnimation);
+	  }
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 42 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(43);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(6)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vuestrap-theme-loader/index.js!./toast.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vuestrap-theme-loader/index.js!./toast.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 43 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(5)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".toast-gritcode {\n  display: table;\n  position: fixed;\n  min-height: 48px;\n  min-width: 288px;\n  max-width: 600px;\n  padding: 16px 24px 16px 24px;\n  box-sizing: border-box;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\n  border-radius: 2px;\n  left: 0;\n  bottom: 0;\n  margin: 12px;\n  font-size: 14px;\n  cursor: default;\n  -webkit-transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  transition: visibility 0.3s, transform 0.3s, opacity 0.3s;\n  transition: visibility 0.3s, transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  visibility: hidden;\n  opacity: 0;\n  -webkit-transform: translateY(100px);\n          transform: translateY(100px);\n  -ms-transform: translateY(100px);\n  z-index: 9999; }\n  .toast-gritcode.active {\n    visibility: visible;\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n            transform: translateY(0px);\n    -ms-transform: translateY(0px); }\n  .toast-gritcode.top {\n    top: 0;\n    bottom: auto;\n    -webkit-transform: translateY(-100px);\n            transform: translateY(-100px);\n    -ms-transform: translateY(-100px); }\n    .toast-gritcode.top.active {\n      -webkit-transform: translateY(0px);\n              transform: translateY(0px);\n      -ms-transform: translateY(0px); }\n  .toast-gritcode.right {\n    left: auto;\n    right: 0; }\n  .toast-gritcode .progress-bar {\n    position: absolute;\n    left: 0;\n    bottom: 0;\n    height: 0.4em;\n    background: rgba(255, 255, 255, 0.3);\n    width: 0;\n    -webkit-transition: width 3s;\n    transition: width 3s; }\n    .toast-gritcode .progress-bar.active {\n      width: 100%; }\n  .toast-gritcode .message, .toast-gritcode .action {\n    vertical-align: middle;\n    display: table-cell; }\n  .toast-gritcode .action {\n    text-align: right; }\n\n.toast-gritcode {\n  background-color: #818a91;\n  color: #fff; }\n  .toast-gritcode.toast-info {\n    background-color: #5bc0de;\n    color: #fff; }\n  .toast-gritcode.toast-success {\n    background-color: #42b983;\n    color: #fff; }\n  .toast-gritcode.toast-warning {\n    background-color: #f0ad4e;\n    color: #fff; }\n  .toast-gritcode.toast-danger {\n    background-color: #d9534f;\n    color: #fff; }\n  .toast-gritcode.toast-dark {\n    background-color: #000;\n    color: #fff; }\n  .toast-gritcode.toast-light {\n    background-color: #fff;\n    color: #000; }\n\n.lt-ie10 .progress-bar, .ie9 .progress-bar, .oldie .progress-bar, .no-csstransitions .progress-bar {\n  display: none; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{position}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\r\n  <div v-html=\"message\"></div>\r\n  <div class=\"action\">\r\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\r\n\t    <span aria-hidden=\"true\">&times;</span>\r\n\t  </button>\r\n  </div>\r\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\r\n</div>";
+
+/***/ },
+/* 45 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// import modules and pages
 	'use strict';
 
@@ -11649,11 +11873,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _srcDocsIntroduction = __webpack_require__(42);
+	var _srcDocsIntroduction = __webpack_require__(46);
 
 	var _srcDocsIntroduction2 = _interopRequireDefault(_srcDocsIntroduction);
 
-	var _srcDocsToast = __webpack_require__(47);
+	var _srcDocsToast = __webpack_require__(51);
 
 	var _srcDocsToast2 = _interopRequireDefault(_srcDocsToast);
 
@@ -11691,7 +11915,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 42 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11702,11 +11926,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _introductionHtml = __webpack_require__(43);
+	var _introductionHtml = __webpack_require__(47);
 
 	var _introductionHtml2 = _interopRequireDefault(_introductionHtml);
 
-	__webpack_require__(44);
+	__webpack_require__(48);
 
 	exports['default'] = {
 		route: {
@@ -11727,28 +11951,28 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 43 */
+/* 47 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"jumbotron\">\r\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\r\n  <p>{{pkg.description}}</p>\r\n</div>\r\n<h2>Installation</h2>\r\n<div class=\"row\">\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Compiled</h3>\r\n    <p>Minified CSS and JavaScript with no  documentation or original source files.</p>\r\n    <code>bower install {{pkg.name}} --save-dev</code>\r\n  </div>\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Source</h3>\r\n    <p>Source Sass, JavaScript, and documentation files.</p>\r\n    <code>npm install {{pkg.name}} --save-dev</code>\r\n   </div>\r\n</div>\r\n\r\n<div class=\"m-b-lg\"></div>\r\n<h2>Usage</h2>\r\n<p>For compiled components, use it within your Vue instance like this:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}': {{pkg.library}}.{{componentNameCamelCase}} }})</code></p>\r\n\r\n<div class=\"m-b\"></div>\r\n<strong>OR</strong>\r\n<div class=\"m-b\"></div>\r\n\r\n<p>If you chosen to work with source components, just import* desired component like so:</p>\r\n<p><code>import {{componentNameCamelCase}} from '{{pkg.name}}/src/components/{{componentName}}'</code></p>\r\n<p>and then load it in your Vue instance:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}' : {{componentNameCamelCase}} }})</code></p>\r\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>\r\n\r\n<h2 class=\"m-t\">Theming</h2>\r\n<p>To be able to use your app theme with component's scss variables, you will need to use <a href=\"https://github.com/kzima/vueastrap-theme-loader\">vuestrap-theme-loader</a> in your webpack config file. </p>\r\n\r\n<p><code>npm install vuestrap-theme-loader --save-dev</code></p>\r\n\r\n<p>See <a href=\"https://github.com/kzima/vuestrap-starter\">vuestrap-starter</a> for a webpack config example with theme loader.</p>";
 
 /***/ },
-/* 44 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 
-	__webpack_require__(45);
+	__webpack_require__(49);
 
 /***/ },
-/* 45 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(46);
+	var content = __webpack_require__(50);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -11768,7 +11992,7 @@
 	}
 
 /***/ },
-/* 46 */
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -11782,7 +12006,7 @@
 
 
 /***/ },
-/* 47 */
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11793,19 +12017,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _toastJson = __webpack_require__(48);
+	var _toastJson = __webpack_require__(52);
 
 	var _toastJson2 = _interopRequireDefault(_toastJson);
 
-	var _toastHtml = __webpack_require__(49);
+	var _toastHtml = __webpack_require__(53);
 
 	var _toastHtml2 = _interopRequireDefault(_toastHtml);
 
-	var _snippetHtml = __webpack_require__(50);
+	var _snippetHtml = __webpack_require__(54);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsToast = __webpack_require__(51);
+	var _srcComponentsToast = __webpack_require__(41);
 
 	var _srcComponentsToast2 = _interopRequireDefault(_srcComponentsToast);
 
@@ -11839,7 +12063,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 48 */
+/* 52 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -11900,239 +12124,16 @@
 	};
 
 /***/ },
-/* 49 */
-/***/ function(module, exports) {
-
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>hide progressbar <input type=\"checkbox\" v-model=\"hideProgress\"></label>\r\n\t\t<label>duration\r\n\t\t\t<select v-model=\"duration\">\r\n\t\t\t\t<option v-for=\"option in durations\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>position\r\n\t\t\t<select v-model=\"position\">\r\n\t\t\t\t<option v-for=\"option in positions\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<vs-toast :hide-progress=\"hideProgress\" :duration=\"duration\" :position=\"position\"></vs-toast>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {message: 'Default'})\">default</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {success: 'Success!'})\">success</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {error: 'Error!'})\">error</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {info: 'Info.'})\">info</button>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
-
-/***/ },
-/* 50 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-comment\">&lt;!-- trigger examples --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {message: 'Default'})\"</span>&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {success: 'Success!'})\"</span>&gt;</span>success<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {error: 'Error!'})\"</span>&gt;</span>error<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {info: 'Info.'})\"</span>&gt;</span>info<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n\r\n<span class=\"hljs-comment\">&lt;!-- toast element --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-toast</span> \r\n  <span class=\"hljs-attribute\">:hide-progress</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:duration</span>=<span class=\"hljs-value\">\"6000\"</span> \r\n  <span class=\"hljs-attribute\">position</span>=<span class=\"hljs-value\">\"bottom left\"</span> \r\n  <span class=\"hljs-attribute\">context</span>=<span class=\"hljs-value\">\"default\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-toast</span>&gt;</span>";
-
-/***/ },
-/* 51 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// import styling
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	  value: true
-	});
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	__webpack_require__(52);
-
-	// import template
-
-	var _toastHtml = __webpack_require__(54);
-
-	var _toastHtml2 = _interopRequireDefault(_toastHtml);
-
-	// this delays trigger of the first toast (queue)
-	var DEBOUNCE = 300; // in ms
-
-	// hide toast after default duration
-	var DURATION = 6000; // in ms
-
-	// this transition time is set in scss and defines how long it takes to animate in/out the toast element
-	var TOAST_ANIMATION = 300; // in ms
-
-	exports['default'] = {
-	  template: _toastHtml2['default'],
-	  replace: true,
-	  computed: {
-	    toastContext: function toastContext() {
-	      return !this.context ? '' : 'toast-' + this.context;
-	    },
-	    toastPosition: function toastPosition() {
-	      return !this.position ? 'bottom left' : this.position;
-	    }
-	  },
-	  data: function data() {
-	    return {
-	      activeToast: false,
-	      activeProgressBar: false,
-	      animation: null,
-	      animationInProgress: false,
-	      queue: [],
-	      style: {
-	        transition: 'width 0s'
-	      }
-	    };
-	  },
-	  props: {
-	    context: {
-	      type: String,
-	      'default': ''
-	    },
-	    duration: {
-	      type: Number,
-	      'default': DURATION
-	    },
-	    message: {
-	      type: String,
-	      'default': 'Done!'
-	    },
-	    onAjaxErrors: {
-	      type: Boolean,
-	      'default': false
-	    },
-	    position: {
-	      type: String,
-	      'default': 'bottom left'
-	    },
-	    hideProgress: {
-	      type: Boolean,
-	      'default': false
-	    },
-	    debounce: {
-	      type: Number,
-	      'default': DEBOUNCE
-	    }
-	  },
-	  methods: {
-	    pause: function pause() {
-	      this.activeProgressBar = false;
-	      clearTimeout(this.animation);
-	      this.style.transition = 'width 0.1s';
-	    },
-	    clear: function clear() {
-	      var _this = this;
-
-	      this.activeToast = false;
-	      this.activeProgressBar = false;
-	      this.animationInProgress = false;
-	      this.style.transition = 'width 0s';
-	      clearTimeout(this.animation);
-	      // show next toast from the queue
-	      if (this.queue.length > 0) {
-	        this._toastAnimation = setTimeout(function () {
-	          var toast = _this.queue.shift();
-	          _this.show(toast);
-	        }, TOAST_ANIMATION);
-	      }
-	    },
-	    animate: function animate() {
-	      this.style.transition = 'width ' + this.duration / 1000 + 's';
-	      this.activeProgressBar = true;
-	      this.animation = setTimeout(this.clear, this.duration);
-	    },
-	    show: function show(options) {
-	      var _this2 = this;
-
-	      this.context = 'default';
-	      this.animationInProgress = true;
-	      if (options.message) {
-	        this.message = options.message;
-	      }
-	      if (options.context) {
-	        this.context = options.context;
-	      }
-	      if (options.debounce) {
-	        this.debounce = options.debounce;
-	      }
-	      if (options.success) {
-	        this.context = 'success';
-	        this.message = options.success;
-	      }
-	      if (options.info) {
-	        this.context = 'info';
-	        this.message = options.info;
-	      }
-	      if (options.warning) {
-	        this.context = 'warning';
-	        this.message = options.warning;
-	      }
-	      if (options.error) {
-	        this.context = 'danger';
-	        this.message = options.error;
-	      }
-	      // wait for dom element
-	      setTimeout(function () {
-	        _this2.activeToast = true;
-	        _this2.animate();
-	      });
-	    },
-	    addToQueue: function addToQueue(options) {
-	      var _this3 = this;
-
-	      if (this.animationInProgress || this.queue.length > 0) {
-	        // if some other toast is curently animating, add it to the queue
-	        this.queue.push(options);
-	      } else {
-	        // if first toast, show it
-	        setTimeout(function () {
-	          _this3.show(options);
-	        }, this.debounce);
-	      }
-	    }
-	  },
-	  events: {
-	    'end::ajax': function endAjax(options) {
-	      if (this.onAjaxErrors && options && options.error) {
-	        this.addToQueue(options);
-	      }
-	    },
-	    'show::toast': function showToast(options) {
-	      this.addToQueue(options);
-	    }
-	  },
-	  destroyed: function destroyed() {
-	    clearTimeout(this._animation);
-	    clearTimeout(this._toastAnimation);
-	  }
-	};
-	module.exports = exports['default'];
-
-/***/ },
-/* 52 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(53);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(6)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vuestrap-theme-loader/index.js!./toast.scss", function() {
-				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vuestrap-theme-loader/index.js!./toast.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
 /* 53 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
-	exports = module.exports = __webpack_require__(5)();
-	// imports
-
-
-	// module
-	exports.push([module.id, ".toast-gritcode {\n  display: block;\n  position: fixed;\n  min-height: 48px;\n  min-width: 288px;\n  max-width: 600px;\n  padding: 16px 24px 16px 24px;\n  box-sizing: border-box;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\n  border-radius: 2px;\n  left: 0;\n  bottom: 0;\n  margin: 12px;\n  font-size: 14px;\n  cursor: default;\n  -webkit-transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  transition: visibility 0.3s, transform 0.3s, opacity 0.3s;\n  transition: visibility 0.3s, transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  visibility: hidden;\n  opacity: 0;\n  -webkit-transform: translateY(100px);\n          transform: translateY(100px);\n  -ms-transform: translateY(100px);\n  z-index: 9999;\n  display: table; }\n  .toast-gritcode.active {\n    visibility: visible;\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n            transform: translateY(0px);\n    -ms-transform: translateY(0px); }\n  .toast-gritcode.top {\n    top: 0;\n    bottom: auto;\n    -webkit-transform: translateY(-100px);\n            transform: translateY(-100px);\n    -ms-transform: translateY(-100px); }\n    .toast-gritcode.top.active {\n      -webkit-transform: translateY(0px);\n              transform: translateY(0px);\n      -ms-transform: translateY(0px); }\n  .toast-gritcode.right {\n    left: auto;\n    right: 0; }\n  .toast-gritcode .progress-bar {\n    position: absolute;\n    left: 0;\n    bottom: 0;\n    height: 0.4em;\n    background: rgba(255, 255, 255, 0.3);\n    width: 0;\n    -webkit-transition: width 3s;\n    transition: width 3s; }\n    .toast-gritcode .progress-bar.active {\n      width: 100%; }\n  .toast-gritcode .message, .toast-gritcode .action {\n    vertical-align: middle;\n    display: table-cell; }\n  .toast-gritcode .action {\n    text-align: right; }\n\n.toast-gritcode {\n  background-color: #818a91;\n  color: #fff; }\n  .toast-gritcode.toast-info {\n    background-color: #5bc0de;\n    color: #fff; }\n  .toast-gritcode.toast-success {\n    background-color: #42b983;\n    color: #fff; }\n  .toast-gritcode.toast-warning {\n    background-color: #f0ad4e;\n    color: #fff; }\n  .toast-gritcode.toast-danger {\n    background-color: #d9534f;\n    color: #fff; }\n  .toast-gritcode.toast-dark {\n    background-color: #000;\n    color: #fff; }\n  .toast-gritcode.toast-light {\n    background-color: #fff;\n    color: #000; }\n\n.lt-ie10 .progress-bar, .ie9 .progress-bar, .oldie .progress-bar, .no-csstransitions .progress-bar {\n  display: none; }\n", ""]);
-
-	// exports
-
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>hide progressbar <input type=\"checkbox\" v-model=\"hideProgress\"></label>\r\n\t\t<label>duration\r\n\t\t\t<select v-model=\"duration\">\r\n\t\t\t\t<option v-for=\"option in durations\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>position\r\n\t\t\t<select v-model=\"position\">\r\n\t\t\t\t<option v-for=\"option in positions\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tmessage: 'Default', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position\r\n\t\t})\">default</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tsuccess: 'Success!', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position\r\n\t\t\t})\">success</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\terror: 'Error!', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position\r\n\t\t\t})\">error</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tinfo: 'Info.', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position\r\n\t\t\t})\">info</button>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
 /* 54 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{toastPosition}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\r\n  <div v-html=\"message\"></div>\r\n  <div class=\"action\">\r\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\r\n\t    <span aria-hidden=\"true\">&times;</span>\r\n\t  </button>\r\n  </div>\r\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\r\n</div>";
+	module.exports = "<span class=\"hljs-comment\">&lt;!-- trigger examples --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {message: 'Default'})\"</span>&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {success: 'Success!'})\"</span>&gt;</span>success<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {error: 'Error!'})\"</span>&gt;</span>error<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {info: 'Info.'})\"</span>&gt;</span>info<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n\r\n<span class=\"hljs-comment\">&lt;!-- toast element --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-toast</span> \r\n  <span class=\"hljs-attribute\">:hide-progress</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:duration</span>=<span class=\"hljs-value\">\"6000\"</span> \r\n  <span class=\"hljs-attribute\">position</span>=<span class=\"hljs-value\">\"bottom left\"</span> \r\n  <span class=\"hljs-attribute\">context</span>=<span class=\"hljs-value\">\"default\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-toast</span>&gt;</span>";
 
 /***/ },
 /* 55 */

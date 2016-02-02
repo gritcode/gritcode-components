@@ -512,9 +512,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  computed: {
 	    toastContext: function toastContext() {
 	      return !this.context ? '' : 'toast-' + this.context;
-	    },
-	    toastPosition: function toastPosition() {
-	      return !this.position ? 'bottom left' : this.position;
 	    }
 	  },
 	  data: function data() {
@@ -568,18 +565,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    clear: function clear() {
 	      var _this = this;
 
-	      this.activeToast = false;
-	      this.activeProgressBar = false;
-	      this.animationInProgress = false;
-	      this.style.transition = 'width 0s';
-	      clearTimeout(this.animation);
-	      // show next toast from the queue
-	      if (this.queue.length > 0) {
-	        this._toastAnimation = setTimeout(function () {
-	          var toast = _this.queue.shift();
-	          _this.show(toast);
-	        }, TOAST_ANIMATION);
-	      }
+	      setTimeout(function () {
+	        _this.activeProgressBar = false;
+	        _this.animationInProgress = false;
+	        _this.style.transition = 'width 0s';
+	        _this.activeToast = false;
+	        clearTimeout(_this.animation);
+	        // show next toast from the queue
+	        if (_this.queue.length > 0) {
+	          _this._toastAnimation = setTimeout(function () {
+	            var toast = _this.queue.shift();
+	            _this.show(toast);
+	          }, TOAST_ANIMATION);
+	        }
+	      });
 	    },
 	    animate: function animate() {
 	      this.style.transition = 'width ' + this.duration / 1000 + 's';
@@ -589,17 +588,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    show: function show(options) {
 	      var _this2 = this;
 
+	      console.log(options);
 	      this.context = 'default';
 	      this.animationInProgress = true;
-	      if (options.message) {
-	        this.message = options.message;
-	      }
-	      if (options.context) {
-	        this.context = options.context;
-	      }
-	      if (options.debounce) {
-	        this.debounce = options.debounce;
-	      }
+	      this.message = options.message || 'Done!';
+	      this.context = options.context || '';
+	      this.debounce = options.debounce || DEBOUNCE;
+	      this.hideProgress = options.hideProgress || false;
+	      this.position = options.position || 'bottom left';
 	      if (options.success) {
 	        this.context = 'success';
 	        this.message = options.success;
@@ -620,7 +616,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      setTimeout(function () {
 	        _this2.activeToast = true;
 	        _this2.animate();
-	      });
+	      }, 100);
 	    },
 	    addToQueue: function addToQueue(options) {
 	      var _this3 = this;
@@ -688,7 +684,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	// module
-	exports.push([module.id, ".toast-gritcode {\n  display: block;\n  position: fixed;\n  min-height: 48px;\n  min-width: 288px;\n  max-width: 600px;\n  padding: 16px 24px 16px 24px;\n  box-sizing: border-box;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\n  border-radius: 2px;\n  left: 0;\n  bottom: 0;\n  margin: 12px;\n  font-size: 14px;\n  cursor: default;\n  -webkit-transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  transition: visibility 0.3s, transform 0.3s, opacity 0.3s;\n  transition: visibility 0.3s, transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  visibility: hidden;\n  opacity: 0;\n  -webkit-transform: translateY(100px);\n          transform: translateY(100px);\n  -ms-transform: translateY(100px);\n  z-index: 9999;\n  display: table; }\n  .toast-gritcode.active {\n    visibility: visible;\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n            transform: translateY(0px);\n    -ms-transform: translateY(0px); }\n  .toast-gritcode.top {\n    top: 0;\n    bottom: auto;\n    -webkit-transform: translateY(-100px);\n            transform: translateY(-100px);\n    -ms-transform: translateY(-100px); }\n    .toast-gritcode.top.active {\n      -webkit-transform: translateY(0px);\n              transform: translateY(0px);\n      -ms-transform: translateY(0px); }\n  .toast-gritcode.right {\n    left: auto;\n    right: 0; }\n  .toast-gritcode .progress-bar {\n    position: absolute;\n    left: 0;\n    bottom: 0;\n    height: 0.4em;\n    background: rgba(255, 255, 255, 0.3);\n    width: 0;\n    -webkit-transition: width 3s;\n    transition: width 3s; }\n    .toast-gritcode .progress-bar.active {\n      width: 100%; }\n  .toast-gritcode .message, .toast-gritcode .action {\n    vertical-align: middle;\n    display: table-cell; }\n  .toast-gritcode .action {\n    text-align: right; }\n\n.toast-gritcode {\n  background-color: #818a91;\n  color: #fff; }\n  .toast-gritcode.toast-info {\n    background-color: #5bc0de;\n    color: #fff; }\n  .toast-gritcode.toast-success {\n    background-color: #42b983;\n    color: #fff; }\n  .toast-gritcode.toast-warning {\n    background-color: #f0ad4e;\n    color: #fff; }\n  .toast-gritcode.toast-danger {\n    background-color: #d9534f;\n    color: #fff; }\n  .toast-gritcode.toast-dark {\n    background-color: #000;\n    color: #fff; }\n  .toast-gritcode.toast-light {\n    background-color: #fff;\n    color: #000; }\n\n.lt-ie10 .progress-bar, .ie9 .progress-bar, .oldie .progress-bar, .no-csstransitions .progress-bar {\n  display: none; }\n", ""]);
+	exports.push([module.id, ".toast-gritcode {\n  display: table;\n  position: fixed;\n  min-height: 48px;\n  min-width: 288px;\n  max-width: 600px;\n  padding: 16px 24px 16px 24px;\n  box-sizing: border-box;\n  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);\n  border-radius: 2px;\n  left: 0;\n  bottom: 0;\n  margin: 12px;\n  font-size: 14px;\n  cursor: default;\n  -webkit-transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  transition: visibility 0.3s, transform 0.3s, opacity 0.3s;\n  transition: visibility 0.3s, transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;\n  visibility: hidden;\n  opacity: 0;\n  -webkit-transform: translateY(100px);\n          transform: translateY(100px);\n  -ms-transform: translateY(100px);\n  z-index: 9999; }\n  .toast-gritcode.active {\n    visibility: visible;\n    opacity: 1;\n    -webkit-transform: translateY(0px);\n            transform: translateY(0px);\n    -ms-transform: translateY(0px); }\n  .toast-gritcode.top {\n    top: 0;\n    bottom: auto;\n    -webkit-transform: translateY(-100px);\n            transform: translateY(-100px);\n    -ms-transform: translateY(-100px); }\n    .toast-gritcode.top.active {\n      -webkit-transform: translateY(0px);\n              transform: translateY(0px);\n      -ms-transform: translateY(0px); }\n  .toast-gritcode.right {\n    left: auto;\n    right: 0; }\n  .toast-gritcode .progress-bar {\n    position: absolute;\n    left: 0;\n    bottom: 0;\n    height: 0.4em;\n    background: rgba(255, 255, 255, 0.3);\n    width: 0;\n    -webkit-transition: width 3s;\n    transition: width 3s; }\n    .toast-gritcode .progress-bar.active {\n      width: 100%; }\n  .toast-gritcode .message, .toast-gritcode .action {\n    vertical-align: middle;\n    display: table-cell; }\n  .toast-gritcode .action {\n    text-align: right; }\n\n.toast-gritcode {\n  background-color: #818a91;\n  color: #fff; }\n  .toast-gritcode.toast-info {\n    background-color: #5bc0de;\n    color: #fff; }\n  .toast-gritcode.toast-success {\n    background-color: #42b983;\n    color: #fff; }\n  .toast-gritcode.toast-warning {\n    background-color: #f0ad4e;\n    color: #fff; }\n  .toast-gritcode.toast-danger {\n    background-color: #d9534f;\n    color: #fff; }\n  .toast-gritcode.toast-dark {\n    background-color: #000;\n    color: #fff; }\n  .toast-gritcode.toast-light {\n    background-color: #fff;\n    color: #000; }\n\n.lt-ie10 .progress-bar, .ie9 .progress-bar, .oldie .progress-bar, .no-csstransitions .progress-bar {\n  display: none; }\n", ""]);
 
 	// exports
 
@@ -697,7 +693,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{toastPosition}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\r\n  <div v-html=\"message\"></div>\r\n  <div class=\"action\">\r\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\r\n\t    <span aria-hidden=\"true\">&times;</span>\r\n\t  </button>\r\n  </div>\r\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\r\n</div>";
+	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{position}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\r\n  <div v-html=\"message\"></div>\r\n  <div class=\"action\">\r\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\r\n\t    <span aria-hidden=\"true\">&times;</span>\r\n\t  </button>\r\n  </div>\r\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\r\n</div>";
 
 /***/ },
 /* 10 */

@@ -1799,7 +1799,7 @@ a.text-danger:focus, a.text-danger:hover {
   .col-xl-offset-12 {
     margin-left: 100%; } }
 .toast-gritcode {
-  display: block;
+  display: table;
   position: fixed;
   min-height: 48px;
   min-width: 288px;
@@ -1822,8 +1822,7 @@ a.text-danger:focus, a.text-danger:hover {
   -webkit-transform: translateY(100px);
           transform: translateY(100px);
   -ms-transform: translateY(100px);
-  z-index: 9999;
-  display: table; }
+  z-index: 9999; }
   .toast-gritcode.active {
     visibility: visible;
     opacity: 1;

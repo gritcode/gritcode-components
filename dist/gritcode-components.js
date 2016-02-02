@@ -171,9 +171,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	  computed: {
 	    toastContext: function toastContext() {
 	      return !this.context ? '' : 'toast-' + this.context;
-	    },
-	    toastPosition: function toastPosition() {
-	      return !this.position ? 'bottom left' : this.position;
 	    }
 	  },
 	  data: function data() {
@@ -227,18 +224,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	    clear: function clear() {
 	      var _this = this;
 	
-	      this.activeToast = false;
-	      this.activeProgressBar = false;
-	      this.animationInProgress = false;
-	      this.style.transition = 'width 0s';
-	      clearTimeout(this.animation);
-	      // show next toast from the queue
-	      if (this.queue.length > 0) {
-	        this._toastAnimation = setTimeout(function () {
-	          var toast = _this.queue.shift();
-	          _this.show(toast);
-	        }, TOAST_ANIMATION);
-	      }
+	      setTimeout(function () {
+	        _this.activeProgressBar = false;
+	        _this.animationInProgress = false;
+	        _this.style.transition = 'width 0s';
+	        _this.activeToast = false;
+	        clearTimeout(_this.animation);
+	        // show next toast from the queue
+	        if (_this.queue.length > 0) {
+	          _this._toastAnimation = setTimeout(function () {
+	            var toast = _this.queue.shift();
+	            _this.show(toast);
+	          }, TOAST_ANIMATION);
+	        }
+	      });
 	    },
 	    animate: function animate() {
 	      this.style.transition = 'width ' + this.duration / 1000 + 's';
@@ -248,17 +247,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    show: function show(options) {
 	      var _this2 = this;
 	
+	      console.log(options);
 	      this.context = 'default';
 	      this.animationInProgress = true;
-	      if (options.message) {
-	        this.message = options.message;
-	      }
-	      if (options.context) {
-	        this.context = options.context;
-	      }
-	      if (options.debounce) {
-	        this.debounce = options.debounce;
-	      }
+	      this.message = options.message || 'Done!';
+	      this.context = options.context || '';
+	      this.debounce = options.debounce || DEBOUNCE;
+	      this.hideProgress = options.hideProgress || false;
+	      this.position = options.position || 'bottom left';
 	      if (options.success) {
 	        this.context = 'success';
 	        this.message = options.success;
@@ -279,7 +275,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      setTimeout(function () {
 	        _this2.activeToast = true;
 	        _this2.animate();
-	      });
+	      }, 100);
 	    },
 	    addToQueue: function addToQueue(options) {
 	      var _this3 = this;
@@ -323,7 +319,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{toastPosition}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\r\n  <div v-html=\"message\"></div>\r\n  <div class=\"action\">\r\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\r\n\t    <span aria-hidden=\"true\">&times;</span>\r\n\t  </button>\r\n  </div>\r\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\r\n</div>";
+	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{position}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\r\n  <div v-html=\"message\"></div>\r\n  <div class=\"action\">\r\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\r\n\t    <span aria-hidden=\"true\">&times;</span>\r\n\t  </button>\r\n  </div>\r\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\r\n</div>";
 
 /***/ },
 /* 10 */

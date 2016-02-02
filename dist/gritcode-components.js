@@ -98,6 +98,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _fileUpload2 = _interopRequireDefault(_fileUpload);
 	
+	var _wizard = __webpack_require__(48);
+	
 	var gritcode = {
 		toast: _toast2['default'],
 		buttonToggle: _buttonToggle2['default'],
@@ -106,7 +108,9 @@ return /******/ (function(modules) { // webpackBootstrap
 		offcanvasDrawer: _offcanvasDrawer.offcanvasDrawer,
 		spinner: _spinner2['default'],
 		truncate: _truncate2['default'],
-		fileUpload: _fileUpload2['default']
+		fileUpload: _fileUpload2['default'],
+		wizard: _wizard.wizard,
+		wizardStep: _wizard.wizardStep
 	};
 	
 	// export all components under global variable
@@ -1123,7 +1127,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 40 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// based on href='https://css-tricks.com/drag-and-drop-file-uploading/'
+	// inspired by href='https://css-tricks.com/drag-and-drop-file-uploading/'
 	
 	// import dependencies
 	'use strict';
@@ -1138,17 +1142,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	__webpack_require__(43);
 	
-	__webpack_require__(46);
-	
-	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(23);
-	
-	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
-	
-	var _fileUploadHtml = __webpack_require__(49);
+	var _fileUploadHtml = __webpack_require__(46);
 	
 	var _fileUploadHtml2 = _interopRequireDefault(_fileUploadHtml);
 	
-	var _srcUtilsHelpersJs = __webpack_require__(50);
+	var _utilsHelpersJs = __webpack_require__(47);
 	
 	// export component object
 	exports['default'] = {
@@ -1179,9 +1177,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	      type: String,
 	      'default': ''
 	    },
+	    formId: {
+	      type: String,
+	      'default': ''
+	    },
 	    method: {
 	      type: String,
 	      'default': 'POST'
+	    },
+	    name: {
+	      type: String,
+	      'default': 'files'
 	    },
 	    model: {
 	      'default': null
@@ -1242,7 +1248,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.setError('Unexpected response from the server');
 	      }
 	      // set either success or error based on data returned from the server
-	      if (data.success === true) {
+	      if (data.success) {
 	        this.state = 'success';
 	        this.model = data.data;
 	        this.$dispatch('completed::file-upload', { model: this.model });
@@ -1272,7 +1278,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	              }
 	
 	              // Add the file to the request.
-	              ajaxData.append('files[]', file, file.name);
+	              ajaxData.append(_this.name, file, file.name);
 	            }
 	
 	            // ajax request
@@ -1303,8 +1309,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	            xhr.send(ajaxData);
 	          })();
 	        } else {
-	          // fallback Ajax solution upload for older browsers but only if same-origin
-	          if ((0, _srcUtilsHelpersJs.testSameOrigin)(this.ajax)) {
+	          // fallback Ajax solution for older browsers for same-origin requests
+	          if ((0, _utilsHelpersJs.testSameOrigin)(this.ajax)) {
 	            (function () {
 	              var iframeName = 'uploadiframe' + new Date().getTime();
 	              var iframe = document.createElement('iframe');
@@ -1313,16 +1319,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	              iframe.style.display = 'none';
 	
 	              document.body.appendChild(iframe);
-	              _this.$el.setAttribute('target', iframeName);
+	              _this._wrappingForm.setAttribute('target', iframeName);
 	
 	              iframe.addEventListener('load', function () {
-	                _this.state = 'uploading';
 	                // this will not work on cross origin requests when using iframe
 	                _this.parseResponse(iframe.contentDocument.body.innerHTML);
-	                _this.$el.removeAttribute('target');
+	                _this._wrappingForm.removeAttribute('target');
 	                iframe.parentNode.removeChild(iframe);
 	              });
-	              _this.$el.submit();
+	              _this._wrappingForm.submit();
 	            })();
 	          } else {
 	            // we cannot guarantee a success in case of cross-origin request within iframe
@@ -1335,7 +1340,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 	    retry: function retry() {
 	      this.state = 'retry';
-	      (0, _srcUtilsHelpersJs.trigger)(this._input, 'change');
+	      (0, _utilsHelpersJs.trigger)(this._input, 'change');
 	    },
 	    restart: function restart() {
 	      this.state = null;
@@ -1353,10 +1358,28 @@ return /******/ (function(modules) { // webpackBootstrap
 	      } else {
 	        this.fileList.push({ name: this._input.value.replace(/^.*\\/, '') });
 	      }
+	    },
+	    _eventHandler: function _eventHandler(e) {
+	      // stop propagation to avoid accidental behaviour
+	      e.preventDefault();
+	      e.stopPropagation();
+	
+	      // handle dragover
+	      if (e.type === 'dragover' || e.type === 'dragenter') {
+	        this.dragover = true;
+	      }
+	
+	      // handle dragleave
+	      if (e.type === 'dragend' || e.type === 'dragleave' || e.type === 'drop') {
+	        this.dragover = false;
+	        if (e.type === 'drop') {
+	          this.fileList = e.dataTransfer.files; // the files that were dropped
+	          if (this.autoSubmit) {
+	            this.submitForm();
+	          }
+	        }
+	      }
 	    }
-	  },
-	  components: {
-	    vsIcon: _vuestrapIconsSrcComponentsIcons2['default']
 	  },
 	  events: {
 	    'submit::file-upload': function submitFileUpload(id) {
@@ -1373,33 +1396,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var events = ['drag', 'dragstart', 'dragend', 'dragleave', 'drop', 'dragover', 'dragenter'];
 	      events.forEach(function (event) {
 	        _this2.$el.addEventListener(event, function (e) {
-	          // preventing the unwanted behaviours
-	          e.preventDefault();
-	          e.stopPropagation();
+	          return _this2._eventHandler(e);
 	        });
 	      });
 	
 	      // drag start
 	      events = ['dragover', 'dragenter'];
 	      events.forEach(function (event) {
-	        _this2.$el.addEventListener(event, function () {
-	          _this2.dragover = true;
-	        });
+	        return function (e) {
+	          return _this2._eventHandler(e);
+	        };
 	      });
 	
 	      // drag end
 	      events = ['dragend', 'dragleave', 'drop'];
 	      events.forEach(function (event) {
 	        _this2.$el.addEventListener(event, function (e) {
-	          _this2.dragover = false;
-	          if (event === 'drop') {
-	            _this2.fileList = e.dataTransfer.files; // the files that were dropped
-	            if (_this2.autoSubmit) {
-	              _this2.submitForm();
-	            }
-	          }
+	          return _this2._eventHandler(e);
 	        });
 	      });
+	    } else {
+	      // get a wrapping form element id paseed in options
+	      if (!this.formId) {
+	        throw "You need to wrap this component in a form and specify it's id in a 'form-id' attribute.";
+	      }
+	      this._wrappingForm = document.getElementById(this.formId);
 	    }
 	  },
 	  beforeDestroy: function beforeDestroy() {
@@ -1407,7 +1428,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	    var events = ['drag', 'dragstart', 'dragend', 'dragleave', 'drop', 'dragover', 'dragenter'];
 	    events.forEach(function (event) {
-	      _this3.$el.removeEventListener(event);
+	      _this3.$el.removeEventListener(event, function () {
+	        return _this3._eventHandler();
+	      });
 	    });
 	  }
 	};
@@ -1438,30 +1461,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ },
 /* 45 */,
 /* 46 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// import dependencies
-	'use strict';
-	
-	__webpack_require__(47);
-	
-	__webpack_require__(20);
-
-/***/ },
-/* 47 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 48 */,
-/* 49 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"{{id}}\" class=\"gritcode-file-upload {{advancedUpload ? 'advanced-upload' : ''}} {{dragover ? 'is-dragover' : ''}}\">\r\n    <div class=\"input\" v-if=\"state == null || state == 'retry'\">\r\n        <svg class=\"icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"43\" viewBox=\"0 0 50 43\" v-if=\"advancedUpload\">\r\n            <path d=\"M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z\" />\r\n        </svg>\r\n        <input \r\n            type=\"file\" \r\n            name=\"files[]\" \r\n            id=\"file\"\r\n            accept=\"accept\" \r\n            v-bind:multiple=\"multiple && advancedUpload\" \r\n            v-on:change=\"onChange($event)\" />\r\n        <label for=\"file\">\r\n            <span v-if=\"fileList.length == 0\"><strong>{{text.action}}</strong><span v-if=\"advancedUpload\"> {{text.drag}}</span></span>\r\n            <span v-if=\"fileList.length > 0\" class=\"\">{{displaySelectionText}}</span>\r\n        </label>\r\n        <button type=\"submit\" class=\"btn btn-primary\" v-if=\"!hideButton && !autoSubmit\" v-on:click.prevent=\"submitForm($event)\">{{text.button}}</button>\r\n    </div>\r\n    <div class=\"state\" v-if=\"state != null\">\r\n        <span class=\"state-uploading animate\" v-show=\"state == 'uploading'\">{{text.uploading}}<span v-if=\"advancedUpload\">{{progress}}</span></span>\r\n        <span class=\"state-success animate\" v-show=\"state == 'success'\">\r\n            {{text.done}} <a href=\"#\" v-on:click.prevent=\"restart\" role=\"button\" v-show=\"multiple\">{{text.restart}}</a>\r\n        </span>\r\n        <span class=\"state-error animate\" v-show=\"state == 'error'\">\r\n            Error! <span>{{errorMessage}}</span> <a href=\"#\" v-on:click.prevent=\"retry\">{{text.retry}}</a>\r\n        </span>\r\n    </div>\r\n</div>";
 
 /***/ },
-/* 50 */
+/* 47 */
 /***/ function(module, exports) {
 
 	/**
@@ -1532,6 +1537,172 @@ return /******/ (function(modules) { // webpackBootstrap
 	  } catch (e) {}
 	};
 	exports.trigger = trigger;
+
+/***/ },
+/* 48 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// import dependencies
+	'use strict';
+	
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+	
+	__webpack_require__(49);
+	
+	var _wizardHtml = __webpack_require__(51);
+	
+	var _wizardHtml2 = _interopRequireDefault(_wizardHtml);
+	
+	var _wizardStepHtml = __webpack_require__(52);
+	
+	var _wizardStepHtml2 = _interopRequireDefault(_wizardStepHtml);
+	
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(23);
+	
+	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
+	
+	// export component object
+	var wizard = {
+	  template: _wizardHtml2['default'],
+	  replace: true,
+	  props: {
+	    currentIndex: {
+	      type: Number,
+	      'default': 0
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      countItems: 0
+	    };
+	  },
+	  methods: {
+	    changeCurrentIndex: function changeCurrentIndex(index) {
+	      // change currentIndex
+	      // if previous step is valid
+	      // if previousDisabled is not set on the next step
+	      if (this.$children[this.currentIndex].disablePrevious && this.currentIndex > index) return;
+	      if (this.$children[index - 1] && this.$children[index - 1].valid || index < this.currentIndex) {
+	        this.currentIndex = index;
+	      }
+	    }
+	  },
+	  ready: function ready() {
+	    // get all steps
+	    this.countItems = this.$children.length;
+	
+	    // set index for each wiard-step component
+	    this.$children.forEach(function (item, index) {
+	      item.index = index;
+	    });
+	  }
+	};
+	
+	exports.wizard = wizard;
+	var wizardStep = {
+	  template: _wizardStepHtml2['default'],
+	  replace: true,
+	  data: function data() {
+	    return {
+	      index: null,
+	      active: false
+	    };
+	  },
+	  computed: {
+	    isActive: function isActive() {
+	      return this.$parent.currentIndex === this.index;
+	    },
+	    isPrevious: function isPrevious() {
+	      // two items are considered previous (if last step) or one item before currentIndex step (if currentIndex - 1)
+	      return this.$parent.currentIndex > this.index;
+	    },
+	    isNext: function isNext() {
+	      // two items are considered next (if currentIndex step is a first step) or one item after currentIndex step (currentIndex + 1)
+	      return this.$parent.currentIndex < this.index;
+	    }
+	  },
+	  props: {
+	    icon: {
+	      type: String,
+	      'default': false
+	    },
+	    iconNumber: {
+	      type: String,
+	      'default': false
+	    },
+	    title: {
+	      type: String,
+	      'default': false
+	    },
+	    description: {
+	      type: String,
+	      'default': false
+	    },
+	    progress: {
+	      type: Number,
+	      'default': 0
+	    },
+	    valid: {
+	      type: Boolean,
+	      'default': false
+	    },
+	    disablePrevious: {
+	      type: Boolean,
+	      'default': false
+	    }
+	  },
+	  methods: {
+	    changeCurrentIndex: function changeCurrentIndex() {
+	      this.$parent.changeCurrentIndex(this.index);
+	    }
+	  },
+	  watch: {
+	    progress: function progress(val) {
+	      this._progressBar.style.width = val + '%';
+	      if (val === 100) {
+	        this.valid = true;
+	      } else {
+	        this.valid = false;
+	      }
+	    },
+	    valid: function valid(val) {
+	      if (val) {
+	        this.progress = 100;
+	      }
+	    }
+	  },
+	  components: {
+	    vsIcon: _vuestrapIconsSrcComponentsIcons2['default']
+	  },
+	  ready: function ready() {
+	    this.$el.style.width = 100 / this.$parent.$children.length + '%';
+	    this._progressBar = this.$el.querySelector('.wizard-progress-value');
+	  }
+	};
+	exports.wizardStep = wizardStep;
+
+/***/ },
+/* 49 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 50 */,
+/* 51 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"gritcode-wizard\">\r\n   <slot></slot>\r\n</div>\r\n";
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
+	module.exports = "<div v-bind:class=\"{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}\" v-on:click=\"changeCurrentIndex()\">\r\n\t<div class=\"wizard-progress\">\r\n\t\t<div class=\"wizard-progress-value\"></div>\r\n\t</div>\r\n\t<div class=\"wizard-icon\">\r\n\t\t<div class=\"icon-icon\"><vs-icon :name=\"icon\" v-if=\"icon\"></vs-icon></div>\r\n\t\t<div class=\"icon-number\" v-if=\"!icon\">{{iconNumber || index +1}}</div>\r\n\t</div>\r\n\t<div class=\"wizard-content\">\r\n\t\t<div class=\"title\">{{title}}</div>\r\n\t\t<div class=\"description\">{{description}}</div>\r\n\t</div>\r\n\t<div class=\"step-info\">\r\n\t\tStep {{index+1}}/{{$parent.countItems}}\r\n\t</div>\r\n</div>";
 
 /***/ }
 /******/ ])

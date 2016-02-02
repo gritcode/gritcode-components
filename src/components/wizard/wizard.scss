@@ -1,0 +1,131 @@
+// variables
+$wizard-active-color: $brand-success;
+$wizard-disabled-color: #a9a9a9;
+$wizard-title-font-color: #464646;
+$wizard-description-font-color: #a8a8a8;
+$wizard-description-fontsize: 0.8em;
+$wizard-icon-size: 3em;
+$wizard-border-size: 2px;
+$wizard-border-color: #d9d9d9;
+$wizard-background-color: #eaeaea;
+
+// on mobile first design we will have only active step and step-info
+.gritcode-wizard {
+    overflow: hidden;
+    display: table;
+    width: 100%;
+    font-size: 0.8rem;
+    .wizard-step {
+        display: none;
+        width: auto;
+        border: 0;
+        text-align: center;
+        position: relative;
+        cursor: pointer;
+        &.active {
+            display: table-cell;
+        }
+        .wizard-icon {
+            display: table;
+            width: $wizard-icon-size;
+            height: $wizard-icon-size;
+            background-color: $wizard-background-color;
+            text-align: center;
+            color: $wizard-disabled-color;
+            border: $wizard-border-size solid $wizard-border-color;
+            position: relative;
+            z-index: 1;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            z-index: 22;
+            margin: auto;
+            margin-bottom: 1em;
+            .icon-number, .icon-icon {
+                display: table-cell;
+                vertical-align: middle;
+            }
+        }
+        .title {
+            font-size: 1.1em;
+            color: $wizard-title-font-color;
+        }
+        .description, .step-info {
+            font-size: $wizard-description-fontsize;
+            color: $wizard-description-font-color;
+        }
+        .description {
+            margin-bottom: 2em;
+        }
+        .wizard-progress, .wizard-progress-value {
+            position: absolute;
+            bottom: 2em;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: $wizard-border-color;
+            z-index: 10;
+        }
+        .wizard-progress-value {
+            top: 0;
+            left: 0;
+            width: 0;
+            background: $wizard-active-color;
+            z-index: 11;
+            padding: 0;
+            transition: 0.45s width ease;
+        }
+        .step-info {
+            text-align: right;
+        }
+        &.active, &.previous {
+            .wizard-icon {
+                border-color: $wizard-active-color;
+                color: $wizard-active-color;
+            }
+            .icon {
+                fill: $wizard-active-color;
+            }
+        }
+        &:last-child {
+            .wizard-progress-value {
+                width: 100% !important;
+            } 
+        }
+    }
+
+    // on desktop we will scale up cirecles and text, all steps are visible at this point
+    @include media-breakpoint-up(sm) {
+        font-size: 0.9rem;
+        .wizard-step {
+            display: table-cell;
+            .description {
+                margin-bottom: 0;
+            }
+            .wizard-progress, .wizard-progress-value {
+                top: $wizard-icon-size/2 - 0.05em;
+                left: 49%;
+            }
+            .wizard-progress-value {
+                top: 0;
+                left: 0;
+                padding: 0 $wizard-icon-size/4;  // half of the the half circle
+            }
+            .step-info {
+                display: none;
+            }
+            &:last-child {
+                .wizard-progress {
+                    display: none;
+                }
+                .wizard-progress-value {
+                    width: 100% !important;
+                } 
+            }
+        }
+    }
+
+    // on desktop we will scale up cirecles and text even further, all steps are visible at this point
+    @include media-breakpoint-up(md) {
+        font-size: 1.2rem;
+    }
+}

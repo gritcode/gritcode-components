@@ -10,15 +10,19 @@
 	
 	<!-- Html markup start-->
 	<div slot="markup" class="clearfix">
-		<vs-file-upload 
-    	id="some-file"
-    	model="model" 
-    	:ajax="ajaxUrl" 
-    	:multiple="multiple" 
-    	:auto-submit="autoSubmit" 
-    	:hide-button="hideButton" 
-    	:file-list.sync="fileList">
-    </vs-file-upload>
+		<form id="file-upload-test" method="POST" action="{{ajaxUrl}}">
+			<vs-file-upload 
+	    	id="some-file"
+	    	form-id="file-upload-test"
+	    	model="model" 
+	    	:ajax="ajaxUrl" 
+	    	:multiple="multiple" 
+	    	name="files"
+	    	:auto-submit="autoSubmit" 
+	    	:hide-button="hideButton" 
+	    	:file-list.sync="fileList">
+	    </vs-file-upload>
+	   </form>
 	</div>
 	<!-- Html markup end-->
 

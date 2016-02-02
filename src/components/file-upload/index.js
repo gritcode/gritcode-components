@@ -1,12 +1,10 @@
-// based on href='https://css-tricks.com/drag-and-drop-file-uploading/'
+// inspired by href='https://css-tricks.com/drag-and-drop-file-uploading/'
 
 // import dependencies
 import './file-upload.scss'
 import 'vuestrap/components/labels'
-import 'vuestrap/components/alert'
-import vsIcon from 'vuestrap-icons/src/components/icons'
 import template from './file-upload.html'
-import {testSameOrigin, trigger} from 'src/utils/helpers.js'
+import {testSameOrigin, trigger} from '../../utils/helpers.js'
 
 // export component object
 export default {
@@ -37,9 +35,17 @@ export default {
           type: String,
           default: '',
         },
+        formId: {
+          type: String,
+          default: '',
+        },
         method: {
           type: String,
           default: 'POST',
+        },
+        name: {
+          type: String,
+          default: 'files',
         },
         model: {
           default: null,
@@ -100,7 +106,7 @@ export default {
           this.setError('Unexpected response from the server')
         }
         // set either success or error based on data returned from the server
-        if (data.success === true) {
+        if (data.success) {
           this.state = 'success'
           this.model = data.data
           this.$dispatch('completed::file-upload', {model: this.model})
@@ -127,7 +133,7 @@ export default {
               }
 
               // Add the file to the request.
-              ajaxData.append('files[]', file, file.name)
+              ajaxData.append(this.name, file, file.name)
             }
 
             // ajax request
@@ -157,7 +163,7 @@ export default {
             // Send request to server
             xhr.send(ajaxData)
           } else {
-            // fallback Ajax solution upload for older browsers but only if same-origin
+            // fallback Ajax solution for older browsers for same-origin requests
             if (testSameOrigin(this.ajax)) {
               const iframeName  = 'uploadiframe' + new Date().getTime()
               const iframe = document.createElement('iframe')
@@ -166,16 +172,15 @@ export default {
               iframe.style.display = 'none'
 
               document.body.appendChild(iframe)
-              this.$el.setAttribute('target', iframeName)
+              this._wrappingForm.setAttribute('target', iframeName)
 
               iframe.addEventListener('load', () => {
-                this.state = 'uploading'
                 // this will not work on cross origin requests when using iframe
                 this.parseResponse(iframe.contentDocument.body.innerHTML)
-                this.$el.removeAttribute('target')
+                this._wrappingForm.removeAttribute('target')
                 iframe.parentNode.removeChild(iframe)
               })
-              this.$el.submit()
+              this._wrappingForm.submit()
             } else {
               // we cannot guarantee a success in case of cross-origin request within iframe
               // browsers will block access to the iframe.contentDocument.body.innerHTML so we can't tell if the request was a success
@@ -205,10 +210,28 @@ export default {
         } else {
           this.fileList.push({name: this._input.value.replace(/^.*\\/, '')})
         }
+      },
+      _eventHandler(e) {
+        // stop propagation to avoid accidental behaviour
+        e.preventDefault()
+        e.stopPropagation()
+
+        // handle dragover
+        if (e.type === 'dragover' || e.type === 'dragenter') {
+          this.dragover = true
+        }
+
+        // handle dragleave
+        if (e.type === 'dragend' || e.type === 'dragleave' || e.type === 'drop') {
+          this.dragover = false
+          if (e.type === 'drop') {
+            this.fileList = e.dataTransfer.files // the files that were dropped
+            if (this.autoSubmit) {
+              this.submitForm()
+            }
+          }
+        }
       }
-    },
-    components: {
-      vsIcon
     },
     events: {
       'submit::file-upload'(id) {
@@ -222,40 +245,30 @@ export default {
       if (this.advancedUpload) {
         let events = ['drag', 'dragstart', 'dragend', 'dragleave', 'drop', 'dragover', 'dragenter']
         events.forEach((event) => {
-          this.$el.addEventListener(event, (e) => {
-            // preventing the unwanted behaviours
-            e.preventDefault()
-            e.stopPropagation()
-          })
+          this.$el.addEventListener(event, (e) => this._eventHandler(e))
         })
 
         // drag start
         events = ['dragover', 'dragenter']
-        events.forEach((event) => {
-          this.$el.addEventListener(event, () => {
-            this.dragover = true
-          })
-        })
+        events.forEach((event) => (e) => this._eventHandler(e))
 
         // drag end
         events = ['dragend', 'dragleave', 'drop']
         events.forEach((event) => {
-          this.$el.addEventListener(event, (e) => {
-            this.dragover = false
-            if (event === 'drop') {
-              this.fileList = e.dataTransfer.files // the files that were dropped
-              if (this.autoSubmit) {
-                this.submitForm()
-              }
-            }
-          })
+          this.$el.addEventListener(event, (e) => this._eventHandler(e))
         })
+      } else {
+        // get a wrapping form element id paseed in options
+        if (!this.formId) {
+          throw "You need to wrap this component in a form and specify it's id in a 'form-id' attribute."
+        }
+        this._wrappingForm = document.getElementById(this.formId)
       }
     },
     beforeDestroy() {
       const events = ['drag', 'dragstart', 'dragend', 'dragleave', 'drop', 'dragover', 'dragenter']
       events.forEach((event) => {
-        this.$el.removeEventListener(event)
+        this.$el.removeEventListener(event, () => this._eventHandler())
       })
     }
 }

@@ -5,8 +5,8 @@
 	"note": "File Upload is inspired by <a href='https://css-tricks.com/drag-and-drop-file-uploading/'>this</a> css-tricks article.",
 	"category": "components",
 	"browserSupport": {
-		"browsers": ["IE9+*", "Android 4.3"],
-		"note": "* IE9 will use iFrame to post files without browser refresh and it will work only with same-orgin requests. Drag and drop falls back to just input and only one file can be selected at a time."
+		"browsers": ["IE9+", "Android 4.3"],
+		"note": "* IE9 will use iFrame to post files without browser refresh and it will work only with same-orgin requests. You will need to wrap this component in the form element and pass its id in 'form-id' option for this to work. Also drag and drop falls back to just input and only one file can be selected at a time."
 	},
 	"options": [
 		{
@@ -20,12 +20,12 @@
 			"name": "ajax",
 			"type": "Boolean",
 			"default": "''",
-			"description": "This is an ajax api url. If not set, File Upload will act just like a regular file input and can be embedded within a form."
+			"description": "If set it will send ajax request to the url provided. You can skip this option if you have a wrapping form and want to submit it manually."
 		},
 		{
 			"name": "auto-submit",
 			"type": "Boolean",
-			"default": false,
+			"default": "false",
 			"description": "If set to true, files will be uploaded via ajax right after file selection. It also hides an upload button."
 		},
 		{
@@ -36,11 +36,25 @@
 			"description": "Use id if you want to use events."
 		},
 		{
+			"name": "form-id",
+			"type": "String",
+			"default": "",
+			"required": false,
+			"description": "On IE9 you will need to wrap this component within a form and pass its id here. This is required for the component to submit the form in iFrame to avoid browser refresh."
+		},
+		{
 			"name": "method",
 			"type": "String",
 			"default": "POST",
 			"required": false,
 			"description": "A method of the ajax request."
+		},
+		{
+			"name": "name",
+			"type": "String",
+			"default": "files",
+			"required": false,
+			"description": "The value of the name attribute for the file input."
 		},
 		{
 			"name": "model",

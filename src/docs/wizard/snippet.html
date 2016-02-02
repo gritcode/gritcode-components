@@ -1,0 +1,21 @@
+<vs-wizard :current-index.sync="currentStep" v-if="icons">
+  <vs-wizard-step 
+    title="Personal Information" 
+    description="Enter your details"
+    :progress="progress.step1" 
+    icon="person">
+  </vs-wizard-step>
+  <vs-wizard-step 
+    title="Payment" 
+    description="Pay with credit card or Paypal" 
+    :progress="progress.step2"
+    icon="credit-card">
+  </vs-wizard-step>
+  <vs-wizard-step 
+    title="Confirmation" 
+    description="Your order details" 
+    :progress="progress.step3"
+    :disable-previous="true"
+    icon="check">
+  </vs-wizard-step>
+</vs-wizard>

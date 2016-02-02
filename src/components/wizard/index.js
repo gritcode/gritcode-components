@@ -117,7 +117,6 @@ export const wizardStep = {
     vsIcon,
   },
   ready() {
-    this.$el.style.width = (100 / this.$parent.$children.length) + '%'
     this._progressBar = this.$el.querySelector('.wizard-progress-value')
   }
 }

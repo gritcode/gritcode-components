@@ -66,7 +66,7 @@
 		{
 			"name": "multiple",
 			"type": "Boolean",
-			"default": false,
+			"default": "false",
 			"description": "If set to true, one more files are allowed to be dragged-over/selected. On IE9, user will have to upload one file at a time."
 		},
 		{
@@ -79,7 +79,7 @@
 		{
 			"name": "hide-button",
 			"type": "Boolean",
-			"default": false,
+			"default": "false",
 			"description": "This could be handy if you want to submit ajax request using 'submit::file-upload' event."
 		},
 		{

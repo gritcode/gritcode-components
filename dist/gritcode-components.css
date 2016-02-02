@@ -3055,6 +3055,7 @@ a.label:focus, a.label:hover {
 .gritcode-wizard {
   overflow: hidden;
   display: table;
+  table-layout: fixed;
   width: 100%;
   font-size: 0.8rem; }
   .gritcode-wizard .wizard-step {

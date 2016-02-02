@@ -13,6 +13,7 @@ $wizard-background-color: #eaeaea;
 .gritcode-wizard {
     overflow: hidden;
     display: table;
+    table-layout: fixed;    
     width: 100%;
     font-size: 0.8rem;
     .wizard-step {

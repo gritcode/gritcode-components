@@ -1,7 +1,7 @@
 {
 	"name": "wizard",
 	"title": "Wizard",
-	"description": ".",
+	"description": "A step by step wizard style navigation with progress monitoring.",
 	"dependencies": ["vuestrap/buttons"],
 	"category": "components",
 	"browserSupport": {

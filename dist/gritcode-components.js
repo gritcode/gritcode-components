@@ -237,7 +237,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            _this.show(toast);
 	          }, TOAST_ANIMATION);
 	        }
-	      });
+	      }, TOAST_ANIMATION);
 	    },
 	    animate: function animate() {
 	      this.style.transition = 'width ' + this.duration / 1000 + 's';
@@ -271,7 +271,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.context = 'danger';
 	        this.message = options.error;
 	      }
-	      // wait for dom element
+	      // wait for dom element (so that position class can take effect when triggered via event)
 	      setTimeout(function () {
 	        _this2.activeToast = true;
 	        _this2.animate();
@@ -1675,7 +1675,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    vsIcon: _vuestrapIconsSrcComponentsIcons2['default']
 	  },
 	  ready: function ready() {
-	    this.$el.style.width = 100 / this.$parent.$children.length + '%';
 	    this._progressBar = this.$el.querySelector('.wizard-progress-value');
 	  }
 	};

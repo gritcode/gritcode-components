@@ -83,7 +83,7 @@ export default {
             this.show(toast)
           }, TOAST_ANIMATION)
         }
-      })
+      }, TOAST_ANIMATION)
     },
     animate() {
       this.style.transition = 'width ' + this.duration / 1000 + 's'
@@ -115,7 +115,7 @@ export default {
         this.context = 'danger'
         this.message = options.error
       }
-      // wait for dom element
+      // wait for dom element (so that position class can take effect when triggered via event)
       setTimeout(() => {
         this.activeToast = true
         this.animate()

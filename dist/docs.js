@@ -117,9 +117,9 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/*!
-	 * Vue.js v1.0.13
-	 * (c) 2015 Evan You
+	/* WEBPACK VAR INJECTION */(function(global) {/*!
+	 * Vue.js v1.0.16
+	 * (c) 2016 Evan You
 	 * Released under the MIT License.
 	 */
 	'use strict';
@@ -198,7 +198,7 @@
 	 * @return {Boolean}
 	 */
 
-	var literalValueRE = /^\s?(true|false|[\d\.]+|'[^']*'|"[^"]*")\s?$/;
+	var literalValueRE = /^\s?(true|false|-?[\d\.]+|'[^']*'|"[^"]*")\s?$/;
 
 	function isLiteral(exp) {
 	  return literalValueRE.test(exp);
@@ -508,6 +508,8 @@
 	// Browser environment sniffing
 	var inBrowser = typeof window !== 'undefined' && Object.prototype.toString.call(window) !== '[object Object]';
 
+	var devtools = inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__;
+
 	var isIE9 = inBrowser && navigator.userAgent.toLowerCase().indexOf('msie 9.0') > 0;
 
 	var isAndroid = inBrowser && navigator.userAgent.toLowerCase().indexOf('android') > 0;
@@ -549,6 +551,7 @@
 	      copies[i]();
 	    }
 	  }
+
 	  /* istanbul ignore if */
 	  if (typeof MutationObserver !== 'undefined') {
 	    var counter = 1;
@@ -562,7 +565,11 @@
 	      textNode.data = counter;
 	    };
 	  } else {
-	    timerFunc = setTimeout;
+	    // webpack attempts to inject a shim for setImmediate
+	    // if it is used as a global, so we have to work around that to
+	    // avoid bundling unnecessary code.
+	    var context = inBrowser ? window : typeof global !== 'undefined' ? global : {};
+	    timerFunc = context.setImmediate || setTimeout;
 	  }
 	  return function (cb, ctx) {
 	    var func = ctx ? function () {
@@ -596,23 +603,29 @@
 	 */
 
 	p.put = function (key, value) {
-	  var entry = {
-	    key: key,
-	    value: value
-	  };
-	  this._keymap[key] = entry;
-	  if (this.tail) {
-	    this.tail.newer = entry;
-	    entry.older = this.tail;
-	  } else {
-	    this.head = entry;
-	  }
-	  this.tail = entry;
+	  var removed;
 	  if (this.size === this.limit) {
-	    return this.shift();
-	  } else {
+	    removed = this.shift();
+	  }
+
+	  var entry = this.get(key, true);
+	  if (!entry) {
+	    entry = {
+	      key: key
+	    };
+	    this._keymap[key] = entry;
+	    if (this.tail) {
+	      this.tail.newer = entry;
+	      entry.older = this.tail;
+	    } else {
+	      this.head = entry;
+	    }
+	    this.tail = entry;
 	    this.size++;
 	  }
+	  entry.value = value;
+
+	  return removed;
 	};
 
 	/**
@@ -628,6 +641,7 @@
 	    this.head.older = undefined;
 	    entry.newer = entry.older = undefined;
 	    this._keymap[entry.key] = undefined;
+	    this.size--;
 	  }
 	  return entry;
 	};
@@ -911,16 +925,17 @@
 	 * into one single expression as '"a " + b + " c"'.
 	 *
 	 * @param {Array} tokens
+	 * @param {Vue} [vm]
 	 * @return {String}
 	 */
 
-	function tokensToExp(tokens) {
+	function tokensToExp(tokens, vm) {
 	  if (tokens.length > 1) {
 	    return tokens.map(function (token) {
-	      return formatToken(token);
+	      return formatToken(token, vm);
 	    }).join('+');
 	  } else {
-	    return formatToken(tokens[0], true);
+	    return formatToken(tokens[0], vm, true);
 	  }
 	}
 
@@ -928,12 +943,13 @@
 	 * Format a single token.
 	 *
 	 * @param {Object} token
-	 * @param {Boolean} single
+	 * @param {Vue} [vm]
+	 * @param {Boolean} [single]
 	 * @return {String}
 	 */
 
-	function formatToken(token, single) {
-	  return token.tag ? inlineFilters(token.value, single) : '"' + token.value + '"';
+	function formatToken(token, vm, single) {
+	  return token.tag ? token.oneTime && vm ? '"' + vm.$eval(token.value) + '"' : inlineFilters(token.value, single) : '"' + token.value + '"';
 	}
 
 	/**
@@ -1326,10 +1342,11 @@
 	 * @param {Element} el
 	 * @param {String} event
 	 * @param {Function} cb
+	 * @param {Boolean} [useCapture]
 	 */
 
-	function on$1(el, event, cb) {
-	  el.addEventListener(event, cb);
+	function on$1(el, event, cb, useCapture) {
+	  el.addEventListener(event, cb, useCapture);
 	}
 
 	/**
@@ -1433,20 +1450,26 @@
 	}
 
 	/**
-	 * Trim possible empty head/tail textNodes inside a parent.
+	 * Trim possible empty head/tail text and comment
+	 * nodes inside a parent.
 	 *
 	 * @param {Node} node
 	 */
 
 	function trimNode(node) {
-	  trim(node, node.firstChild);
-	  trim(node, node.lastChild);
+	  var child;
+	  /* eslint-disable no-sequences */
+	  while ((child = node.firstChild, isTrimmable(child))) {
+	    node.removeChild(child);
+	  }
+	  while ((child = node.lastChild, isTrimmable(child))) {
+	    node.removeChild(child);
+	  }
+	  /* eslint-enable no-sequences */
 	}
 
-	function trim(parent, node) {
-	  if (node && node.nodeType === 3 && !node.data.trim()) {
-	    parent.removeChild(node);
-	  }
+	function isTrimmable(node) {
+	  return node && (node.nodeType === 3 && !node.data.trim() || node.nodeType === 8);
 	}
 
 	/**
@@ -1583,7 +1606,7 @@
 	        // Chrome returns unknown for several HTML5 elements.
 	        // https://code.google.com/p/chromium/issues/detail?id=540526
 	        !/^(data|time|rtc|rb)$/.test(tag)) {
-	          warn('Unknown custom element: <' + tag + '> - did you ' + 'register the component correctly?');
+	          warn('Unknown custom element: <' + tag + '> - did you ' + 'register the component correctly? For recursive components, ' + 'make sure to provide the "name" option.');
 	        }
 	      }
 	    }
@@ -2001,6 +2024,10 @@
 	 */
 
 	function resolveAsset(options, type, id) {
+	  /* istanbul ignore if */
+	  if (typeof id !== 'string') {
+	    return;
+	  }
 	  var assets = options[type];
 	  var camelizedId;
 	  return assets[id] ||
@@ -2380,6 +2407,7 @@
 		isArray: isArray,
 		hasProto: hasProto,
 		inBrowser: inBrowser,
+		devtools: devtools,
 		isIE9: isIE9,
 		isAndroid: isAndroid,
 		get transitionProp () { return transitionProp; },
@@ -2466,7 +2494,7 @@
 	    this._fragmentEnd = null; // @type {Text|Comment}
 
 	    // lifecycle state
-	    this._isCompiled = this._isDestroyed = this._isReady = this._isAttached = this._isBeingDestroyed = false;
+	    this._isCompiled = this._isDestroyed = this._isReady = this._isAttached = this._isBeingDestroyed = this._vForRemoving = false;
 	    this._unlinkFn = null;
 
 	    // context:
@@ -2494,6 +2522,13 @@
 	    // push self into parent / transclusion host
 	    if (this.$parent) {
 	      this.$parent.$children.push(this);
+	    }
+
+	    // save raw constructor data before merge
+	    // so that we know which properties are provided at
+	    // instantiation.
+	    if (true) {
+	      this._runtimeData = options.data;
 	    }
 
 	    // merge options.
@@ -3081,10 +3116,8 @@
 	  runBatcherQueue(userQueue);
 	  // dev tool hook
 	  /* istanbul ignore if */
-	  if (true) {
-	    if (inBrowser && window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
-	      window.__VUE_DEVTOOLS_GLOBAL_HOOK__.emit('flush');
-	    }
+	  if (devtools) {
+	    devtools.emit('flush');
 	  }
 	  resetBatcherState();
 	}
@@ -3409,9 +3442,10 @@
 	Watcher.prototype.teardown = function () {
 	  if (this.active) {
 	    // remove self from vm's watcher list
-	    // we can skip this if the vm if being destroyed
-	    // which can improve teardown performance.
-	    if (!this.vm._isBeingDestroyed) {
+	    // this is a somewhat expensive operation so we skip it
+	    // if the vm is being destroyed or is performing a v-for
+	    // re-render (the watcher list is then filtered by v-for).
+	    if (!this.vm._isBeingDestroyed && !this.vm._vForRemoving) {
 	      this.vm._watchers.$remove(this);
 	    }
 	    var depIds = Object.keys(this.deps);
@@ -3466,9 +3500,9 @@
 	var EL = 1500;
 	var COMPONENT = 1500;
 	var PARTIAL = 1750;
-	var SLOT = 1750;
 	var FOR = 2000;
 	var IF = 2000;
+	var SLOT = 2100;
 
 	var el = {
 
@@ -3589,9 +3623,6 @@
 	  if (!testEl) {
 	    testEl = document.createElement('div');
 	  }
-	  if (camel in testEl.style) {
-	    return prop;
-	  }
 	  var i = prefixes.length;
 	  var prefixed;
 	  while (i--) {
@@ -3600,6 +3631,9 @@
 	      return prefixes[i] + prop;
 	    }
 	  }
+	  if (camel in testEl.style) {
+	    return prop;
+	  }
 	}
 
 	// xlink
@@ -3607,11 +3641,10 @@
 	var xlinkRE = /^xlink:/;
 
 	// check for attributes that prohibit interpolations
-	var disallowedInterpAttrRE = /^v-|^:|^@|^(is|transition|transition-mode|debounce|track-by|stagger|enter-stagger|leave-stagger)$/;
-
+	var disallowedInterpAttrRE = /^v-|^:|^@|^(?:is|transition|transition-mode|debounce|track-by|stagger|enter-stagger|leave-stagger)$/;
 	// these attributes should also set their corresponding properties
 	// because they only affect the initial state of the element
-	var attrWithPropsRE = /^(value|checked|selected|muted)$/;
+	var attrWithPropsRE = /^(?:value|checked|selected|muted)$/;
 
 	// these attributes should set a hidden property for
 	// binding v-model to object values
@@ -3633,17 +3666,24 @@
 	      this.deep = true;
 	    }
 	    // handle interpolation bindings
-	    if (this.descriptor.interp) {
+	    var descriptor = this.descriptor;
+	    var tokens = descriptor.interp;
+	    if (tokens) {
+	      // handle interpolations with one-time tokens
+	      if (descriptor.hasOneTime) {
+	        this.expression = tokensToExp(tokens, this._scope || this.vm);
+	      }
+
 	      // only allow binding on native attributes
 	      if (disallowedInterpAttrRE.test(attr) || attr === 'name' && (tag === 'PARTIAL' || tag === 'SLOT')) {
-	        ("docs") !== 'production' && warn(attr + '="' + this.descriptor.raw + '": ' + 'attribute interpolation is not allowed in Vue.js ' + 'directives and special attributes.');
+	        ("docs") !== 'production' && warn(attr + '="' + descriptor.raw + '": ' + 'attribute interpolation is not allowed in Vue.js ' + 'directives and special attributes.');
 	        this.el.removeAttribute(attr);
 	        this.invalid = true;
 	      }
 
 	      /* istanbul ignore if */
 	      if (true) {
-	        var raw = attr + '="' + this.descriptor.raw + '": ';
+	        var raw = attr + '="' + descriptor.raw + '": ';
 	        // warn src
 	        if (attr === 'src') {
 	          warn(raw + 'interpolation in "src" attribute will cause ' + 'a 404 request. Use v-bind:src instead.');
@@ -3675,6 +3715,9 @@
 	  handleSingle: function handleSingle(attr, value) {
 	    var el = this.el;
 	    var interp = this.descriptor.interp;
+	    if (this.modifiers.camel) {
+	      attr = camelize(attr);
+	    }
 	    if (!interp && attrWithPropsRE.test(attr) && attr in el) {
 	      el[attr] = attr === 'value' ? value == null // IE9 will set input.value to "null" for null...
 	      ? '' : value : value;
@@ -3704,9 +3747,9 @@
 	        }
 	        setClass(el, value);
 	      } else if (xlinkRE.test(attr)) {
-	        el.setAttributeNS(xlinkNS, attr, value);
+	        el.setAttributeNS(xlinkNS, attr, value === true ? '' : value);
 	      } else {
-	        el.setAttribute(attr, value);
+	        el.setAttribute(attr, value === true ? '' : value);
 	      }
 	    } else {
 	      el.removeAttribute(attr);
@@ -3720,7 +3763,7 @@
 	  tab: 9,
 	  enter: 13,
 	  space: 32,
-	  'delete': 46,
+	  'delete': [8, 46],
 	  up: 38,
 	  left: 37,
 	  right: 39,
@@ -3741,6 +3784,7 @@
 	    }
 	    return keyCodes[key];
 	  });
+	  codes = [].concat.apply([], codes);
 	  return function keyHandler(e) {
 	    if (codes.indexOf(e.keyCode) > -1) {
 	      return handler.call(this, e);
@@ -3762,6 +3806,14 @@
 	  };
 	}
 
+	function selfFilter(handler) {
+	  return function selfHandler(e) {
+	    if (e.target === e.currentTarget) {
+	      return handler.call(this, e);
+	    }
+	  };
+	}
+
 	var on = {
 
 	  acceptStatement: true,
@@ -3772,7 +3824,7 @@
 	    if (this.el.tagName === 'IFRAME' && this.arg !== 'load') {
 	      var self = this;
 	      this.iframeBind = function () {
-	        on$1(self.el.contentWindow, self.arg, self.handler);
+	        on$1(self.el.contentWindow, self.arg, self.handler, self.modifiers.capture);
 	      };
 	      this.on('load', this.iframeBind);
 	    }
@@ -3797,6 +3849,9 @@
 	    if (this.modifiers.prevent) {
 	      handler = preventFilter(handler);
 	    }
+	    if (this.modifiers.self) {
+	      handler = selfFilter(handler);
+	    }
 	    // key filter
 	    var keys = Object.keys(this.modifiers).filter(function (key) {
 	      return key !== 'stop' && key !== 'prevent';
@@ -3811,7 +3866,7 @@
 	    if (this.iframeBind) {
 	      this.iframeBind();
 	    } else {
-	      on$1(this.el, this.arg, this.handler);
+	      on$1(this.el, this.arg, this.handler, this.modifiers.capture);
 	    }
 	  },
 
@@ -4059,7 +4114,7 @@
 	    // prevent messing with the input when user is typing,
 	    // and force update on blur.
 	    this.focused = false;
-	    if (!isRange) {
+	    if (!isRange && !lazy) {
 	      this.on('focus', function () {
 	        self.focused = true;
 	      });
@@ -4105,9 +4160,10 @@
 	    // jQuery variable in tests.
 	    this.hasjQuery = typeof jQuery === 'function';
 	    if (this.hasjQuery) {
-	      jQuery(el).on('change', this.listener);
+	      var method = jQuery.fn.on ? 'on' : 'bind';
+	      jQuery(el)[method]('change', this.listener);
 	      if (!lazy) {
-	        jQuery(el).on('input', this.listener);
+	        jQuery(el)[method]('input', this.listener);
 	      }
 	    } else {
 	      this.on('change', this.listener);
@@ -4141,8 +4197,9 @@
 	  unbind: function unbind() {
 	    var el = this.el;
 	    if (this.hasjQuery) {
-	      jQuery(el).off('change', this.listener);
-	      jQuery(el).off('input', this.listener);
+	      var method = jQuery.fn.off ? 'off' : 'unbind';
+	      jQuery(el)[method]('change', this.listener);
+	      jQuery(el)[method]('input', this.listener);
 	    }
 	  }
 	};
@@ -4296,7 +4353,8 @@
 
 	function stringToFragment(templateString, raw) {
 	  // try a cache hit first
-	  var hit = templateCache.get(templateString);
+	  var cacheKey = raw ? templateString : templateString.trim();
+	  var hit = templateCache.get(cacheKey);
 	  if (hit) {
 	    return hit;
 	  }
@@ -4317,9 +4375,6 @@
 	    var suffix = wrap[2];
 	    var node = document.createElement('div');
 
-	    if (!raw) {
-	      templateString = templateString.trim();
-	    }
 	    node.innerHTML = prefix + templateString + suffix;
 	    while (depth--) {
 	      node = node.lastChild;
@@ -4332,8 +4387,10 @@
 	      frag.appendChild(child);
 	    }
 	  }
-
-	  templateCache.put(templateString, frag);
+	  if (!raw) {
+	    trimNode(frag);
+	  }
+	  templateCache.put(cacheKey, frag);
 	  return frag;
 	}
 
@@ -4551,23 +4608,12 @@
 
 	Fragment.prototype.callHook = function (hook) {
 	  var i, l;
-	  for (i = 0, l = this.children.length; i < l; i++) {
-	    hook(this.children[i]);
-	  }
 	  for (i = 0, l = this.childFrags.length; i < l; i++) {
 	    this.childFrags[i].callHook(hook);
 	  }
-	};
-
-	/**
-	 * Destroy the fragment.
-	 */
-
-	Fragment.prototype.destroy = function () {
-	  if (this.parentFrag) {
-	    this.parentFrag.childFrags.$remove(this);
+	  for (i = 0, l = this.children.length; i < l; i++) {
+	    hook(this.children[i]);
 	  }
-	  this.unlink();
 	};
 
 	/**
@@ -4594,7 +4640,7 @@
 	  this.inserted = false;
 	  var shouldCallRemove = inDoc(this.node);
 	  var self = this;
-	  self.callHook(destroyChild);
+	  this.beforeRemove();
 	  removeWithTransition(this.node, this.vm, function () {
 	    if (shouldCallRemove) {
 	      self.callHook(detach);
@@ -4630,7 +4676,7 @@
 	  this.inserted = false;
 	  var self = this;
 	  var shouldCallRemove = inDoc(this.node);
-	  self.callHook(destroyChild);
+	  this.beforeRemove();
 	  removeNodeRange(this.node, this.end, this.vm, this.frag, function () {
 	    if (shouldCallRemove) {
 	      self.callHook(detach);
@@ -4638,6 +4684,46 @@
 	    self.destroy();
 	  });
 	}
+
+	/**
+	 * Prepare the fragment for removal.
+	 */
+
+	Fragment.prototype.beforeRemove = function () {
+	  var i, l;
+	  for (i = 0, l = this.childFrags.length; i < l; i++) {
+	    // call the same method recursively on child
+	    // fragments, depth-first
+	    this.childFrags[i].beforeRemove(false);
+	  }
+	  for (i = 0, l = this.children.length; i < l; i++) {
+	    // Call destroy for all contained instances,
+	    // with remove:false and defer:true.
+	    // Defer is necessary because we need to
+	    // keep the children to call detach hooks
+	    // on them.
+	    this.children[i].$destroy(false, true);
+	  }
+	  var dirs = this.unlink.dirs;
+	  for (i = 0, l = dirs.length; i < l; i++) {
+	    // disable the watchers on all the directives
+	    // so that the rendered content stays the same
+	    // during removal.
+	    dirs[i]._watcher && dirs[i]._watcher.teardown();
+	  }
+	};
+
+	/**
+	 * Destroy the fragment.
+	 */
+
+	Fragment.prototype.destroy = function () {
+	  if (this.parentFrag) {
+	    this.parentFrag.childFrags.$remove(this);
+	  }
+	  this.node.__vfrag__ = null;
+	  this.unlink();
+	};
 
 	/**
 	 * Call attach hook for a Vue instance.
@@ -4649,20 +4735,6 @@
 	  if (!child._isAttached) {
 	    child._callHook('attached');
 	  }
-	}
-
-	/**
-	 * Call destroy for all contained instances,
-	 * with remove:false and defer:true.
-	 * Defer is necessary because we need to
-	 * keep the children to call detach hooks
-	 * on them.
-	 *
-	 * @param {Vue} child
-	 */
-
-	function destroyChild(child) {
-	  child.$destroy(false, true);
 	}
 
 	/**
@@ -4783,6 +4855,9 @@
 	  unbind: function unbind() {
 	    if (this.frag) {
 	      this.frag.destroy();
+	    }
+	    if (this.elseFrag) {
+	      this.elseFrag.destroy();
 	    }
 	  }
 	};
@@ -4924,6 +4999,10 @@
 	    // from cache)
 	    var removalIndex = 0;
 	    var totalRemoved = oldFrags.length - frags.length;
+	    // when removing a large number of fragments, watcher removal
+	    // turns out to be a perf bottleneck, so we batch the watcher
+	    // removals into a single filter call!
+	    this.vm._vForRemoving = true;
 	    for (i = 0, l = oldFrags.length; i < l; i++) {
 	      frag = oldFrags[i];
 	      if (!frag.reused) {
@@ -4931,6 +5010,10 @@
 	        this.remove(frag, removalIndex++, totalRemoved, inDocument);
 	      }
 	    }
+	    this.vm._vForRemoving = false;
+	    this.vm._watchers = this.vm._watchers.filter(function (w) {
+	      return w.active;
+	    });
 
 	    // Final pass, move/insert new fragments into the
 	    // right place.
@@ -5110,6 +5193,14 @@
 	   */
 
 	  move: function move(frag, prevEl) {
+	    // fix a common issue with Sortable:
+	    // if prevEl doesn't have nextSibling, this means it's
+	    // been dragged after the end anchor. Just re-position
+	    // the end anchor to the end of the container.
+	    /* istanbul ignore if */
+	    if (!prevEl.nextSibling) {
+	      this.end.parentNode.appendChild(this.end);
+	    }
 	    frag.before(prevEl.nextSibling, false);
 	  },
 
@@ -5253,7 +5344,7 @@
 	      }
 	      return res;
 	    } else {
-	      if (typeof value === 'number') {
+	      if (typeof value === 'number' && !isNaN(value)) {
 	        value = range(value);
 	      }
 	      return value || [];
@@ -5333,7 +5424,7 @@
 
 	function range(n) {
 	  var i = -1;
-	  var ret = new Array(n);
+	  var ret = new Array(Math.floor(n));
 	  while (++i < n) {
 	    ret[i] = i;
 	  }
@@ -5445,8 +5536,8 @@
 	  return f;
 	}
 
-	var TYPE_TRANSITION = 1;
-	var TYPE_ANIMATION = 2;
+	var TYPE_TRANSITION = 'transition';
+	var TYPE_ANIMATION = 'animation';
 	var transDurationProp = transitionProp + 'Duration';
 	var animDurationProp = animationProp + 'Duration';
 
@@ -5462,8 +5553,8 @@
 	function Transition(el, id, hooks, vm) {
 	  this.id = id;
 	  this.el = el;
-	  this.enterClass = id + '-enter';
-	  this.leaveClass = id + '-leave';
+	  this.enterClass = hooks && hooks.enterClass || id + '-enter';
+	  this.leaveClass = hooks && hooks.leaveClass || id + '-leave';
 	  this.hooks = hooks;
 	  this.vm = vm;
 	  // async state
@@ -5471,6 +5562,14 @@
 	  this.justEntered = false;
 	  this.entered = this.left = false;
 	  this.typeCache = {};
+	  // check css transition type
+	  this.type = hooks && hooks.type;
+	  /* istanbul ignore if */
+	  if (true) {
+	    if (this.type && this.type !== TYPE_TRANSITION && this.type !== TYPE_ANIMATION) {
+	      warn('invalid CSS transition type for transition="' + this.id + '": ' + this.type);
+	    }
+	  }
 	  // bind
 	  var self = this;['enterNextTick', 'enterDone', 'leaveNextTick', 'leaveDone'].forEach(function (m) {
 	    self[m] = bind$1(self[m], self);
@@ -5730,7 +5829,7 @@
 	  isHidden(this.el)) {
 	    return;
 	  }
-	  var type = this.typeCache[className];
+	  var type = this.type || this.typeCache[className];
 	  if (type) return type;
 	  var inlineStyles = this.el.style;
 	  var computedStyles = window.getComputedStyle(this.el);
@@ -6331,7 +6430,7 @@
 	      value = parsed.expression;
 	      prop.filters = parsed.filters;
 	      // check binding type
-	      if (isLiteral(value)) {
+	      if (isLiteral(value) && !parsed.filters) {
 	        // for expressions containing literal numbers and
 	        // booleans, there's no need to setup a prop binding,
 	        // so we can optimize them as a one-time set.
@@ -6444,7 +6543,7 @@
 	// special binding prefixes
 	var bindRE = /^v-bind:|^:/;
 	var onRE = /^v-on:|^@/;
-	var argRE = /:(.*)$/;
+	var dirAttrRE = /^v-([^:]+)(?:$|:(.*)$)/;
 	var modifierRE = /\.[^\.]+/g;
 	var transitionRE = /^(v-bind:|:)?transition$/;
 
@@ -6511,6 +6610,15 @@
 	 */
 
 	function linkAndCapture(linker, vm) {
+	  /* istanbul ignore if */
+	  if (false) {
+	    // reset directives before every capture in production
+	    // mode, so that when unlinking we don't need to splice
+	    // them out (which turns out to be a perf hit).
+	    // they are kept in development mode because they are
+	    // useful for Vue's own tests.
+	    vm._directives = [];
+	  }
 	  var originalDirCount = vm._directives.length;
 	  linker();
 	  var dirs = vm._directives.slice(originalDirCount);
@@ -6550,12 +6658,15 @@
 	 */
 
 	function makeUnlinkFn(vm, dirs, context, contextDirs) {
-	  return function unlink(destroying) {
+	  function unlink(destroying) {
 	    teardownDirs(vm, dirs, destroying);
 	    if (context && contextDirs) {
 	      teardownDirs(context, contextDirs);
 	    }
-	  };
+	  }
+	  // expose linked directives
+	  unlink.dirs = dirs;
+	  return unlink;
 	}
 
 	/**
@@ -6570,7 +6681,7 @@
 	  var i = dirs.length;
 	  while (i--) {
 	    dirs[i]._teardown();
-	    if (!destroying) {
+	    if (("docs") !== 'production' && !destroying) {
 	      vm._directives.$remove(dirs[i]);
 	    }
 	  }
@@ -6603,7 +6714,6 @@
 	 *
 	 * If this is a fragment instance, we only need to compile 1.
 	 *
-	 * @param {Vue} vm
 	 * @param {Element} el
 	 * @param {Object} options
 	 * @param {Object} contextOptions
@@ -6651,6 +6761,7 @@
 	    }
 	  }
 
+	  options._containerAttrs = options._replacerAttrs = null;
 	  return function rootLinkFn(vm, el, scope) {
 	    // link context scope dirs
 	    var context = vm._context;
@@ -6978,11 +7089,10 @@
 	  var value, dirName;
 	  for (var i = 0, l = terminalDirectives.length; i < l; i++) {
 	    dirName = terminalDirectives[i];
-	    /* eslint-disable no-cond-assign */
-	    if (value = el.getAttribute('v-' + dirName)) {
+	    value = el.getAttribute('v-' + dirName);
+	    if (value != null) {
 	      return makeTerminalNodeLinkFn(el, dirName, value, options);
 	    }
-	    /* eslint-enable no-cond-assign */
 	  }
 	}
 
@@ -7038,7 +7148,7 @@
 	function compileDirectives(attrs, options) {
 	  var i = attrs.length;
 	  var dirs = [];
-	  var attr, name, value, rawName, rawValue, dirName, arg, modifiers, dirDef, tokens;
+	  var attr, name, value, rawName, rawValue, dirName, arg, modifiers, dirDef, tokens, matched;
 	  while (i--) {
 	    attr = attrs[i];
 	    name = rawName = attr.name;
@@ -7054,7 +7164,7 @@
 	    if (tokens) {
 	      value = tokensToExp(tokens);
 	      arg = name;
-	      pushDir('bind', publicDirectives.bind, true);
+	      pushDir('bind', publicDirectives.bind, tokens);
 	      // warn against mixing mustaches with v-bind
 	      if (true) {
 	        if (name === 'class' && Array.prototype.some.call(attrs, function (attr) {
@@ -7089,14 +7199,9 @@
 	          } else
 
 	            // normal directives
-	            if (name.indexOf('v-') === 0) {
-	              // check arg
-	              arg = (arg = name.match(argRE)) && arg[1];
-	              if (arg) {
-	                name = name.replace(argRE, '');
-	              }
-	              // extract directive name
-	              dirName = name.slice(2);
+	            if (matched = name.match(dirAttrRE)) {
+	              dirName = matched[1];
+	              arg = matched[2];
 
 	              // skip v-else (when used with v-show)
 	              if (dirName === 'else') {
@@ -7120,11 +7225,12 @@
 	   *
 	   * @param {String} dirName
 	   * @param {Object|Function} def
-	   * @param {Boolean} [interp]
+	   * @param {Array} [interpTokens]
 	   */
 
-	  function pushDir(dirName, def, interp) {
-	    var parsed = parseDirective(value);
+	  function pushDir(dirName, def, interpTokens) {
+	    var hasOneTimeToken = interpTokens && hasOneTime(interpTokens);
+	    var parsed = !hasOneTimeToken && parseDirective(value);
 	    dirs.push({
 	      name: dirName,
 	      attr: rawName,
@@ -7132,9 +7238,13 @@
 	      def: def,
 	      arg: arg,
 	      modifiers: modifiers,
-	      expression: parsed.expression,
-	      filters: parsed.filters,
-	      interp: interp
+	      // conversion from interpolation strings with one-time token
+	      // to expression is differed until directive bind time so that we
+	      // have access to the actual vm context for one-time bindings.
+	      expression: parsed && parsed.expression,
+	      filters: parsed && parsed.filters,
+	      interp: interpTokens,
+	      hasOneTime: hasOneTimeToken
 	    });
 	  }
 
@@ -7177,6 +7287,20 @@
 	      vm._bindDir(directives[i], el, host, scope, frag);
 	    }
 	  };
+	}
+
+	/**
+	 * Check if an interpolation string contains one-time tokens.
+	 *
+	 * @param {Array} tokens
+	 * @return {Boolean}
+	 */
+
+	function hasOneTime(tokens) {
+	  var i = tokens.length;
+	  while (i--) {
+	    if (tokens[i].oneTime) return true;
+	  }
 	}
 
 	var specialCharRE = /[^\w\-:\.]/;
@@ -7308,7 +7432,7 @@
 	    value = attrs[i].value;
 	    if (!to.hasAttribute(name) && !specialCharRE.test(name)) {
 	      to.setAttribute(name, value);
-	    } else if (name === 'class') {
+	    } else if (name === 'class' && !parseText(value)) {
 	      value.split(/\s+/).forEach(function (cls) {
 	        addClass(to, cls);
 	      });
@@ -7320,6 +7444,7 @@
 		compile: compile,
 		compileAndLinkProps: compileAndLinkProps,
 		compileRoot: compileRoot,
+		terminalDirectives: terminalDirectives,
 		transclude: transclude
 	});
 
@@ -7384,10 +7509,15 @@
 	    var propsData = this._data;
 	    var optionsDataFn = this.$options.data;
 	    var optionsData = optionsDataFn && optionsDataFn();
+	    var runtimeData;
+	    if (true) {
+	      runtimeData = (typeof this._runtimeData === 'function' ? this._runtimeData() : this._runtimeData) || {};
+	      this._runtimeData = null;
+	    }
 	    if (optionsData) {
 	      this._data = optionsData;
 	      for (var prop in propsData) {
-	        if (("docs") !== 'production' && hasOwn(optionsData, prop)) {
+	        if (("docs") !== 'production' && hasOwn(optionsData, prop) && !hasOwn(runtimeData, prop)) {
 	          warn('Data field "' + prop + '" is already defined ' + 'as a prop. Use prop default value instead.');
 	        }
 	        if (this._props[prop].raw !== null || !hasOwn(optionsData, prop)) {
@@ -7598,6 +7728,7 @@
 	      if (eventRE.test(name)) {
 	        name = name.replace(eventRE, '');
 	        handler = (vm._scope || vm._context).$eval(attrs[i].value, true);
+	        handler._fromParent = true;
 	        vm.$on(name.replace(eventRE), handler);
 	      }
 	    }
@@ -7979,10 +8110,11 @@
 	 *
 	 * @param {String} event
 	 * @param {Function} handler
+	 * @param {Boolean} [useCapture]
 	 */
 
-	Directive.prototype.on = function (event, handler) {
-	  on$1(this.el, event, handler);(this._listeners || (this._listeners = [])).push([event, handler]);
+	Directive.prototype.on = function (event, handler, useCapture) {
+	  on$1(this.el, event, handler, useCapture);(this._listeners || (this._listeners = [])).push([event, handler]);
 	};
 
 	/**
@@ -8052,7 +8184,6 @@
 	   * Otherwise we need to call transclude/compile/link here.
 	   *
 	   * @param {Element} el
-	   * @return {Element}
 	   */
 
 	  Vue.prototype._compile = function (el) {
@@ -8110,7 +8241,6 @@
 
 	    this._isCompiled = true;
 	    this._callHook('compiled');
-	    return el;
 	  };
 
 	  /**
@@ -8410,8 +8540,8 @@
 	    }
 	    var name = extendOptions.name || Super.options.name;
 	    if (true) {
-	      if (!/^[a-zA-Z][\w-]+$/.test(name)) {
-	        warn('Invalid component name: ' + name);
+	      if (!/^[a-zA-Z][\w-]*$/.test(name)) {
+	        warn('Invalid component name: "' + name + '". Component names ' + 'can only contain alphanumeric characaters and the hyphen.');
 	        name = null;
 	      }
 	    }
@@ -8533,8 +8663,9 @@
 	        var self = this;
 	        return function statementHandler() {
 	          self.$arguments = toArray(arguments);
-	          res.get.call(self, self);
+	          var result = res.get.call(self, self);
 	          self.$arguments = null;
+	          return result;
 	        };
 	      } else {
 	        try {
@@ -8954,19 +9085,32 @@
 	  /**
 	   * Trigger an event on self.
 	   *
-	   * @param {String} event
+	   * @param {String|Object} event
 	   * @return {Boolean} shouldPropagate
 	   */
 
 	  Vue.prototype.$emit = function (event) {
+	    var isSource = typeof event === 'string';
+	    event = isSource ? event : event.name;
 	    var cbs = this._events[event];
-	    var shouldPropagate = !cbs;
+	    var shouldPropagate = isSource || !cbs;
 	    if (cbs) {
 	      cbs = cbs.length > 1 ? toArray(cbs) : cbs;
+	      // this is a somewhat hacky solution to the question raised
+	      // in #2102: for an inline component listener like <comp @test="doThis">,
+	      // the propagation handling is somewhat broken. Therefore we
+	      // need to treat these inline callbacks differently.
+	      var hasParentCbs = isSource && cbs.some(function (cb) {
+	        return cb._fromParent;
+	      });
+	      if (hasParentCbs) {
+	        shouldPropagate = false;
+	      }
 	      var args = toArray(arguments, 1);
 	      for (var i = 0, l = cbs.length; i < l; i++) {
-	        var res = cbs[i].apply(this, args);
-	        if (res === true) {
+	        var cb = cbs[i];
+	        var res = cb.apply(this, args);
+	        if (res === true && (!hasParentCbs || cb._fromParent)) {
 	          shouldPropagate = true;
 	        }
 	      }
@@ -8977,20 +9121,28 @@
 	  /**
 	   * Recursively broadcast an event to all children instances.
 	   *
-	   * @param {String} event
+	   * @param {String|Object} event
 	   * @param {...*} additional arguments
 	   */
 
 	  Vue.prototype.$broadcast = function (event) {
+	    var isSource = typeof event === 'string';
+	    event = isSource ? event : event.name;
 	    // if no child has registered for this event,
 	    // then there's no need to broadcast.
 	    if (!this._eventsCount[event]) return;
 	    var children = this.$children;
+	    var args = toArray(arguments);
+	    if (isSource) {
+	      // use object event to indicate non-source emit
+	      // on children
+	      args[0] = { name: event, source: this };
+	    }
 	    for (var i = 0, l = children.length; i < l; i++) {
 	      var child = children[i];
-	      var shouldPropagate = child.$emit.apply(child, arguments);
+	      var shouldPropagate = child.$emit.apply(child, args);
 	      if (shouldPropagate) {
-	        child.$broadcast.apply(child, arguments);
+	        child.$broadcast.apply(child, args);
 	      }
 	    }
 	    return this;
@@ -9003,11 +9155,16 @@
 	   * @param {...*} additional arguments
 	   */
 
-	  Vue.prototype.$dispatch = function () {
-	    this.$emit.apply(this, arguments);
+	  Vue.prototype.$dispatch = function (event) {
+	    var shouldPropagate = this.$emit.apply(this, arguments);
+	    if (!shouldPropagate) return;
 	    var parent = this.$parent;
+	    var args = toArray(arguments);
+	    // use object event to indicate non-source emit
+	    // on parents
+	    args[0] = { name: event, source: this };
 	    while (parent) {
-	      var shouldPropagate = parent.$emit.apply(parent, arguments);
+	      shouldPropagate = parent.$emit.apply(parent, args);
 	      parent = shouldPropagate ? parent.$parent : null;
 	    }
 	    return this;
@@ -9144,6 +9301,7 @@
 
 	function limitBy(arr, n, offset) {
 	  offset = offset ? parseInt(offset, 10) : 0;
+	  n = toNumber(n);
 	  return typeof n === 'number' ? arr.slice(offset, offset + n) : arr;
 	}
 
@@ -9444,6 +9602,14 @@
 
 	  compile: function compile(content, context, host) {
 	    if (content && context) {
+	      if (this.el.hasChildNodes() && content.childNodes.length === 1 && content.childNodes[0].nodeType === 1 && content.childNodes[0].hasAttribute('v-if')) {
+	        // if the inserted slot has v-if
+	        // inject fallback content as the v-else
+	        var elseBlock = document.createElement('template');
+	        elseBlock.setAttribute('v-else', '');
+	        elseBlock.innerHTML = this.el.innerHTML;
+	        content.appendChild(elseBlock);
+	      }
 	      var scope = host ? host._scope : this._scope;
 	      this.unlink = context.$compile(content, host, scope, this._frag);
 	    }
@@ -9513,7 +9679,7 @@
 	  partial: partial
 	};
 
-	Vue.version = '1.0.13';
+	Vue.version = '1.0.16';
 
 	/**
 	 * Vue and every constructor that extends Vue has an
@@ -9535,16 +9701,15 @@
 	};
 
 	// devtools global hook
-	/* istanbul ignore if */
-	if (("docs") !== 'production' && inBrowser) {
-	  if (window.__VUE_DEVTOOLS_GLOBAL_HOOK__) {
-	    window.__VUE_DEVTOOLS_GLOBAL_HOOK__.emit('init', Vue);
-	  } else if (/Chrome\/\d+/.test(navigator.userAgent)) {
-	    console.log('Download the Vue Devtools for a better development experience:\n' + 'https://github.com/vuejs/vue-devtools');
-	  }
+	/* istanbul ignore next */
+	if (devtools) {
+	  devtools.emit('init', Vue);
+	} else if (("docs") !== 'production' && inBrowser && /Chrome\/\d+/.test(navigator.userAgent)) {
+	  console.log('Download the Vue Devtools for a better development experience:\n' + 'https://github.com/vuejs/vue-devtools');
 	}
 
 	module.exports = Vue;
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
 /* 2 */
@@ -11287,7 +11452,7 @@
 
 	module.exports = {
 		"name": "gritcode-components",
-		"version": "0.2.2",
+		"version": "0.3.0",
 		"description": "Web components built with Vuestrap.",
 		"library": "gritcode-components",
 		"repository": {
@@ -11323,7 +11488,7 @@
 			"vuestrap-icons": "^0.4.14"
 		},
 		"dependencies": {
-			"vue": "^1.0.12"
+			"vue": "^1.0.16"
 		},
 		"devDependencies": {
 			"autoprefixer-loader": "^3.1.0",
@@ -11516,8 +11681,12 @@
 
 	var _srcDocsFileUpload2 = _interopRequireDefault(_srcDocsFileUpload);
 
+	var _srcDocsWizard = __webpack_require__(120);
+
+	var _srcDocsWizard2 = _interopRequireDefault(_srcDocsWizard);
+
 	exports['default'] = {
-		pages: [_srcDocsIntroduction2['default'], _srcDocsToast2['default'], _srcDocsTruncate2['default'], _srcDocsSpinner2['default'], _srcDocsOffcanvasDrawer2['default'], _srcDocsDropdownMultiselect2['default'], _srcDocsButtonToggle2['default'], _srcDocsFileUpload2['default']]
+		pages: [_srcDocsIntroduction2['default'], _srcDocsToast2['default'], _srcDocsTruncate2['default'], _srcDocsSpinner2['default'], _srcDocsOffcanvasDrawer2['default'], _srcDocsDropdownMultiselect2['default'], _srcDocsButtonToggle2['default'], _srcDocsFileUpload2['default'], _srcDocsWizard2['default']]
 	};
 	module.exports = exports['default'];
 
@@ -12450,7 +12619,7 @@
 			{
 				"name": "fixed",
 				"type": "Boolean",
-				"default": false,
+				"default": "false",
 				"required": false,
 				"description": "Full screen overlay."
 			}
@@ -12749,7 +12918,7 @@
 			{
 				"name": "align",
 				"type": "String",
-				"default": false,
+				"default": "false",
 				"values": [
 					"left",
 					"right"
@@ -12759,7 +12928,7 @@
 			{
 				"name": "animation",
 				"type": "String",
-				"default": false,
+				"default": "false",
 				"values": [
 					"none",
 					"ease",
@@ -13855,10 +14024,10 @@
 		"category": "components",
 		"browserSupport": {
 			"browsers": [
-				"IE9+*",
+				"IE9+",
 				"Android 4.3"
 			],
-			"note": "* IE9 will use iFrame to post files without browser refresh and it will work only with same-orgin requests. Drag and drop falls back to just input and only one file can be selected at a time."
+			"note": "* IE9 will use iFrame to post files without browser refresh and it will work only with same-orgin requests. You will need to wrap this component in the form element and pass its id in 'form-id' option for this to work. Also drag and drop falls back to just input and only one file can be selected at a time."
 		},
 		"options": [
 			{
@@ -13872,12 +14041,12 @@
 				"name": "ajax",
 				"type": "Boolean",
 				"default": "''",
-				"description": "This is an ajax api url. If not set, File Upload will act just like a regular file input and can be embedded within a form."
+				"description": "If set it will send ajax request to the url provided. You can skip this option if you have a wrapping form and want to submit it manually."
 			},
 			{
 				"name": "auto-submit",
 				"type": "Boolean",
-				"default": false,
+				"default": "false",
 				"description": "If set to true, files will be uploaded via ajax right after file selection. It also hides an upload button."
 			},
 			{
@@ -13888,11 +14057,25 @@
 				"description": "Use id if you want to use events."
 			},
 			{
+				"name": "form-id",
+				"type": "String",
+				"default": "",
+				"required": false,
+				"description": "On IE9 you will need to wrap this component within a form and pass its id here. This is required for the component to submit the form in iFrame to avoid browser refresh."
+			},
+			{
 				"name": "method",
 				"type": "String",
 				"default": "POST",
 				"required": false,
 				"description": "A method of the ajax request."
+			},
+			{
+				"name": "name",
+				"type": "String",
+				"default": "files",
+				"required": false,
+				"description": "The value of the name attribute for the file input."
 			},
 			{
 				"name": "model",
@@ -13932,19 +14115,19 @@
 /* 113 */
 /***/ function(module, exports) {
 
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>multiple <input type=\"checkbox\" v-model=\"multiple\"></label>\r\n\t\t<label>hide button <input type=\"checkbox\" v-model=\"hideButton\"></label>\r\n\t\t<label>auto submit <input type=\"checkbox\" v-model=\"autoSubmit\"></label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" class=\"clearfix\">\r\n\t\t<vs-file-upload \r\n    \tid=\"some-file\"\r\n    \tmodel=\"model\" \r\n    \t:ajax=\"ajaxUrl\" \r\n    \t:multiple=\"multiple\" \r\n    \t:auto-submit=\"autoSubmit\" \r\n    \t:hide-button=\"hideButton\" \r\n    \t:file-list.sync=\"fileList\">\r\n    </vs-file-upload>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>multiple <input type=\"checkbox\" v-model=\"multiple\"></label>\r\n\t\t<label>hide button <input type=\"checkbox\" v-model=\"hideButton\"></label>\r\n\t\t<label>auto submit <input type=\"checkbox\" v-model=\"autoSubmit\"></label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" class=\"clearfix\">\r\n\t\t<form id=\"file-upload-test\" method=\"POST\" action=\"{{ajaxUrl}}\">\r\n\t\t\t<vs-file-upload \r\n\t    \tid=\"some-file\"\r\n\t    \tform-id=\"file-upload-test\"\r\n\t    \tmodel=\"model\" \r\n\t    \t:ajax=\"ajaxUrl\" \r\n\t    \t:multiple=\"multiple\" \r\n\t    \tname=\"files\"\r\n\t    \t:auto-submit=\"autoSubmit\" \r\n\t    \t:hide-button=\"hideButton\" \r\n\t    \t:file-list.sync=\"fileList\">\r\n\t    </vs-file-upload>\r\n\t   </form>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
 /* 114 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-file-upload</span> \r\n  <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"some-file\"</span>\r\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \r\n  <span class=\"hljs-attribute\">ajax</span>=<span class=\"hljs-value\">\"http://localhost:3004/upload\"</span> \r\n  <span class=\"hljs-attribute\">:multiple</span>=<span class=\"hljs-value\">\"false\"</span> \r\n  <span class=\"hljs-attribute\">:auto-submit</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:hide-button</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:file-list.sync</span>=<span class=\"hljs-value\">\"fileList\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-file-upload</span>&gt;</span>";
+	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-file-upload</span> \r\n  <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"some-file\"</span>\r\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \r\n  <span class=\"hljs-attribute\">ajax</span>=<span class=\"hljs-value\">\"http://localhost:3004/upload\"</span> \r\n  <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"files\"</span>\r\n  <span class=\"hljs-attribute\">:multiple</span>=<span class=\"hljs-value\">\"false\"</span> \r\n  <span class=\"hljs-attribute\">:auto-submit</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:hide-button</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:file-list.sync</span>=<span class=\"hljs-value\">\"fileList\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-file-upload</span>&gt;</span>";
 
 /***/ },
 /* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// based on href='https://css-tricks.com/drag-and-drop-file-uploading/'
+	// inspired by href='https://css-tricks.com/drag-and-drop-file-uploading/'
 
 	// import dependencies
 	'use strict';
@@ -13959,17 +14142,11 @@
 
 	__webpack_require__(59);
 
-	__webpack_require__(60);
-
-	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(98);
-
-	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
-
 	var _fileUploadHtml = __webpack_require__(118);
 
 	var _fileUploadHtml2 = _interopRequireDefault(_fileUploadHtml);
 
-	var _srcUtilsHelpersJs = __webpack_require__(119);
+	var _utilsHelpersJs = __webpack_require__(119);
 
 	// export component object
 	exports['default'] = {
@@ -14000,9 +14177,17 @@
 	      type: String,
 	      'default': ''
 	    },
+	    formId: {
+	      type: String,
+	      'default': ''
+	    },
 	    method: {
 	      type: String,
 	      'default': 'POST'
+	    },
+	    name: {
+	      type: String,
+	      'default': 'files'
 	    },
 	    model: {
 	      'default': null
@@ -14063,7 +14248,7 @@
 	        this.setError('Unexpected response from the server');
 	      }
 	      // set either success or error based on data returned from the server
-	      if (data.success === true) {
+	      if (data.success) {
 	        this.state = 'success';
 	        this.model = data.data;
 	        this.$dispatch('completed::file-upload', { model: this.model });
@@ -14093,7 +14278,7 @@
 	              }
 
 	              // Add the file to the request.
-	              ajaxData.append('files[]', file, file.name);
+	              ajaxData.append(_this.name, file, file.name);
 	            }
 
 	            // ajax request
@@ -14124,8 +14309,8 @@
 	            xhr.send(ajaxData);
 	          })();
 	        } else {
-	          // fallback Ajax solution upload for older browsers but only if same-origin
-	          if ((0, _srcUtilsHelpersJs.testSameOrigin)(this.ajax)) {
+	          // fallback Ajax solution for older browsers for same-origin requests
+	          if ((0, _utilsHelpersJs.testSameOrigin)(this.ajax)) {
 	            (function () {
 	              var iframeName = 'uploadiframe' + new Date().getTime();
 	              var iframe = document.createElement('iframe');
@@ -14134,16 +14319,15 @@
 	              iframe.style.display = 'none';
 
 	              document.body.appendChild(iframe);
-	              _this.$el.setAttribute('target', iframeName);
+	              _this._wrappingForm.setAttribute('target', iframeName);
 
 	              iframe.addEventListener('load', function () {
-	                _this.state = 'uploading';
 	                // this will not work on cross origin requests when using iframe
 	                _this.parseResponse(iframe.contentDocument.body.innerHTML);
-	                _this.$el.removeAttribute('target');
+	                _this._wrappingForm.removeAttribute('target');
 	                iframe.parentNode.removeChild(iframe);
 	              });
-	              _this.$el.submit();
+	              _this._wrappingForm.submit();
 	            })();
 	          } else {
 	            // we cannot guarantee a success in case of cross-origin request within iframe
@@ -14156,7 +14340,7 @@
 	    },
 	    retry: function retry() {
 	      this.state = 'retry';
-	      (0, _srcUtilsHelpersJs.trigger)(this._input, 'change');
+	      (0, _utilsHelpersJs.trigger)(this._input, 'change');
 	    },
 	    restart: function restart() {
 	      this.state = null;
@@ -14174,10 +14358,28 @@
 	      } else {
 	        this.fileList.push({ name: this._input.value.replace(/^.*\\/, '') });
 	      }
+	    },
+	    _eventHandler: function _eventHandler(e) {
+	      // stop propagation to avoid accidental behaviour
+	      e.preventDefault();
+	      e.stopPropagation();
+
+	      // handle dragover
+	      if (e.type === 'dragover' || e.type === 'dragenter') {
+	        this.dragover = true;
+	      }
+
+	      // handle dragleave
+	      if (e.type === 'dragend' || e.type === 'dragleave' || e.type === 'drop') {
+	        this.dragover = false;
+	        if (e.type === 'drop') {
+	          this.fileList = e.dataTransfer.files; // the files that were dropped
+	          if (this.autoSubmit) {
+	            this.submitForm();
+	          }
+	        }
+	      }
 	    }
-	  },
-	  components: {
-	    vsIcon: _vuestrapIconsSrcComponentsIcons2['default']
 	  },
 	  events: {
 	    'submit::file-upload': function submitFileUpload(id) {
@@ -14194,33 +14396,31 @@
 	      var events = ['drag', 'dragstart', 'dragend', 'dragleave', 'drop', 'dragover', 'dragenter'];
 	      events.forEach(function (event) {
 	        _this2.$el.addEventListener(event, function (e) {
-	          // preventing the unwanted behaviours
-	          e.preventDefault();
-	          e.stopPropagation();
+	          return _this2._eventHandler(e);
 	        });
 	      });
 
 	      // drag start
 	      events = ['dragover', 'dragenter'];
 	      events.forEach(function (event) {
-	        _this2.$el.addEventListener(event, function () {
-	          _this2.dragover = true;
-	        });
+	        return function (e) {
+	          return _this2._eventHandler(e);
+	        };
 	      });
 
 	      // drag end
 	      events = ['dragend', 'dragleave', 'drop'];
 	      events.forEach(function (event) {
 	        _this2.$el.addEventListener(event, function (e) {
-	          _this2.dragover = false;
-	          if (event === 'drop') {
-	            _this2.fileList = e.dataTransfer.files; // the files that were dropped
-	            if (_this2.autoSubmit) {
-	              _this2.submitForm();
-	            }
-	          }
+	          return _this2._eventHandler(e);
 	        });
 	      });
+	    } else {
+	      // get a wrapping form element id paseed in options
+	      if (!this.formId) {
+	        throw "You need to wrap this component in a form and specify it's id in a 'form-id' attribute.";
+	      }
+	      this._wrappingForm = document.getElementById(this.formId);
 	    }
 	  },
 	  beforeDestroy: function beforeDestroy() {
@@ -14228,7 +14428,9 @@
 
 	    var events = ['drag', 'dragstart', 'dragend', 'dragleave', 'drop', 'dragover', 'dragenter'];
 	    events.forEach(function (event) {
-	      _this3.$el.removeEventListener(event);
+	      _this3.$el.removeEventListener(event, function () {
+	        return _this3._eventHandler();
+	      });
 	    });
 	  }
 	};
@@ -14352,6 +14554,424 @@
 	  } catch (e) {}
 	};
 	exports.trigger = trigger;
+
+/***/ },
+/* 120 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	__webpack_require__(59);
+
+	__webpack_require__(31);
+
+	var _wizardJson = __webpack_require__(121);
+
+	var _wizardJson2 = _interopRequireDefault(_wizardJson);
+
+	var _wizardHtml = __webpack_require__(122);
+
+	var _wizardHtml2 = _interopRequireDefault(_wizardHtml);
+
+	var _srcUtils = __webpack_require__(77);
+
+	var _snippetHtml = __webpack_require__(123);
+
+	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
+
+	var _srcComponentsWizard = __webpack_require__(124);
+
+	var _vuestrapDocsSrcComponentsDemo = __webpack_require__(55);
+
+	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
+
+	exports['default'] = {
+	  route: {
+	    url: '/' + _wizardJson2['default'].name,
+	    name: _wizardJson2['default'].name,
+	    title: _wizardJson2['default'].title
+	  },
+	  template: _wizardHtml2['default'],
+	  data: function data() {
+	    return {
+	      meta: _wizardJson2['default'],
+	      snippet: _snippetHtml2['default'],
+	      list: [{ text: 'Requester Details', href: '/requester', description: 'Your details' }, { text: 'First Collection', href: '/first-collection', description: 'The first collection of data' }, { text: 'Second Collection', href: '/second-collection', description: 'The second collection of data' }, { text: 'Payment', href: '/payment', description: 'Payment options' }, { text: 'Confirmation', href: '/confirmation', description: 'Confirm the cleanse' }],
+	      icons: true,
+	      models: {
+	        email: '',
+	        firstName: '',
+	        lastName: '',
+	        cardType: '',
+	        cardNumber: '',
+	        cardHolder: '',
+	        cardExpiryMonth: '01',
+	        cardExpiryYear: '2017'
+	      },
+	      progress: {
+	        step1: 0,
+	        step2: 0,
+	        step3: 0
+	      },
+	      currentStep: 0
+	    };
+	  },
+	  components: {
+	    vsWizard: _srcComponentsWizard.wizard,
+	    vsWizardStep: _srcComponentsWizard.wizardStep,
+	    docsDemo: _vuestrapDocsSrcComponentsDemo2['default']
+	  },
+	  events: {
+	    'shown::wizard': function shownWizard(id) {
+	      var _this = this;
+
+	      setTimeout(function () {
+	        _this.$root.$broadcast('hide::wizard', id);
+	      }, 2000);
+	    }
+	  },
+	  methods: {
+	    startAgain: function startAgain() {
+	      this.models = {
+	        email: '',
+	        firstName: '',
+	        lastName: '',
+	        cardType: '',
+	        cardNumber: '',
+	        cardHolder: '',
+	        cardExpiryMonth: '01',
+	        cardExpiryYear: '2017'
+	      }, this.progress = {
+	        step1: 0,
+	        step2: 0,
+	        step3: 0
+	      }, this.currentStep = 0;
+	    }
+	  },
+	  watch: {
+	    models: {
+	      handler: function handler() {
+	        // step 1
+	        if (this.currentStep === 0) {
+	          this.progress.step1 = 0;
+	          if (this.models.email.length) {
+	            this.progress.step1 += 100 / 3;
+	          }
+	          if (this.models.firstName.length) {
+	            this.progress.step1 += 100 / 3;
+	          }
+	          if (this.models.lastName.length) {
+	            this.progress.step1 += 100 / 3;
+	          }
+	        }
+
+	        // step 2
+	        if (this.currentStep === 1) {
+	          this.progress.step2 = 0;
+	          if (this.models.cardType.length) {
+	            this.progress.step2 += 100 / 3;
+	          }
+	          if (this.models.cardNumber.length) {
+	            this.progress.step2 += 100 / 3;
+	          }
+	          if (this.models.cardHolder.length) {
+	            this.progress.step2 += 100 / 3;
+	          }
+	        }
+	      },
+	      deep: true
+	    }
+	  }
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 121 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"name": "wizard",
+		"title": "Wizard",
+		"description": ".",
+		"dependencies": [
+			"vuestrap/buttons"
+		],
+		"category": "components",
+		"browserSupport": {
+			"browsers": [
+				"IE9+",
+				"Android 4.3"
+			]
+		},
+		"options": [
+			{
+				"name": "current-index",
+				"type": "Number",
+				"default": "0",
+				"required": false,
+				"description": "Use this option on <code>&lt;vs-wizard></code> to control active step."
+			},
+			{
+				"name": "title",
+				"type": "String",
+				"default": "md",
+				"required": false,
+				"description": "Sets title on the <code>&lt;vs-wizard-step></code> element."
+			},
+			{
+				"name": "description",
+				"type": "String",
+				"default": "md",
+				"required": false,
+				"description": "Sets description on the <code>&lt;vs-wizard-step></code> element."
+			},
+			{
+				"name": "disable-previous",
+				"type": "Boolean",
+				"default": "false",
+				"required": false,
+				"description": "This option can be handy on the last step if you don't want users to go back to previous step, i.e. after payment."
+			},
+			{
+				"name": "icon",
+				"type": "String",
+				"default": "''",
+				"required": false,
+				"description": "Sets svg icon on the <code>&lt;vs-wizard-step></code> element. This component uses <a href='https://github.com/kzima/vuestrap-icons/'>vuestrap-icons</a>. If no icon is specified, wizard will auto fall back to numbers."
+			},
+			{
+				"name": "progress",
+				"type": "Number",
+				"default": "''",
+				"required": false,
+				"description": "Sets progress bar on the <code>&lt;vs-wizard-step></code> element. Pass a value from 0 to 100 to show a progress within each step."
+			},
+			{
+				"name": "valid",
+				"type": "Number",
+				"default": "''",
+				"required": false,
+				"description": "Sets valid state on the <code>&lt;vs-wizard-step></code> element. When set to true, progress will be forced to 100, and next step will become clickable."
+			}
+		]
+	};
+
+/***/ },
+/* 122 */
+/***/ function(module, exports) {
+
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>icons <input type=\"checkbox\" v-model=\"icons\"></label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t\r\n\t\t<!-- icons -->\r\n\t\t<vs-wizard :current-index.sync=\"currentStep\" v-if=\"icons\">\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Personal Information\" \r\n\t\t\t\tdescription=\"Enter your details\"\r\n\t\t\t\t:progress=\"progress.step1\" \r\n\t\t\t\ticon=\"person\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Payment\" \r\n\t\t\t\tdescription=\"Pay with credit card or Paypal\" \r\n\t\t\t\t:progress=\"progress.step2\"\r\n\t\t\t\ticon=\"credit-card\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Confirmation\" \r\n\t\t\t\tdescription=\"Your order details\" \r\n\t\t\t\t:progress=\"progress.step3\"\r\n\t\t\t\t:disable-previous=\"true\"\r\n\t\t\t\ticon=\"check\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t</vs-wizard>\r\n\r\n\t\t<!-- no icons -->\r\n\t\t<vs-wizard :current-index.sync=\"currentStep\" v-if=\"!icons\">\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Personal Information\" \r\n\t\t\t\tdescription=\"Enter your details\"\r\n\t\t\t\t:progress=\"progress.step1\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Payment\" \r\n\t\t\t\tdescription=\"Pay with credit card or Paypal\" \r\n\t\t\t\t:progress=\"progress.step2\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Confirmation\" \r\n\t\t\t\tdescription=\"Your order details\" \r\n\t\t\t\t:progress=\"progress.step3\"\r\n\t\t\t\t:disable-previous=\"true\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t</vs-wizard>\r\n\t\t<hr class=\"hidden-xs-down\">\r\n\t\t<form class=\"m-b row clearfix\" v-if=\"currentStep == 0\">\r\n\t\t\t<div class=\"col-xs-12 col-md-8 col-md-offset-2\">  \r\n\t\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"firstName\">First Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"e.g. Jon\" v-model=\"models.firstName\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"lastName\">Last Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"lastName\" placeholder=\"e.g. Doe\" v-model=\"models.lastName\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"email\">Email address</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"e.g. joe@doe.com\" v-model=\"models.email\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <button class=\"btn btn-default pull-right\" v-bind:disabled=\"progress.step1 < 100\" v-on:click.prevent=\"currentStep++\">Next</button>\r\n\t\t \t</div>\r\n\t  </form>\r\n\t  <form class=\"m-b row clearfix\" v-if=\"currentStep == 1\">\r\n\t  \t<div class=\"col-xs-12 col-md-8 col-md-offset-2\">  \t\t\r\n\t\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardType\">Card Type</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardType\" placeholder=\"e.g. Visa\" v-model=\"models.cardType\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardNumber\">Card Number</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardNumber\" placeholder=\"4141 4141 4141 4141\" v-model=\"models.cardNumber\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardHolder\">Card Holder Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardHolder\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardHolder\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <div class=\"row\">\t  \t\r\n\t\t\t\t  <fieldset class=\"form-group col-xs-6\">\r\n\t\t\t\t    <label for=\"cardExpiryMonth\">Expiry Month</label>\r\n\t\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardExpiryMonth\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardExpiryMonth\">\r\n\t\t\t\t  </fieldset>\r\n\t\t\t\t  <fieldset class=\"form-group col-xs-6\">\r\n\t\t\t\t    <label for=\"cardExpiryMonth\">Expiry Year</label>\r\n\t\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardExpiryYear\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardExpiryYear\">\r\n\t\t\t\t  </fieldset>\r\n\t\t\t  </div>\r\n\t\t  \t<button class=\"btn btn-default pull-right\" v-bind:disabled=\"progress.step2 < 100\" v-on:click.prevent=\"currentStep++\">Next</button>\r\n\t  \t</div>\t\t\r\n\t  </form>\r\n\t  <div class='text-center clearfix' v-if=\"currentStep == 2\">\r\n\t\t\t<h3 class=\"m-y-lg\">Success! Your order is on its way...</h3>\r\n\t\t\t<button v-on:click=\"startAgain\">Start again</button>\r\n\t  </div>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
+
+/***/ },
+/* 123 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard</span> <span class=\"hljs-attribute\">:current-index.sync</span>=<span class=\"hljs-value\">\"currentStep\"</span> <span class=\"hljs-attribute\">v-if</span>=<span class=\"hljs-value\">\"icons\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Personal Information\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Enter your details\"</span>\r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step1\"</span> \r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"person\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Payment\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Pay with credit card or Paypal\"</span> \r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step2\"</span>\r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"credit-card\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Confirmation\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Your order details\"</span> \r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step3\"</span>\r\n    <span class=\"hljs-attribute\">:disable-previous</span>=<span class=\"hljs-value\">\"true\"</span>\r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"check\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard</span>&gt;</span>";
+
+/***/ },
+/* 124 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// import dependencies
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	__webpack_require__(125);
+
+	var _wizardHtml = __webpack_require__(127);
+
+	var _wizardHtml2 = _interopRequireDefault(_wizardHtml);
+
+	var _wizardStepHtml = __webpack_require__(128);
+
+	var _wizardStepHtml2 = _interopRequireDefault(_wizardStepHtml);
+
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(98);
+
+	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
+
+	// export component object
+	var wizard = {
+	  template: _wizardHtml2['default'],
+	  replace: true,
+	  props: {
+	    currentIndex: {
+	      type: Number,
+	      'default': 0
+	    }
+	  },
+	  data: function data() {
+	    return {
+	      countItems: 0
+	    };
+	  },
+	  methods: {
+	    changeCurrentIndex: function changeCurrentIndex(index) {
+	      // change currentIndex
+	      // if previous step is valid
+	      // if previousDisabled is not set on the next step
+	      if (this.$children[this.currentIndex].disablePrevious && this.currentIndex > index) return;
+	      if (this.$children[index - 1] && this.$children[index - 1].valid || index < this.currentIndex) {
+	        this.currentIndex = index;
+	      }
+	    }
+	  },
+	  ready: function ready() {
+	    // get all steps
+	    this.countItems = this.$children.length;
+
+	    // set index for each wiard-step component
+	    this.$children.forEach(function (item, index) {
+	      item.index = index;
+	    });
+	  }
+	};
+
+	exports.wizard = wizard;
+	var wizardStep = {
+	  template: _wizardStepHtml2['default'],
+	  replace: true,
+	  data: function data() {
+	    return {
+	      index: null,
+	      active: false
+	    };
+	  },
+	  computed: {
+	    isActive: function isActive() {
+	      return this.$parent.currentIndex === this.index;
+	    },
+	    isPrevious: function isPrevious() {
+	      // two items are considered previous (if last step) or one item before currentIndex step (if currentIndex - 1)
+	      return this.$parent.currentIndex > this.index;
+	    },
+	    isNext: function isNext() {
+	      // two items are considered next (if currentIndex step is a first step) or one item after currentIndex step (currentIndex + 1)
+	      return this.$parent.currentIndex < this.index;
+	    }
+	  },
+	  props: {
+	    icon: {
+	      type: String,
+	      'default': false
+	    },
+	    iconNumber: {
+	      type: String,
+	      'default': false
+	    },
+	    title: {
+	      type: String,
+	      'default': false
+	    },
+	    description: {
+	      type: String,
+	      'default': false
+	    },
+	    progress: {
+	      type: Number,
+	      'default': 0
+	    },
+	    valid: {
+	      type: Boolean,
+	      'default': false
+	    },
+	    disablePrevious: {
+	      type: Boolean,
+	      'default': false
+	    }
+	  },
+	  methods: {
+	    changeCurrentIndex: function changeCurrentIndex() {
+	      this.$parent.changeCurrentIndex(this.index);
+	    }
+	  },
+	  watch: {
+	    progress: function progress(val) {
+	      this._progressBar.style.width = val + '%';
+	      if (val === 100) {
+	        this.valid = true;
+	      } else {
+	        this.valid = false;
+	      }
+	    },
+	    valid: function valid(val) {
+	      if (val) {
+	        this.progress = 100;
+	      }
+	    }
+	  },
+	  components: {
+	    vsIcon: _vuestrapIconsSrcComponentsIcons2['default']
+	  },
+	  ready: function ready() {
+	    this.$el.style.width = 100 / this.$parent.$children.length + '%';
+	    this._progressBar = this.$el.querySelector('.wizard-progress-value');
+	  }
+	};
+	exports.wizardStep = wizardStep;
+
+/***/ },
+/* 125 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(126);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(6)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vuestrap-theme-loader/index.js!./wizard.scss", function() {
+				var newContent = require("!!./../../../node_modules/css-loader/index.js!./../../../node_modules/autoprefixer-loader/index.js!./../../../node_modules/sass-loader/index.js!./../../../node_modules/vuestrap-theme-loader/index.js!./wizard.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 126 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(5)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".gritcode-wizard {\n  overflow: hidden;\n  display: table;\n  width: 100%;\n  font-size: 0.8rem; }\n  .gritcode-wizard .wizard-step {\n    display: none;\n    width: auto;\n    border: 0;\n    text-align: center;\n    position: relative;\n    cursor: pointer; }\n    .gritcode-wizard .wizard-step.active {\n      display: table-cell; }\n    .gritcode-wizard .wizard-step .wizard-icon {\n      display: table;\n      width: 3em;\n      height: 3em;\n      background-color: #eaeaea;\n      text-align: center;\n      color: #a9a9a9;\n      border: 2px solid #d9d9d9;\n      position: relative;\n      z-index: 1;\n      border-radius: 50%;\n      z-index: 22;\n      margin: auto;\n      margin-bottom: 1em; }\n      .gritcode-wizard .wizard-step .wizard-icon .icon-number, .gritcode-wizard .wizard-step .wizard-icon .icon-icon {\n        display: table-cell;\n        vertical-align: middle; }\n    .gritcode-wizard .wizard-step .title {\n      font-size: 1.1em;\n      color: #464646; }\n    .gritcode-wizard .wizard-step .description, .gritcode-wizard .wizard-step .step-info {\n      font-size: 0.8em;\n      color: #a8a8a8; }\n    .gritcode-wizard .wizard-step .description {\n      margin-bottom: 2em; }\n    .gritcode-wizard .wizard-step .wizard-progress, .gritcode-wizard .wizard-step .wizard-progress-value {\n      position: absolute;\n      bottom: 2em;\n      left: 0;\n      width: 100%;\n      height: 2px;\n      background: #d9d9d9;\n      z-index: 10; }\n    .gritcode-wizard .wizard-step .wizard-progress-value {\n      top: 0;\n      left: 0;\n      width: 0;\n      background: #42b983;\n      z-index: 11;\n      padding: 0;\n      -webkit-transition: 0.45s width ease;\n      transition: 0.45s width ease; }\n    .gritcode-wizard .wizard-step .step-info {\n      text-align: right; }\n    .gritcode-wizard .wizard-step.active .wizard-icon, .gritcode-wizard .wizard-step.previous .wizard-icon {\n      border-color: #42b983;\n      color: #42b983; }\n    .gritcode-wizard .wizard-step.active .icon, .gritcode-wizard .wizard-step.previous .icon {\n      fill: #42b983; }\n    .gritcode-wizard .wizard-step:last-child .wizard-progress-value {\n      width: 100% !important; }\n  @media (min-width: 544px) {\n    .gritcode-wizard {\n      font-size: 0.9rem; }\n      .gritcode-wizard .wizard-step {\n        display: table-cell; }\n        .gritcode-wizard .wizard-step .description {\n          margin-bottom: 0; }\n        .gritcode-wizard .wizard-step .wizard-progress, .gritcode-wizard .wizard-step .wizard-progress-value {\n          top: 1.45em;\n          left: 49%; }\n        .gritcode-wizard .wizard-step .wizard-progress-value {\n          top: 0;\n          left: 0;\n          padding: 0 0.75em; }\n        .gritcode-wizard .wizard-step .step-info {\n          display: none; }\n        .gritcode-wizard .wizard-step:last-child .wizard-progress {\n          display: none; }\n        .gritcode-wizard .wizard-step:last-child .wizard-progress-value {\n          width: 100% !important; } }\n  @media (min-width: 768px) {\n    .gritcode-wizard {\n      font-size: 1.2rem; } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 127 */
+/***/ function(module, exports) {
+
+	module.exports = "<div class=\"gritcode-wizard\">\r\n   <slot></slot>\r\n</div>\r\n";
+
+/***/ },
+/* 128 */
+/***/ function(module, exports) {
+
+	module.exports = "<div v-bind:class=\"{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}\" v-on:click=\"changeCurrentIndex()\">\r\n\t<div class=\"wizard-progress\">\r\n\t\t<div class=\"wizard-progress-value\"></div>\r\n\t</div>\r\n\t<div class=\"wizard-icon\">\r\n\t\t<div class=\"icon-icon\"><vs-icon :name=\"icon\" v-if=\"icon\"></vs-icon></div>\r\n\t\t<div class=\"icon-number\" v-if=\"!icon\">{{iconNumber || index +1}}</div>\r\n\t</div>\r\n\t<div class=\"wizard-content\">\r\n\t\t<div class=\"title\">{{title}}</div>\r\n\t\t<div class=\"description\">{{description}}</div>\r\n\t</div>\r\n\t<div class=\"step-info\">\r\n\t\tStep {{index+1}}/{{$parent.countItems}}\r\n\t</div>\r\n</div>";
 
 /***/ }
 /******/ ]);

@@ -1,6 +1,6 @@
 {
   "name": "gritcode-components",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Web components built with Vuestrap.",
   "library": "gritcode-components",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "git+https://github.com/gritcode/gritcode-components.git"
   },
   "scripts": {
-    "build": "npm run docs && npm run dev && npm run dev-bundle && npm run dist && npm run dist-bundle && npm publish",
+    "build": "npm run docs && npm run dev && npm run dev-bundle && npm run dist && npm run dist-bundle",
     "dist": "webpack --colors --progress --config webpack.build.js --env production",
     "dist-bundle": "webpack --colors --progress --config webpack.build.js --env production --bundle true",
     "dev": "webpack --colors --progress --config webpack.build.js --env development",

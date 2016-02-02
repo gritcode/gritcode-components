@@ -133,7 +133,7 @@ export default {
               }
 
               // Add the file to the request.
-              ajaxData.append(this.name + '[]', file, file.name)
+              ajaxData.append(this.name, file, file.name)
             }
 
             // ajax request

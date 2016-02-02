@@ -54,7 +54,7 @@
 			"type": "String",
 			"default": "files",
 			"required": false,
-			"description": "The value of name attribute for the file input."
+			"description": "The value of the name attribute for the file input."
 		},
 		{
 			"name": "model",

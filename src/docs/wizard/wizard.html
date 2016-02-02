@@ -66,7 +66,7 @@
 			    <label for="email">Email address</label>
 			    <input autocomplete="off" type="text" class="form-control" id="email" placeholder="e.g. joe@doe.com" v-model="models.email">
 			  </fieldset>
-			  <button class="btn btn-default pull-right" v-bind:disabled="progress.step1 < 100" v-on:click="currentStep++">Next</button>
+			  <button class="btn btn-default pull-right" v-bind:disabled="progress.step1 < 100" v-on:click.prevent="currentStep++">Next</button>
 		 	</div>
 	  </form>
 	  <form class="m-b row clearfix" v-if="currentStep == 1">
@@ -93,7 +93,7 @@
 				    <input autocomplete="off" type="text" class="form-control" id="cardExpiryYear" placeholder="e.g. Joe Doe" v-model="models.cardExpiryYear">
 				  </fieldset>
 			  </div>
-		  	<button class="btn btn-default pull-right" v-bind:disabled="progress.step2 < 100" v-on:click="currentStep++">Next</button>
+		  	<button class="btn btn-default pull-right" v-bind:disabled="progress.step2 < 100" v-on:click.prevent="currentStep++">Next</button>
 	  	</div>		
 	  </form>
 	  <div class='text-center clearfix' v-if="currentStep == 2">

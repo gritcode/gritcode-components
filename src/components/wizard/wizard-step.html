@@ -1,6 +1,6 @@
-<div v-bind:class="{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}" v-bind:style="{width: 100/$parent.countItems + '%'}" v-on:click="changeCurrentIndex()">
+<div v-bind:class="{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}" v-on:click="changeCurrentIndex()">
 	<div class="wizard-progress">
-		<div class="wizard-progress-value" v-bind:style="{width: progress + '%'}"></div>
+		<div class="wizard-progress-value"></div>
 	</div>
 	<div class="wizard-icon">
 		<div class="icon-icon"><vs-icon :name="icon" v-if="icon"></vs-icon></div>

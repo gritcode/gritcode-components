@@ -100,6 +100,7 @@ export const wizardStep = {
   },
   watch: {
     progress(val) {
+      this._progressBar.style.width = val + '%'
       if (val === 100) {
         this.valid = true
       } else {
@@ -114,6 +115,10 @@ export const wizardStep = {
   },
   components: {
     vsIcon,
+  },
+  ready() {
+    this.$el.style.width = (100 / this.$parent.$children.length) + '%'
+    this._progressBar = this.$el.querySelector('.wizard-progress-value')
   }
 }
 

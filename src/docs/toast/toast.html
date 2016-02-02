@@ -25,22 +25,26 @@
 		<button v-on:click="$root.$broadcast('show::toast', {
 			message: 'Default', 
 			hideProgress: hideProgress,
-			position: position
+			position: position,
+			duration: duration
 		})">default</button>
 		<button v-on:click="$root.$broadcast('show::toast', {
 			success: 'Success!', 
 			hideProgress: hideProgress,
-			position: position
+			position: position,
+			duration: duration
 			})">success</button>
 		<button v-on:click="$root.$broadcast('show::toast', {
 			error: 'Error!', 
 			hideProgress: hideProgress,
-			position: position
+			position: position,
+			duration: duration
 			})">error</button>
 		<button v-on:click="$root.$broadcast('show::toast', {
 			info: 'Info.', 
 			hideProgress: hideProgress,
-			position: position
+			position: position,
+			duration: duration
 			})">info</button>
 	</div>
 	<!-- Html markup end-->

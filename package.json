@@ -1,6 +1,6 @@
 {
   "name": "gritcode-components",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Web components built with Vuestrap.",
   "library": "gritcode-components",
   "repository": {

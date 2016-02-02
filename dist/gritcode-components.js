@@ -247,12 +247,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	    show: function show(options) {
 	      var _this2 = this;
 	
-	      console.log(options);
 	      this.context = 'default';
 	      this.animationInProgress = true;
 	      this.message = options.message || 'Done!';
 	      this.context = options.context || '';
 	      this.debounce = options.debounce || DEBOUNCE;
+	      this.duration = options.duration || DURATION;
 	      this.hideProgress = options.hideProgress || false;
 	      this.position = options.position || 'bottom left';
 	      if (options.success) {

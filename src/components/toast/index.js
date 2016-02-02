@@ -91,12 +91,12 @@ export default {
       this.animation = setTimeout(this.clear, this.duration)
     },
     show(options) {
-      console.log(options);
       this.context = 'default'
       this.animationInProgress = true
       this.message = options.message || 'Done!'
       this.context = options.context || ''
       this.debounce = options.debounce || DEBOUNCE
+      this.duration = options.duration || DURATION
       this.hideProgress = options.hideProgress || false
       this.position = options.position || 'bottom left'
       if (options.success) {

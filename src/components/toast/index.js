@@ -70,7 +70,7 @@ export default {
       this.style.transition = 'width 0.1s'
     },
     clear() {
-      setTimeout(() => {
+      this._toastAnimation = setTimeout(() => {
         this.activeProgressBar = false
         this.animationInProgress = false
         this.style.transition = 'width 0s'
@@ -81,9 +81,9 @@ export default {
           this._toastAnimation = setTimeout(() => {
             const toast = this.queue.shift()
             this.show(toast)
-          }, TOAST_ANIMATION)
+          }, 0) // this set to 0 instead of TOAST_ANIMATION in purpose, so queued messages pop a little bit quicker, so user can close them off quickly
         }
-      }, TOAST_ANIMATION)
+      }, TOAST_ANIMATION) // we need to wait till toast is gone off the screen to clear it and then call next toast
     },
     animate() {
       this.style.transition = 'width ' + this.duration / 1000 + 's'
@@ -123,7 +123,7 @@ export default {
     },
     addToQueue(options) {
       if (this.animationInProgress || this.queue.length > 0) {
-        // if some other toast is curently animating, add it to the queue
+        // if some other toast is currently animating, add it to the queue
         this.queue.push(options)
       } else {
         // if first toast, show it

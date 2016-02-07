@@ -90,7 +90,8 @@
 					    v-bind:class="{
 					      'list-group-item': true, 
 					    }" 
-					    v-for="item in routes">
+					    v-for="item in routes"
+					    v-on:click="$root.$broadcast('toggle::offcanvas-drawer', 'main')">
 					    {{item.title}}
 					  </a>
 					</div>

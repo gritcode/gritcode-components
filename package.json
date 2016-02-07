@@ -1,6 +1,6 @@
 {
   "name": "gritcode-components",
-  "version": "0.3.3",
+  "version": "0.3.5",
   "description": "Web components built with Vuestrap.",
   "library": "gritcode-components",
   "repository": {
@@ -31,10 +31,6 @@
   "bugs": {
     "url": "https://github.com/gritcode/gritcode-components/issues"
   },
-  "peerDependencies": {
-    "vuestrap": "^1.0.0",
-    "vuestrap-icons": "^0.4.14"
-  },
   "dependencies": {
     "vue": "^1.0.16"
   },
@@ -61,6 +57,7 @@
     "sass-loader": "^3.1.1",
     "style-loader": "^0.13.0",
     "vuestrap-docs": "^0.2.2",
+    "vuestrap-icons": "^0.5.0",
     "vuestrap-theme-loader": "^0.1.2",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.12.1"

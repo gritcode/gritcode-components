@@ -224,7 +224,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    clear: function clear() {
 	      var _this = this;
 	
-	      setTimeout(function () {
+	      this._toastAnimation = setTimeout(function () {
 	        _this.activeProgressBar = false;
 	        _this.animationInProgress = false;
 	        _this.style.transition = 'width 0s';
@@ -235,9 +235,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	          _this._toastAnimation = setTimeout(function () {
 	            var toast = _this.queue.shift();
 	            _this.show(toast);
-	          }, TOAST_ANIMATION);
+	          }, 0); // this set to 0 instead of TOAST_ANIMATION in purpose, so queued messages pop a little bit quicker, so user can close them off quickly
 	        }
-	      }, TOAST_ANIMATION);
+	      }, TOAST_ANIMATION); // we need to wait till toast is gone off the screen to clear it and then call next toast
 	    },
 	    animate: function animate() {
 	      this.style.transition = 'width ' + this.duration / 1000 + 's';
@@ -281,7 +281,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      var _this3 = this;
 	
 	      if (this.animationInProgress || this.queue.length > 0) {
-	        // if some other toast is curently animating, add it to the queue
+	        // if some other toast is currently animating, add it to the queue
 	        this.queue.push(options);
 	      } else {
 	        // if first toast, show it
@@ -408,7 +408,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 13 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\" :disabled=\"disabled\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click=\"toggle()\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
+	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\" :disabled=\"disabled\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click.prevent=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click.prevent=\"toggle()\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click.prevent=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
 
 /***/ },
 /* 14 */
@@ -626,7 +626,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 22 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"dropdown-multiselect-gritcode\" v-bind:class=\"{open: show, dropdown: !dropup, dropup: dropup}\">\r\n    <button\r\n        id=\"dLabel\"\r\n        class=\"btn dropdown {{dropdownToggle}} {{btnVariant}} {{btnSize}}\"\r\n        role=\"button\"\r\n        aria-haspopup=\"true\"\r\n        aria-expanded=\"show\"\r\n        v-on:click=\"toggle($event)\"\r\n        :disabled=\"disabled\">\r\n        <span class=\"checked-items\" v-html=\"displayItem\"></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu\" v-bind:class=\"{'dropdown-menu-right' : position == 'right'}\" aria-labelledby=\"dLabel\">\r\n        <li v-for=\"item in list\">\r\n            <button class=\"dropdown-item\" v-on:click.stop=\"select($index)\" title=\"{{item.text}}\">{{item.text}} <vs-icon name=\"check\" v-show=\"checked($index) !== false\" class=\"pull-right\"></vs-icon></button>\r\n        </li>\r\n    </ul>\r\n</div>";
+	module.exports = "<div class=\"dropdown-multiselect-gritcode\" v-bind:class=\"{open: show, dropdown: !dropup, dropup: dropup}\">\r\n    <button\r\n        id=\"dLabel\"\r\n        class=\"btn dropdown {{dropdownToggle}} {{btnVariant}} {{btnSize}}\"\r\n        role=\"button\"\r\n        aria-haspopup=\"true\"\r\n        aria-expanded=\"show\"\r\n        v-on:click.prevent=\"toggle($event)\"\r\n        :disabled=\"disabled\">\r\n        <span class=\"checked-items\" v-html=\"displayItem\"></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu\" v-bind:class=\"{'dropdown-menu-right' : position == 'right'}\" aria-labelledby=\"dLabel\">\r\n        <li v-for=\"item in list\">\r\n            <button class=\"dropdown-item\" v-on:click.stop.prevent=\"select($index)\" title=\"{{item.text}}\">{{item.text}} <vs-icon name=\"check\" v-show=\"checked($index) !== false\" class=\"pull-right\"></vs-icon></button>\r\n        </li>\r\n    </ul>\r\n</div>";
 
 /***/ },
 /* 23 */
@@ -1561,6 +1561,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
 	
+	var _utilsHelpersJs = __webpack_require__(47);
+	
 	// export component object
 	var wizard = {
 	  template: _wizardHtml2['default'],
@@ -1580,11 +1582,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    changeCurrentIndex: function changeCurrentIndex(index) {
 	      // change currentIndex
 	      // if previous step is valid
-	      // if previousDisabled is not set on the next step
-	      if (this.$children[this.currentIndex].disablePrevious && this.currentIndex > index) return;
+	      // if previousDisabled is not set on the current step
+	      if (this.$children[this.currentIndex].disablePrevious && this.currentIndex > index) return false;
 	      if (this.$children[index - 1] && this.$children[index - 1].valid || index < this.currentIndex) {
 	        this.currentIndex = index;
+	        return true;
 	      }
+	      return false;
 	    }
 	  },
 	  ready: function ready() {
@@ -1613,15 +1617,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	      return this.$parent.currentIndex === this.index;
 	    },
 	    isPrevious: function isPrevious() {
-	      // two items are considered previous (if last step) or one item before currentIndex step (if currentIndex - 1)
+	      // every step before current index
 	      return this.$parent.currentIndex > this.index;
 	    },
 	    isNext: function isNext() {
-	      // two items are considered next (if currentIndex step is a first step) or one item after currentIndex step (currentIndex + 1)
+	      // everything after current index
 	      return this.$parent.currentIndex < this.index;
 	    }
 	  },
 	  props: {
+	    link: {
+	      type: String,
+	      'default': ''
+	    },
 	    icon: {
 	      type: String,
 	      'default': false
@@ -1653,7 +1661,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  methods: {
 	    changeCurrentIndex: function changeCurrentIndex() {
-	      this.$parent.changeCurrentIndex(this.index);
+	      if (this.link && this.$parent.changeCurrentIndex(this.index)) {
+	        // redirect user to the new location
+	        (0, _utilsHelpersJs.changeLocation)(this.$router, this.link);
+	      }
 	    }
 	  },
 	  watch: {
@@ -1697,7 +1708,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 52 */
 /***/ function(module, exports) {
 
-	module.exports = "<div v-bind:class=\"{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}\" v-on:click=\"changeCurrentIndex()\">\r\n\t<div class=\"wizard-progress\">\r\n\t\t<div class=\"wizard-progress-value\"></div>\r\n\t</div>\r\n\t<div class=\"wizard-icon\">\r\n\t\t<div class=\"icon-icon\"><vs-icon :name=\"icon\" v-if=\"icon\"></vs-icon></div>\r\n\t\t<div class=\"icon-number\" v-if=\"!icon\">{{iconNumber || index +1}}</div>\r\n\t</div>\r\n\t<div class=\"wizard-content\">\r\n\t\t<div class=\"title\">{{title}}</div>\r\n\t\t<div class=\"description\">{{description}}</div>\r\n\t</div>\r\n\t<div class=\"step-info\">\r\n\t\tStep {{index+1}}/{{$parent.countItems}}\r\n\t</div>\r\n</div>";
+	module.exports = "<div v-bind:class=\"{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}\" v-on:click.prevent=\"changeCurrentIndex()\">\r\n\t<div class=\"wizard-progress\">\r\n\t\t<div class=\"wizard-progress-value\"></div>\r\n\t</div>\r\n\t<div class=\"wizard-icon\">\r\n\t\t<div class=\"icon-icon\"><vs-icon :name=\"icon\" v-if=\"icon\"></vs-icon></div>\r\n\t\t<div class=\"icon-number\" v-if=\"!icon\">{{iconNumber || index +1}}</div>\r\n\t</div>\r\n\t<div class=\"wizard-content\">\r\n\t\t<div class=\"title\">{{title}}</div>\r\n\t\t<div class=\"description\">{{description}}</div>\r\n\t</div>\r\n\t<div class=\"step-info\">\r\n\t\tStep {{index+1}}/{{$parent.countItems}}\r\n\t</div>\r\n</div>";
 
 /***/ }
 /******/ ])

@@ -3,6 +3,7 @@ import './wizard.scss'
 import wizardTemplate from './wizard.html'
 import wizardSteptemplate from './wizard-step.html'
 import vsIcon from 'vuestrap-icons/src/components/icons'
+import {changeLocation} from '../../utils/helpers.js'
 
 // export component object
 export const wizard = {
@@ -23,11 +24,13 @@ export const wizard = {
     changeCurrentIndex(index) {
       // change currentIndex
       // if previous step is valid
-      // if previousDisabled is not set on the next step
-      if (this.$children[this.currentIndex].disablePrevious && this.currentIndex > index) return
+      // if previousDisabled is not set on the current step
+      if (this.$children[this.currentIndex].disablePrevious && this.currentIndex > index) return false
       if (this.$children[index - 1] && this.$children[index - 1].valid || index < this.currentIndex) {
         this.currentIndex = index
+        return true
       }
+      return false
     },
   },
   ready() {
@@ -55,15 +58,19 @@ export const wizardStep = {
       return (this.$parent.currentIndex === this.index)
     },
     isPrevious() {
-      // two items are considered previous (if last step) or one item before currentIndex step (if currentIndex - 1)
+      // every step before current index
       return this.$parent.currentIndex > this.index
     },
     isNext() {
-      // two items are considered next (if currentIndex step is a first step) or one item after currentIndex step (currentIndex + 1)
+      // everything after current index
       return this.$parent.currentIndex < this.index
     }
   },
   props: {
+    link: {
+      type: String,
+      default: '',
+    },
     icon: {
       type: String,
       default: false,
@@ -95,7 +102,10 @@ export const wizardStep = {
   },
   methods: {
     changeCurrentIndex() {
-      this.$parent.changeCurrentIndex(this.index)
+      if (this.link && this.$parent.changeCurrentIndex(this.index)) {
+        // redirect user to the new location
+        changeLocation(this.$router, this.link)
+      }
     },
   },
   watch: {
@@ -120,4 +130,3 @@ export const wizardStep = {
     this._progressBar = this.$el.querySelector('.wizard-progress-value')
   }
 }
-

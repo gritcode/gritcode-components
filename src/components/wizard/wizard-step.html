@@ -1,4 +1,4 @@
-<div v-bind:class="{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}" v-on:click="changeCurrentIndex()">
+<div v-bind:class="{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}" v-on:click.prevent="changeCurrentIndex()">
 	<div class="wizard-progress">
 		<div class="wizard-progress-value"></div>
 	</div>

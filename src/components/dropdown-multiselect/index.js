@@ -1,6 +1,5 @@
 // import styling
 import './dropdown-multiselect.scss'
-import 'vuestrap/components/dropdown'
 
 // import template
 import template from './dropdown-multiselect.html'

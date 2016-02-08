@@ -11,13 +11,13 @@ export default {
   template: template,
   replace: true,
   data() {
-    return {  
+    return {
       orderAsc: true,
     }
   },
   props: {
     model: {
-      type: Object, 
+      type: Object,
       twoWay: true,
     },
     sortBy: {

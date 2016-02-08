@@ -1,5 +1,6 @@
 import template from './introduction.html'
 import 'vuestrap/components/jumbotron'
+import pkg from 'package.json'
 
 export default {
 	route: {
@@ -9,7 +10,7 @@ export default {
 	},
 	data() {
 		return {
-			pkg: this.$parent.pkg,
+			pkg: pkg,
 			componentNameCamelCase: 'toast',
 			componentName: 'toast',
 			componentNameSurfixed: 'vs-toast'

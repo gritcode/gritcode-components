@@ -55,9 +55,8 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
-	 * IMPORT GLOBAL STYLING
+	 * IMPORT EACH COMPONENT
 	 */
-	// import normalize, grid, utilities and
 	'use strict';
 	
 	Object.defineProperty(exports, '__esModule', {
@@ -66,39 +65,33 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(1);
-	
-	/**
-	 * IMPORT EACH COMPONENT
-	 */
-	
-	var _toast = __webpack_require__(6);
+	var _toast = __webpack_require__(1);
 	
 	var _toast2 = _interopRequireDefault(_toast);
 	
-	var _buttonToggle = __webpack_require__(10);
+	var _buttonToggle = __webpack_require__(7);
 	
 	var _buttonToggle2 = _interopRequireDefault(_buttonToggle);
 	
-	var _dropdownMultiselect = __webpack_require__(14);
+	var _dropdownMultiselect = __webpack_require__(11);
 	
 	var _dropdownMultiselect2 = _interopRequireDefault(_dropdownMultiselect);
 	
-	var _offcanvasDrawer = __webpack_require__(28);
+	var _offcanvasDrawer = __webpack_require__(20);
 	
-	var _spinner = __webpack_require__(32);
+	var _spinner = __webpack_require__(24);
 	
 	var _spinner2 = _interopRequireDefault(_spinner);
 	
-	var _truncate = __webpack_require__(36);
+	var _truncate = __webpack_require__(28);
 	
 	var _truncate2 = _interopRequireDefault(_truncate);
 	
-	var _fileUpload = __webpack_require__(40);
+	var _fileUpload = __webpack_require__(32);
 	
 	var _fileUpload2 = _interopRequireDefault(_fileUpload);
 	
-	var _wizard = __webpack_require__(48);
+	var _wizard = __webpack_require__(37);
 	
 	var gritcode = {
 		toast: _toast2['default'],
@@ -121,24 +114,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	// import core stuff
-	'use strict';
-	
-	__webpack_require__(2);
-
-/***/ },
-/* 2 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// import styling
 	'use strict';
 	
@@ -148,11 +123,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(7);
+	__webpack_require__(2);
 	
 	// import template
 	
-	var _toastHtml = __webpack_require__(9);
+	var _toastHtml = __webpack_require__(6);
 	
 	var _toastHtml2 = _interopRequireDefault(_toastHtml);
 	
@@ -309,20 +284,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 7 */
+/* 2 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 8 */,
-/* 9 */
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{position}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\r\n  <div v-html=\"message\"></div>\r\n  <div class=\"action\">\r\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\r\n\t    <span aria-hidden=\"true\">&times;</span>\r\n\t  </button>\r\n  </div>\r\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\r\n</div>";
 
 /***/ },
-/* 10 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -333,9 +310,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(11);
+	__webpack_require__(8);
 	
-	var _buttonToggleHtml = __webpack_require__(13);
+	var _buttonToggleHtml = __webpack_require__(10);
 	
 	var _buttonToggleHtml2 = _interopRequireDefault(_buttonToggleHtml);
 	
@@ -398,20 +375,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 11 */
+/* 8 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 12 */,
-/* 13 */
+/* 9 */,
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\" :disabled=\"disabled\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click.prevent=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click.prevent=\"toggle()\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click.prevent=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
 
 /***/ },
-/* 14 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -423,19 +400,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(15);
-	
-	__webpack_require__(17);
+	__webpack_require__(12);
 	
 	// import template
 	
-	var _dropdownMultiselectHtml = __webpack_require__(22);
+	var _dropdownMultiselectHtml = __webpack_require__(14);
 	
 	var _dropdownMultiselectHtml2 = _interopRequireDefault(_dropdownMultiselectHtml);
 	
 	// import dependencies
 	
-	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(23);
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(15);
 	
 	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
 	
@@ -591,45 +566,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 15 */
+/* 12 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 16 */,
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// import dependencies
-	'use strict';
-	
-	__webpack_require__(18);
-	
-	__webpack_require__(20);
-
-/***/ },
-/* 18 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 19 */,
-/* 20 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 21 */,
-/* 22 */
+/* 13 */,
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"dropdown-multiselect-gritcode\" v-bind:class=\"{open: show, dropdown: !dropup, dropup: dropup}\">\r\n    <button\r\n        id=\"dLabel\"\r\n        class=\"btn dropdown {{dropdownToggle}} {{btnVariant}} {{btnSize}}\"\r\n        role=\"button\"\r\n        aria-haspopup=\"true\"\r\n        aria-expanded=\"show\"\r\n        v-on:click.prevent=\"toggle($event)\"\r\n        :disabled=\"disabled\">\r\n        <span class=\"checked-items\" v-html=\"displayItem\"></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu\" v-bind:class=\"{'dropdown-menu-right' : position == 'right'}\" aria-labelledby=\"dLabel\">\r\n        <li v-for=\"item in list\">\r\n            <button class=\"dropdown-item\" v-on:click.stop.prevent=\"select($index)\" title=\"{{item.text}}\">{{item.text}} <vs-icon name=\"check\" v-show=\"checked($index) !== false\" class=\"pull-right\"></vs-icon></button>\r\n        </li>\r\n    </ul>\r\n</div>";
 
 /***/ },
-/* 23 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -641,15 +591,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(24);
+	__webpack_require__(16);
 	
-	var _iconsHtml = __webpack_require__(26);
+	var _iconsHtml = __webpack_require__(18);
 	
 	var _iconsHtml2 = _interopRequireDefault(_iconsHtml);
 	
 	// enable support for svg in all browsers
 	
-	__webpack_require__(27);
+	__webpack_require__(19);
 	
 	// export component object
 	exports['default'] = {
@@ -712,20 +662,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 24 */
+/* 16 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 25 */,
-/* 26 */
+/* 17 */,
+/* 18 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"icons icons-vuestrap {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
-/* 27 */
+/* 19 */
 /***/ function(module, exports) {
 
 	/*! svg4everybody v2.0.0 | github.com/jonathantneal/svg4everybody */
@@ -864,7 +814,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.svgPolyfill = svgPolyfill;
 
 /***/ },
-/* 28 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -876,11 +826,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(29);
+	__webpack_require__(21);
 	
 	// import template
 	
-	var _offcanvasDrawerHtml = __webpack_require__(31);
+	var _offcanvasDrawerHtml = __webpack_require__(23);
 	
 	var _offcanvasDrawerHtml2 = _interopRequireDefault(_offcanvasDrawerHtml);
 	
@@ -934,20 +884,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.offcanvasDrawer = offcanvasDrawer;
 
 /***/ },
-/* 29 */
+/* 21 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 30 */,
-/* 31 */
+/* 22 */,
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"{{id}}\" class=\"gritcode-offcanvas-drawer {{animation}} {{align}} {{show ? 'active' : ''}}\">\r\n  <slot></slot>\r\n</div>\r\n";
 
 /***/ },
-/* 32 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -959,11 +909,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(33);
+	__webpack_require__(25);
 	
 	// import template
 	
-	var _spinnerHtml = __webpack_require__(35);
+	var _spinnerHtml = __webpack_require__(27);
 	
 	var _spinnerHtml2 = _interopRequireDefault(_spinnerHtml);
 	
@@ -1057,20 +1007,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 33 */
+/* 25 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 34 */,
-/* 35 */
+/* 26 */,
+/* 27 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"spinner spinner-gritcode {{spinnerSize}} {{fixed ? 'spinner-fixed' : ''}}\" v-show=\"active\"> \r\n\t<div class=\"spinner-wrapper\">\r\n\t  <div class=\"spinner-circle\"></div>\r\n\t  <div class=\"spinner-text\">{{text}}</div>\r\n  </div>\r\n</div>\r\n";
 
 /***/ },
-/* 36 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -1082,11 +1032,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(37);
+	__webpack_require__(29);
 	
 	// import template
 	
-	var _truncateHtml = __webpack_require__(39);
+	var _truncateHtml = __webpack_require__(31);
 	
 	var _truncateHtml2 = _interopRequireDefault(_truncateHtml);
 	
@@ -1107,20 +1057,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 37 */
+/* 29 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 38 */,
-/* 39 */
+/* 30 */,
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"truncate truncate-gritcode\" v-bind:style=\"{width: truncateWidth}\"><slot></slot></span>\r\n";
 
 /***/ },
-/* 40 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// inspired by href='https://css-tricks.com/drag-and-drop-file-uploading/'
@@ -1134,15 +1084,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(41);
+	__webpack_require__(33);
 	
-	__webpack_require__(43);
-	
-	var _fileUploadHtml = __webpack_require__(46);
+	var _fileUploadHtml = __webpack_require__(35);
 	
 	var _fileUploadHtml2 = _interopRequireDefault(_fileUploadHtml);
 	
-	var _utilsHelpersJs = __webpack_require__(47);
+	var _utilsHelpersJs = __webpack_require__(36);
 	
 	// export component object
 	exports['default'] = {
@@ -1433,36 +1381,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 41 */
+/* 33 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 42 */,
-/* 43 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// import dependencies
-	'use strict';
-	
-	__webpack_require__(44);
-
-/***/ },
-/* 44 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 45 */,
-/* 46 */
+/* 34 */,
+/* 35 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"{{id}}\" class=\"gritcode-file-upload {{advancedUpload ? 'advanced-upload' : ''}} {{dragover ? 'is-dragover' : ''}}\">\r\n    <div class=\"input\" v-if=\"state == null || state == 'retry'\">\r\n        <svg class=\"icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"43\" viewBox=\"0 0 50 43\" v-if=\"advancedUpload\">\r\n            <path d=\"M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z\" />\r\n        </svg>\r\n        <input \r\n            type=\"file\" \r\n            name=\"files[]\" \r\n            id=\"file\"\r\n            accept=\"accept\" \r\n            v-bind:multiple=\"multiple && advancedUpload\" \r\n            v-on:change=\"onChange($event)\" />\r\n        <label for=\"file\">\r\n            <span v-if=\"fileList.length == 0\"><strong>{{text.action}}</strong><span v-if=\"advancedUpload\"> {{text.drag}}</span></span>\r\n            <span v-if=\"fileList.length > 0\" class=\"\">{{displaySelectionText}}</span>\r\n        </label>\r\n        <button type=\"submit\" class=\"btn btn-primary\" v-if=\"!hideButton && !autoSubmit\" v-on:click.prevent=\"submitForm($event)\">{{text.button}}</button>\r\n    </div>\r\n    <div class=\"state\" v-if=\"state != null\">\r\n        <span class=\"state-uploading animate\" v-show=\"state == 'uploading'\">{{text.uploading}}<span v-if=\"advancedUpload\">{{progress}}</span></span>\r\n        <span class=\"state-success animate\" v-show=\"state == 'success'\">\r\n            {{text.done}} <a href=\"#\" v-on:click.prevent=\"restart\" role=\"button\" v-show=\"multiple\">{{text.restart}}</a>\r\n        </span>\r\n        <span class=\"state-error animate\" v-show=\"state == 'error'\">\r\n            Error! <span>{{errorMessage}}</span> <a href=\"#\" v-on:click.prevent=\"retry\">{{text.retry}}</a>\r\n        </span>\r\n    </div>\r\n</div>";
 
 /***/ },
-/* 47 */
+/* 36 */
 /***/ function(module, exports) {
 
 	/**
@@ -1535,7 +1467,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.trigger = trigger;
 
 /***/ },
-/* 48 */
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -1547,21 +1479,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 	
-	__webpack_require__(49);
+	__webpack_require__(38);
 	
-	var _wizardHtml = __webpack_require__(51);
+	var _wizardHtml = __webpack_require__(40);
 	
 	var _wizardHtml2 = _interopRequireDefault(_wizardHtml);
 	
-	var _wizardStepHtml = __webpack_require__(52);
+	var _wizardStepHtml = __webpack_require__(41);
 	
 	var _wizardStepHtml2 = _interopRequireDefault(_wizardStepHtml);
 	
-	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(23);
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(15);
 	
 	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
 	
-	var _utilsHelpersJs = __webpack_require__(47);
+	var _utilsHelpersJs = __webpack_require__(36);
 	
 	// export component object
 	var wizard = {
@@ -1692,20 +1624,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports.wizardStep = wizardStep;
 
 /***/ },
-/* 49 */
+/* 38 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 50 */,
-/* 51 */
+/* 39 */,
+/* 40 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"gritcode-wizard\">\r\n   <slot></slot>\r\n</div>\r\n";
 
 /***/ },
-/* 52 */
+/* 41 */
 /***/ function(module, exports) {
 
 	module.exports = "<div v-bind:class=\"{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}\" v-on:click.prevent=\"changeCurrentIndex()\">\r\n\t<div class=\"wizard-progress\">\r\n\t\t<div class=\"wizard-progress-value\"></div>\r\n\t</div>\r\n\t<div class=\"wizard-icon\">\r\n\t\t<div class=\"icon-icon\"><vs-icon :name=\"icon\" v-if=\"icon\"></vs-icon></div>\r\n\t\t<div class=\"icon-number\" v-if=\"!icon\">{{iconNumber || index +1}}</div>\r\n\t</div>\r\n\t<div class=\"wizard-content\">\r\n\t\t<div class=\"title\">{{title}}</div>\r\n\t\t<div class=\"description\">{{description}}</div>\r\n\t</div>\r\n\t<div class=\"step-info\">\r\n\t\tStep {{index+1}}/{{$parent.countItems}}\r\n\t</div>\r\n</div>";

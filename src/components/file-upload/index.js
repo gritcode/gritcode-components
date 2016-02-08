@@ -2,7 +2,6 @@
 
 // import dependencies
 import './file-upload.scss'
-import 'vuestrap/components/labels'
 import template from './file-upload.html'
 import {testSameOrigin, trigger} from '../../utils/helpers.js'
 

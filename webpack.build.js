@@ -7,11 +7,16 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 // get some options
 var ENV = optimist.argv.env || 'development'
 var BUNDLE = optimist.argv.bundle || false
+var VUESTRAP = optimist.argv.vuestrap || false
 
 // file name
 var fileName = (ENV === 'production') ? './dist/[name].min' : './dist/[name]'
 if (BUNDLE) {
   fileName = (ENV === 'production') ? './dist/[name]-bundle.min' : './dist/[name]-bundle'
+}
+// global styles are exported seperately to component styles
+if (VUESTRAP) {
+  fileName = (ENV === 'production') ? './dist/vuestrap.min' : './dist/vuestrap'
 }
 
 /**
@@ -40,7 +45,7 @@ if (ENV === 'production') {
 /**
  * define devtool for source maps
  */
-if (ENV === 'development' && !BUNDLE) {
+if (ENV === 'development' && !BUNDLE && !VUESTRAP) {
   config.devtool = 'source-map'
 }
 
@@ -71,6 +76,9 @@ if (ENV !== 'docs') {
   config.entry[pkg.library] = './src/components/compiled.js'
 } else {
   config.entry = './src/index.js'
+}
+if (VUESTRAP) {
+  config.entry = './src/vuestrap/index.js'
 }
 
 /**

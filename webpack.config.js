@@ -16,6 +16,7 @@ module.exports = {
       include: [
         path.resolve('./src'),
         path.resolve('./node_modules/vuestrap'),
+        path.resolve('./node_modules/vuestrap-docs'),
         path.resolve('./node_modules/vuestrap-base-components')
       ],
       loader: 'babel'

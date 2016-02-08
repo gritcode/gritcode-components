@@ -6,6 +6,8 @@
   ],
   "description": "Web components that extend Bootstrap 4.",
   "main": [
+    "dist/vuestrap.css",
+    "dist/vuestrap.min.css",
     "dist/gritcode-components.js",
     "dist/gritcode-components.js.map",
     "dist/gritcode-components.min.js",

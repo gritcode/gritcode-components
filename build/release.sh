@@ -24,10 +24,8 @@ then
     # commit
     git add -A
     git commit -m "[build] $VERSION"
-    npm version $VERSION --message "[release] $VERSION"
+    npm version $VERSION -m "[release] $VERSION"
 
     # publish
-    git push origin refs/tags/v$VERSION
-    git push
-    npm publish
+    git push origin master && npm publish
 fi

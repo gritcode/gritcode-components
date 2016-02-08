@@ -62,3 +62,19 @@ export const trigger = (el, event, args) => {
   // non-attached form controls can throw errors
   try { el.dispatchEvent(e) } catch (e) {}
 }
+
+/**
+ * change location utility supports v-link like paths or hrefs
+ *
+ * @param {Element} el
+ * @param {String} event
+ * @param {Object} [args]
+ */
+export const changeLocation = (router, link) => {
+  if (!link) return
+  if (router) {
+    router.go(link)
+  } else {
+    window.location.href = link
+  }
+}

@@ -1,14 +1,8 @@
-/**
- * IMPORT GLOBAL STYLING
- */
-// import normalize, grid, utilities and
-import 'vuestrap/core'
-
 // import external dependencies
 // docs component handles routing and demo pages
 import {vsDocsPages, vsDocsDrawer} from 'vuestrap-docs/src/components'
 
-// drawer example
+// drawer
 import {offcanvasWrapper as vsOffcanvasWrapper, offcanvasDrawer as vsOffcanvasDrawer} from 'src/components/offcanvas-drawer'
 import vsToast from 'src/components/toast'
 

@@ -14,6 +14,7 @@ then
     # npm run cover 2>/dev/null
 
     # build
+    npm version $VERSION --no-git-tag-version
     VERSION=$VERSION npm run build
 
     # e2e
@@ -23,8 +24,7 @@ then
 
     # commit
     git add -A
-    git commit -m "[build] $VERSION"
-    npm version $VERSION -m "[release] $VERSION"
+    git commit -m "Release $VERSION"
 
     # publish
     git push origin master && npm publish

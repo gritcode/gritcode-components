@@ -79,7 +79,7 @@
 
 	// import package.json meta data
 
-	var _packageJson = __webpack_require__(65);
+	var _packageJson = __webpack_require__(68);
 
 	var _packageJson2 = _interopRequireDefault(_packageJson);
 
@@ -2088,41 +2088,43 @@
 
 	__webpack_require__(57);
 
+	__webpack_require__(60);
+
 	// import modules and pages
 
-	var _srcDocsIntroduction = __webpack_require__(60);
+	var _srcDocsIntroduction = __webpack_require__(63);
 
 	var _srcDocsIntroduction2 = _interopRequireDefault(_srcDocsIntroduction);
 
-	var _srcDocsToast = __webpack_require__(66);
+	var _srcDocsToast = __webpack_require__(69);
 
 	var _srcDocsToast2 = _interopRequireDefault(_srcDocsToast);
 
-	var _srcDocsTruncate = __webpack_require__(70);
+	var _srcDocsTruncate = __webpack_require__(73);
 
 	var _srcDocsTruncate2 = _interopRequireDefault(_srcDocsTruncate);
 
-	var _srcDocsSpinner = __webpack_require__(78);
+	var _srcDocsSpinner = __webpack_require__(81);
 
 	var _srcDocsSpinner2 = _interopRequireDefault(_srcDocsSpinner);
 
-	var _srcDocsOffcanvasDrawer = __webpack_require__(87);
+	var _srcDocsOffcanvasDrawer = __webpack_require__(90);
 
 	var _srcDocsOffcanvasDrawer2 = _interopRequireDefault(_srcDocsOffcanvasDrawer);
 
-	var _srcDocsDropdownMultiselect = __webpack_require__(91);
+	var _srcDocsDropdownMultiselect = __webpack_require__(94);
 
 	var _srcDocsDropdownMultiselect2 = _interopRequireDefault(_srcDocsDropdownMultiselect);
 
-	var _srcDocsButtonToggle = __webpack_require__(104);
+	var _srcDocsButtonToggle = __webpack_require__(107);
 
 	var _srcDocsButtonToggle2 = _interopRequireDefault(_srcDocsButtonToggle);
 
-	var _srcDocsFileUpload = __webpack_require__(112);
+	var _srcDocsFileUpload = __webpack_require__(115);
 
 	var _srcDocsFileUpload2 = _interopRequireDefault(_srcDocsFileUpload);
 
-	var _srcDocsWizard = __webpack_require__(121);
+	var _srcDocsWizard = __webpack_require__(124);
 
 	var _srcDocsWizard2 = _interopRequireDefault(_srcDocsWizard);
 
@@ -2581,6 +2583,57 @@
 /* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// import dependencies
+	'use strict';
+
+	__webpack_require__(61);
+
+	__webpack_require__(40);
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(62);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(5)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_dropdown.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_dropdown.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 62 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(4)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".dropup,\n.dropdown {\n  position: relative; }\n\n.dropdown-toggle::after {\n  display: inline-block;\n  width: 0;\n  height: 0;\n  margin-right: .25rem;\n  margin-left: .25rem;\n  vertical-align: middle;\n  content: \"\";\n  border-top: 0.3em solid;\n  border-right: 0.3em solid transparent;\n  border-left: 0.3em solid transparent; }\n\n.dropdown-toggle:focus {\n  outline: 0; }\n\n.dropup .dropdown-toggle::after {\n  border-top: 0;\n  border-bottom: 0.3em solid; }\n\n.dropdown-menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: none;\n  float: left;\n  min-width: 160px;\n  padding: 5px 0;\n  margin: 2px 0 0;\n  font-size: 1rem;\n  color: #373a3c;\n  text-align: left;\n  list-style: none;\n  background-color: #fff;\n  background-clip: padding-box;\n  border: 1px solid rgba(0, 0, 0, 0.15);\n  border-radius: 0.25rem; }\n\n.dropdown-divider {\n  height: 1px;\n  margin: 0.5rem 0;\n  overflow: hidden;\n  background-color: #e5e5e5; }\n\n.dropdown-item {\n  display: block;\n  width: 100%;\n  padding: 3px 20px;\n  clear: both;\n  font-weight: normal;\n  line-height: 1.5;\n  color: #373a3c;\n  text-align: inherit;\n  white-space: nowrap;\n  background: none;\n  border: 0; }\n  .dropdown-item:focus, .dropdown-item:hover {\n    color: #2b2d2f;\n    text-decoration: none;\n    background-color: #f5f5f5; }\n  .dropdown-item.active, .dropdown-item.active:focus, .dropdown-item.active:hover {\n    color: #fff;\n    text-decoration: none;\n    background-color: #563d7c;\n    outline: 0; }\n  .dropdown-item.disabled, .dropdown-item.disabled:focus, .dropdown-item.disabled:hover {\n    color: #818a91; }\n  .dropdown-item.disabled:focus, .dropdown-item.disabled:hover {\n    text-decoration: none;\n    cursor: not-allowed;\n    background-color: transparent;\n    background-image: none;\n    filter: \"progid:DXImageTransform.Microsoft.gradient(enabled = false)\"; }\n\n.open > .dropdown-menu {\n  display: block; }\n\n.open > a {\n  outline: 0; }\n\n.dropdown-menu-right {\n  right: 0;\n  left: auto; }\n\n.dropdown-menu-left {\n  right: auto;\n  left: 0; }\n\n.dropdown-header {\n  display: block;\n  padding: 3px 20px;\n  font-size: 0.875rem;\n  line-height: 1.5;\n  color: #818a91;\n  white-space: nowrap; }\n\n.dropdown-backdrop {\n  position: fixed;\n  top: 0;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  z-index: 990; }\n\n.pull-right > .dropdown-menu {\n  right: 0;\n  left: auto; }\n\n.dropup .caret,\n.navbar-fixed-bottom .dropdown .caret {\n  content: \"\";\n  border-top: 0;\n  border-bottom: 0.3em solid; }\n\n.dropup .dropdown-menu,\n.navbar-fixed-bottom .dropdown .dropdown-menu {\n  top: auto;\n  bottom: 100%;\n  margin-bottom: 2px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 63 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
@@ -2589,13 +2642,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _introductionHtml = __webpack_require__(61);
+	var _introductionHtml = __webpack_require__(64);
 
 	var _introductionHtml2 = _interopRequireDefault(_introductionHtml);
 
-	__webpack_require__(62);
+	__webpack_require__(65);
 
-	var _packageJson = __webpack_require__(65);
+	var _packageJson = __webpack_require__(68);
 
 	var _packageJson2 = _interopRequireDefault(_packageJson);
 
@@ -2618,28 +2671,28 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 61 */
+/* 64 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"jumbotron\">\r\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\r\n  <p>{{pkg.description}}</p>\r\n</div>\r\n<h2>Installation</h2>\r\n<div class=\"row\">\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Compiled</h3>\r\n    <p>Minified CSS and JavaScript with no documentation or original source files.</p>\r\n    <code>bower install {{pkg.name}} --save-dev</code>\r\n  </div>\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Source</h3>\r\n    <p>Source Sass, JavaScript, and documentation files.</p>\r\n    <code>npm install {{pkg.name}} --save-dev</code>\r\n   </div>\r\n</div>\r\n\r\n<div class=\"m-b-lg\"></div>\r\n<h2>Usage</h2>\r\n<p>For compiled components, use it within your Vue instance like this:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}': {{pkg.library}}.{{componentNameCamelCase}} }})</code></p>\r\n\r\n<div class=\"m-b\"></div>\r\n<strong>OR</strong>\r\n<div class=\"m-b\"></div>\r\n\r\n<p>If you chosen to work with source components, just import* desired component like so:</p>\r\n<p><code>import {{componentNameCamelCase}} from '{{pkg.name}}/src/components/{{componentName}}'</code></p>\r\n<p>and then load it in your Vue instance:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}' : {{componentNameCamelCase}} }})</code></p>\r\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>\r\n\r\n<h2 class=\"m-t-lg\">Theming</h2>\r\n<p>To be able to use your app theme with component's scss variables, you will need to use <a href=\"https://github.com/kzima/vueastrap-theme-loader\">vuestrap-theme-loader</a> in your webpack config file. </p>\r\n\r\n<p><code>npm install vuestrap-theme-loader --save-dev</code></p>\r\n\r\n<p>See <a href=\"https://github.com/kzima/vuestrap-starter\">vuestrap-starter</a> for a webpack config example with theme loader.</p>";
 
 /***/ },
-/* 62 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 
-	__webpack_require__(63);
+	__webpack_require__(66);
 
 /***/ },
-/* 63 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(64);
+	var content = __webpack_require__(67);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -2659,7 +2712,7 @@
 	}
 
 /***/ },
-/* 64 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -2673,12 +2726,12 @@
 
 
 /***/ },
-/* 65 */
+/* 68 */
 /***/ function(module, exports) {
 
 	module.exports = {
 		"name": "gritcode-components",
-		"version": "0.4.0",
+		"version": "0.4.1",
 		"description": "Web components built with Vuestrap.",
 		"library": "gritcode-components",
 		"repository": {
@@ -2686,14 +2739,14 @@
 			"url": "git+https://github.com/gritcode/gritcode-components.git"
 		},
 		"scripts": {
-			"build": "npm run docs && npm run dev &&  npm run dist && npm run dev-bundle && npm run dist-bundle && npm run vuestrap",
-			"vuestrap": "webpack --colors --progress --config webpack.build.js --env development --vuestrap true && webpack --colors --progress --config webpack.build.js --env production --vuestrap true",
+			"build": "npm run docs && npm run dev && npm run dev-bundle && npm run dist && npm run dist-bundle",
 			"dist": "webpack --colors --progress --config webpack.build.js --env production",
 			"dist-bundle": "webpack --colors --progress --config webpack.build.js --env production --bundle true",
 			"dev": "webpack --colors --progress --config webpack.build.js --env development",
 			"dev-bundle": "webpack --colors --progress --config webpack.build.js --env development --bundle true",
 			"docs": "webpack --colors --progress --config  webpack.build.js --env docs",
-			"serve-docs": "webpack-dev-server --port 8084 --inline --hot --quiet --config webpack.build.js --env docs"
+			"serve-docs": "webpack-dev-server --port 8084 --inline --hot --quiet --config webpack.build.js --env docs",
+			"release": "bash build/release.sh && bash build/gh-pages.sh"
 		},
 		"keywords": [
 			"Bootstrap4",
@@ -2745,7 +2798,7 @@
 	};
 
 /***/ },
-/* 66 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2756,15 +2809,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _toastJson = __webpack_require__(67);
+	var _toastJson = __webpack_require__(70);
 
 	var _toastJson2 = _interopRequireDefault(_toastJson);
 
-	var _toastHtml = __webpack_require__(68);
+	var _toastHtml = __webpack_require__(71);
 
 	var _toastHtml2 = _interopRequireDefault(_toastHtml);
 
-	var _snippetHtml = __webpack_require__(69);
+	var _snippetHtml = __webpack_require__(72);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
@@ -2802,7 +2855,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 67 */
+/* 70 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2863,19 +2916,19 @@
 	};
 
 /***/ },
-/* 68 */
+/* 71 */
 /***/ function(module, exports) {
 
 	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>hide progressbar <input type=\"checkbox\" v-model=\"hideProgress\"></label>\r\n\t\t<label>duration\r\n\t\t\t<select v-model=\"duration\">\r\n\t\t\t\t<option v-for=\"option in durations\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>position\r\n\t\t\t<select v-model=\"position\">\r\n\t\t\t\t<option v-for=\"option in positions\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tmessage: 'Default', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position,\r\n\t\t\tduration: duration\r\n\t\t})\">default</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tsuccess: 'Success!', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position,\r\n\t\t\tduration: duration\r\n\t\t\t})\">success</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\terror: 'Error!', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position,\r\n\t\t\tduration: duration\r\n\t\t\t})\">error</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tinfo: 'Info.', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position,\r\n\t\t\tduration: duration\r\n\t\t\t})\">info</button>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
-/* 69 */
+/* 72 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"hljs-comment\">&lt;!-- trigger examples --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {message: 'Default'})\"</span>&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {success: 'Success!'})\"</span>&gt;</span>success<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {error: 'Error!'})\"</span>&gt;</span>error<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {info: 'Info.'})\"</span>&gt;</span>info<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n\r\n<span class=\"hljs-comment\">&lt;!-- toast element --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-toast</span> \r\n  <span class=\"hljs-attribute\">:hide-progress</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:duration</span>=<span class=\"hljs-value\">\"6000\"</span> \r\n  <span class=\"hljs-attribute\">position</span>=<span class=\"hljs-value\">\"bottom left\"</span> \r\n  <span class=\"hljs-attribute\">context</span>=<span class=\"hljs-value\">\"default\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-toast</span>&gt;</span>";
 
 /***/ },
-/* 70 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2886,19 +2939,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _truncateJson = __webpack_require__(71);
+	var _truncateJson = __webpack_require__(74);
 
 	var _truncateJson2 = _interopRequireDefault(_truncateJson);
 
-	var _truncateHtml = __webpack_require__(72);
+	var _truncateHtml = __webpack_require__(75);
 
 	var _truncateHtml2 = _interopRequireDefault(_truncateHtml);
 
-	var _snippetHtml = __webpack_require__(73);
+	var _snippetHtml = __webpack_require__(76);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsTruncate = __webpack_require__(74);
+	var _srcComponentsTruncate = __webpack_require__(77);
 
 	var _srcComponentsTruncate2 = _interopRequireDefault(_srcComponentsTruncate);
 
@@ -2929,7 +2982,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 71 */
+/* 74 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2958,19 +3011,19 @@
 	};
 
 /***/ },
-/* 72 */
+/* 75 */
 /***/ function(module, exports) {
 
 	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>width\r\n\t\t\t<select v-model=\"width\">\r\n\t\t\t\t<option v-for=\"option in widths\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<vs-truncate :width=\"width\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, numquam.</vs-truncate>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
-/* 73 */
+/* 76 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-truncate</span> <span class=\"hljs-attribute\">:width</span>=<span class=\"hljs-value\">\"10em\"</span>&gt;</span>\r\n  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, numquam.\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-truncate</span>&gt;</span>";
 
 /***/ },
-/* 74 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -2982,11 +3035,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(75);
+	__webpack_require__(78);
 
 	// import template
 
-	var _truncateHtml = __webpack_require__(77);
+	var _truncateHtml = __webpack_require__(80);
 
 	var _truncateHtml2 = _interopRequireDefault(_truncateHtml);
 
@@ -3007,13 +3060,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 75 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(76);
+	var content = __webpack_require__(79);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -3033,7 +3086,7 @@
 	}
 
 /***/ },
-/* 76 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -3047,13 +3100,13 @@
 
 
 /***/ },
-/* 77 */
+/* 80 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"truncate truncate-gritcode\" v-bind:style=\"{width: truncateWidth}\"><slot></slot></span>\r\n";
 
 /***/ },
-/* 78 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3064,21 +3117,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _spinnerJson = __webpack_require__(79);
+	var _spinnerJson = __webpack_require__(82);
 
 	var _spinnerJson2 = _interopRequireDefault(_spinnerJson);
 
-	var _spinnerHtml = __webpack_require__(80);
+	var _spinnerHtml = __webpack_require__(83);
 
 	var _spinnerHtml2 = _interopRequireDefault(_spinnerHtml);
 
-	var _srcUtils = __webpack_require__(81);
+	var _srcUtils = __webpack_require__(84);
 
-	var _snippetHtml = __webpack_require__(82);
+	var _snippetHtml = __webpack_require__(85);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsSpinner = __webpack_require__(83);
+	var _srcComponentsSpinner = __webpack_require__(86);
 
 	var _srcComponentsSpinner2 = _interopRequireDefault(_srcComponentsSpinner);
 
@@ -3119,7 +3172,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 79 */
+/* 82 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -3168,13 +3221,13 @@
 	};
 
 /***/ },
-/* 80 */
+/* 83 */
 /***/ function(module, exports) {
 
 	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>fixed <input type=\"checkbox\" v-model=\"fixed\"></label>\r\n\t\t<label>size\r\n\t\t\t<select v-model=\"size\">\r\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<button v-on:click=\"$broadcast('show::spinner')\">show spinner</button>\r\n\t\t<vs-spinner id=\"spinner-box\" :size=\"size\" :fixed=\"fixed\" text=\"I will close in 2 secs\"></vs-spinner>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
-/* 81 */
+/* 84 */
 /***/ function(module, exports) {
 
 	/**
@@ -3222,13 +3275,13 @@
 	exports.sizes = sizes;
 
 /***/ },
-/* 82 */
+/* 85 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"hljs-comment\">&lt;!-- trigger --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::spinner')\"</span>&gt;</span>show spinner<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n\r\n<span class=\"hljs-comment\">&lt;!-- spiner --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-spinner</span> <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"spinner-box\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"lg\"</span> <span class=\"hljs-attribute\">text</span>=<span class=\"hljs-value\">\"I will close in 2 secs\"</span> <span class=\"hljs-attribute\">fixed</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-spinner</span>&gt;</span>";
 
 /***/ },
-/* 83 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -3240,11 +3293,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(84);
+	__webpack_require__(87);
 
 	// import template
 
-	var _spinnerHtml = __webpack_require__(86);
+	var _spinnerHtml = __webpack_require__(89);
 
 	var _spinnerHtml2 = _interopRequireDefault(_spinnerHtml);
 
@@ -3338,13 +3391,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 84 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(85);
+	var content = __webpack_require__(88);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -3364,7 +3417,7 @@
 	}
 
 /***/ },
-/* 85 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -3378,13 +3431,13 @@
 
 
 /***/ },
-/* 86 */
+/* 89 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"spinner spinner-gritcode {{spinnerSize}} {{fixed ? 'spinner-fixed' : ''}}\" v-show=\"active\"> \r\n\t<div class=\"spinner-wrapper\">\r\n\t  <div class=\"spinner-circle\"></div>\r\n\t  <div class=\"spinner-text\">{{text}}</div>\r\n  </div>\r\n</div>\r\n";
 
 /***/ },
-/* 87 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3395,15 +3448,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _offcanvasDrawerJson = __webpack_require__(88);
+	var _offcanvasDrawerJson = __webpack_require__(91);
 
 	var _offcanvasDrawerJson2 = _interopRequireDefault(_offcanvasDrawerJson);
 
-	var _offcanvasDrawerHtml = __webpack_require__(89);
+	var _offcanvasDrawerHtml = __webpack_require__(92);
 
 	var _offcanvasDrawerHtml2 = _interopRequireDefault(_offcanvasDrawerHtml);
 
-	var _snippetHtml = __webpack_require__(90);
+	var _snippetHtml = __webpack_require__(93);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
@@ -3432,7 +3485,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 88 */
+/* 91 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -3487,19 +3540,19 @@
 	};
 
 /***/ },
-/* 89 */
+/* 92 */
 /***/ function(module, exports) {
 
 	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>animation\r\n\t\t\t<select v-model=\"$root.animation\">\r\n\t\t\t\t<option v-for=\"option in $root.animations\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>align\r\n\t\t\t<select v-model=\"$root.align\">\r\n\t\t\t\t<option v-for=\"option in $root.aligns\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<button v-on:click=\"$root.$broadcast('toggle::offcanvas-drawer', 'main')\" >toggle drawer</button>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
-/* 90 */
+/* 93 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"hljs-comment\">&lt;!-- wrapper --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-offcanvas-wrapper</span> <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"main\"</span> <span class=\"hljs-attribute\">animation</span>=<span class=\"hljs-value\">\"ease-in\"</span> <span class=\"hljs-attribute\">align</span>=<span class=\"hljs-value\">\"right\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-offcanvas-drawer</span>&gt;</span>\r\n    <span class=\"hljs-comment\">&lt;!-- drawer content --&gt;</span>\r\n    ...\r\n    <span class=\"hljs-comment\">&lt;!-- /drawer content--&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-offcanvas-drawer</span>&gt;</span>\r\n\r\n  <span class=\"hljs-comment\">&lt;!-- page content --&gt;</span>\r\n  ...\r\n  <span class=\"hljs-comment\">&lt;!-- /page content --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-offcanvas-wrapper</span>&gt;</span>";
 
 /***/ },
-/* 91 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3510,19 +3563,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _dropdownMultiselectJson = __webpack_require__(92);
+	var _dropdownMultiselectJson = __webpack_require__(95);
 
 	var _dropdownMultiselectJson2 = _interopRequireDefault(_dropdownMultiselectJson);
 
-	var _dropdownMultiselectHtml = __webpack_require__(93);
+	var _dropdownMultiselectHtml = __webpack_require__(96);
 
 	var _dropdownMultiselectHtml2 = _interopRequireDefault(_dropdownMultiselectHtml);
 
-	var _snippetHtml = __webpack_require__(94);
+	var _snippetHtml = __webpack_require__(97);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsDropdownMultiselect = __webpack_require__(95);
+	var _srcComponentsDropdownMultiselect = __webpack_require__(98);
 
 	var _srcComponentsDropdownMultiselect2 = _interopRequireDefault(_srcComponentsDropdownMultiselect);
 
@@ -3530,7 +3583,7 @@
 
 	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
 
-	var _srcUtils = __webpack_require__(81);
+	var _srcUtils = __webpack_require__(84);
 
 	exports['default'] = {
 	  route: {
@@ -3564,7 +3617,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 92 */
+/* 95 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -3678,19 +3731,19 @@
 	};
 
 /***/ },
-/* 93 */
+/* 96 */
 /***/ function(module, exports) {
 
 	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>caret <input type=\"checkbox\" v-model=\"caret\"></label>\r\n\t\t<label>dropup <input type=\"checkbox\" v-model=\"dropup\"></label>\r\n\t\t<label>\r\n\t\t\tsize \r\n\t\t\t<select v-model=\"size\">\r\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>\r\n\t\t\tvariant \r\n\t\t\t<select v-model=\"variant\">\r\n\t\t\t\t<option v-for=\"option in variants\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>\r\n\t\t\tposition \r\n\t\t\t<select v-model=\"position\">\r\n\t\t\t\t<option v-for=\"option in positions\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" class=\"clearfix\">\r\n\t\t<vs-dropdown-multiselect \r\n\t\t\t:size=\"size\" \r\n\t\t\t:list=\"list\"\r\n\t\t\t:model.sync=\"model\" \r\n\t\t\tdefault-text=\"Select Countries\"\r\n\t\t\tdefault-text-multiple=\"countries selected\"\r\n\t\t\t:variant=\"variant\"\r\n\t\t\t:position=\"position\"\r\n\t\t\t:dropup=\"dropup\"\r\n\t\t\t:max-count=\"2\"\r\n\t\t\t:caret=\"caret\"\r\n\t\t\treturn-object\r\n\t\t\tv-bind:class=\"{'pull-right': position == 'right'}\">\r\n\t\t</vs-dropdown-multiselect>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
-/* 94 */
+/* 97 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-dropdown-multiselect</span> \r\n  <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"md\"</span> \r\n  <span class=\"hljs-attribute\">:list</span>=<span class=\"hljs-value\">\"[\r\n    {text: 'Australia', value: 'AU'},\r\n    {text: 'China', value: 'CN'},\r\n    {text: 'Germany', value: 'DE'},\r\n  ]\"</span>\r\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \r\n  <span class=\"hljs-attribute\">default-text</span>=<span class=\"hljs-value\">\"Select Countries\"</span>\r\n  <span class=\"hljs-attribute\">default-text-multiple</span>=<span class=\"hljs-value\">\"countries selected\"</span>\r\n  <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"default\"</span>\r\n  <span class=\"hljs-attribute\">:max-count</span>=<span class=\"hljs-value\">\"2\"</span>\r\n  <span class=\"hljs-attribute\">return-object</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-dropdown-multiselect</span>&gt;</span>";
 
 /***/ },
-/* 95 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -3702,17 +3755,17 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(96);
+	__webpack_require__(99);
 
 	// import template
 
-	var _dropdownMultiselectHtml = __webpack_require__(98);
+	var _dropdownMultiselectHtml = __webpack_require__(101);
 
 	var _dropdownMultiselectHtml2 = _interopRequireDefault(_dropdownMultiselectHtml);
 
 	// import dependencies
 
-	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(99);
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(102);
 
 	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
 
@@ -3868,13 +3921,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 96 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(97);
+	var content = __webpack_require__(100);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -3894,7 +3947,7 @@
 	}
 
 /***/ },
-/* 97 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -3908,13 +3961,13 @@
 
 
 /***/ },
-/* 98 */
+/* 101 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"dropdown-multiselect-gritcode\" v-bind:class=\"{open: show, dropdown: !dropup, dropup: dropup}\">\r\n    <button\r\n        id=\"dLabel\"\r\n        class=\"btn dropdown {{dropdownToggle}} {{btnVariant}} {{btnSize}}\"\r\n        role=\"button\"\r\n        aria-haspopup=\"true\"\r\n        aria-expanded=\"show\"\r\n        v-on:click.prevent=\"toggle($event)\"\r\n        :disabled=\"disabled\">\r\n        <span class=\"checked-items\" v-html=\"displayItem\"></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu\" v-bind:class=\"{'dropdown-menu-right' : position == 'right'}\" aria-labelledby=\"dLabel\">\r\n        <li v-for=\"item in list\">\r\n            <button class=\"dropdown-item\" v-on:click.stop.prevent=\"select($index)\" title=\"{{item.text}}\">{{item.text}} <vs-icon name=\"check\" v-show=\"checked($index) !== false\" class=\"pull-right\"></vs-icon></button>\r\n        </li>\r\n    </ul>\r\n</div>";
 
 /***/ },
-/* 99 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -3926,15 +3979,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(100);
+	__webpack_require__(103);
 
-	var _iconsHtml = __webpack_require__(102);
+	var _iconsHtml = __webpack_require__(105);
 
 	var _iconsHtml2 = _interopRequireDefault(_iconsHtml);
 
 	// enable support for svg in all browsers
 
-	__webpack_require__(103);
+	__webpack_require__(106);
 
 	// export component object
 	exports['default'] = {
@@ -3997,13 +4050,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 100 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(101);
+	var content = __webpack_require__(104);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -4023,7 +4076,7 @@
 	}
 
 /***/ },
-/* 101 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -4037,13 +4090,13 @@
 
 
 /***/ },
-/* 102 */
+/* 105 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"icons icons-vuestrap {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
-/* 103 */
+/* 106 */
 /***/ function(module, exports) {
 
 	/*! svg4everybody v2.0.0 | github.com/jonathantneal/svg4everybody */
@@ -4182,7 +4235,7 @@
 	exports.svgPolyfill = svgPolyfill;
 
 /***/ },
-/* 104 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4193,19 +4246,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _buttonToggleJson = __webpack_require__(105);
+	var _buttonToggleJson = __webpack_require__(108);
 
 	var _buttonToggleJson2 = _interopRequireDefault(_buttonToggleJson);
 
-	var _buttonToggleHtml = __webpack_require__(106);
+	var _buttonToggleHtml = __webpack_require__(109);
 
 	var _buttonToggleHtml2 = _interopRequireDefault(_buttonToggleHtml);
 
-	var _snippetHtml = __webpack_require__(107);
+	var _snippetHtml = __webpack_require__(110);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsButtonToggle = __webpack_require__(108);
+	var _srcComponentsButtonToggle = __webpack_require__(111);
 
 	var _srcComponentsButtonToggle2 = _interopRequireDefault(_srcComponentsButtonToggle);
 
@@ -4213,7 +4266,7 @@
 
 	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
 
-	var _srcUtils = __webpack_require__(81);
+	var _srcUtils = __webpack_require__(84);
 
 	exports['default'] = {
 	  route: {
@@ -4241,7 +4294,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 105 */
+/* 108 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -4309,19 +4362,19 @@
 	};
 
 /***/ },
-/* 106 */
+/* 109 */
 /***/ function(module, exports) {
 
 	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>\r\n\t\t\tsize \r\n\t\t\t<select v-model=\"size\">\r\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>\r\n\t\t\tvariant \r\n\t\t\t<select v-model=\"variant\">\r\n\t\t\t\t<option v-for=\"option in variants\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" class=\"clearfix\">\r\n\t\t<vs-button-toggle \r\n\t\t\t:size=\"size\" \r\n\t\t\t:text=\"{on: 'Yes', off: 'No'}\" \r\n\t\t\t:model.sync=\"model\" \r\n\t\t\t:variant=\"variant\"\r\n\t\t\tstyle=\"width: 5em\">\r\n\t\t</vs-button-toggle>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
-/* 107 */
+/* 110 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-button-toggle</span> \r\n  <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"md\"</span> \r\n  <span class=\"hljs-attribute\">:text</span>=<span class=\"hljs-value\">\"{on: 'Yes', off: 'No'}\"</span> \r\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \r\n  <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"default\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-button-toggle</span>&gt;</span>";
 
 /***/ },
-/* 108 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4332,9 +4385,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(109);
+	__webpack_require__(112);
 
-	var _buttonToggleHtml = __webpack_require__(111);
+	var _buttonToggleHtml = __webpack_require__(114);
 
 	var _buttonToggleHtml2 = _interopRequireDefault(_buttonToggleHtml);
 
@@ -4397,13 +4450,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 109 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(110);
+	var content = __webpack_require__(113);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -4423,7 +4476,7 @@
 	}
 
 /***/ },
-/* 110 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -4437,13 +4490,13 @@
 
 
 /***/ },
-/* 111 */
+/* 114 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\" :disabled=\"disabled\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click.prevent=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click.prevent=\"toggle()\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click.prevent=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
 
 /***/ },
-/* 112 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4454,19 +4507,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _fileUploadJson = __webpack_require__(113);
+	var _fileUploadJson = __webpack_require__(116);
 
 	var _fileUploadJson2 = _interopRequireDefault(_fileUploadJson);
 
-	var _fileUploadHtml = __webpack_require__(114);
+	var _fileUploadHtml = __webpack_require__(117);
 
 	var _fileUploadHtml2 = _interopRequireDefault(_fileUploadHtml);
 
-	var _snippetHtml = __webpack_require__(115);
+	var _snippetHtml = __webpack_require__(118);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsFileUpload = __webpack_require__(116);
+	var _srcComponentsFileUpload = __webpack_require__(119);
 
 	var _srcComponentsFileUpload2 = _interopRequireDefault(_srcComponentsFileUpload);
 
@@ -4501,7 +4554,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 113 */
+/* 116 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -4600,19 +4653,19 @@
 	};
 
 /***/ },
-/* 114 */
+/* 117 */
 /***/ function(module, exports) {
 
 	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>multiple <input type=\"checkbox\" v-model=\"multiple\"></label>\r\n\t\t<label>hide button <input type=\"checkbox\" v-model=\"hideButton\"></label>\r\n\t\t<label>auto submit <input type=\"checkbox\" v-model=\"autoSubmit\"></label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" class=\"clearfix\">\r\n\t\t<form id=\"file-upload-test\" method=\"POST\" action=\"{{ajaxUrl}}\">\r\n\t\t\t<vs-file-upload \r\n\t    \tid=\"some-file\"\r\n\t    \tform-id=\"file-upload-test\"\r\n\t    \tmodel=\"model\" \r\n\t    \t:ajax=\"ajaxUrl\" \r\n\t    \t:multiple=\"multiple\" \r\n\t    \tname=\"files\"\r\n\t    \t:auto-submit=\"autoSubmit\" \r\n\t    \t:hide-button=\"hideButton\" \r\n\t    \t:file-list.sync=\"fileList\">\r\n\t    </vs-file-upload>\r\n\t   </form>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
-/* 115 */
+/* 118 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-file-upload</span> \r\n  <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"some-file\"</span>\r\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \r\n  <span class=\"hljs-attribute\">ajax</span>=<span class=\"hljs-value\">\"http://localhost:3004/upload\"</span> \r\n  <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"files\"</span>\r\n  <span class=\"hljs-attribute\">:multiple</span>=<span class=\"hljs-value\">\"false\"</span> \r\n  <span class=\"hljs-attribute\">:auto-submit</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:hide-button</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:file-list.sync</span>=<span class=\"hljs-value\">\"fileList\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-file-upload</span>&gt;</span>";
 
 /***/ },
-/* 116 */
+/* 119 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// inspired by href='https://css-tricks.com/drag-and-drop-file-uploading/'
@@ -4626,13 +4679,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(117);
+	__webpack_require__(120);
 
-	var _fileUploadHtml = __webpack_require__(119);
+	var _fileUploadHtml = __webpack_require__(122);
 
 	var _fileUploadHtml2 = _interopRequireDefault(_fileUploadHtml);
 
-	var _utilsHelpersJs = __webpack_require__(120);
+	var _utilsHelpersJs = __webpack_require__(123);
 
 	// export component object
 	exports['default'] = {
@@ -4923,13 +4976,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 117 */
+/* 120 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(118);
+	var content = __webpack_require__(121);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -4949,7 +5002,7 @@
 	}
 
 /***/ },
-/* 118 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -4963,13 +5016,13 @@
 
 
 /***/ },
-/* 119 */
+/* 122 */
 /***/ function(module, exports) {
 
 	module.exports = "<div id=\"{{id}}\" class=\"gritcode-file-upload {{advancedUpload ? 'advanced-upload' : ''}} {{dragover ? 'is-dragover' : ''}}\">\r\n    <div class=\"input\" v-if=\"state == null || state == 'retry'\">\r\n        <svg class=\"icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"43\" viewBox=\"0 0 50 43\" v-if=\"advancedUpload\">\r\n            <path d=\"M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z\" />\r\n        </svg>\r\n        <input \r\n            type=\"file\" \r\n            name=\"files[]\" \r\n            id=\"file\"\r\n            accept=\"accept\" \r\n            v-bind:multiple=\"multiple && advancedUpload\" \r\n            v-on:change=\"onChange($event)\" />\r\n        <label for=\"file\">\r\n            <span v-if=\"fileList.length == 0\"><strong>{{text.action}}</strong><span v-if=\"advancedUpload\"> {{text.drag}}</span></span>\r\n            <span v-if=\"fileList.length > 0\" class=\"\">{{displaySelectionText}}</span>\r\n        </label>\r\n        <button type=\"submit\" class=\"btn btn-primary\" v-if=\"!hideButton && !autoSubmit\" v-on:click.prevent=\"submitForm($event)\">{{text.button}}</button>\r\n    </div>\r\n    <div class=\"state\" v-if=\"state != null\">\r\n        <span class=\"state-uploading animate\" v-show=\"state == 'uploading'\">{{text.uploading}}<span v-if=\"advancedUpload\">{{progress}}</span></span>\r\n        <span class=\"state-success animate\" v-show=\"state == 'success'\">\r\n            {{text.done}} <a href=\"#\" v-on:click.prevent=\"restart\" role=\"button\" v-show=\"multiple\">{{text.restart}}</a>\r\n        </span>\r\n        <span class=\"state-error animate\" v-show=\"state == 'error'\">\r\n            Error! <span>{{errorMessage}}</span> <a href=\"#\" v-on:click.prevent=\"retry\">{{text.retry}}</a>\r\n        </span>\r\n    </div>\r\n</div>";
 
 /***/ },
-/* 120 */
+/* 123 */
 /***/ function(module, exports) {
 
 	/**
@@ -5042,7 +5095,7 @@
 	exports.trigger = trigger;
 
 /***/ },
-/* 121 */
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5057,21 +5110,21 @@
 
 	__webpack_require__(50);
 
-	var _wizardJson = __webpack_require__(122);
+	var _wizardJson = __webpack_require__(125);
 
 	var _wizardJson2 = _interopRequireDefault(_wizardJson);
 
-	var _wizardHtml = __webpack_require__(123);
+	var _wizardHtml = __webpack_require__(126);
 
 	var _wizardHtml2 = _interopRequireDefault(_wizardHtml);
 
-	var _srcUtils = __webpack_require__(81);
+	var _srcUtils = __webpack_require__(84);
 
-	var _snippetHtml = __webpack_require__(124);
+	var _snippetHtml = __webpack_require__(127);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsWizard = __webpack_require__(125);
+	var _srcComponentsWizard = __webpack_require__(128);
 
 	var _vuestrapDocsSrcComponentsDemo = __webpack_require__(7);
 
@@ -5178,7 +5231,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 122 */
+/* 125 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -5249,19 +5302,19 @@
 	};
 
 /***/ },
-/* 123 */
+/* 126 */
 /***/ function(module, exports) {
 
 	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>icons <input type=\"checkbox\" v-model=\"icons\"></label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t\r\n\t\t<!-- icons -->\r\n\t\t<vs-wizard :current-index.sync=\"currentStep\" v-if=\"icons\">\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Personal Information\" \r\n\t\t\t\tdescription=\"Enter your details\"\r\n\t\t\t\t:progress=\"progress.step1\" \r\n\t\t\t\ticon=\"person\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Payment\" \r\n\t\t\t\tdescription=\"Pay with credit card or Paypal\" \r\n\t\t\t\t:progress=\"progress.step2\"\r\n\t\t\t\ticon=\"credit-card\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Confirmation\" \r\n\t\t\t\tdescription=\"Your order details\" \r\n\t\t\t\t:progress=\"progress.step3\"\r\n\t\t\t\t:disable-previous=\"true\"\r\n\t\t\t\ticon=\"check\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t</vs-wizard>\r\n\r\n\t\t<!-- no icons -->\r\n\t\t<vs-wizard :current-index.sync=\"currentStep\" v-if=\"!icons\">\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Personal Information\" \r\n\t\t\t\tdescription=\"Enter your details\"\r\n\t\t\t\t:progress=\"progress.step1\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Payment\" \r\n\t\t\t\tdescription=\"Pay with credit card or Paypal\" \r\n\t\t\t\t:progress=\"progress.step2\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Confirmation\" \r\n\t\t\t\tdescription=\"Your order details\" \r\n\t\t\t\t:progress=\"progress.step3\"\r\n\t\t\t\t:disable-previous=\"true\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t</vs-wizard>\r\n\t\t<hr class=\"hidden-xs-down\">\r\n\t\t<form class=\"m-b row clearfix\" v-if=\"currentStep == 0\">\r\n\t\t\t<div class=\"col-xs-12 col-md-8 col-md-offset-2\">  \r\n\t\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"firstName\">First Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"e.g. Jon\" v-model=\"models.firstName\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"lastName\">Last Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"lastName\" placeholder=\"e.g. Doe\" v-model=\"models.lastName\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"email\">Email address</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"e.g. joe@doe.com\" v-model=\"models.email\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <button class=\"btn btn-default pull-right\" v-bind:disabled=\"progress.step1 < 100\" v-on:click.prevent=\"currentStep++\">Next</button>\r\n\t\t \t</div>\r\n\t  </form>\r\n\t  <form class=\"m-b row clearfix\" v-if=\"currentStep == 1\">\r\n\t  \t<div class=\"col-xs-12 col-md-8 col-md-offset-2\">  \t\t\r\n\t\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardType\">Card Type</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardType\" placeholder=\"e.g. Visa\" v-model=\"models.cardType\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardNumber\">Card Number</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardNumber\" placeholder=\"4141 4141 4141 4141\" v-model=\"models.cardNumber\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardHolder\">Card Holder Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardHolder\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardHolder\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <div class=\"row\">\t  \t\r\n\t\t\t\t  <fieldset class=\"form-group col-xs-6\">\r\n\t\t\t\t    <label for=\"cardExpiryMonth\">Expiry Month</label>\r\n\t\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardExpiryMonth\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardExpiryMonth\">\r\n\t\t\t\t  </fieldset>\r\n\t\t\t\t  <fieldset class=\"form-group col-xs-6\">\r\n\t\t\t\t    <label for=\"cardExpiryMonth\">Expiry Year</label>\r\n\t\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardExpiryYear\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardExpiryYear\">\r\n\t\t\t\t  </fieldset>\r\n\t\t\t  </div>\r\n\t\t  \t<button class=\"btn btn-default pull-right\" v-bind:disabled=\"progress.step2 < 100\" v-on:click.prevent=\"currentStep++\">Next</button>\r\n\t  \t</div>\t\t\r\n\t  </form>\r\n\t  <div class='text-center clearfix' v-if=\"currentStep == 2\">\r\n\t\t\t<h3 class=\"m-y-lg\">Success! Your order is on its way...</h3>\r\n\t\t\t<button v-on:click=\"startAgain\">Start again</button>\r\n\t  </div>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
 
 /***/ },
-/* 124 */
+/* 127 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard</span> <span class=\"hljs-attribute\">:current-index.sync</span>=<span class=\"hljs-value\">\"currentStep\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Personal Information\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Enter your details\"</span>\r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step1\"</span> \r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"person\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Payment\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Pay with credit card or Paypal\"</span> \r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step2\"</span>\r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"credit-card\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Confirmation\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Your order details\"</span> \r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step3\"</span>\r\n    <span class=\"hljs-attribute\">:disable-previous</span>=<span class=\"hljs-value\">\"true\"</span>\r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"check\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard</span>&gt;</span>";
 
 /***/ },
-/* 125 */
+/* 128 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -5273,21 +5326,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(126);
+	__webpack_require__(129);
 
-	var _wizardHtml = __webpack_require__(128);
+	var _wizardHtml = __webpack_require__(131);
 
 	var _wizardHtml2 = _interopRequireDefault(_wizardHtml);
 
-	var _wizardStepHtml = __webpack_require__(129);
+	var _wizardStepHtml = __webpack_require__(132);
 
 	var _wizardStepHtml2 = _interopRequireDefault(_wizardStepHtml);
 
-	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(99);
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(102);
 
 	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
 
-	var _utilsHelpersJs = __webpack_require__(120);
+	var _utilsHelpersJs = __webpack_require__(123);
 
 	// export component object
 	var wizard = {
@@ -5418,13 +5471,13 @@
 	exports.wizardStep = wizardStep;
 
 /***/ },
-/* 126 */
+/* 129 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(127);
+	var content = __webpack_require__(130);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(5)(content, {});
@@ -5444,7 +5497,7 @@
 	}
 
 /***/ },
-/* 127 */
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(4)();
@@ -5458,13 +5511,13 @@
 
 
 /***/ },
-/* 128 */
+/* 131 */
 /***/ function(module, exports) {
 
 	module.exports = "<div class=\"gritcode-wizard\">\r\n   <slot></slot>\r\n</div>\r\n";
 
 /***/ },
-/* 129 */
+/* 132 */
 /***/ function(module, exports) {
 
 	module.exports = "<div v-bind:class=\"{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}\" v-on:click.prevent=\"changeCurrentIndex()\">\r\n\t<div class=\"wizard-progress\">\r\n\t\t<div class=\"wizard-progress-value\"></div>\r\n\t</div>\r\n\t<div class=\"wizard-icon\">\r\n\t\t<div class=\"icon-icon\"><vs-icon :name=\"icon\" v-if=\"icon\"></vs-icon></div>\r\n\t\t<div class=\"icon-number\" v-if=\"!icon\">{{iconNumber || index +1}}</div>\r\n\t</div>\r\n\t<div class=\"wizard-content\">\r\n\t\t<div class=\"title\">{{title}}</div>\r\n\t\t<div class=\"description\">{{description}}</div>\r\n\t</div>\r\n\t<div class=\"step-info\">\r\n\t\tStep {{index+1}}/{{$parent.countItems}}\r\n\t</div>\r\n</div>";

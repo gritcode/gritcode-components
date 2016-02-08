@@ -7,7 +7,7 @@ import 'vuestrap/components/forms'
 import 'vuestrap/components/labels'
 import 'vuestrap/components/alert'
 import 'vuestrap/components/tables'
-
+import 'vuestrap/components/dropdown'
 
 // import modules and pages
 import introduction from 'src/docs/introduction'

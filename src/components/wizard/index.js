@@ -102,7 +102,7 @@ export const wizardStep = {
   },
   methods: {
     changeCurrentIndex() {
-      if (this.link && this.$parent.changeCurrentIndex(this.index)) {
+      if (this.$parent.changeCurrentIndex(this.index) && this.link) {
         // redirect user to the new location
         changeLocation(this.$router, this.link)
       }

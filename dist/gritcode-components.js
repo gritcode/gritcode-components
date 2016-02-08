@@ -1464,7 +1464,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	    el.dispatchEvent(e);
 	  } catch (e) {}
 	};
+	
 	exports.trigger = trigger;
+	/**
+	 * change location utility supports v-link like paths or hrefs
+	 *
+	 * @param {Element} el
+	 * @param {String} event
+	 * @param {Object} [args]
+	 */
+	var changeLocation = function changeLocation(router, link) {
+	  if (!link) return;
+	  if (router) {
+	    router.go(link);
+	  } else {
+	    window.location.href = link;
+	  }
+	};
+	exports.changeLocation = changeLocation;
 
 /***/ },
 /* 37 */
@@ -1593,7 +1610,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  },
 	  methods: {
 	    changeCurrentIndex: function changeCurrentIndex() {
-	      if (this.link && this.$parent.changeCurrentIndex(this.index)) {
+	      if (this.$parent.changeCurrentIndex(this.index) && this.link) {
 	        // redirect user to the new location
 	        (0, _utilsHelpersJs.changeLocation)(this.$router, this.link);
 	      }

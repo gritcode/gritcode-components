@@ -1,3 +1,9 @@
+/**
+ * IMPORT GLOBAL STYLING
+ */
+// import normalize, grid, utilities and
+import 'vuestrap/core'
+
 // import vuestrap dependencies
 import 'vuestrap/components/nav'
 import 'vuestrap/components/navbar'

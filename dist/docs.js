@@ -2731,7 +2731,7 @@
 
 	module.exports = {
 		"name": "gritcode-components",
-		"version": "0.4.7",
+		"version": "0.4.8",
 		"description": "Web components built with Vuestrap.",
 		"library": "gritcode-components",
 		"repository": {

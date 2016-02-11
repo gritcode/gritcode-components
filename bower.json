@@ -13,7 +13,7 @@
     "dist/gritcode-components.css.map",
     "dist/gritcode-components.min.css",
     "dist/gritcode-components-bundle.js",
-    "dist/gritcode-components-bundle.min.js",
+    "dist/gritcode-components-bundle.min.js"
   ],
   "moduleType": [
     "amd",

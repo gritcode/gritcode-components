@@ -57,6 +57,7 @@
     "phantomjs": "^1.9.19",
     "sass-loader": "^3.1.1",
     "style-loader": "^0.13.0",
+    "vuestrap": "^1.0.2",
     "vuestrap-docs": "^0.5.1",
     "vuestrap-icons": "^0.5.0",
     "vuestrap-theme-loader": "^0.1.2",

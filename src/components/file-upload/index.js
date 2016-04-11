@@ -53,6 +53,7 @@ export default {
           type: Boolean,
           default: false,
         },
+        params: Object,
         fileList: {
           default: null,
         },
@@ -99,15 +100,17 @@ export default {
       parseResponse(response) {
         let data = null
         try {
-          data = JSON.parse(response)
+          data = typeof response === 'string'
+            ? JSON.parse(response)
+            : response;
         } catch (e) {
           // if no json returned we assume success
           this.setError('Unexpected response from the server')
         }
         // set either success or error based on data returned from the server
-        if (data.success) {
+        if (!data.error) {
           this.state = 'success'
-          this.model = data.data
+          this.model = data
           this.$dispatch('completed::file-upload', {model: this.model})
         } else {
           this.setError(data.error)
@@ -134,6 +137,10 @@ export default {
               // Add the file to the request.
               ajaxData.append(this.name, file, file.name)
             }
+
+            if (this.params) for (let n in this.params)
+                if (this.params.hasOwnProperty(n))
+                    ajaxData.append(n, this.params[n])
 
             // ajax request
             const xhr = new XMLHttpRequest()

@@ -72,7 +72,7 @@
 
 	// import package.json meta data
 
-	var _packageJson = __webpack_require__(68);
+	var _packageJson = __webpack_require__(70);
 
 	var _packageJson2 = _interopRequireDefault(_packageJson);
 
@@ -505,7 +505,6 @@
 	function applyToTag(styleElement, obj) {
 		var css = obj.css;
 		var media = obj.media;
-		var sourceMap = obj.sourceMap;
 
 		if(media) {
 			styleElement.setAttribute("media", media)
@@ -523,7 +522,6 @@
 
 	function updateLink(linkElement, obj) {
 		var css = obj.css;
-		var media = obj.media;
 		var sourceMap = obj.sourceMap;
 
 		if(sourceMap) {
@@ -1773,7 +1771,7 @@
 
 
 	// module
-	exports.push([module.id, "/*\r\n * Off Canvas drawer\r\n * based on https://scotch.io/tutorials/off-canvas-drawers-with-css3-transitions-and-transforms\r\n * --------------------------------------------------\r\n */\n.gritcode-offcanvas-drawer {\n  width: 100%;\n  height: auto;\n  min-height: 100%;\n  position: relative;\n  -webkit-transform: translate(0, 0);\n          transform: translate(0, 0);\n  -webkit-transform: translate3d(0, 0, 0);\n          transform: translate3d(0, 0, 0);\n  -ms-transform: translate(0, 0);\n  -webkit-transition: 300ms ease transform;\n  transition: 300ms ease transform;\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden; }\n  .gritcode-offcanvas-drawer .offcanvas-drawer {\n    width: 100%;\n    left: -100%;\n    height: 100%;\n    position: fixed;\n    top: 0;\n    z-index: 9999; }\n    .gritcode-offcanvas-drawer .offcanvas-drawer .close {\n      color: #fff; }\n    .gritcode-offcanvas-drawer .offcanvas-drawer .navbar {\n      height: 100%; }\n    @media (min-width: 360px) {\n      .gritcode-offcanvas-drawer .offcanvas-drawer {\n        width: 300px;\n        left: -300px; } }\n  .gritcode-offcanvas-drawer.active {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    -ms-transform: translate(100%, 0); }\n    @media (min-width: 360px) {\n      .gritcode-offcanvas-drawer.active {\n        -webkit-transform: translate(300px, 0);\n                transform: translate(300px, 0);\n        -webkit-transform: translate3d(300px, 0, 0);\n                transform: translate3d(300px, 0, 0);\n        -ms-transform: translate(300px, 0); } }\n\n.gritcode-offcanvas-drawer.right .offcanvas-drawer {\n  left: auto;\n  right: -100%; }\n  @media (min-width: 360px) {\n    .gritcode-offcanvas-drawer.right .offcanvas-drawer {\n      left: auto;\n      right: -300px; } }\n\n.gritcode-offcanvas-drawer.right.active {\n  -webkit-transform: translate(-100%, 0);\n          transform: translate(-100%, 0);\n  -webkit-transform: translate3d(-100%, 0, 0);\n          transform: translate3d(-100%, 0, 0);\n  -ms-transform: translate(-100%, 0); }\n  @media (min-width: 360px) {\n    .gritcode-offcanvas-drawer.right.active {\n      -webkit-transform: translate(-300px, 0);\n              transform: translate(-300px, 0);\n      -webkit-transform: translate3d(-300px, 0, 0);\n              transform: translate3d(-300px, 0, 0);\n      -ms-transform: translate(-300px, 0); } }\n\n.gritcode-offcanvas-drawer.ease {\n  -webkit-transition: 300ms ease transform;\n  transition: 300ms ease transform; }\n\n.gritcode-offcanvas-drawer.linear {\n  -webkit-transition: 300ms linear transform;\n  transition: 300ms linear transform; }\n\n.gritcode-offcanvas-drawer.ease-in {\n  -webkit-transition: 300ms ease-in transform;\n  transition: 300ms ease-in transform; }\n\n.gritcode-offcanvas-drawer.ease-out {\n  -webkit-transition: 300ms ease-out transform;\n  transition: 300ms ease-out transform; }\n\n.gritcode-offcanvas-drawer.ease-in-out {\n  -webkit-transition: 300ms ease-out transform;\n  transition: 300ms ease-out transform; }\n\n.gritcode-offcanvas-drawer.bounce {\n  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);\n  transition: -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);\n  transition: transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);\n  transition: transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15), -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15); }\n\n.gritcode-offcanvas-drawer.snappy {\n  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);\n  transition: -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);\n  transition: transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);\n  transition: transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1), -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1); }\n\n.gritcode-offcanvas-drawer.out-of-orbit {\n  -webkit-transition: -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15);\n  transition: -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15);\n  transition: transform 300ms cubic-bezier(1, 0, 0.61, 0.15);\n  transition: transform 300ms cubic-bezier(1, 0, 0.61, 0.15), -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15); }\n\n.gritcode-offcanvas-drawer.none {\n  -webkit-transition: none;\n  transition: none; }\n\n.lt-ie10 .gritcode-offcanvas-drawer.active .offcanvas-drawer, .ie9 .gritcode-offcanvas-drawer.active .offcanvas-drawer, .oldie .gritcode-offcanvas-drawer.active .offcanvas-drawer, .no-csstransitions .gritcode-offcanvas-drawer.active .offcanvas-drawer {\n  left: 0; }\n\n.lt-ie10 .gritcode-offcanvas-drawer.active .navbar-fixed-top, .lt-ie10 .gritcode-offcanvas-drawer.active .navbar-fixed-bottom, .ie9 .gritcode-offcanvas-drawer.active .navbar-fixed-top, .ie9 .gritcode-offcanvas-drawer.active .navbar-fixed-bottom, .oldie .gritcode-offcanvas-drawer.active .navbar-fixed-top, .oldie .gritcode-offcanvas-drawer.active .navbar-fixed-bottom, .no-csstransitions .gritcode-offcanvas-drawer.active .navbar-fixed-top, .no-csstransitions .gritcode-offcanvas-drawer.active .navbar-fixed-bottom {\n  left: 300px;\n  right: auto;\n  width: 100%; }\n\n.lt-ie10 .gritcode-offcanvas-drawer.active.right .offcanvas-drawer, .ie9 .gritcode-offcanvas-drawer.active.right .offcanvas-drawer, .oldie .gritcode-offcanvas-drawer.active.right .offcanvas-drawer, .no-csstransitions .gritcode-offcanvas-drawer.active.right .offcanvas-drawer {\n  left: auto;\n  right: 0; }\n\n.lt-ie10 .gritcode-offcanvas-drawer.active.right .navbar-fixed-top, .lt-ie10 .gritcode-offcanvas-drawer.active.right .navbar-fixed-bottom, .ie9 .gritcode-offcanvas-drawer.active.right .navbar-fixed-top, .ie9 .gritcode-offcanvas-drawer.active.right .navbar-fixed-bottom, .oldie .gritcode-offcanvas-drawer.active.right .navbar-fixed-top, .oldie .gritcode-offcanvas-drawer.active.right .navbar-fixed-bottom, .no-csstransitions .gritcode-offcanvas-drawer.active.right .navbar-fixed-top, .no-csstransitions .gritcode-offcanvas-drawer.active.right .navbar-fixed-bottom {\n  left: -300px;\n  right: auto;\n  width: 100%; }\n", ""]);
+	exports.push([module.id, "/*\n * Off Canvas drawer\n * based on https://scotch.io/tutorials/off-canvas-drawers-with-css3-transitions-and-transforms\n * --------------------------------------------------\n */\n.gritcode-offcanvas-drawer {\n  width: 100%;\n  height: auto;\n  min-height: 100%;\n  position: relative;\n  -webkit-transform: translate(0, 0);\n          transform: translate(0, 0);\n  -webkit-transform: translate3d(0, 0, 0);\n          transform: translate3d(0, 0, 0);\n  -ms-transform: translate(0, 0);\n  -webkit-transition: 300ms ease transform;\n  transition: 300ms ease transform;\n  -webkit-backface-visibility: hidden;\n          backface-visibility: hidden; }\n  .gritcode-offcanvas-drawer .offcanvas-drawer {\n    width: 100%;\n    left: -100%;\n    height: 100%;\n    position: fixed;\n    top: 0;\n    z-index: 9999; }\n    .gritcode-offcanvas-drawer .offcanvas-drawer .close {\n      color: #fff; }\n    .gritcode-offcanvas-drawer .offcanvas-drawer .navbar {\n      height: 100%; }\n    @media (min-width: 360px) {\n      .gritcode-offcanvas-drawer .offcanvas-drawer {\n        width: 300px;\n        left: -300px; } }\n  .gritcode-offcanvas-drawer.active {\n    -webkit-transform: translate(100%, 0);\n            transform: translate(100%, 0);\n    -webkit-transform: translate3d(100%, 0, 0);\n            transform: translate3d(100%, 0, 0);\n    -ms-transform: translate(100%, 0); }\n    @media (min-width: 360px) {\n      .gritcode-offcanvas-drawer.active {\n        -webkit-transform: translate(300px, 0);\n                transform: translate(300px, 0);\n        -webkit-transform: translate3d(300px, 0, 0);\n                transform: translate3d(300px, 0, 0);\n        -ms-transform: translate(300px, 0); } }\n\n.gritcode-offcanvas-drawer.right .offcanvas-drawer {\n  left: auto;\n  right: -100%; }\n  @media (min-width: 360px) {\n    .gritcode-offcanvas-drawer.right .offcanvas-drawer {\n      left: auto;\n      right: -300px; } }\n\n.gritcode-offcanvas-drawer.right.active {\n  -webkit-transform: translate(-100%, 0);\n          transform: translate(-100%, 0);\n  -webkit-transform: translate3d(-100%, 0, 0);\n          transform: translate3d(-100%, 0, 0);\n  -ms-transform: translate(-100%, 0); }\n  @media (min-width: 360px) {\n    .gritcode-offcanvas-drawer.right.active {\n      -webkit-transform: translate(-300px, 0);\n              transform: translate(-300px, 0);\n      -webkit-transform: translate3d(-300px, 0, 0);\n              transform: translate3d(-300px, 0, 0);\n      -ms-transform: translate(-300px, 0); } }\n\n.gritcode-offcanvas-drawer.ease {\n  -webkit-transition: 300ms ease transform;\n  transition: 300ms ease transform; }\n\n.gritcode-offcanvas-drawer.linear {\n  -webkit-transition: 300ms linear transform;\n  transition: 300ms linear transform; }\n\n.gritcode-offcanvas-drawer.ease-in {\n  -webkit-transition: 300ms ease-in transform;\n  transition: 300ms ease-in transform; }\n\n.gritcode-offcanvas-drawer.ease-out {\n  -webkit-transition: 300ms ease-out transform;\n  transition: 300ms ease-out transform; }\n\n.gritcode-offcanvas-drawer.ease-in-out {\n  -webkit-transition: 300ms ease-out transform;\n  transition: 300ms ease-out transform; }\n\n.gritcode-offcanvas-drawer.bounce {\n  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);\n  transition: -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);\n  transition: transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);\n  transition: transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15), -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15); }\n\n.gritcode-offcanvas-drawer.snappy {\n  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);\n  transition: -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);\n  transition: transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);\n  transition: transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1), -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1); }\n\n.gritcode-offcanvas-drawer.out-of-orbit {\n  -webkit-transition: -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15);\n  transition: -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15);\n  transition: transform 300ms cubic-bezier(1, 0, 0.61, 0.15);\n  transition: transform 300ms cubic-bezier(1, 0, 0.61, 0.15), -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15); }\n\n.gritcode-offcanvas-drawer.none {\n  -webkit-transition: none;\n  transition: none; }\n\n.lt-ie10 .gritcode-offcanvas-drawer.active .offcanvas-drawer, .ie9 .gritcode-offcanvas-drawer.active .offcanvas-drawer, .oldie .gritcode-offcanvas-drawer.active .offcanvas-drawer, .no-csstransitions .gritcode-offcanvas-drawer.active .offcanvas-drawer {\n  left: 0; }\n\n.lt-ie10 .gritcode-offcanvas-drawer.active .navbar-fixed-top, .lt-ie10 .gritcode-offcanvas-drawer.active .navbar-fixed-bottom, .ie9 .gritcode-offcanvas-drawer.active .navbar-fixed-top, .ie9 .gritcode-offcanvas-drawer.active .navbar-fixed-bottom, .oldie .gritcode-offcanvas-drawer.active .navbar-fixed-top, .oldie .gritcode-offcanvas-drawer.active .navbar-fixed-bottom, .no-csstransitions .gritcode-offcanvas-drawer.active .navbar-fixed-top, .no-csstransitions .gritcode-offcanvas-drawer.active .navbar-fixed-bottom {\n  left: 300px;\n  right: auto;\n  width: 100%; }\n\n.lt-ie10 .gritcode-offcanvas-drawer.active.right .offcanvas-drawer, .ie9 .gritcode-offcanvas-drawer.active.right .offcanvas-drawer, .oldie .gritcode-offcanvas-drawer.active.right .offcanvas-drawer, .no-csstransitions .gritcode-offcanvas-drawer.active.right .offcanvas-drawer {\n  left: auto;\n  right: 0; }\n\n.lt-ie10 .gritcode-offcanvas-drawer.active.right .navbar-fixed-top, .lt-ie10 .gritcode-offcanvas-drawer.active.right .navbar-fixed-bottom, .ie9 .gritcode-offcanvas-drawer.active.right .navbar-fixed-top, .ie9 .gritcode-offcanvas-drawer.active.right .navbar-fixed-bottom, .oldie .gritcode-offcanvas-drawer.active.right .navbar-fixed-top, .oldie .gritcode-offcanvas-drawer.active.right .navbar-fixed-bottom, .no-csstransitions .gritcode-offcanvas-drawer.active.right .navbar-fixed-top, .no-csstransitions .gritcode-offcanvas-drawer.active.right .navbar-fixed-bottom {\n  left: -300px;\n  right: auto;\n  width: 100%; }\n", ""]);
 
 	// exports
 
@@ -1782,7 +1780,7 @@
 /* 25 */
 /***/ function(module, exports) {
 
-	module.exports = "<div id=\"{{id}}\" class=\"gritcode-offcanvas-drawer {{animation}} {{align}} {{show ? 'active' : ''}}\">\r\n  <slot></slot>\r\n</div>\r\n";
+	module.exports = "<div id=\"{{id}}\" class=\"gritcode-offcanvas-drawer {{animation}} {{align}} {{show ? 'active' : ''}}\">\n  <slot></slot>\n</div>\n";
 
 /***/ },
 /* 26 */
@@ -1898,12 +1896,12 @@
 
 	      this.context = 'default';
 	      this.animationInProgress = true;
-	      this.message = options.message || 'Done!';
-	      this.context = options.context || '';
-	      this.debounce = options.debounce || DEBOUNCE;
-	      this.duration = options.duration || DURATION;
-	      this.hideProgress = options.hideProgress || false;
-	      this.position = options.position || 'bottom left';
+	      this.message = options.message || this.message;
+	      this.context = options.context || this.context;
+	      this.debounce = options.debounce || this.debounce;
+	      this.duration = options.duration || this.duration;
+	      this.hideProgress = options.hideProgress || this.hideProgress;
+	      this.position = options.position || this.position;
 	      if (options.success) {
 	        this.context = 'success';
 	        this.message = options.success;
@@ -2001,7 +1999,7 @@
 /* 29 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{position}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\r\n  <div v-html=\"message\"></div>\r\n  <div class=\"action\">\r\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\r\n\t    <span aria-hidden=\"true\">&times;</span>\r\n\t  </button>\r\n  </div>\r\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\r\n</div>";
+	module.exports = "<div class=\"toast toast-gritcode {{activeToast ? 'active' : ''}} {{position}} {{toastContext}} {{hideProgress ? '' : 'has-progress'}}\" v-on:mouseover=\"pause\" v-on:mouseout=\"animate\">\n  <div v-html=\"message\"></div>\n  <div class=\"action\">\n\t  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\" v-on:click=\"clear\">\n\t    <span aria-hidden=\"true\">&times;</span>\n\t  </button>\n  </div>\n  <div v-bind:class=\"{'progress-bar': true, active: activeProgressBar}\" v-bind:style=\"style\" v-show=\"!hideProgress\"></div>\n</div>";
 
 /***/ },
 /* 30 */
@@ -2033,49 +2031,49 @@
 
 	__webpack_require__(50);
 
-	__webpack_require__(53);
+	__webpack_require__(55);
 
-	__webpack_require__(54);
+	__webpack_require__(56);
 
-	__webpack_require__(57);
+	__webpack_require__(59);
 
-	__webpack_require__(60);
+	__webpack_require__(62);
 
 	// import modules and pages
 
-	var _srcDocsIntroduction = __webpack_require__(63);
+	var _srcDocsIntroduction = __webpack_require__(65);
 
 	var _srcDocsIntroduction2 = _interopRequireDefault(_srcDocsIntroduction);
 
-	var _srcDocsToast = __webpack_require__(69);
+	var _srcDocsToast = __webpack_require__(71);
 
 	var _srcDocsToast2 = _interopRequireDefault(_srcDocsToast);
 
-	var _srcDocsTruncate = __webpack_require__(73);
+	var _srcDocsTruncate = __webpack_require__(75);
 
 	var _srcDocsTruncate2 = _interopRequireDefault(_srcDocsTruncate);
 
-	var _srcDocsSpinner = __webpack_require__(81);
+	var _srcDocsSpinner = __webpack_require__(83);
 
 	var _srcDocsSpinner2 = _interopRequireDefault(_srcDocsSpinner);
 
-	var _srcDocsOffcanvasDrawer = __webpack_require__(90);
+	var _srcDocsOffcanvasDrawer = __webpack_require__(92);
 
 	var _srcDocsOffcanvasDrawer2 = _interopRequireDefault(_srcDocsOffcanvasDrawer);
 
-	var _srcDocsDropdownMultiselect = __webpack_require__(94);
+	var _srcDocsDropdownMultiselect = __webpack_require__(96);
 
 	var _srcDocsDropdownMultiselect2 = _interopRequireDefault(_srcDocsDropdownMultiselect);
 
-	var _srcDocsButtonToggle = __webpack_require__(107);
+	var _srcDocsButtonToggle = __webpack_require__(109);
 
 	var _srcDocsButtonToggle2 = _interopRequireDefault(_srcDocsButtonToggle);
 
-	var _srcDocsFileUpload = __webpack_require__(115);
+	var _srcDocsFileUpload = __webpack_require__(117);
 
 	var _srcDocsFileUpload2 = _interopRequireDefault(_srcDocsFileUpload);
 
-	var _srcDocsWizard = __webpack_require__(124);
+	var _srcDocsWizard = __webpack_require__(126);
 
 	var _srcDocsWizard2 = _interopRequireDefault(_srcDocsWizard);
 
@@ -2128,7 +2126,7 @@
 
 
 	// module
-	exports.push([module.id, "/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\nbody {\n  margin: 0; }\n\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block; }\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden],\ntemplate {\n  display: none; }\n\na {\n  background-color: transparent; }\n\na:active {\n  outline: 0; }\n\na:hover {\n  outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb,\nstrong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  color: inherit;\n  font: inherit;\n  margin: 0; }\n\nbutton {\n  overflow: visible; }\n\nbutton,\nselect {\n  text-transform: none; }\n\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  padding: 0; }\n\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  box-sizing: content-box; }\n\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd,\nth {\n  padding: 0; }\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    text-shadow: none !important;\n    box-shadow: none !important; }\n  a,\n  a:visited {\n    text-decoration: underline; }\n  abbr[title]::after {\n    content: \" (\" attr(title) \")\"; }\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid; }\n  thead {\n    display: table-header-group; }\n  tr,\n  img {\n    page-break-inside: avoid; }\n  img {\n    max-width: 100% !important; }\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3; }\n  h2,\n  h3 {\n    page-break-after: avoid; }\n  .navbar {\n    display: none; }\n  .btn > .caret,\n  .dropup > .btn > .caret {\n    border-top-color: #000 !important; }\n  .label {\n    border: 1px solid #000; }\n  .table {\n    border-collapse: collapse !important; }\n    .table td,\n    .table th {\n      background-color: #fff !important; }\n  .table-bordered th,\n  .table-bordered td {\n    border: 1px solid #ddd !important; } }\n\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n@-moz-viewport {\n  width: device-width; }\n\n@-ms-viewport {\n  width: device-width; }\n\n@-o-viewport {\n  width: device-width; }\n\n@-webkit-viewport {\n  width: device-width; }\n\n@viewport {\n  width: device-width; }\n\nhtml {\n  font-size: 16px;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #373a3c;\n  background-color: #fff; }\n\nh1, h2, h3, h4, h5, h6 {\n  margin-top: 0;\n  margin-bottom: .5rem; }\n\np {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nabbr[title],\nabbr[data-original-title] {\n  cursor: help;\n  border-bottom: 1px dotted #818a91; }\n\naddress {\n  margin-bottom: 1rem;\n  font-style: normal;\n  line-height: inherit; }\n\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nol ol,\nul ul,\nol ul,\nul ol {\n  margin-bottom: 0; }\n\ndt {\n  font-weight: bold; }\n\ndd {\n  margin-bottom: .5rem;\n  margin-left: 0; }\n\nblockquote {\n  margin: 0 0 1rem; }\n\na {\n  color: #563d7c;\n  text-decoration: none; }\n  a:focus, a:hover {\n    color: #322449;\n    text-decoration: underline; }\n  a:focus {\n    outline: thin dotted;\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px; }\n\npre {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nfigure {\n  margin: 0 0 1rem; }\n\nimg {\n  vertical-align: middle; }\n\n[role=\"button\"] {\n  cursor: pointer; }\n\na,\narea,\nbutton,\n[role=\"button\"],\ninput,\nlabel,\nselect,\nsummary,\ntextarea {\n  -ms-touch-action: manipulation;\n      touch-action: manipulation; }\n\ntable {\n  background-color: transparent; }\n\ncaption {\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  color: #818a91;\n  text-align: left;\n  caption-side: bottom; }\n\nth {\n  text-align: left; }\n\nlabel {\n  display: inline-block;\n  margin-bottom: .5rem; }\n\ninput,\nbutton,\nselect,\ntextarea {\n  margin: 0;\n  line-height: inherit;\n  border-radius: 0; }\n\ntextarea {\n  resize: vertical; }\n\nfieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0; }\n\nlegend {\n  display: block;\n  width: 100%;\n  padding: 0;\n  margin-bottom: .5rem;\n  font-size: 1.5rem;\n  line-height: inherit; }\n\ninput[type=\"search\"] {\n  box-sizing: inherit;\n  -webkit-appearance: none; }\n\noutput {\n  display: inline-block; }\n\n[hidden] {\n  display: none !important; }\n\n.fade {\n  opacity: 0;\n  -webkit-transition: opacity .15s linear;\n  transition: opacity .15s linear; }\n  .fade.in {\n    opacity: 1; }\n\n.collapse {\n  display: none; }\n  .collapse.in {\n    display: block; }\n\n.collapsing {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  -webkit-transition-timing-function: ease;\n          transition-timing-function: ease;\n  -webkit-transition-duration: .35s;\n          transition-duration: .35s;\n  -webkit-transition-property: height;\n  transition-property: height; }\n\n.close {\n  float: right;\n  font-size: 1.5rem;\n  font-weight: bold;\n  line-height: 1;\n  color: #000;\n  text-shadow: 0 1px 0 #fff;\n  opacity: .2; }\n  .close:focus, .close:hover {\n    color: #000;\n    text-decoration: none;\n    cursor: pointer;\n    opacity: .5; }\n\nbutton.close {\n  padding: 0;\n  cursor: pointer;\n  background: transparent;\n  border: 0;\n  -webkit-appearance: none; }\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\ncode {\n  padding: .2rem .4rem;\n  font-size: 90%;\n  color: #bd4147;\n  background-color: #f7f7f9;\n  border-radius: 0.25rem; }\n\nkbd {\n  padding: .2rem .4rem;\n  font-size: 90%;\n  color: #fff;\n  background-color: #333;\n  border-radius: 0.2rem; }\n  kbd kbd {\n    padding: 0;\n    font-size: 100%;\n    font-weight: bold; }\n\npre {\n  display: block;\n  margin-top: 0;\n  margin-bottom: 1rem;\n  font-size: 90%;\n  line-height: 1.5;\n  color: #373a3c; }\n  pre code {\n    padding: 0;\n    font-size: inherit;\n    color: inherit;\n    background-color: transparent;\n    border-radius: 0; }\n\n.pre-scrollable {\n  max-height: 340px;\n  overflow-y: scroll; }\n\n.input-group {\n  position: relative;\n  display: table;\n  border-collapse: separate; }\n  .input-group .form-control {\n    position: relative;\n    z-index: 2;\n    float: left;\n    width: 100%;\n    margin-bottom: 0; }\n\n.input-group-addon,\n.input-group-btn,\n.input-group .form-control {\n  display: table-cell; }\n  .input-group-addon:not(:first-child):not(:last-child),\n  .input-group-btn:not(:first-child):not(:last-child),\n  .input-group .form-control:not(:first-child):not(:last-child) {\n    border-radius: 0; }\n\n.input-group-addon,\n.input-group-btn {\n  width: 1%;\n  white-space: nowrap;\n  vertical-align: middle; }\n\n.input-group-addon {\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: normal;\n  line-height: 1;\n  color: #55595c;\n  text-align: center;\n  background-color: #eceeef;\n  border: 1px solid #ccc;\n  border-radius: 0.25rem; }\n  .input-group-addon.form-control-sm,\n  .input-group-sm > .input-group-addon,\n  .input-group-sm > .input-group-btn > .input-group-addon.btn {\n    padding: 0.275rem 0.75rem;\n    font-size: 0.875rem;\n    border-radius: 0.2rem; }\n  .input-group-addon.form-control-lg,\n  .input-group-lg > .input-group-addon,\n  .input-group-lg > .input-group-btn > .input-group-addon.btn {\n    padding: 0.75rem 1.25rem;\n    font-size: 1.25rem;\n    border-radius: 0.3rem; }\n  .input-group-addon input[type=\"radio\"],\n  .input-group-addon input[type=\"checkbox\"] {\n    margin-top: 0; }\n\n.input-group .form-control:first-child,\n.input-group-addon:first-child,\n.input-group-btn:first-child > .btn,\n.input-group-btn:first-child > .btn-group > .btn,\n.input-group-btn:first-child > .dropdown-toggle,\n.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),\n.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0; }\n\n.input-group-addon:first-child {\n  border-right: 0; }\n\n.input-group .form-control:last-child,\n.input-group-addon:last-child,\n.input-group-btn:last-child > .btn,\n.input-group-btn:last-child > .btn-group > .btn,\n.input-group-btn:last-child > .dropdown-toggle,\n.input-group-btn:first-child > .btn:not(:first-child),\n.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0; }\n\n.input-group-addon:last-child {\n  border-left: 0; }\n\n.input-group-btn {\n  position: relative;\n  font-size: 0;\n  white-space: nowrap; }\n  .input-group-btn > .btn {\n    position: relative; }\n    .input-group-btn > .btn + .btn {\n      margin-left: -1px; }\n    .input-group-btn > .btn:focus, .input-group-btn > .btn:active, .input-group-btn > .btn:hover {\n      z-index: 2; }\n  .input-group-btn:first-child > .btn,\n  .input-group-btn:first-child > .btn-group {\n    margin-right: -1px; }\n  .input-group-btn:last-child > .btn,\n  .input-group-btn:last-child > .btn-group {\n    z-index: 2;\n    margin-left: -1px; }\n\n.embed-responsive {\n  position: relative;\n  display: block;\n  height: 0;\n  padding: 0;\n  overflow: hidden; }\n  .embed-responsive .embed-responsive-item,\n  .embed-responsive iframe,\n  .embed-responsive embed,\n  .embed-responsive object,\n  .embed-responsive video {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 0; }\n\n.embed-responsive-21by9 {\n  padding-bottom: 42.85714%; }\n\n.embed-responsive-16by9 {\n  padding-bottom: 56.25%; }\n\n.embed-responsive-4by3 {\n  padding-bottom: 75%; }\n\nh1, h2, h3, h4, h5, h6,\n.h1, .h2, .h3, .h4, .h5, .h6 {\n  margin-bottom: 0.5rem;\n  font-family: inherit;\n  font-weight: 500;\n  line-height: 1.1;\n  color: inherit; }\n\nh1 {\n  font-size: 2.5rem; }\n\nh2 {\n  font-size: 2rem; }\n\nh3 {\n  font-size: 1.75rem; }\n\nh4 {\n  font-size: 1.5rem; }\n\nh5 {\n  font-size: 1.25rem; }\n\nh6 {\n  font-size: 1rem; }\n\n.h1 {\n  font-size: 2.5rem; }\n\n.h2 {\n  font-size: 2rem; }\n\n.h3 {\n  font-size: 1.75rem; }\n\n.h4 {\n  font-size: 1.5rem; }\n\n.h5 {\n  font-size: 1.25rem; }\n\n.h6 {\n  font-size: 1rem; }\n\n.lead {\n  font-size: 1.25rem;\n  font-weight: 300; }\n\n.display-1 {\n  font-size: 6rem;\n  font-weight: 300; }\n\n.display-2 {\n  font-size: 5.5rem;\n  font-weight: 300; }\n\n.display-3 {\n  font-size: 4.5rem;\n  font-weight: 300; }\n\n.display-4 {\n  font-size: 3.5rem;\n  font-weight: 300; }\n\nhr {\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1); }\n\nsmall,\n.small {\n  font-size: 80%;\n  font-weight: normal; }\n\nmark,\n.mark {\n  padding: .2em;\n  background-color: #fcf8e3; }\n\n.list-unstyled {\n  padding-left: 0;\n  list-style: none; }\n\n.list-inline {\n  padding-left: 0;\n  list-style: none;\n  margin-left: -5px; }\n  .list-inline > li {\n    display: inline-block;\n    padding-right: 5px;\n    padding-left: 5px; }\n\n.dl-horizontal {\n  margin-right: -1.875rem;\n  margin-left: -1.875rem; }\n  .dl-horizontal::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.initialism {\n  font-size: 90%;\n  text-transform: uppercase; }\n\n.blockquote {\n  padding: 0.5rem 1rem;\n  margin-bottom: 1rem;\n  font-size: 1.25rem;\n  border-left: 0.25rem solid #eceeef; }\n  .blockquote p:last-child,\n  .blockquote ul:last-child,\n  .blockquote ol:last-child {\n    margin-bottom: 0; }\n  .blockquote footer {\n    display: block;\n    font-size: 80%;\n    line-height: 1.5;\n    color: #818a91; }\n    .blockquote footer::before {\n      content: \"\\2014   \\A0\"; }\n\n.blockquote-reverse {\n  padding-right: 1rem;\n  padding-left: 0;\n  text-align: right;\n  border-right: 0.25rem solid #eceeef;\n  border-left: 0; }\n  .blockquote-reverse footer::before {\n    content: \"\"; }\n  .blockquote-reverse footer::after {\n    content: \"\\A0   \\2014\"; }\n\n.bg-inverse {\n  color: #eceeef;\n  background-color: #373a3c; }\n\n.bg-faded {\n  background-color: #f7f7f9; }\n\n.bg-primary {\n  color: #fff !important;\n  background-color: #563d7c !important; }\n\na.bg-primary:focus, a.bg-primary:hover {\n  background-color: #3e2c5a; }\n\n.bg-success {\n  color: #fff !important;\n  background-color: #42b983 !important; }\n\na.bg-success:focus, a.bg-success:hover {\n  background-color: #359368; }\n\n.bg-info {\n  color: #fff !important;\n  background-color: #5bc0de !important; }\n\na.bg-info:focus, a.bg-info:hover {\n  background-color: #31b0d5; }\n\n.bg-warning {\n  color: #fff !important;\n  background-color: #f0ad4e !important; }\n\na.bg-warning:focus, a.bg-warning:hover {\n  background-color: #ec971f; }\n\n.bg-danger {\n  color: #fff !important;\n  background-color: #d9534f !important; }\n\na.bg-danger:focus, a.bg-danger:hover {\n  background-color: #c9302c; }\n\n.hidden-xs-up {\n  display: none !important; }\n\n@media (max-width: 543px) {\n  .hidden-xs-down {\n    display: none !important; } }\n\n@media (min-width: 544px) {\n  .hidden-sm-up {\n    display: none !important; } }\n\n@media (max-width: 767px) {\n  .hidden-sm-down {\n    display: none !important; } }\n\n@media (min-width: 768px) {\n  .hidden-md-up {\n    display: none !important; } }\n\n@media (max-width: 991px) {\n  .hidden-md-down {\n    display: none !important; } }\n\n@media (min-width: 992px) {\n  .hidden-lg-up {\n    display: none !important; } }\n\n@media (max-width: 1199px) {\n  .hidden-lg-down {\n    display: none !important; } }\n\n@media (min-width: 1200px) {\n  .hidden-xl-up {\n    display: none !important; } }\n\n.hidden-xl-down {\n  display: none !important; }\n\n.visible-print-block {\n  display: none !important; }\n  @media print {\n    .visible-print-block {\n      display: block !important; } }\n\n.visible-print-inline {\n  display: none !important; }\n  @media print {\n    .visible-print-inline {\n      display: inline !important; } }\n\n.visible-print-inline-block {\n  display: none !important; }\n  @media print {\n    .visible-print-inline-block {\n      display: inline-block !important; } }\n\n@media print {\n  .hidden-print {\n    display: none !important; } }\n\n.m-a-0 {\n  margin: 0 !important; }\n\n.m-t-0 {\n  margin-top: 0 !important; }\n\n.m-r-0 {\n  margin-right: 0 !important; }\n\n.m-b-0 {\n  margin-bottom: 0 !important; }\n\n.m-l-0 {\n  margin-left: 0 !important; }\n\n.m-x-0 {\n  margin-right: 0 !important;\n  margin-left: 0 !important; }\n\n.m-y-0 {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important; }\n\n.m-a {\n  margin: 1rem !important; }\n\n.m-t {\n  margin-top: 1rem !important; }\n\n.m-r {\n  margin-right: 1rem !important; }\n\n.m-b {\n  margin-bottom: 1rem !important; }\n\n.m-l {\n  margin-left: 1rem !important; }\n\n.m-x {\n  margin-right: 1rem !important;\n  margin-left: 1rem !important; }\n\n.m-y {\n  margin-top: 1rem !important;\n  margin-bottom: 1rem !important; }\n\n.m-x-auto {\n  margin-right: auto !important;\n  margin-left: auto !important; }\n\n.m-a-md {\n  margin: 1.5rem !important; }\n\n.m-t-md {\n  margin-top: 1.5rem !important; }\n\n.m-r-md {\n  margin-right: 1.5rem !important; }\n\n.m-b-md {\n  margin-bottom: 1.5rem !important; }\n\n.m-l-md {\n  margin-left: 1.5rem !important; }\n\n.m-x-md {\n  margin-right: 1.5rem !important;\n  margin-left: 1.5rem !important; }\n\n.m-y-md {\n  margin-top: 1.5rem !important;\n  margin-bottom: 1.5rem !important; }\n\n.m-a-lg {\n  margin: 3rem !important; }\n\n.m-t-lg {\n  margin-top: 3rem !important; }\n\n.m-r-lg {\n  margin-right: 3rem !important; }\n\n.m-b-lg {\n  margin-bottom: 3rem !important; }\n\n.m-l-lg {\n  margin-left: 3rem !important; }\n\n.m-x-lg {\n  margin-right: 3rem !important;\n  margin-left: 3rem !important; }\n\n.m-y-lg {\n  margin-top: 3rem !important;\n  margin-bottom: 3rem !important; }\n\n.p-a-0 {\n  padding: 0 !important; }\n\n.p-t-0 {\n  padding-top: 0 !important; }\n\n.p-r-0 {\n  padding-right: 0 !important; }\n\n.p-b-0 {\n  padding-bottom: 0 !important; }\n\n.p-l-0 {\n  padding-left: 0 !important; }\n\n.p-x-0 {\n  padding-right: 0 !important;\n  padding-left: 0 !important; }\n\n.p-y-0 {\n  padding-top: 0 !important;\n  padding-bottom: 0 !important; }\n\n.p-a {\n  padding: 1rem !important; }\n\n.p-t {\n  padding-top: 1rem !important; }\n\n.p-r {\n  padding-right: 1rem !important; }\n\n.p-b {\n  padding-bottom: 1rem !important; }\n\n.p-l {\n  padding-left: 1rem !important; }\n\n.p-x {\n  padding-right: 1rem !important;\n  padding-left: 1rem !important; }\n\n.p-y {\n  padding-top: 1rem !important;\n  padding-bottom: 1rem !important; }\n\n.p-a-md {\n  padding: 1.5rem !important; }\n\n.p-t-md {\n  padding-top: 1.5rem !important; }\n\n.p-r-md {\n  padding-right: 1.5rem !important; }\n\n.p-b-md {\n  padding-bottom: 1.5rem !important; }\n\n.p-l-md {\n  padding-left: 1.5rem !important; }\n\n.p-x-md {\n  padding-right: 1.5rem !important;\n  padding-left: 1.5rem !important; }\n\n.p-y-md {\n  padding-top: 1.5rem !important;\n  padding-bottom: 1.5rem !important; }\n\n.p-a-lg {\n  padding: 3rem !important; }\n\n.p-t-lg {\n  padding-top: 3rem !important; }\n\n.p-r-lg {\n  padding-right: 3rem !important; }\n\n.p-b-lg {\n  padding-bottom: 3rem !important; }\n\n.p-l-lg {\n  padding-left: 3rem !important; }\n\n.p-x-lg {\n  padding-right: 3rem !important;\n  padding-left: 3rem !important; }\n\n.p-y-lg {\n  padding-top: 3rem !important;\n  padding-bottom: 3rem !important; }\n\n.pos-f-t {\n  position: fixed;\n  top: 0;\n  right: 0;\n  left: 0;\n  z-index: 1030; }\n\n.clearfix::after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n.pull-right {\n  float: right !important; }\n\n.pull-left {\n  float: left !important; }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\n.invisible {\n  visibility: hidden !important; }\n\n.text-hide {\n  font: \"0/0\" a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0; }\n\n.text-left {\n  text-align: left !important; }\n\n.text-right {\n  text-align: right !important; }\n\n.text-center {\n  text-align: center !important; }\n\n.text-justify {\n  text-align: justify !important; }\n\n.text-nowrap {\n  white-space: nowrap !important; }\n\n.text-truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n.text-xs-left {\n  text-align: left !important; }\n\n.text-xs-right {\n  text-align: right !important; }\n\n.text-xs-center {\n  text-align: center !important; }\n\n@media (min-width: 544px) {\n  .text-sm-left {\n    text-align: left !important; }\n  .text-sm-right {\n    text-align: right !important; }\n  .text-sm-center {\n    text-align: center !important; } }\n\n@media (min-width: 768px) {\n  .text-md-left {\n    text-align: left !important; }\n  .text-md-right {\n    text-align: right !important; }\n  .text-md-center {\n    text-align: center !important; } }\n\n@media (min-width: 992px) {\n  .text-lg-left {\n    text-align: left !important; }\n  .text-lg-right {\n    text-align: right !important; }\n  .text-lg-center {\n    text-align: center !important; } }\n\n@media (min-width: 1200px) {\n  .text-xl-left {\n    text-align: left !important; }\n  .text-xl-right {\n    text-align: right !important; }\n  .text-xl-center {\n    text-align: center !important; } }\n\n.text-lowercase {\n  text-transform: lowercase !important; }\n\n.text-uppercase {\n  text-transform: uppercase !important; }\n\n.text-capitalize {\n  text-transform: capitalize !important; }\n\n.text-muted {\n  color: #818a91; }\n\n.text-primary {\n  color: #563d7c !important; }\n\na.text-primary:focus, a.text-primary:hover {\n  color: #3e2c5a; }\n\n.text-success {\n  color: #42b983 !important; }\n\na.text-success:focus, a.text-success:hover {\n  color: #359368; }\n\n.text-info {\n  color: #5bc0de !important; }\n\na.text-info:focus, a.text-info:hover {\n  color: #31b0d5; }\n\n.text-warning {\n  color: #f0ad4e !important; }\n\na.text-warning:focus, a.text-warning:hover {\n  color: #ec971f; }\n\n.text-danger {\n  color: #d9534f !important; }\n\na.text-danger:focus, a.text-danger:hover {\n  color: #c9302c; }\n\n.container {\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n  .container::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n  @media (min-width: 544px) {\n    .container {\n      max-width: 576px; } }\n  @media (min-width: 768px) {\n    .container {\n      max-width: 720px; } }\n  @media (min-width: 992px) {\n    .container {\n      max-width: 940px; } }\n  @media (min-width: 1200px) {\n    .container {\n      max-width: 1140px; } }\n\n.container-fluid {\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n  .container-fluid::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.row {\n  margin-left: -0.9375rem;\n  margin-right: -0.9375rem; }\n  .row::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left; }\n\n.col-xs-1 {\n  width: 8.33333%; }\n\n.col-xs-2 {\n  width: 16.66667%; }\n\n.col-xs-3 {\n  width: 25%; }\n\n.col-xs-4 {\n  width: 33.33333%; }\n\n.col-xs-5 {\n  width: 41.66667%; }\n\n.col-xs-6 {\n  width: 50%; }\n\n.col-xs-7 {\n  width: 58.33333%; }\n\n.col-xs-8 {\n  width: 66.66667%; }\n\n.col-xs-9 {\n  width: 75%; }\n\n.col-xs-10 {\n  width: 83.33333%; }\n\n.col-xs-11 {\n  width: 91.66667%; }\n\n.col-xs-12 {\n  width: 100%; }\n\n.col-xs-pull-0 {\n  right: auto; }\n\n.col-xs-pull-1 {\n  right: 8.33333%; }\n\n.col-xs-pull-2 {\n  right: 16.66667%; }\n\n.col-xs-pull-3 {\n  right: 25%; }\n\n.col-xs-pull-4 {\n  right: 33.33333%; }\n\n.col-xs-pull-5 {\n  right: 41.66667%; }\n\n.col-xs-pull-6 {\n  right: 50%; }\n\n.col-xs-pull-7 {\n  right: 58.33333%; }\n\n.col-xs-pull-8 {\n  right: 66.66667%; }\n\n.col-xs-pull-9 {\n  right: 75%; }\n\n.col-xs-pull-10 {\n  right: 83.33333%; }\n\n.col-xs-pull-11 {\n  right: 91.66667%; }\n\n.col-xs-pull-12 {\n  right: 100%; }\n\n.col-xs-push-0 {\n  left: auto; }\n\n.col-xs-push-1 {\n  left: 8.33333%; }\n\n.col-xs-push-2 {\n  left: 16.66667%; }\n\n.col-xs-push-3 {\n  left: 25%; }\n\n.col-xs-push-4 {\n  left: 33.33333%; }\n\n.col-xs-push-5 {\n  left: 41.66667%; }\n\n.col-xs-push-6 {\n  left: 50%; }\n\n.col-xs-push-7 {\n  left: 58.33333%; }\n\n.col-xs-push-8 {\n  left: 66.66667%; }\n\n.col-xs-push-9 {\n  left: 75%; }\n\n.col-xs-push-10 {\n  left: 83.33333%; }\n\n.col-xs-push-11 {\n  left: 91.66667%; }\n\n.col-xs-push-12 {\n  left: 100%; }\n\n.col-xs-offset-0 {\n  margin-left: 0%; }\n\n.col-xs-offset-1 {\n  margin-left: 8.33333%; }\n\n.col-xs-offset-2 {\n  margin-left: 16.66667%; }\n\n.col-xs-offset-3 {\n  margin-left: 25%; }\n\n.col-xs-offset-4 {\n  margin-left: 33.33333%; }\n\n.col-xs-offset-5 {\n  margin-left: 41.66667%; }\n\n.col-xs-offset-6 {\n  margin-left: 50%; }\n\n.col-xs-offset-7 {\n  margin-left: 58.33333%; }\n\n.col-xs-offset-8 {\n  margin-left: 66.66667%; }\n\n.col-xs-offset-9 {\n  margin-left: 75%; }\n\n.col-xs-offset-10 {\n  margin-left: 83.33333%; }\n\n.col-xs-offset-11 {\n  margin-left: 91.66667%; }\n\n.col-xs-offset-12 {\n  margin-left: 100%; }\n\n@media (min-width: 544px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left; }\n  .col-sm-1 {\n    width: 8.33333%; }\n  .col-sm-2 {\n    width: 16.66667%; }\n  .col-sm-3 {\n    width: 25%; }\n  .col-sm-4 {\n    width: 33.33333%; }\n  .col-sm-5 {\n    width: 41.66667%; }\n  .col-sm-6 {\n    width: 50%; }\n  .col-sm-7 {\n    width: 58.33333%; }\n  .col-sm-8 {\n    width: 66.66667%; }\n  .col-sm-9 {\n    width: 75%; }\n  .col-sm-10 {\n    width: 83.33333%; }\n  .col-sm-11 {\n    width: 91.66667%; }\n  .col-sm-12 {\n    width: 100%; }\n  .col-sm-pull-0 {\n    right: auto; }\n  .col-sm-pull-1 {\n    right: 8.33333%; }\n  .col-sm-pull-2 {\n    right: 16.66667%; }\n  .col-sm-pull-3 {\n    right: 25%; }\n  .col-sm-pull-4 {\n    right: 33.33333%; }\n  .col-sm-pull-5 {\n    right: 41.66667%; }\n  .col-sm-pull-6 {\n    right: 50%; }\n  .col-sm-pull-7 {\n    right: 58.33333%; }\n  .col-sm-pull-8 {\n    right: 66.66667%; }\n  .col-sm-pull-9 {\n    right: 75%; }\n  .col-sm-pull-10 {\n    right: 83.33333%; }\n  .col-sm-pull-11 {\n    right: 91.66667%; }\n  .col-sm-pull-12 {\n    right: 100%; }\n  .col-sm-push-0 {\n    left: auto; }\n  .col-sm-push-1 {\n    left: 8.33333%; }\n  .col-sm-push-2 {\n    left: 16.66667%; }\n  .col-sm-push-3 {\n    left: 25%; }\n  .col-sm-push-4 {\n    left: 33.33333%; }\n  .col-sm-push-5 {\n    left: 41.66667%; }\n  .col-sm-push-6 {\n    left: 50%; }\n  .col-sm-push-7 {\n    left: 58.33333%; }\n  .col-sm-push-8 {\n    left: 66.66667%; }\n  .col-sm-push-9 {\n    left: 75%; }\n  .col-sm-push-10 {\n    left: 83.33333%; }\n  .col-sm-push-11 {\n    left: 91.66667%; }\n  .col-sm-push-12 {\n    left: 100%; }\n  .col-sm-offset-0 {\n    margin-left: 0%; }\n  .col-sm-offset-1 {\n    margin-left: 8.33333%; }\n  .col-sm-offset-2 {\n    margin-left: 16.66667%; }\n  .col-sm-offset-3 {\n    margin-left: 25%; }\n  .col-sm-offset-4 {\n    margin-left: 33.33333%; }\n  .col-sm-offset-5 {\n    margin-left: 41.66667%; }\n  .col-sm-offset-6 {\n    margin-left: 50%; }\n  .col-sm-offset-7 {\n    margin-left: 58.33333%; }\n  .col-sm-offset-8 {\n    margin-left: 66.66667%; }\n  .col-sm-offset-9 {\n    margin-left: 75%; }\n  .col-sm-offset-10 {\n    margin-left: 83.33333%; }\n  .col-sm-offset-11 {\n    margin-left: 91.66667%; }\n  .col-sm-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 768px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left; }\n  .col-md-1 {\n    width: 8.33333%; }\n  .col-md-2 {\n    width: 16.66667%; }\n  .col-md-3 {\n    width: 25%; }\n  .col-md-4 {\n    width: 33.33333%; }\n  .col-md-5 {\n    width: 41.66667%; }\n  .col-md-6 {\n    width: 50%; }\n  .col-md-7 {\n    width: 58.33333%; }\n  .col-md-8 {\n    width: 66.66667%; }\n  .col-md-9 {\n    width: 75%; }\n  .col-md-10 {\n    width: 83.33333%; }\n  .col-md-11 {\n    width: 91.66667%; }\n  .col-md-12 {\n    width: 100%; }\n  .col-md-pull-0 {\n    right: auto; }\n  .col-md-pull-1 {\n    right: 8.33333%; }\n  .col-md-pull-2 {\n    right: 16.66667%; }\n  .col-md-pull-3 {\n    right: 25%; }\n  .col-md-pull-4 {\n    right: 33.33333%; }\n  .col-md-pull-5 {\n    right: 41.66667%; }\n  .col-md-pull-6 {\n    right: 50%; }\n  .col-md-pull-7 {\n    right: 58.33333%; }\n  .col-md-pull-8 {\n    right: 66.66667%; }\n  .col-md-pull-9 {\n    right: 75%; }\n  .col-md-pull-10 {\n    right: 83.33333%; }\n  .col-md-pull-11 {\n    right: 91.66667%; }\n  .col-md-pull-12 {\n    right: 100%; }\n  .col-md-push-0 {\n    left: auto; }\n  .col-md-push-1 {\n    left: 8.33333%; }\n  .col-md-push-2 {\n    left: 16.66667%; }\n  .col-md-push-3 {\n    left: 25%; }\n  .col-md-push-4 {\n    left: 33.33333%; }\n  .col-md-push-5 {\n    left: 41.66667%; }\n  .col-md-push-6 {\n    left: 50%; }\n  .col-md-push-7 {\n    left: 58.33333%; }\n  .col-md-push-8 {\n    left: 66.66667%; }\n  .col-md-push-9 {\n    left: 75%; }\n  .col-md-push-10 {\n    left: 83.33333%; }\n  .col-md-push-11 {\n    left: 91.66667%; }\n  .col-md-push-12 {\n    left: 100%; }\n  .col-md-offset-0 {\n    margin-left: 0%; }\n  .col-md-offset-1 {\n    margin-left: 8.33333%; }\n  .col-md-offset-2 {\n    margin-left: 16.66667%; }\n  .col-md-offset-3 {\n    margin-left: 25%; }\n  .col-md-offset-4 {\n    margin-left: 33.33333%; }\n  .col-md-offset-5 {\n    margin-left: 41.66667%; }\n  .col-md-offset-6 {\n    margin-left: 50%; }\n  .col-md-offset-7 {\n    margin-left: 58.33333%; }\n  .col-md-offset-8 {\n    margin-left: 66.66667%; }\n  .col-md-offset-9 {\n    margin-left: 75%; }\n  .col-md-offset-10 {\n    margin-left: 83.33333%; }\n  .col-md-offset-11 {\n    margin-left: 91.66667%; }\n  .col-md-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 992px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left; }\n  .col-lg-1 {\n    width: 8.33333%; }\n  .col-lg-2 {\n    width: 16.66667%; }\n  .col-lg-3 {\n    width: 25%; }\n  .col-lg-4 {\n    width: 33.33333%; }\n  .col-lg-5 {\n    width: 41.66667%; }\n  .col-lg-6 {\n    width: 50%; }\n  .col-lg-7 {\n    width: 58.33333%; }\n  .col-lg-8 {\n    width: 66.66667%; }\n  .col-lg-9 {\n    width: 75%; }\n  .col-lg-10 {\n    width: 83.33333%; }\n  .col-lg-11 {\n    width: 91.66667%; }\n  .col-lg-12 {\n    width: 100%; }\n  .col-lg-pull-0 {\n    right: auto; }\n  .col-lg-pull-1 {\n    right: 8.33333%; }\n  .col-lg-pull-2 {\n    right: 16.66667%; }\n  .col-lg-pull-3 {\n    right: 25%; }\n  .col-lg-pull-4 {\n    right: 33.33333%; }\n  .col-lg-pull-5 {\n    right: 41.66667%; }\n  .col-lg-pull-6 {\n    right: 50%; }\n  .col-lg-pull-7 {\n    right: 58.33333%; }\n  .col-lg-pull-8 {\n    right: 66.66667%; }\n  .col-lg-pull-9 {\n    right: 75%; }\n  .col-lg-pull-10 {\n    right: 83.33333%; }\n  .col-lg-pull-11 {\n    right: 91.66667%; }\n  .col-lg-pull-12 {\n    right: 100%; }\n  .col-lg-push-0 {\n    left: auto; }\n  .col-lg-push-1 {\n    left: 8.33333%; }\n  .col-lg-push-2 {\n    left: 16.66667%; }\n  .col-lg-push-3 {\n    left: 25%; }\n  .col-lg-push-4 {\n    left: 33.33333%; }\n  .col-lg-push-5 {\n    left: 41.66667%; }\n  .col-lg-push-6 {\n    left: 50%; }\n  .col-lg-push-7 {\n    left: 58.33333%; }\n  .col-lg-push-8 {\n    left: 66.66667%; }\n  .col-lg-push-9 {\n    left: 75%; }\n  .col-lg-push-10 {\n    left: 83.33333%; }\n  .col-lg-push-11 {\n    left: 91.66667%; }\n  .col-lg-push-12 {\n    left: 100%; }\n  .col-lg-offset-0 {\n    margin-left: 0%; }\n  .col-lg-offset-1 {\n    margin-left: 8.33333%; }\n  .col-lg-offset-2 {\n    margin-left: 16.66667%; }\n  .col-lg-offset-3 {\n    margin-left: 25%; }\n  .col-lg-offset-4 {\n    margin-left: 33.33333%; }\n  .col-lg-offset-5 {\n    margin-left: 41.66667%; }\n  .col-lg-offset-6 {\n    margin-left: 50%; }\n  .col-lg-offset-7 {\n    margin-left: 58.33333%; }\n  .col-lg-offset-8 {\n    margin-left: 66.66667%; }\n  .col-lg-offset-9 {\n    margin-left: 75%; }\n  .col-lg-offset-10 {\n    margin-left: 83.33333%; }\n  .col-lg-offset-11 {\n    margin-left: 91.66667%; }\n  .col-lg-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 1200px) {\n  .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {\n    float: left; }\n  .col-xl-1 {\n    width: 8.33333%; }\n  .col-xl-2 {\n    width: 16.66667%; }\n  .col-xl-3 {\n    width: 25%; }\n  .col-xl-4 {\n    width: 33.33333%; }\n  .col-xl-5 {\n    width: 41.66667%; }\n  .col-xl-6 {\n    width: 50%; }\n  .col-xl-7 {\n    width: 58.33333%; }\n  .col-xl-8 {\n    width: 66.66667%; }\n  .col-xl-9 {\n    width: 75%; }\n  .col-xl-10 {\n    width: 83.33333%; }\n  .col-xl-11 {\n    width: 91.66667%; }\n  .col-xl-12 {\n    width: 100%; }\n  .col-xl-pull-0 {\n    right: auto; }\n  .col-xl-pull-1 {\n    right: 8.33333%; }\n  .col-xl-pull-2 {\n    right: 16.66667%; }\n  .col-xl-pull-3 {\n    right: 25%; }\n  .col-xl-pull-4 {\n    right: 33.33333%; }\n  .col-xl-pull-5 {\n    right: 41.66667%; }\n  .col-xl-pull-6 {\n    right: 50%; }\n  .col-xl-pull-7 {\n    right: 58.33333%; }\n  .col-xl-pull-8 {\n    right: 66.66667%; }\n  .col-xl-pull-9 {\n    right: 75%; }\n  .col-xl-pull-10 {\n    right: 83.33333%; }\n  .col-xl-pull-11 {\n    right: 91.66667%; }\n  .col-xl-pull-12 {\n    right: 100%; }\n  .col-xl-push-0 {\n    left: auto; }\n  .col-xl-push-1 {\n    left: 8.33333%; }\n  .col-xl-push-2 {\n    left: 16.66667%; }\n  .col-xl-push-3 {\n    left: 25%; }\n  .col-xl-push-4 {\n    left: 33.33333%; }\n  .col-xl-push-5 {\n    left: 41.66667%; }\n  .col-xl-push-6 {\n    left: 50%; }\n  .col-xl-push-7 {\n    left: 58.33333%; }\n  .col-xl-push-8 {\n    left: 66.66667%; }\n  .col-xl-push-9 {\n    left: 75%; }\n  .col-xl-push-10 {\n    left: 83.33333%; }\n  .col-xl-push-11 {\n    left: 91.66667%; }\n  .col-xl-push-12 {\n    left: 100%; }\n  .col-xl-offset-0 {\n    margin-left: 0%; }\n  .col-xl-offset-1 {\n    margin-left: 8.33333%; }\n  .col-xl-offset-2 {\n    margin-left: 16.66667%; }\n  .col-xl-offset-3 {\n    margin-left: 25%; }\n  .col-xl-offset-4 {\n    margin-left: 33.33333%; }\n  .col-xl-offset-5 {\n    margin-left: 41.66667%; }\n  .col-xl-offset-6 {\n    margin-left: 50%; }\n  .col-xl-offset-7 {\n    margin-left: 58.33333%; }\n  .col-xl-offset-8 {\n    margin-left: 66.66667%; }\n  .col-xl-offset-9 {\n    margin-left: 75%; }\n  .col-xl-offset-10 {\n    margin-left: 83.33333%; }\n  .col-xl-offset-11 {\n    margin-left: 91.66667%; }\n  .col-xl-offset-12 {\n    margin-left: 100%; } }\n", ""]);
+	exports.push([module.id, "/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */\nhtml {\n  font-family: sans-serif;\n  -ms-text-size-adjust: 100%;\n  -webkit-text-size-adjust: 100%; }\n\nbody {\n  margin: 0; }\n\narticle,\naside,\ndetails,\nfigcaption,\nfigure,\nfooter,\nheader,\nhgroup,\nmain,\nmenu,\nnav,\nsection,\nsummary {\n  display: block; }\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n  vertical-align: baseline; }\n\naudio:not([controls]) {\n  display: none;\n  height: 0; }\n\n[hidden],\ntemplate {\n  display: none; }\n\na {\n  background-color: transparent; }\n\na:active {\n  outline: 0; }\n\na:hover {\n  outline: 0; }\n\nabbr[title] {\n  border-bottom: 1px dotted; }\n\nb,\nstrong {\n  font-weight: bold; }\n\ndfn {\n  font-style: italic; }\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0; }\n\nmark {\n  background: #ff0;\n  color: #000; }\n\nsmall {\n  font-size: 80%; }\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline; }\n\nsup {\n  top: -0.5em; }\n\nsub {\n  bottom: -0.25em; }\n\nimg {\n  border: 0; }\n\nsvg:not(:root) {\n  overflow: hidden; }\n\nfigure {\n  margin: 1em 40px; }\n\nhr {\n  box-sizing: content-box;\n  height: 0; }\n\npre {\n  overflow: auto; }\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace;\n  font-size: 1em; }\n\nbutton,\ninput,\noptgroup,\nselect,\ntextarea {\n  color: inherit;\n  font: inherit;\n  margin: 0; }\n\nbutton {\n  overflow: visible; }\n\nbutton,\nselect {\n  text-transform: none; }\n\nbutton,\nhtml input[type=\"button\"],\ninput[type=\"reset\"],\ninput[type=\"submit\"] {\n  -webkit-appearance: button;\n  cursor: pointer; }\n\nbutton[disabled],\nhtml input[disabled] {\n  cursor: default; }\n\nbutton::-moz-focus-inner,\ninput::-moz-focus-inner {\n  border: 0;\n  padding: 0; }\n\ninput {\n  line-height: normal; }\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n  box-sizing: border-box;\n  padding: 0; }\n\ninput[type=\"number\"]::-webkit-inner-spin-button,\ninput[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto; }\n\ninput[type=\"search\"] {\n  -webkit-appearance: textfield;\n  box-sizing: content-box; }\n\ninput[type=\"search\"]::-webkit-search-cancel-button,\ninput[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none; }\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em; }\n\nlegend {\n  border: 0;\n  padding: 0; }\n\ntextarea {\n  overflow: auto; }\n\noptgroup {\n  font-weight: bold; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\ntd,\nth {\n  padding: 0; }\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    text-shadow: none !important;\n    box-shadow: none !important; }\n  a,\n  a:visited {\n    text-decoration: underline; }\n  abbr[title]::after {\n    content: \" (\" attr(title) \")\"; }\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid; }\n  thead {\n    display: table-header-group; }\n  tr,\n  img {\n    page-break-inside: avoid; }\n  img {\n    max-width: 100% !important; }\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3; }\n  h2,\n  h3 {\n    page-break-after: avoid; }\n  .navbar {\n    display: none; }\n  .btn > .caret,\n  .dropup > .btn > .caret {\n    border-top-color: #000 !important; }\n  .label {\n    border: 1px solid #000; }\n  .table {\n    border-collapse: collapse !important; }\n    .table td,\n    .table th {\n      background-color: #fff !important; }\n  .table-bordered th,\n  .table-bordered td {\n    border: 1px solid #ddd !important; } }\n\nhtml {\n  box-sizing: border-box; }\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit; }\n\n@-moz-viewport {\n  width: device-width; }\n\n@-ms-viewport {\n  width: device-width; }\n\n@-o-viewport {\n  width: device-width; }\n\n@-webkit-viewport {\n  width: device-width; }\n\n@viewport {\n  width: device-width; }\n\nhtml {\n  font-size: 16px;\n  -webkit-tap-highlight-color: transparent; }\n\nbody {\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 1rem;\n  line-height: 1.5;\n  color: #373a3c;\n  background-color: #fff; }\n\n[tabindex=\"-1\"]:focus {\n  outline: none !important; }\n\nh1, h2, h3, h4, h5, h6 {\n  margin-top: 0;\n  margin-bottom: .5rem; }\n\np {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nabbr[title],\nabbr[data-original-title] {\n  cursor: help;\n  border-bottom: 1px dotted #818a91; }\n\naddress {\n  margin-bottom: 1rem;\n  font-style: normal;\n  line-height: inherit; }\n\nol,\nul,\ndl {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nol ol,\nul ul,\nol ul,\nul ol {\n  margin-bottom: 0; }\n\ndt {\n  font-weight: bold; }\n\ndd {\n  margin-bottom: .5rem;\n  margin-left: 0; }\n\nblockquote {\n  margin: 0 0 1rem; }\n\na {\n  color: #563d7c;\n  text-decoration: none; }\n  a:focus, a:hover {\n    color: #322449;\n    text-decoration: underline; }\n  a:focus {\n    outline: thin dotted;\n    outline: 5px auto -webkit-focus-ring-color;\n    outline-offset: -2px; }\n\npre {\n  margin-top: 0;\n  margin-bottom: 1rem; }\n\nfigure {\n  margin: 0 0 1rem; }\n\nimg {\n  vertical-align: middle; }\n\n[role=\"button\"] {\n  cursor: pointer; }\n\na,\narea,\nbutton,\n[role=\"button\"],\ninput,\nlabel,\nselect,\nsummary,\ntextarea {\n  -ms-touch-action: manipulation;\n      touch-action: manipulation; }\n\ntable {\n  background-color: transparent; }\n\ncaption {\n  padding-top: 0.75rem;\n  padding-bottom: 0.75rem;\n  color: #818a91;\n  text-align: left;\n  caption-side: bottom; }\n\nth {\n  text-align: left; }\n\nlabel {\n  display: inline-block;\n  margin-bottom: .5rem; }\n\nbutton:focus {\n  outline: 1px dotted;\n  outline: 5px auto -webkit-focus-ring-color; }\n\ninput,\nbutton,\nselect,\ntextarea {\n  margin: 0;\n  line-height: inherit;\n  border-radius: 0; }\n\ntextarea {\n  resize: vertical; }\n\nfieldset {\n  min-width: 0;\n  padding: 0;\n  margin: 0;\n  border: 0; }\n\nlegend {\n  display: block;\n  width: 100%;\n  padding: 0;\n  margin-bottom: .5rem;\n  font-size: 1.5rem;\n  line-height: inherit; }\n\ninput[type=\"search\"] {\n  box-sizing: inherit;\n  -webkit-appearance: none; }\n\noutput {\n  display: inline-block; }\n\n[hidden] {\n  display: none !important; }\n\n.fade {\n  opacity: 0;\n  -webkit-transition: opacity .15s linear;\n  transition: opacity .15s linear; }\n  .fade.in {\n    opacity: 1; }\n\n.collapse {\n  display: none; }\n  .collapse.in {\n    display: block; }\n\n.collapsing {\n  position: relative;\n  height: 0;\n  overflow: hidden;\n  -webkit-transition-timing-function: ease;\n          transition-timing-function: ease;\n  -webkit-transition-duration: .35s;\n          transition-duration: .35s;\n  -webkit-transition-property: height;\n  transition-property: height; }\n\n.close {\n  float: right;\n  font-size: 1.5rem;\n  font-weight: bold;\n  line-height: 1;\n  color: #000;\n  text-shadow: 0 1px 0 #fff;\n  opacity: .2; }\n  .close:focus, .close:hover {\n    color: #000;\n    text-decoration: none;\n    cursor: pointer;\n    opacity: .5; }\n\nbutton.close {\n  padding: 0;\n  cursor: pointer;\n  background: transparent;\n  border: 0;\n  -webkit-appearance: none; }\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace; }\n\ncode {\n  padding: .2rem .4rem;\n  font-size: 90%;\n  color: #bd4147;\n  background-color: #f7f7f9;\n  border-radius: 0.25rem; }\n\nkbd {\n  padding: .2rem .4rem;\n  font-size: 90%;\n  color: #fff;\n  background-color: #333;\n  border-radius: 0.2rem; }\n  kbd kbd {\n    padding: 0;\n    font-size: 100%;\n    font-weight: bold; }\n\npre {\n  display: block;\n  margin-top: 0;\n  margin-bottom: 1rem;\n  font-size: 90%;\n  line-height: 1.5;\n  color: #373a3c; }\n  pre code {\n    padding: 0;\n    font-size: inherit;\n    color: inherit;\n    background-color: transparent;\n    border-radius: 0; }\n\n.pre-scrollable {\n  max-height: 340px;\n  overflow-y: scroll; }\n\n.input-group {\n  position: relative;\n  display: table;\n  border-collapse: separate; }\n  .input-group .form-control {\n    position: relative;\n    z-index: 2;\n    float: left;\n    width: 100%;\n    margin-bottom: 0; }\n    .input-group .form-control:focus, .input-group .form-control:active, .input-group .form-control:hover {\n      z-index: 3; }\n\n.input-group-addon,\n.input-group-btn,\n.input-group .form-control {\n  display: table-cell; }\n  .input-group-addon:not(:first-child):not(:last-child),\n  .input-group-btn:not(:first-child):not(:last-child),\n  .input-group .form-control:not(:first-child):not(:last-child) {\n    border-radius: 0; }\n\n.input-group-addon,\n.input-group-btn {\n  width: 1%;\n  white-space: nowrap;\n  vertical-align: middle; }\n\n.input-group-addon {\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: normal;\n  line-height: 1;\n  color: #55595c;\n  text-align: center;\n  background-color: #eceeef;\n  border: 1px solid #ccc;\n  border-radius: 0.25rem; }\n  .input-group-addon.form-control-sm,\n  .input-group-sm > .input-group-addon,\n  .input-group-sm > .input-group-btn > .input-group-addon.btn {\n    padding: 0.275rem 0.75rem;\n    font-size: 0.875rem;\n    border-radius: 0.2rem; }\n  .input-group-addon.form-control-lg,\n  .input-group-lg > .input-group-addon,\n  .input-group-lg > .input-group-btn > .input-group-addon.btn {\n    padding: 0.75rem 1.25rem;\n    font-size: 1.25rem;\n    border-radius: 0.3rem; }\n  .input-group-addon input[type=\"radio\"],\n  .input-group-addon input[type=\"checkbox\"] {\n    margin-top: 0; }\n\n.input-group .form-control:first-child,\n.input-group-addon:first-child,\n.input-group-btn:first-child > .btn,\n.input-group-btn:first-child > .btn-group > .btn,\n.input-group-btn:first-child > .dropdown-toggle,\n.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),\n.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0; }\n\n.input-group-addon:first-child {\n  border-right: 0; }\n\n.input-group .form-control:last-child,\n.input-group-addon:last-child,\n.input-group-btn:last-child > .btn,\n.input-group-btn:last-child > .btn-group > .btn,\n.input-group-btn:last-child > .dropdown-toggle,\n.input-group-btn:first-child > .btn:not(:first-child),\n.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0; }\n\n.input-group-addon:last-child {\n  border-left: 0; }\n\n.input-group-btn {\n  position: relative;\n  font-size: 0;\n  white-space: nowrap; }\n  .input-group-btn > .btn {\n    position: relative; }\n    .input-group-btn > .btn + .btn {\n      margin-left: -1px; }\n    .input-group-btn > .btn:focus, .input-group-btn > .btn:active, .input-group-btn > .btn:hover {\n      z-index: 3; }\n  .input-group-btn:first-child > .btn,\n  .input-group-btn:first-child > .btn-group {\n    margin-right: -1px; }\n  .input-group-btn:last-child > .btn,\n  .input-group-btn:last-child > .btn-group {\n    z-index: 2;\n    margin-left: -1px; }\n    .input-group-btn:last-child > .btn:focus, .input-group-btn:last-child > .btn:active, .input-group-btn:last-child > .btn:hover,\n    .input-group-btn:last-child > .btn-group:focus,\n    .input-group-btn:last-child > .btn-group:active,\n    .input-group-btn:last-child > .btn-group:hover {\n      z-index: 3; }\n\n.embed-responsive {\n  position: relative;\n  display: block;\n  height: 0;\n  padding: 0;\n  overflow: hidden; }\n  .embed-responsive .embed-responsive-item,\n  .embed-responsive iframe,\n  .embed-responsive embed,\n  .embed-responsive object,\n  .embed-responsive video {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    border: 0; }\n\n.embed-responsive-21by9 {\n  padding-bottom: 42.85714%; }\n\n.embed-responsive-16by9 {\n  padding-bottom: 56.25%; }\n\n.embed-responsive-4by3 {\n  padding-bottom: 75%; }\n\n.embed-responsive-1by1 {\n  padding-bottom: 100%; }\n\nh1, h2, h3, h4, h5, h6,\n.h1, .h2, .h3, .h4, .h5, .h6 {\n  margin-bottom: 0.5rem;\n  font-family: inherit;\n  font-weight: 500;\n  line-height: 1.1;\n  color: inherit; }\n\nh1 {\n  font-size: 2.5rem; }\n\nh2 {\n  font-size: 2rem; }\n\nh3 {\n  font-size: 1.75rem; }\n\nh4 {\n  font-size: 1.5rem; }\n\nh5 {\n  font-size: 1.25rem; }\n\nh6 {\n  font-size: 1rem; }\n\n.h1 {\n  font-size: 2.5rem; }\n\n.h2 {\n  font-size: 2rem; }\n\n.h3 {\n  font-size: 1.75rem; }\n\n.h4 {\n  font-size: 1.5rem; }\n\n.h5 {\n  font-size: 1.25rem; }\n\n.h6 {\n  font-size: 1rem; }\n\n.lead {\n  font-size: 1.25rem;\n  font-weight: 300; }\n\n.display-1 {\n  font-size: 6rem;\n  font-weight: 300; }\n\n.display-2 {\n  font-size: 5.5rem;\n  font-weight: 300; }\n\n.display-3 {\n  font-size: 4.5rem;\n  font-weight: 300; }\n\n.display-4 {\n  font-size: 3.5rem;\n  font-weight: 300; }\n\nhr {\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n  border: 0;\n  border-top: 1px solid rgba(0, 0, 0, 0.1); }\n\nsmall,\n.small {\n  font-size: 80%;\n  font-weight: normal; }\n\nmark,\n.mark {\n  padding: .2em;\n  background-color: #fcf8e3; }\n\n.list-unstyled {\n  padding-left: 0;\n  list-style: none; }\n\n.list-inline {\n  padding-left: 0;\n  list-style: none; }\n\n.list-inline-item {\n  display: inline-block; }\n  .list-inline-item:not(:last-child) {\n    margin-right: 5px; }\n\n.dl-horizontal {\n  margin-right: -1.875rem;\n  margin-left: -1.875rem; }\n  .dl-horizontal::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.initialism {\n  font-size: 90%;\n  text-transform: uppercase; }\n\n.blockquote {\n  padding: 0.5rem 1rem;\n  margin-bottom: 1rem;\n  font-size: 1.25rem;\n  border-left: 0.25rem solid #eceeef; }\n\n.blockquote-footer {\n  display: block;\n  font-size: 80%;\n  line-height: 1.5;\n  color: #818a91; }\n  .blockquote-footer::before {\n    content: \"\\2014   \\A0\"; }\n\n.blockquote-reverse {\n  padding-right: 1rem;\n  padding-left: 0;\n  text-align: right;\n  border-right: 0.25rem solid #eceeef;\n  border-left: 0; }\n\n.blockquote-reverse .blockquote-footer::before {\n  content: \"\"; }\n\n.blockquote-reverse .blockquote-footer::after {\n  content: \"\\A0   \\2014\"; }\n\n.bg-inverse {\n  color: #eceeef;\n  background-color: #373a3c; }\n\n.bg-faded {\n  background-color: #f7f7f9; }\n\n.bg-primary {\n  color: #fff !important;\n  background-color: #563d7c !important; }\n\na.bg-primary:focus, a.bg-primary:hover {\n  background-color: #3e2c5a; }\n\n.bg-success {\n  color: #fff !important;\n  background-color: #42b983 !important; }\n\na.bg-success:focus, a.bg-success:hover {\n  background-color: #359368; }\n\n.bg-info {\n  color: #fff !important;\n  background-color: #5bc0de !important; }\n\na.bg-info:focus, a.bg-info:hover {\n  background-color: #31b0d5; }\n\n.bg-warning {\n  color: #fff !important;\n  background-color: #f0ad4e !important; }\n\na.bg-warning:focus, a.bg-warning:hover {\n  background-color: #ec971f; }\n\n.bg-danger {\n  color: #fff !important;\n  background-color: #d9534f !important; }\n\na.bg-danger:focus, a.bg-danger:hover {\n  background-color: #c9302c; }\n\n.hidden-xs-up {\n  display: none !important; }\n\n@media (max-width: 543px) {\n  .hidden-xs-down {\n    display: none !important; } }\n\n@media (min-width: 544px) {\n  .hidden-sm-up {\n    display: none !important; } }\n\n@media (max-width: 767px) {\n  .hidden-sm-down {\n    display: none !important; } }\n\n@media (min-width: 768px) {\n  .hidden-md-up {\n    display: none !important; } }\n\n@media (max-width: 991px) {\n  .hidden-md-down {\n    display: none !important; } }\n\n@media (min-width: 992px) {\n  .hidden-lg-up {\n    display: none !important; } }\n\n@media (max-width: 1199px) {\n  .hidden-lg-down {\n    display: none !important; } }\n\n@media (min-width: 1200px) {\n  .hidden-xl-up {\n    display: none !important; } }\n\n.hidden-xl-down {\n  display: none !important; }\n\n.visible-print-block {\n  display: none !important; }\n  @media print {\n    .visible-print-block {\n      display: block !important; } }\n\n.visible-print-inline {\n  display: none !important; }\n  @media print {\n    .visible-print-inline {\n      display: inline !important; } }\n\n.visible-print-inline-block {\n  display: none !important; }\n  @media print {\n    .visible-print-inline-block {\n      display: inline-block !important; } }\n\n@media print {\n  .hidden-print {\n    display: none !important; } }\n\n.m-x-auto {\n  margin-right: auto !important;\n  margin-left: auto !important; }\n\n.m-a-0 {\n  margin: 0 0 !important; }\n\n.m-t-0 {\n  margin-top: 0 !important; }\n\n.m-r-0 {\n  margin-right: 0 !important; }\n\n.m-b-0 {\n  margin-bottom: 0 !important; }\n\n.m-l-0 {\n  margin-left: 0 !important; }\n\n.m-x-0 {\n  margin-right: 0 !important;\n  margin-left: 0 !important; }\n\n.m-y-0 {\n  margin-top: 0 !important;\n  margin-bottom: 0 !important; }\n\n.m-a-1 {\n  margin: 1rem 1rem !important; }\n\n.m-t-1 {\n  margin-top: 1rem !important; }\n\n.m-r-1 {\n  margin-right: 1rem !important; }\n\n.m-b-1 {\n  margin-bottom: 1rem !important; }\n\n.m-l-1 {\n  margin-left: 1rem !important; }\n\n.m-x-1 {\n  margin-right: 1rem !important;\n  margin-left: 1rem !important; }\n\n.m-y-1 {\n  margin-top: 1rem !important;\n  margin-bottom: 1rem !important; }\n\n.m-a-2 {\n  margin: 1.5rem 1.5rem !important; }\n\n.m-t-2 {\n  margin-top: 1.5rem !important; }\n\n.m-r-2 {\n  margin-right: 1.5rem !important; }\n\n.m-b-2 {\n  margin-bottom: 1.5rem !important; }\n\n.m-l-2 {\n  margin-left: 1.5rem !important; }\n\n.m-x-2 {\n  margin-right: 1.5rem !important;\n  margin-left: 1.5rem !important; }\n\n.m-y-2 {\n  margin-top: 1.5rem !important;\n  margin-bottom: 1.5rem !important; }\n\n.m-a-3 {\n  margin: 3rem 3rem !important; }\n\n.m-t-3 {\n  margin-top: 3rem !important; }\n\n.m-r-3 {\n  margin-right: 3rem !important; }\n\n.m-b-3 {\n  margin-bottom: 3rem !important; }\n\n.m-l-3 {\n  margin-left: 3rem !important; }\n\n.m-x-3 {\n  margin-right: 3rem !important;\n  margin-left: 3rem !important; }\n\n.m-y-3 {\n  margin-top: 3rem !important;\n  margin-bottom: 3rem !important; }\n\n.p-a-0 {\n  padding: 0 0 !important; }\n\n.p-t-0 {\n  padding-top: 0 !important; }\n\n.p-r-0 {\n  padding-right: 0 !important; }\n\n.p-b-0 {\n  padding-bottom: 0 !important; }\n\n.p-l-0 {\n  padding-left: 0 !important; }\n\n.p-x-0 {\n  padding-right: 0 !important;\n  padding-left: 0 !important; }\n\n.p-y-0 {\n  padding-top: 0 !important;\n  padding-bottom: 0 !important; }\n\n.p-a-1 {\n  padding: 1rem 1rem !important; }\n\n.p-t-1 {\n  padding-top: 1rem !important; }\n\n.p-r-1 {\n  padding-right: 1rem !important; }\n\n.p-b-1 {\n  padding-bottom: 1rem !important; }\n\n.p-l-1 {\n  padding-left: 1rem !important; }\n\n.p-x-1 {\n  padding-right: 1rem !important;\n  padding-left: 1rem !important; }\n\n.p-y-1 {\n  padding-top: 1rem !important;\n  padding-bottom: 1rem !important; }\n\n.p-a-2 {\n  padding: 1.5rem 1.5rem !important; }\n\n.p-t-2 {\n  padding-top: 1.5rem !important; }\n\n.p-r-2 {\n  padding-right: 1.5rem !important; }\n\n.p-b-2 {\n  padding-bottom: 1.5rem !important; }\n\n.p-l-2 {\n  padding-left: 1.5rem !important; }\n\n.p-x-2 {\n  padding-right: 1.5rem !important;\n  padding-left: 1.5rem !important; }\n\n.p-y-2 {\n  padding-top: 1.5rem !important;\n  padding-bottom: 1.5rem !important; }\n\n.p-a-3 {\n  padding: 3rem 3rem !important; }\n\n.p-t-3 {\n  padding-top: 3rem !important; }\n\n.p-r-3 {\n  padding-right: 3rem !important; }\n\n.p-b-3 {\n  padding-bottom: 3rem !important; }\n\n.p-l-3 {\n  padding-left: 3rem !important; }\n\n.p-x-3 {\n  padding-right: 3rem !important;\n  padding-left: 3rem !important; }\n\n.p-y-3 {\n  padding-top: 3rem !important;\n  padding-bottom: 3rem !important; }\n\n.pos-f-t {\n  position: fixed;\n  top: 0;\n  right: 0;\n  left: 0;\n  z-index: 1030; }\n\n.clearfix::after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.center-block {\n  display: block;\n  margin-left: auto;\n  margin-right: auto; }\n\n.pull-xs-left {\n  float: left !important; }\n\n.pull-xs-right {\n  float: right !important; }\n\n.pull-xs-none {\n  float: none !important; }\n\n@media (min-width: 544px) {\n  .pull-sm-left {\n    float: left !important; }\n  .pull-sm-right {\n    float: right !important; }\n  .pull-sm-none {\n    float: none !important; } }\n\n@media (min-width: 768px) {\n  .pull-md-left {\n    float: left !important; }\n  .pull-md-right {\n    float: right !important; }\n  .pull-md-none {\n    float: none !important; } }\n\n@media (min-width: 992px) {\n  .pull-lg-left {\n    float: left !important; }\n  .pull-lg-right {\n    float: right !important; }\n  .pull-lg-none {\n    float: none !important; } }\n\n@media (min-width: 1200px) {\n  .pull-xl-left {\n    float: left !important; }\n  .pull-xl-right {\n    float: right !important; }\n  .pull-xl-none {\n    float: none !important; } }\n\n.sr-only {\n  position: absolute;\n  width: 1px;\n  height: 1px;\n  padding: 0;\n  margin: -1px;\n  overflow: hidden;\n  clip: rect(0, 0, 0, 0);\n  border: 0; }\n\n.sr-only-focusable:active, .sr-only-focusable:focus {\n  position: static;\n  width: auto;\n  height: auto;\n  margin: 0;\n  overflow: visible;\n  clip: auto; }\n\n.invisible {\n  visibility: hidden !important; }\n\n.text-hide {\n  font: \"0/0\" a;\n  color: transparent;\n  text-shadow: none;\n  background-color: transparent;\n  border: 0; }\n\n.text-justify {\n  text-align: justify !important; }\n\n.text-nowrap {\n  white-space: nowrap !important; }\n\n.text-truncate {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap; }\n\n.text-xs-left {\n  text-align: left !important; }\n\n.text-xs-right {\n  text-align: right !important; }\n\n.text-xs-center {\n  text-align: center !important; }\n\n@media (min-width: 544px) {\n  .text-sm-left {\n    text-align: left !important; }\n  .text-sm-right {\n    text-align: right !important; }\n  .text-sm-center {\n    text-align: center !important; } }\n\n@media (min-width: 768px) {\n  .text-md-left {\n    text-align: left !important; }\n  .text-md-right {\n    text-align: right !important; }\n  .text-md-center {\n    text-align: center !important; } }\n\n@media (min-width: 992px) {\n  .text-lg-left {\n    text-align: left !important; }\n  .text-lg-right {\n    text-align: right !important; }\n  .text-lg-center {\n    text-align: center !important; } }\n\n@media (min-width: 1200px) {\n  .text-xl-left {\n    text-align: left !important; }\n  .text-xl-right {\n    text-align: right !important; }\n  .text-xl-center {\n    text-align: center !important; } }\n\n.text-lowercase {\n  text-transform: lowercase !important; }\n\n.text-uppercase {\n  text-transform: uppercase !important; }\n\n.text-capitalize {\n  text-transform: capitalize !important; }\n\n.font-weight-normal {\n  font-weight: normal; }\n\n.font-weight-bold {\n  font-weight: bold; }\n\n.font-italic {\n  font-style: italic; }\n\n.text-muted {\n  color: #818a91; }\n\n.text-primary {\n  color: #563d7c !important; }\n\na.text-primary:focus, a.text-primary:hover {\n  color: #3e2c5a; }\n\n.text-success {\n  color: #42b983 !important; }\n\na.text-success:focus, a.text-success:hover {\n  color: #359368; }\n\n.text-info {\n  color: #5bc0de !important; }\n\na.text-info:focus, a.text-info:hover {\n  color: #31b0d5; }\n\n.text-warning {\n  color: #f0ad4e !important; }\n\na.text-warning:focus, a.text-warning:hover {\n  color: #ec971f; }\n\n.text-danger {\n  color: #d9534f !important; }\n\na.text-danger:focus, a.text-danger:hover {\n  color: #c9302c; }\n\n.container {\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n  .container::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n  @media (min-width: 544px) {\n    .container {\n      max-width: 576px; } }\n  @media (min-width: 768px) {\n    .container {\n      max-width: 720px; } }\n  @media (min-width: 992px) {\n    .container {\n      max-width: 940px; } }\n  @media (min-width: 1200px) {\n    .container {\n      max-width: 1140px; } }\n\n.container-fluid {\n  margin-left: auto;\n  margin-right: auto;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n  .container-fluid::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.row {\n  margin-left: -0.9375rem;\n  margin-right: -0.9375rem; }\n  .row::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {\n  position: relative;\n  min-height: 1px;\n  padding-left: 0.9375rem;\n  padding-right: 0.9375rem; }\n\n.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {\n  float: left; }\n\n.col-xs-1 {\n  width: 8.33333%; }\n\n.col-xs-2 {\n  width: 16.66667%; }\n\n.col-xs-3 {\n  width: 25%; }\n\n.col-xs-4 {\n  width: 33.33333%; }\n\n.col-xs-5 {\n  width: 41.66667%; }\n\n.col-xs-6 {\n  width: 50%; }\n\n.col-xs-7 {\n  width: 58.33333%; }\n\n.col-xs-8 {\n  width: 66.66667%; }\n\n.col-xs-9 {\n  width: 75%; }\n\n.col-xs-10 {\n  width: 83.33333%; }\n\n.col-xs-11 {\n  width: 91.66667%; }\n\n.col-xs-12 {\n  width: 100%; }\n\n.col-xs-pull-0 {\n  right: auto; }\n\n.col-xs-pull-1 {\n  right: 8.33333%; }\n\n.col-xs-pull-2 {\n  right: 16.66667%; }\n\n.col-xs-pull-3 {\n  right: 25%; }\n\n.col-xs-pull-4 {\n  right: 33.33333%; }\n\n.col-xs-pull-5 {\n  right: 41.66667%; }\n\n.col-xs-pull-6 {\n  right: 50%; }\n\n.col-xs-pull-7 {\n  right: 58.33333%; }\n\n.col-xs-pull-8 {\n  right: 66.66667%; }\n\n.col-xs-pull-9 {\n  right: 75%; }\n\n.col-xs-pull-10 {\n  right: 83.33333%; }\n\n.col-xs-pull-11 {\n  right: 91.66667%; }\n\n.col-xs-pull-12 {\n  right: 100%; }\n\n.col-xs-push-0 {\n  left: auto; }\n\n.col-xs-push-1 {\n  left: 8.33333%; }\n\n.col-xs-push-2 {\n  left: 16.66667%; }\n\n.col-xs-push-3 {\n  left: 25%; }\n\n.col-xs-push-4 {\n  left: 33.33333%; }\n\n.col-xs-push-5 {\n  left: 41.66667%; }\n\n.col-xs-push-6 {\n  left: 50%; }\n\n.col-xs-push-7 {\n  left: 58.33333%; }\n\n.col-xs-push-8 {\n  left: 66.66667%; }\n\n.col-xs-push-9 {\n  left: 75%; }\n\n.col-xs-push-10 {\n  left: 83.33333%; }\n\n.col-xs-push-11 {\n  left: 91.66667%; }\n\n.col-xs-push-12 {\n  left: 100%; }\n\n.col-xs-offset-0 {\n  margin-left: 0%; }\n\n.col-xs-offset-1 {\n  margin-left: 8.33333%; }\n\n.col-xs-offset-2 {\n  margin-left: 16.66667%; }\n\n.col-xs-offset-3 {\n  margin-left: 25%; }\n\n.col-xs-offset-4 {\n  margin-left: 33.33333%; }\n\n.col-xs-offset-5 {\n  margin-left: 41.66667%; }\n\n.col-xs-offset-6 {\n  margin-left: 50%; }\n\n.col-xs-offset-7 {\n  margin-left: 58.33333%; }\n\n.col-xs-offset-8 {\n  margin-left: 66.66667%; }\n\n.col-xs-offset-9 {\n  margin-left: 75%; }\n\n.col-xs-offset-10 {\n  margin-left: 83.33333%; }\n\n.col-xs-offset-11 {\n  margin-left: 91.66667%; }\n\n.col-xs-offset-12 {\n  margin-left: 100%; }\n\n@media (min-width: 544px) {\n  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {\n    float: left; }\n  .col-sm-1 {\n    width: 8.33333%; }\n  .col-sm-2 {\n    width: 16.66667%; }\n  .col-sm-3 {\n    width: 25%; }\n  .col-sm-4 {\n    width: 33.33333%; }\n  .col-sm-5 {\n    width: 41.66667%; }\n  .col-sm-6 {\n    width: 50%; }\n  .col-sm-7 {\n    width: 58.33333%; }\n  .col-sm-8 {\n    width: 66.66667%; }\n  .col-sm-9 {\n    width: 75%; }\n  .col-sm-10 {\n    width: 83.33333%; }\n  .col-sm-11 {\n    width: 91.66667%; }\n  .col-sm-12 {\n    width: 100%; }\n  .col-sm-pull-0 {\n    right: auto; }\n  .col-sm-pull-1 {\n    right: 8.33333%; }\n  .col-sm-pull-2 {\n    right: 16.66667%; }\n  .col-sm-pull-3 {\n    right: 25%; }\n  .col-sm-pull-4 {\n    right: 33.33333%; }\n  .col-sm-pull-5 {\n    right: 41.66667%; }\n  .col-sm-pull-6 {\n    right: 50%; }\n  .col-sm-pull-7 {\n    right: 58.33333%; }\n  .col-sm-pull-8 {\n    right: 66.66667%; }\n  .col-sm-pull-9 {\n    right: 75%; }\n  .col-sm-pull-10 {\n    right: 83.33333%; }\n  .col-sm-pull-11 {\n    right: 91.66667%; }\n  .col-sm-pull-12 {\n    right: 100%; }\n  .col-sm-push-0 {\n    left: auto; }\n  .col-sm-push-1 {\n    left: 8.33333%; }\n  .col-sm-push-2 {\n    left: 16.66667%; }\n  .col-sm-push-3 {\n    left: 25%; }\n  .col-sm-push-4 {\n    left: 33.33333%; }\n  .col-sm-push-5 {\n    left: 41.66667%; }\n  .col-sm-push-6 {\n    left: 50%; }\n  .col-sm-push-7 {\n    left: 58.33333%; }\n  .col-sm-push-8 {\n    left: 66.66667%; }\n  .col-sm-push-9 {\n    left: 75%; }\n  .col-sm-push-10 {\n    left: 83.33333%; }\n  .col-sm-push-11 {\n    left: 91.66667%; }\n  .col-sm-push-12 {\n    left: 100%; }\n  .col-sm-offset-0 {\n    margin-left: 0%; }\n  .col-sm-offset-1 {\n    margin-left: 8.33333%; }\n  .col-sm-offset-2 {\n    margin-left: 16.66667%; }\n  .col-sm-offset-3 {\n    margin-left: 25%; }\n  .col-sm-offset-4 {\n    margin-left: 33.33333%; }\n  .col-sm-offset-5 {\n    margin-left: 41.66667%; }\n  .col-sm-offset-6 {\n    margin-left: 50%; }\n  .col-sm-offset-7 {\n    margin-left: 58.33333%; }\n  .col-sm-offset-8 {\n    margin-left: 66.66667%; }\n  .col-sm-offset-9 {\n    margin-left: 75%; }\n  .col-sm-offset-10 {\n    margin-left: 83.33333%; }\n  .col-sm-offset-11 {\n    margin-left: 91.66667%; }\n  .col-sm-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 768px) {\n  .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {\n    float: left; }\n  .col-md-1 {\n    width: 8.33333%; }\n  .col-md-2 {\n    width: 16.66667%; }\n  .col-md-3 {\n    width: 25%; }\n  .col-md-4 {\n    width: 33.33333%; }\n  .col-md-5 {\n    width: 41.66667%; }\n  .col-md-6 {\n    width: 50%; }\n  .col-md-7 {\n    width: 58.33333%; }\n  .col-md-8 {\n    width: 66.66667%; }\n  .col-md-9 {\n    width: 75%; }\n  .col-md-10 {\n    width: 83.33333%; }\n  .col-md-11 {\n    width: 91.66667%; }\n  .col-md-12 {\n    width: 100%; }\n  .col-md-pull-0 {\n    right: auto; }\n  .col-md-pull-1 {\n    right: 8.33333%; }\n  .col-md-pull-2 {\n    right: 16.66667%; }\n  .col-md-pull-3 {\n    right: 25%; }\n  .col-md-pull-4 {\n    right: 33.33333%; }\n  .col-md-pull-5 {\n    right: 41.66667%; }\n  .col-md-pull-6 {\n    right: 50%; }\n  .col-md-pull-7 {\n    right: 58.33333%; }\n  .col-md-pull-8 {\n    right: 66.66667%; }\n  .col-md-pull-9 {\n    right: 75%; }\n  .col-md-pull-10 {\n    right: 83.33333%; }\n  .col-md-pull-11 {\n    right: 91.66667%; }\n  .col-md-pull-12 {\n    right: 100%; }\n  .col-md-push-0 {\n    left: auto; }\n  .col-md-push-1 {\n    left: 8.33333%; }\n  .col-md-push-2 {\n    left: 16.66667%; }\n  .col-md-push-3 {\n    left: 25%; }\n  .col-md-push-4 {\n    left: 33.33333%; }\n  .col-md-push-5 {\n    left: 41.66667%; }\n  .col-md-push-6 {\n    left: 50%; }\n  .col-md-push-7 {\n    left: 58.33333%; }\n  .col-md-push-8 {\n    left: 66.66667%; }\n  .col-md-push-9 {\n    left: 75%; }\n  .col-md-push-10 {\n    left: 83.33333%; }\n  .col-md-push-11 {\n    left: 91.66667%; }\n  .col-md-push-12 {\n    left: 100%; }\n  .col-md-offset-0 {\n    margin-left: 0%; }\n  .col-md-offset-1 {\n    margin-left: 8.33333%; }\n  .col-md-offset-2 {\n    margin-left: 16.66667%; }\n  .col-md-offset-3 {\n    margin-left: 25%; }\n  .col-md-offset-4 {\n    margin-left: 33.33333%; }\n  .col-md-offset-5 {\n    margin-left: 41.66667%; }\n  .col-md-offset-6 {\n    margin-left: 50%; }\n  .col-md-offset-7 {\n    margin-left: 58.33333%; }\n  .col-md-offset-8 {\n    margin-left: 66.66667%; }\n  .col-md-offset-9 {\n    margin-left: 75%; }\n  .col-md-offset-10 {\n    margin-left: 83.33333%; }\n  .col-md-offset-11 {\n    margin-left: 91.66667%; }\n  .col-md-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 992px) {\n  .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12 {\n    float: left; }\n  .col-lg-1 {\n    width: 8.33333%; }\n  .col-lg-2 {\n    width: 16.66667%; }\n  .col-lg-3 {\n    width: 25%; }\n  .col-lg-4 {\n    width: 33.33333%; }\n  .col-lg-5 {\n    width: 41.66667%; }\n  .col-lg-6 {\n    width: 50%; }\n  .col-lg-7 {\n    width: 58.33333%; }\n  .col-lg-8 {\n    width: 66.66667%; }\n  .col-lg-9 {\n    width: 75%; }\n  .col-lg-10 {\n    width: 83.33333%; }\n  .col-lg-11 {\n    width: 91.66667%; }\n  .col-lg-12 {\n    width: 100%; }\n  .col-lg-pull-0 {\n    right: auto; }\n  .col-lg-pull-1 {\n    right: 8.33333%; }\n  .col-lg-pull-2 {\n    right: 16.66667%; }\n  .col-lg-pull-3 {\n    right: 25%; }\n  .col-lg-pull-4 {\n    right: 33.33333%; }\n  .col-lg-pull-5 {\n    right: 41.66667%; }\n  .col-lg-pull-6 {\n    right: 50%; }\n  .col-lg-pull-7 {\n    right: 58.33333%; }\n  .col-lg-pull-8 {\n    right: 66.66667%; }\n  .col-lg-pull-9 {\n    right: 75%; }\n  .col-lg-pull-10 {\n    right: 83.33333%; }\n  .col-lg-pull-11 {\n    right: 91.66667%; }\n  .col-lg-pull-12 {\n    right: 100%; }\n  .col-lg-push-0 {\n    left: auto; }\n  .col-lg-push-1 {\n    left: 8.33333%; }\n  .col-lg-push-2 {\n    left: 16.66667%; }\n  .col-lg-push-3 {\n    left: 25%; }\n  .col-lg-push-4 {\n    left: 33.33333%; }\n  .col-lg-push-5 {\n    left: 41.66667%; }\n  .col-lg-push-6 {\n    left: 50%; }\n  .col-lg-push-7 {\n    left: 58.33333%; }\n  .col-lg-push-8 {\n    left: 66.66667%; }\n  .col-lg-push-9 {\n    left: 75%; }\n  .col-lg-push-10 {\n    left: 83.33333%; }\n  .col-lg-push-11 {\n    left: 91.66667%; }\n  .col-lg-push-12 {\n    left: 100%; }\n  .col-lg-offset-0 {\n    margin-left: 0%; }\n  .col-lg-offset-1 {\n    margin-left: 8.33333%; }\n  .col-lg-offset-2 {\n    margin-left: 16.66667%; }\n  .col-lg-offset-3 {\n    margin-left: 25%; }\n  .col-lg-offset-4 {\n    margin-left: 33.33333%; }\n  .col-lg-offset-5 {\n    margin-left: 41.66667%; }\n  .col-lg-offset-6 {\n    margin-left: 50%; }\n  .col-lg-offset-7 {\n    margin-left: 58.33333%; }\n  .col-lg-offset-8 {\n    margin-left: 66.66667%; }\n  .col-lg-offset-9 {\n    margin-left: 75%; }\n  .col-lg-offset-10 {\n    margin-left: 83.33333%; }\n  .col-lg-offset-11 {\n    margin-left: 91.66667%; }\n  .col-lg-offset-12 {\n    margin-left: 100%; } }\n\n@media (min-width: 1200px) {\n  .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {\n    float: left; }\n  .col-xl-1 {\n    width: 8.33333%; }\n  .col-xl-2 {\n    width: 16.66667%; }\n  .col-xl-3 {\n    width: 25%; }\n  .col-xl-4 {\n    width: 33.33333%; }\n  .col-xl-5 {\n    width: 41.66667%; }\n  .col-xl-6 {\n    width: 50%; }\n  .col-xl-7 {\n    width: 58.33333%; }\n  .col-xl-8 {\n    width: 66.66667%; }\n  .col-xl-9 {\n    width: 75%; }\n  .col-xl-10 {\n    width: 83.33333%; }\n  .col-xl-11 {\n    width: 91.66667%; }\n  .col-xl-12 {\n    width: 100%; }\n  .col-xl-pull-0 {\n    right: auto; }\n  .col-xl-pull-1 {\n    right: 8.33333%; }\n  .col-xl-pull-2 {\n    right: 16.66667%; }\n  .col-xl-pull-3 {\n    right: 25%; }\n  .col-xl-pull-4 {\n    right: 33.33333%; }\n  .col-xl-pull-5 {\n    right: 41.66667%; }\n  .col-xl-pull-6 {\n    right: 50%; }\n  .col-xl-pull-7 {\n    right: 58.33333%; }\n  .col-xl-pull-8 {\n    right: 66.66667%; }\n  .col-xl-pull-9 {\n    right: 75%; }\n  .col-xl-pull-10 {\n    right: 83.33333%; }\n  .col-xl-pull-11 {\n    right: 91.66667%; }\n  .col-xl-pull-12 {\n    right: 100%; }\n  .col-xl-push-0 {\n    left: auto; }\n  .col-xl-push-1 {\n    left: 8.33333%; }\n  .col-xl-push-2 {\n    left: 16.66667%; }\n  .col-xl-push-3 {\n    left: 25%; }\n  .col-xl-push-4 {\n    left: 33.33333%; }\n  .col-xl-push-5 {\n    left: 41.66667%; }\n  .col-xl-push-6 {\n    left: 50%; }\n  .col-xl-push-7 {\n    left: 58.33333%; }\n  .col-xl-push-8 {\n    left: 66.66667%; }\n  .col-xl-push-9 {\n    left: 75%; }\n  .col-xl-push-10 {\n    left: 83.33333%; }\n  .col-xl-push-11 {\n    left: 91.66667%; }\n  .col-xl-push-12 {\n    left: 100%; }\n  .col-xl-offset-0 {\n    margin-left: 0%; }\n  .col-xl-offset-1 {\n    margin-left: 8.33333%; }\n  .col-xl-offset-2 {\n    margin-left: 16.66667%; }\n  .col-xl-offset-3 {\n    margin-left: 25%; }\n  .col-xl-offset-4 {\n    margin-left: 33.33333%; }\n  .col-xl-offset-5 {\n    margin-left: 41.66667%; }\n  .col-xl-offset-6 {\n    margin-left: 50%; }\n  .col-xl-offset-7 {\n    margin-left: 58.33333%; }\n  .col-xl-offset-8 {\n    margin-left: 66.66667%; }\n  .col-xl-offset-9 {\n    margin-left: 75%; }\n  .col-xl-offset-10 {\n    margin-left: 83.33333%; }\n  .col-xl-offset-11 {\n    margin-left: 91.66667%; }\n  .col-xl-offset-12 {\n    margin-left: 100%; } }\n", ""]);
 
 	// exports
 
@@ -2177,7 +2175,7 @@
 
 
 	// module
-	exports.push([module.id, ".nav {\n  padding-left: 0;\n  margin-bottom: 0;\n  list-style: none; }\n\n.nav-link {\n  display: inline-block; }\n  .nav-link:focus, .nav-link:hover {\n    text-decoration: none; }\n  .nav-link.disabled {\n    color: #818a91; }\n    .nav-link.disabled, .nav-link.disabled:focus, .nav-link.disabled:hover {\n      color: #818a91;\n      cursor: not-allowed;\n      background-color: transparent; }\n\n.nav-inline .nav-link + .nav-link {\n  margin-left: 1rem; }\n\n.nav-tabs {\n  border-bottom: 1px solid #ddd; }\n  .nav-tabs::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n  .nav-tabs .nav-item {\n    float: left;\n    margin-bottom: -1px; }\n    .nav-tabs .nav-item + .nav-item {\n      margin-left: .2rem; }\n  .nav-tabs .nav-link {\n    display: block;\n    padding: 0.5em 1em;\n    border: 1px solid transparent;\n    border-radius: 0.25rem 0.25rem 0 0; }\n    .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {\n      border-color: #eceeef #eceeef #ddd; }\n    .nav-tabs .nav-link.disabled, .nav-tabs .nav-link.disabled:focus, .nav-tabs .nav-link.disabled:hover {\n      color: #818a91;\n      background-color: transparent;\n      border-color: transparent; }\n  .nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover,\n  .nav-tabs .nav-item.open .nav-link,\n  .nav-tabs .nav-item.open .nav-link:focus,\n  .nav-tabs .nav-item.open .nav-link:hover {\n    color: #55595c;\n    background-color: #fff;\n    border-color: #ddd #ddd transparent; }\n\n.nav-pills::after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.nav-pills .nav-item {\n  float: left; }\n  .nav-pills .nav-item + .nav-item {\n    margin-left: .2rem; }\n\n.nav-pills .nav-link {\n  display: block;\n  padding: 0.5em 1em;\n  border-radius: 0.25rem; }\n\n.nav-pills .nav-link.active, .nav-pills .nav-link.active:focus, .nav-pills .nav-link.active:hover,\n.nav-pills .nav-item.open .nav-link,\n.nav-pills .nav-item.open .nav-link:focus,\n.nav-pills .nav-item.open .nav-link:hover {\n  color: #fff;\n  cursor: default;\n  background-color: #563d7c; }\n\n.nav-stacked .nav-item {\n  display: block;\n  float: none; }\n  .nav-stacked .nav-item + .nav-item {\n    margin-top: .2rem;\n    margin-left: 0; }\n\n.tab-content > .tab-pane {\n  display: none; }\n\n.tab-content > .active {\n  display: block; }\n\n.nav-tabs .dropdown-menu {\n  margin-top: -1px;\n  border-top-right-radius: 0;\n  border-top-left-radius: 0; }\n", ""]);
+	exports.push([module.id, ".nav {\n  padding-left: 0;\n  margin-bottom: 0;\n  list-style: none; }\n\n.nav-link {\n  display: inline-block; }\n  .nav-link:focus, .nav-link:hover {\n    text-decoration: none; }\n  .nav-link.disabled {\n    color: #818a91; }\n    .nav-link.disabled, .nav-link.disabled:focus, .nav-link.disabled:hover {\n      color: #818a91;\n      cursor: not-allowed;\n      background-color: transparent; }\n\n.nav-inline .nav-item {\n  display: inline-block; }\n\n.nav-inline .nav-item + .nav-item,\n.nav-inline .nav-link + .nav-link {\n  margin-left: 1rem; }\n\n.nav-tabs {\n  border-bottom: 1px solid #ddd; }\n  .nav-tabs::after {\n    content: \"\";\n    display: table;\n    clear: both; }\n  .nav-tabs .nav-item {\n    float: left;\n    margin-bottom: -1px; }\n    .nav-tabs .nav-item + .nav-item {\n      margin-left: .2rem; }\n  .nav-tabs .nav-link {\n    display: block;\n    padding: 0.5em 1em;\n    border: 1px solid transparent;\n    border-radius: 0.25rem 0.25rem 0 0; }\n    .nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {\n      border-color: #eceeef #eceeef #ddd; }\n    .nav-tabs .nav-link.disabled, .nav-tabs .nav-link.disabled:focus, .nav-tabs .nav-link.disabled:hover {\n      color: #818a91;\n      background-color: transparent;\n      border-color: transparent; }\n  .nav-tabs .nav-link.active, .nav-tabs .nav-link.active:focus, .nav-tabs .nav-link.active:hover,\n  .nav-tabs .nav-item.open .nav-link,\n  .nav-tabs .nav-item.open .nav-link:focus,\n  .nav-tabs .nav-item.open .nav-link:hover {\n    color: #55595c;\n    background-color: #fff;\n    border-color: #ddd #ddd transparent; }\n\n.nav-pills::after {\n  content: \"\";\n  display: table;\n  clear: both; }\n\n.nav-pills .nav-item {\n  float: left; }\n  .nav-pills .nav-item + .nav-item {\n    margin-left: .2rem; }\n\n.nav-pills .nav-link {\n  display: block;\n  padding: 0.5em 1em;\n  border-radius: 0.25rem; }\n\n.nav-pills .nav-link.active, .nav-pills .nav-link.active:focus, .nav-pills .nav-link.active:hover,\n.nav-pills .nav-item.open .nav-link,\n.nav-pills .nav-item.open .nav-link:focus,\n.nav-pills .nav-item.open .nav-link:hover {\n  color: #fff;\n  cursor: default;\n  background-color: #563d7c; }\n\n.nav-stacked .nav-item {\n  display: block;\n  float: none; }\n  .nav-stacked .nav-item + .nav-item {\n    margin-top: .2rem;\n    margin-left: 0; }\n\n.tab-content > .tab-pane {\n  display: none; }\n\n.tab-content > .active {\n  display: block; }\n\n.nav-tabs .dropdown-menu {\n  margin-top: -1px;\n  border-top-right-radius: 0;\n  border-top-left-radius: 0; }\n", ""]);
 
 	// exports
 
@@ -2372,7 +2370,7 @@
 
 
 	// module
-	exports.push([module.id, ".list-group {\n  padding-left: 0;\n  margin-bottom: 0; }\n\n.list-group-item {\n  position: relative;\n  display: block;\n  padding: .75rem 1.25rem;\n  margin-bottom: -1px;\n  background-color: #fff;\n  border: 1px solid #ddd; }\n  .list-group-item:first-child {\n    border-top-right-radius: 0.25rem;\n    border-top-left-radius: 0.25rem; }\n  .list-group-item:last-child {\n    margin-bottom: 0;\n    border-bottom-right-radius: 0.25rem;\n    border-bottom-left-radius: 0.25rem; }\n\n.list-group-flush .list-group-item {\n  border-width: 1px 0;\n  border-radius: 0; }\n\na.list-group-item,\nbutton.list-group-item {\n  width: 100%;\n  color: #555;\n  text-align: inherit; }\n  a.list-group-item .list-group-item-heading,\n  button.list-group-item .list-group-item-heading {\n    color: #333; }\n  a.list-group-item:focus, a.list-group-item:hover,\n  button.list-group-item:focus,\n  button.list-group-item:hover {\n    color: #555;\n    text-decoration: none;\n    background-color: #f5f5f5; }\n\n.list-group-item.disabled, .list-group-item.disabled:focus, .list-group-item.disabled:hover {\n  color: #818a91;\n  cursor: not-allowed;\n  background-color: #eceeef; }\n  .list-group-item.disabled .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading {\n    color: inherit; }\n  .list-group-item.disabled .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text {\n    color: #818a91; }\n\n.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {\n  z-index: 2;\n  color: #fff;\n  background-color: #563d7c;\n  border-color: #563d7c; }\n  .list-group-item.active .list-group-item-heading,\n  .list-group-item.active .list-group-item-heading > small,\n  .list-group-item.active .list-group-item-heading > .small, .list-group-item.active:focus .list-group-item-heading,\n  .list-group-item.active:focus .list-group-item-heading > small,\n  .list-group-item.active:focus .list-group-item-heading > .small, .list-group-item.active:hover .list-group-item-heading,\n  .list-group-item.active:hover .list-group-item-heading > small,\n  .list-group-item.active:hover .list-group-item-heading > .small {\n    color: inherit; }\n  .list-group-item.active .list-group-item-text, .list-group-item.active:focus .list-group-item-text, .list-group-item.active:hover .list-group-item-text {\n    color: #beaed7; }\n\n.list-group-item-success {\n  color: #3c763d;\n  background-color: #dff0d8; }\n\na.list-group-item-success,\nbutton.list-group-item-success {\n  color: #3c763d; }\n  a.list-group-item-success .list-group-item-heading,\n  button.list-group-item-success .list-group-item-heading {\n    color: inherit; }\n  a.list-group-item-success:focus, a.list-group-item-success:hover,\n  button.list-group-item-success:focus,\n  button.list-group-item-success:hover {\n    color: #3c763d;\n    background-color: #d0e9c6; }\n  a.list-group-item-success.active, a.list-group-item-success.active:focus, a.list-group-item-success.active:hover,\n  button.list-group-item-success.active,\n  button.list-group-item-success.active:focus,\n  button.list-group-item-success.active:hover {\n    color: #fff;\n    background-color: #3c763d;\n    border-color: #3c763d; }\n\n.list-group-item-info {\n  color: #31708f;\n  background-color: #d9edf7; }\n\na.list-group-item-info,\nbutton.list-group-item-info {\n  color: #31708f; }\n  a.list-group-item-info .list-group-item-heading,\n  button.list-group-item-info .list-group-item-heading {\n    color: inherit; }\n  a.list-group-item-info:focus, a.list-group-item-info:hover,\n  button.list-group-item-info:focus,\n  button.list-group-item-info:hover {\n    color: #31708f;\n    background-color: #c4e3f3; }\n  a.list-group-item-info.active, a.list-group-item-info.active:focus, a.list-group-item-info.active:hover,\n  button.list-group-item-info.active,\n  button.list-group-item-info.active:focus,\n  button.list-group-item-info.active:hover {\n    color: #fff;\n    background-color: #31708f;\n    border-color: #31708f; }\n\n.list-group-item-warning {\n  color: #8a6d3b;\n  background-color: #fcf8e3; }\n\na.list-group-item-warning,\nbutton.list-group-item-warning {\n  color: #8a6d3b; }\n  a.list-group-item-warning .list-group-item-heading,\n  button.list-group-item-warning .list-group-item-heading {\n    color: inherit; }\n  a.list-group-item-warning:focus, a.list-group-item-warning:hover,\n  button.list-group-item-warning:focus,\n  button.list-group-item-warning:hover {\n    color: #8a6d3b;\n    background-color: #faf2cc; }\n  a.list-group-item-warning.active, a.list-group-item-warning.active:focus, a.list-group-item-warning.active:hover,\n  button.list-group-item-warning.active,\n  button.list-group-item-warning.active:focus,\n  button.list-group-item-warning.active:hover {\n    color: #fff;\n    background-color: #8a6d3b;\n    border-color: #8a6d3b; }\n\n.list-group-item-danger {\n  color: #a94442;\n  background-color: #f2dede; }\n\na.list-group-item-danger,\nbutton.list-group-item-danger {\n  color: #a94442; }\n  a.list-group-item-danger .list-group-item-heading,\n  button.list-group-item-danger .list-group-item-heading {\n    color: inherit; }\n  a.list-group-item-danger:focus, a.list-group-item-danger:hover,\n  button.list-group-item-danger:focus,\n  button.list-group-item-danger:hover {\n    color: #a94442;\n    background-color: #ebcccc; }\n  a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-group-item-danger.active:hover,\n  button.list-group-item-danger.active,\n  button.list-group-item-danger.active:focus,\n  button.list-group-item-danger.active:hover {\n    color: #fff;\n    background-color: #a94442;\n    border-color: #a94442; }\n\n.list-group-item-heading {\n  margin-top: 0;\n  margin-bottom: 5px; }\n\n.list-group-item-text {\n  margin-bottom: 0;\n  line-height: 1.3; }\n", ""]);
+	exports.push([module.id, ".list-group {\n  padding-left: 0;\n  margin-bottom: 0; }\n\n.list-group-item {\n  position: relative;\n  display: block;\n  padding: .75rem 1.25rem;\n  margin-bottom: -1px;\n  background-color: #fff;\n  border: 1px solid #ddd; }\n  .list-group-item:first-child {\n    border-top-right-radius: 0.25rem;\n    border-top-left-radius: 0.25rem; }\n  .list-group-item:last-child {\n    margin-bottom: 0;\n    border-bottom-right-radius: 0.25rem;\n    border-bottom-left-radius: 0.25rem; }\n\n.list-group-flush .list-group-item {\n  border-width: 1px 0;\n  border-radius: 0; }\n\n.list-group-flush:first-child .list-group-item:first-child {\n  border-top: 0; }\n\n.list-group-flush:last-child .list-group-item:last-child {\n  border-bottom: 0; }\n\na.list-group-item,\nbutton.list-group-item {\n  width: 100%;\n  color: #555;\n  text-align: inherit; }\n  a.list-group-item .list-group-item-heading,\n  button.list-group-item .list-group-item-heading {\n    color: #333; }\n  a.list-group-item:focus, a.list-group-item:hover,\n  button.list-group-item:focus,\n  button.list-group-item:hover {\n    color: #555;\n    text-decoration: none;\n    background-color: #f5f5f5; }\n\n.list-group-item.disabled, .list-group-item.disabled:focus, .list-group-item.disabled:hover {\n  color: #818a91;\n  cursor: not-allowed;\n  background-color: #eceeef; }\n  .list-group-item.disabled .list-group-item-heading, .list-group-item.disabled:focus .list-group-item-heading, .list-group-item.disabled:hover .list-group-item-heading {\n    color: inherit; }\n  .list-group-item.disabled .list-group-item-text, .list-group-item.disabled:focus .list-group-item-text, .list-group-item.disabled:hover .list-group-item-text {\n    color: #818a91; }\n\n.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {\n  z-index: 2;\n  color: #fff;\n  background-color: #563d7c;\n  border-color: #563d7c; }\n  .list-group-item.active .list-group-item-heading,\n  .list-group-item.active .list-group-item-heading > small,\n  .list-group-item.active .list-group-item-heading > .small, .list-group-item.active:focus .list-group-item-heading,\n  .list-group-item.active:focus .list-group-item-heading > small,\n  .list-group-item.active:focus .list-group-item-heading > .small, .list-group-item.active:hover .list-group-item-heading,\n  .list-group-item.active:hover .list-group-item-heading > small,\n  .list-group-item.active:hover .list-group-item-heading > .small {\n    color: inherit; }\n  .list-group-item.active .list-group-item-text, .list-group-item.active:focus .list-group-item-text, .list-group-item.active:hover .list-group-item-text {\n    color: #beaed7; }\n\n.list-group-item-success {\n  color: #3c763d;\n  background-color: #dff0d8; }\n\na.list-group-item-success,\nbutton.list-group-item-success {\n  color: #3c763d; }\n  a.list-group-item-success .list-group-item-heading,\n  button.list-group-item-success .list-group-item-heading {\n    color: inherit; }\n  a.list-group-item-success:focus, a.list-group-item-success:hover,\n  button.list-group-item-success:focus,\n  button.list-group-item-success:hover {\n    color: #3c763d;\n    background-color: #d0e9c6; }\n  a.list-group-item-success.active, a.list-group-item-success.active:focus, a.list-group-item-success.active:hover,\n  button.list-group-item-success.active,\n  button.list-group-item-success.active:focus,\n  button.list-group-item-success.active:hover {\n    color: #fff;\n    background-color: #3c763d;\n    border-color: #3c763d; }\n\n.list-group-item-info {\n  color: #31708f;\n  background-color: #d9edf7; }\n\na.list-group-item-info,\nbutton.list-group-item-info {\n  color: #31708f; }\n  a.list-group-item-info .list-group-item-heading,\n  button.list-group-item-info .list-group-item-heading {\n    color: inherit; }\n  a.list-group-item-info:focus, a.list-group-item-info:hover,\n  button.list-group-item-info:focus,\n  button.list-group-item-info:hover {\n    color: #31708f;\n    background-color: #c4e3f3; }\n  a.list-group-item-info.active, a.list-group-item-info.active:focus, a.list-group-item-info.active:hover,\n  button.list-group-item-info.active,\n  button.list-group-item-info.active:focus,\n  button.list-group-item-info.active:hover {\n    color: #fff;\n    background-color: #31708f;\n    border-color: #31708f; }\n\n.list-group-item-warning {\n  color: #8a6d3b;\n  background-color: #fcf8e3; }\n\na.list-group-item-warning,\nbutton.list-group-item-warning {\n  color: #8a6d3b; }\n  a.list-group-item-warning .list-group-item-heading,\n  button.list-group-item-warning .list-group-item-heading {\n    color: inherit; }\n  a.list-group-item-warning:focus, a.list-group-item-warning:hover,\n  button.list-group-item-warning:focus,\n  button.list-group-item-warning:hover {\n    color: #8a6d3b;\n    background-color: #faf2cc; }\n  a.list-group-item-warning.active, a.list-group-item-warning.active:focus, a.list-group-item-warning.active:hover,\n  button.list-group-item-warning.active,\n  button.list-group-item-warning.active:focus,\n  button.list-group-item-warning.active:hover {\n    color: #fff;\n    background-color: #8a6d3b;\n    border-color: #8a6d3b; }\n\n.list-group-item-danger {\n  color: #a94442;\n  background-color: #f2dede; }\n\na.list-group-item-danger,\nbutton.list-group-item-danger {\n  color: #a94442; }\n  a.list-group-item-danger .list-group-item-heading,\n  button.list-group-item-danger .list-group-item-heading {\n    color: inherit; }\n  a.list-group-item-danger:focus, a.list-group-item-danger:hover,\n  button.list-group-item-danger:focus,\n  button.list-group-item-danger:hover {\n    color: #a94442;\n    background-color: #ebcccc; }\n  a.list-group-item-danger.active, a.list-group-item-danger.active:focus, a.list-group-item-danger.active:hover,\n  button.list-group-item-danger.active,\n  button.list-group-item-danger.active:focus,\n  button.list-group-item-danger.active:hover {\n    color: #fff;\n    background-color: #a94442;\n    border-color: #a94442; }\n\n.list-group-item-heading {\n  margin-top: 0;\n  margin-bottom: 5px; }\n\n.list-group-item-text {\n  margin-bottom: 0;\n  line-height: 1.3; }\n", ""]);
 
 	// exports
 
@@ -2430,6 +2428,8 @@
 
 	__webpack_require__(51);
 
+	__webpack_require__(53);
+
 /***/ },
 /* 51 */
 /***/ function(module, exports, __webpack_require__) {
@@ -2465,7 +2465,7 @@
 
 
 	// module
-	exports.push([module.id, ".c-input {\n  position: relative;\n  display: inline;\n  padding-left: 1.5rem;\n  color: #555;\n  cursor: pointer; }\n  .c-input > input {\n    position: absolute;\n    z-index: -1;\n    opacity: 0; }\n    .c-input > input:checked ~ .c-indicator {\n      color: #fff;\n      background-color: #0074d9; }\n    .c-input > input:focus ~ .c-indicator {\n      box-shadow: 0 0 0 .075rem #fff, 0 0 0 .2rem #0074d9; }\n    .c-input > input:active ~ .c-indicator {\n      color: #fff;\n      background-color: #84c6ff; }\n  .c-input + .c-input {\n    margin-left: 1rem; }\n\n.c-indicator {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: block;\n  width: 1rem;\n  height: 1rem;\n  font-size: 65%;\n  line-height: 1rem;\n  color: #eee;\n  text-align: center;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background-color: #eee;\n  background-repeat: no-repeat;\n  background-position: center center;\n  background-size: 50% 50%; }\n\n.c-checkbox .c-indicator {\n  border-radius: .25rem; }\n\n.c-checkbox input:checked ~ .c-indicator {\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiINCgkvPg0KPC9zdmc+DQo=); }\n\n.c-checkbox input:indeterminate ~ .c-indicator {\n  background-color: #0074d9;\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iOHB4IiBoZWlnaHQ9IjhweCIgdmlld0JveD0iMCAwIDggOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgOCA4IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0wLDN2Mmg4VjNIMHoiLz4NCjwvc3ZnPg0K); }\n\n.c-radio .c-indicator {\n  border-radius: 50%; }\n\n.c-radio input:checked ~ .c-indicator {\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQsMUMyLjMsMSwxLDIuMywxLDRzMS4zLDMsMywzczMtMS4zLDMtM1M1LjcsMSw0LDF6Ii8+DQo8L3N2Zz4NCg==); }\n\n.c-inputs-stacked .c-input {\n  display: inline; }\n  .c-inputs-stacked .c-input::after {\n    display: block;\n    margin-bottom: .25rem;\n    content: \"\"; }\n  .c-inputs-stacked .c-input + .c-input {\n    margin-left: 0; }\n\n.c-select {\n  display: inline-block;\n  max-width: 100%;\n  padding: .375rem 1.75rem .375rem .75rem;\n  padding-right: .75rem \\9;\n  vertical-align: middle;\n  background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right 0.75rem center;\n  background-image: none \\9;\n  background-size: 8px 10px;\n  border: 1px solid #ccc;\n  -moz-appearance: none;\n  -webkit-appearance: none; }\n  .c-select:focus {\n    border-color: #51a7e8;\n    outline: none; }\n  .c-select::-ms-expand {\n    opacity: 0; }\n\n.c-select-sm {\n  padding-top: 3px;\n  padding-bottom: 3px;\n  font-size: 12px; }\n  .c-select-sm:not([multiple]) {\n    height: 26px;\n    min-height: 26px; }\n\n.file {\n  position: relative;\n  display: inline-block;\n  height: 2.5rem;\n  cursor: pointer; }\n\n.file input {\n  min-width: 14rem;\n  margin: 0;\n  filter: alpha(opacity=0);\n  opacity: 0; }\n\n.file-custom {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 0;\n  z-index: 5;\n  height: 2.5rem;\n  padding: .5rem 1rem;\n  line-height: 1.5;\n  color: #555;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background-color: #fff;\n  border: .075rem solid #ddd;\n  border-radius: .25rem; }\n\n.file-custom::after {\n  content: \"Choose file...\"; }\n\n.file-custom::before {\n  position: absolute;\n  top: -.075rem;\n  right: -.075rem;\n  bottom: -.075rem;\n  z-index: 6;\n  display: block;\n  height: 2.5rem;\n  padding: .5rem 1rem;\n  line-height: 1.5;\n  color: #555;\n  content: \"Browse\";\n  background-color: #eee;\n  border: .075rem solid #ddd;\n  border-radius: 0 .25rem .25rem 0; }\n", ""]);
+	exports.push([module.id, ".c-input {\n  position: relative;\n  display: inline;\n  padding-left: 1.5rem;\n  color: #555;\n  cursor: pointer; }\n  .c-input > input {\n    position: absolute;\n    z-index: -1;\n    opacity: 0; }\n    .c-input > input:checked ~ .c-indicator {\n      color: #fff;\n      background-color: #0074d9; }\n    .c-input > input:focus ~ .c-indicator {\n      box-shadow: 0 0 0 .075rem #fff, 0 0 0 .2rem #0074d9; }\n    .c-input > input:active ~ .c-indicator {\n      color: #fff;\n      background-color: #84c6ff; }\n  .c-input + .c-input {\n    margin-left: 1rem; }\n\n.c-indicator {\n  position: absolute;\n  top: 0;\n  left: 0;\n  display: block;\n  width: 1rem;\n  height: 1rem;\n  font-size: 65%;\n  line-height: 1rem;\n  color: #eee;\n  text-align: center;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background-color: #eee;\n  background-repeat: no-repeat;\n  background-position: center center;\n  background-size: 50% 50%; }\n\n.c-checkbox .c-indicator {\n  border-radius: .25rem; }\n\n.c-checkbox input:checked ~ .c-indicator {\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiINCgkvPg0KPC9zdmc+DQo=); }\n\n.c-checkbox input:indeterminate ~ .c-indicator {\n  background-color: #0074d9;\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iOHB4IiBoZWlnaHQ9IjhweCIgdmlld0JveD0iMCAwIDggOCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgOCA4IiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0wLDN2Mmg4VjNIMHoiLz4NCjwvc3ZnPg0K); }\n\n.c-radio .c-indicator {\n  border-radius: 50%; }\n\n.c-radio input:checked ~ .c-indicator {\n  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTQsMUMyLjMsMSwxLDIuMywxLDRzMS4zLDMsMywzczMtMS4zLDMtM1M1LjcsMSw0LDF6Ii8+DQo8L3N2Zz4NCg==); }\n\n.c-inputs-stacked .c-input {\n  display: inline; }\n  .c-inputs-stacked .c-input::after {\n    display: block;\n    margin-bottom: .25rem;\n    content: \"\"; }\n  .c-inputs-stacked .c-input + .c-input {\n    margin-left: 0; }\n\n.c-select {\n  display: inline-block;\n  max-width: 100%;\n  padding: .375rem 1.75rem .375rem .75rem;\n  padding-right: .75rem \\9;\n  color: #55595c;\n  vertical-align: middle;\n  background: #fff url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAUCAMAAACzvE1FAAAADFBMVEUzMzMzMzMzMzMzMzMKAG/3AAAAA3RSTlMAf4C/aSLHAAAAPElEQVR42q3NMQ4AIAgEQTn//2cLdRKppSGzBYwzVXvznNWs8C58CiussPJj8h6NwgorrKRdTvuV9v16Afn0AYFOB7aYAAAAAElFTkSuQmCC) no-repeat right 0.75rem center;\n  background-image: none \\9;\n  background-size: 8px 10px;\n  border: 1px solid #ccc;\n  -moz-appearance: none;\n  -webkit-appearance: none; }\n  .c-select:focus {\n    border-color: #51a7e8;\n    outline: none; }\n  .c-select::-ms-expand {\n    opacity: 0; }\n\n.c-select-sm {\n  padding-top: 3px;\n  padding-bottom: 3px;\n  font-size: 12px; }\n  .c-select-sm:not([multiple]) {\n    height: 26px;\n    min-height: 26px; }\n\n.file {\n  position: relative;\n  display: inline-block;\n  height: 2.5rem;\n  cursor: pointer; }\n\n.file input {\n  min-width: 14rem;\n  margin: 0;\n  filter: alpha(opacity=0);\n  opacity: 0; }\n\n.file-custom {\n  position: absolute;\n  top: 0;\n  right: 0;\n  left: 0;\n  z-index: 5;\n  height: 2.5rem;\n  padding: .5rem 1rem;\n  line-height: 1.5;\n  color: #555;\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  background-color: #fff;\n  border: 1px solid #ddd;\n  border-radius: .25rem; }\n\n.file-custom::after {\n  content: \"Choose file...\"; }\n\n.file-custom::before {\n  position: absolute;\n  top: -.075rem;\n  right: -.075rem;\n  bottom: -.075rem;\n  z-index: 6;\n  display: block;\n  height: 2.5rem;\n  padding: .5rem 1rem;\n  line-height: 1.5;\n  color: #555;\n  content: \"Browse\";\n  background-color: #eee;\n  border: 1px solid #ddd;\n  border-radius: 0 .25rem .25rem 0; }\n", ""]);
 
 	// exports
 
@@ -2474,30 +2474,70 @@
 /* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(54);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(6)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_input-group.scss", function() {
+				var newContent = require("!!./../../css-loader/index.js!./../../autoprefixer-loader/index.js!./../../sass-loader/index.js!./../../vuestrap-theme-loader/index.js!./_input-group.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(5)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".input-group {\n  position: relative;\n  display: table;\n  border-collapse: separate; }\n  .input-group .form-control {\n    position: relative;\n    z-index: 2;\n    float: left;\n    width: 100%;\n    margin-bottom: 0; }\n    .input-group .form-control:focus, .input-group .form-control:active, .input-group .form-control:hover {\n      z-index: 3; }\n\n.input-group-addon,\n.input-group-btn,\n.input-group .form-control {\n  display: table-cell; }\n  .input-group-addon:not(:first-child):not(:last-child),\n  .input-group-btn:not(:first-child):not(:last-child),\n  .input-group .form-control:not(:first-child):not(:last-child) {\n    border-radius: 0; }\n\n.input-group-addon,\n.input-group-btn {\n  width: 1%;\n  white-space: nowrap;\n  vertical-align: middle; }\n\n.input-group-addon {\n  padding: 0.375rem 0.75rem;\n  font-size: 1rem;\n  font-weight: normal;\n  line-height: 1;\n  color: #55595c;\n  text-align: center;\n  background-color: #eceeef;\n  border: 1px solid #ccc;\n  border-radius: 0.25rem; }\n  .input-group-addon.form-control-sm,\n  .input-group-sm > .input-group-addon,\n  .input-group-sm > .input-group-btn > .input-group-addon.btn {\n    padding: 0.275rem 0.75rem;\n    font-size: 0.875rem;\n    border-radius: 0.2rem; }\n  .input-group-addon.form-control-lg,\n  .input-group-lg > .input-group-addon,\n  .input-group-lg > .input-group-btn > .input-group-addon.btn {\n    padding: 0.75rem 1.25rem;\n    font-size: 1.25rem;\n    border-radius: 0.3rem; }\n  .input-group-addon input[type=\"radio\"],\n  .input-group-addon input[type=\"checkbox\"] {\n    margin-top: 0; }\n\n.input-group .form-control:first-child,\n.input-group-addon:first-child,\n.input-group-btn:first-child > .btn,\n.input-group-btn:first-child > .btn-group > .btn,\n.input-group-btn:first-child > .dropdown-toggle,\n.input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle),\n.input-group-btn:last-child > .btn-group:not(:last-child) > .btn {\n  border-bottom-right-radius: 0;\n  border-top-right-radius: 0; }\n\n.input-group-addon:first-child {\n  border-right: 0; }\n\n.input-group .form-control:last-child,\n.input-group-addon:last-child,\n.input-group-btn:last-child > .btn,\n.input-group-btn:last-child > .btn-group > .btn,\n.input-group-btn:last-child > .dropdown-toggle,\n.input-group-btn:first-child > .btn:not(:first-child),\n.input-group-btn:first-child > .btn-group:not(:first-child) > .btn {\n  border-bottom-left-radius: 0;\n  border-top-left-radius: 0; }\n\n.input-group-addon:last-child {\n  border-left: 0; }\n\n.input-group-btn {\n  position: relative;\n  font-size: 0;\n  white-space: nowrap; }\n  .input-group-btn > .btn {\n    position: relative; }\n    .input-group-btn > .btn + .btn {\n      margin-left: -1px; }\n    .input-group-btn > .btn:focus, .input-group-btn > .btn:active, .input-group-btn > .btn:hover {\n      z-index: 3; }\n  .input-group-btn:first-child > .btn,\n  .input-group-btn:first-child > .btn-group {\n    margin-right: -1px; }\n  .input-group-btn:last-child > .btn,\n  .input-group-btn:last-child > .btn-group {\n    z-index: 2;\n    margin-left: -1px; }\n    .input-group-btn:last-child > .btn:focus, .input-group-btn:last-child > .btn:active, .input-group-btn:last-child > .btn:hover,\n    .input-group-btn:last-child > .btn-group:focus,\n    .input-group-btn:last-child > .btn-group:active,\n    .input-group-btn:last-child > .btn-group:hover {\n      z-index: 3; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 55 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// import dependencies
 	'use strict';
 
 	__webpack_require__(48);
 
 /***/ },
-/* 54 */
+/* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 
-	__webpack_require__(55);
+	__webpack_require__(57);
 
 	__webpack_require__(40);
 
 /***/ },
-/* 55 */
+/* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(56);
+	var content = __webpack_require__(58);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -2517,7 +2557,7 @@
 	}
 
 /***/ },
-/* 56 */
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -2531,22 +2571,22 @@
 
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 
-	__webpack_require__(58);
+	__webpack_require__(60);
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(59);
+	var content = __webpack_require__(61);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -2566,7 +2606,7 @@
 	}
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -2580,24 +2620,24 @@
 
 
 /***/ },
-/* 60 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 
-	__webpack_require__(61);
+	__webpack_require__(63);
 
 	__webpack_require__(40);
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(62);
+	var content = __webpack_require__(64);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -2617,7 +2657,7 @@
 	}
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -2631,7 +2671,7 @@
 
 
 /***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2642,13 +2682,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _introductionHtml = __webpack_require__(64);
+	var _introductionHtml = __webpack_require__(66);
 
 	var _introductionHtml2 = _interopRequireDefault(_introductionHtml);
 
-	__webpack_require__(65);
+	__webpack_require__(67);
 
-	var _packageJson = __webpack_require__(68);
+	var _packageJson = __webpack_require__(70);
 
 	var _packageJson2 = _interopRequireDefault(_packageJson);
 
@@ -2671,28 +2711,28 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 64 */
+/* 66 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"jumbotron\">\r\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\r\n  <p>{{pkg.description}}</p>\r\n</div>\r\n<h2>Installation</h2>\r\n<div class=\"row\">\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Compiled</h3>\r\n    <p>Minified CSS and JavaScript with no documentation or original source files.</p>\r\n    <code>bower install {{pkg.name}} --save-dev</code>\r\n  </div>\r\n  <div class=\"col-xs-12 col-sm-6\">\r\n    <h3>Source</h3>\r\n    <p>Source Sass, JavaScript, and documentation files.</p>\r\n    <code>npm install {{pkg.name}} --save-dev</code>\r\n   </div>\r\n</div>\r\n\r\n<div class=\"m-b-lg\"></div>\r\n<h2>Usage</h2>\r\n<p>For compiled components, use it within your Vue instance like this:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}': {{pkg.library}}.{{componentNameCamelCase}} }})</code></p>\r\n\r\n<div class=\"m-b\"></div>\r\n<strong>OR</strong>\r\n<div class=\"m-b\"></div>\r\n\r\n<p>If you chosen to work with source components, just import* desired component like so:</p>\r\n<p><code>import {{componentNameCamelCase}} from '{{pkg.name}}/src/components/{{componentName}}'</code></p>\r\n<p>and then load it in your Vue instance:</p>\r\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}' : {{componentNameCamelCase}} }})</code></p>\r\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>\r\n\r\n<h2 class=\"m-t-lg\">Theming</h2>\r\n<p>To be able to use your app theme with component's scss variables, you will need to use <a href=\"https://github.com/kzima/vueastrap-theme-loader\">vuestrap-theme-loader</a> in your webpack config file. </p>\r\n\r\n<p><code>npm install vuestrap-theme-loader --save-dev</code></p>\r\n\r\n<p>See <a href=\"https://github.com/kzima/vuestrap-starter\">vuestrap-starter</a> for a webpack config example with theme loader.</p>";
+	module.exports = "<div class=\"jumbotron\">\n  <h1>{{pkg.name}} <span class=\"label label-success\">{{pkg.version}}</span></h1>\n  <p>{{pkg.description}}</p>\n</div>\n<h2>Installation</h2>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-sm-6\">\n    <h3>Compiled</h3>\n    <p>Minified CSS and JavaScript with no documentation or original source files.</p>\n    <code>bower install {{pkg.name}} --save-dev</code>\n  </div>\n  <div class=\"col-xs-12 col-sm-6\">\n    <h3>Source</h3>\n    <p>Source Sass, JavaScript, and documentation files.</p>\n    <code>npm install {{pkg.name}} --save-dev</code>\n   </div>\n</div>\n\n<div class=\"m-b-lg\"></div>\n<h2>Usage</h2>\n<p>For compiled components, use it within your Vue instance like this:</p>\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}': {{pkg.library}}.{{componentNameCamelCase}} }})</code></p>\n\n<div class=\"m-b\"></div>\n<strong>OR</strong>\n<div class=\"m-b\"></div>\n\n<p>If you chosen to work with source components, just import* desired component like so:</p>\n<p><code>import {{componentNameCamelCase}} from '{{pkg.name}}/src/components/{{componentName}}'</code></p>\n<p>and then load it in your Vue instance:</p>\n<p><code>new Vue({ components: { '{{componentNameSurfixed}}' : {{componentNameCamelCase}} }})</code></p>\n<p>*Note: You will need <a href=\"https://github.com/babel/babel-loader\">Babel Loader</a> in your Webpack config file to support ES6 syntax.</p>\n\n<h2 class=\"m-t-lg\">Theming</h2>\n<p>To be able to use your app theme with component's scss variables, you will need to use <a href=\"https://github.com/kzima/vueastrap-theme-loader\">vuestrap-theme-loader</a> in your webpack config file. </p>\n\n<p><code>npm install vuestrap-theme-loader --save-dev</code></p>\n\n<p>See <a href=\"https://github.com/kzima/vuestrap-starter\">vuestrap-starter</a> for a webpack config example with theme loader.</p>";
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
 	'use strict';
 
-	__webpack_require__(66);
+	__webpack_require__(68);
 
 /***/ },
-/* 66 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(67);
+	var content = __webpack_require__(69);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -2712,7 +2752,7 @@
 	}
 
 /***/ },
-/* 67 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -2720,18 +2760,18 @@
 
 
 	// module
-	exports.push([module.id, ".jumbotron {\n  padding: 2rem 1rem;\n  margin-bottom: 2rem;\n  background-color: #eceeef;\n  border-radius: 0.3rem; }\n\n.jumbotron-hr {\n  border-top-color: #d0d5d8; }\n\n@media (min-width: 544px) {\n  .jumbotron {\n    padding: 4rem 2rem; } }\n\n.jumbotron-fluid {\n  padding-right: 0;\n  padding-left: 0;\n  border-radius: 0; }\n", ""]);
+	exports.push([module.id, ".jumbotron {\n  padding: 2rem 1rem;\n  margin-bottom: 2rem;\n  background-color: #eceeef;\n  border-radius: 0.3rem; }\n  @media (min-width: 544px) {\n    .jumbotron {\n      padding: 4rem 2rem; } }\n\n.jumbotron-hr {\n  border-top-color: #d0d5d8; }\n\n.jumbotron-fluid {\n  padding-right: 0;\n  padding-left: 0;\n  border-radius: 0; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 68 */
+/* 70 */
 /***/ function(module, exports) {
 
 	module.exports = {
 		"name": "gritcode-components",
-		"version": "0.4.8",
+		"version": "0.4.9",
 		"description": "Web components built with Vuestrap.",
 		"library": "gritcode-components",
 		"repository": {
@@ -2788,6 +2828,7 @@
 			"phantomjs": "^1.9.19",
 			"sass-loader": "^3.1.1",
 			"style-loader": "^0.13.0",
+			"vuestrap": "^1.0.2",
 			"vuestrap-docs": "^0.5.1",
 			"vuestrap-icons": "^0.5.0",
 			"vuestrap-theme-loader": "^0.1.2",
@@ -2798,7 +2839,7 @@
 	};
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2809,15 +2850,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _toastJson = __webpack_require__(70);
+	var _toastJson = __webpack_require__(72);
 
 	var _toastJson2 = _interopRequireDefault(_toastJson);
 
-	var _toastHtml = __webpack_require__(71);
+	var _toastHtml = __webpack_require__(73);
 
 	var _toastHtml2 = _interopRequireDefault(_toastHtml);
 
-	var _snippetHtml = __webpack_require__(72);
+	var _snippetHtml = __webpack_require__(74);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
@@ -2855,7 +2896,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -2916,19 +2957,19 @@
 	};
 
 /***/ },
-/* 71 */
-/***/ function(module, exports) {
-
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>hide progressbar <input type=\"checkbox\" v-model=\"hideProgress\"></label>\r\n\t\t<label>duration\r\n\t\t\t<select v-model=\"duration\">\r\n\t\t\t\t<option v-for=\"option in durations\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>position\r\n\t\t\t<select v-model=\"position\">\r\n\t\t\t\t<option v-for=\"option in positions\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tmessage: 'Default', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position,\r\n\t\t\tduration: duration\r\n\t\t})\">default</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tsuccess: 'Success!', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position,\r\n\t\t\tduration: duration\r\n\t\t\t})\">success</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\terror: 'Error!', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position,\r\n\t\t\tduration: duration\r\n\t\t\t})\">error</button>\r\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\r\n\t\t\tinfo: 'Info.', \r\n\t\t\thideProgress: hideProgress,\r\n\t\t\tposition: position,\r\n\t\t\tduration: duration\r\n\t\t\t})\">info</button>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
-
-/***/ },
-/* 72 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-comment\">&lt;!-- trigger examples --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {message: 'Default'})\"</span>&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {success: 'Success!'})\"</span>&gt;</span>success<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {error: 'Error!'})\"</span>&gt;</span>error<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {info: 'Info.'})\"</span>&gt;</span>info<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n\r\n<span class=\"hljs-comment\">&lt;!-- toast element --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-toast</span> \r\n  <span class=\"hljs-attribute\">:hide-progress</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:duration</span>=<span class=\"hljs-value\">\"6000\"</span> \r\n  <span class=\"hljs-attribute\">position</span>=<span class=\"hljs-value\">\"bottom left\"</span> \r\n  <span class=\"hljs-attribute\">context</span>=<span class=\"hljs-value\">\"default\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-toast</span>&gt;</span>";
-
-/***/ },
 /* 73 */
+/***/ function(module, exports) {
+
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\n\n\t<!-- Html controls start-->\n\t<div slot=\"controls\">\n\t\t<label>hide progressbar <input type=\"checkbox\" v-model=\"hideProgress\"></label>\n\t\t<label>duration\n\t\t\t<select v-model=\"duration\">\n\t\t\t\t<option v-for=\"option in durations\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t\t<label>position\n\t\t\t<select v-model=\"position\">\n\t\t\t\t<option v-for=\"option in positions\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t</div>\n\t<!-- Html controls end-->\n\t\n\t<!-- Html markup start-->\n\t<div slot=\"markup\">\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\n\t\t\tmessage: 'Default', \n\t\t\thideProgress: hideProgress,\n\t\t\tposition: position,\n\t\t\tduration: duration\n\t\t})\">default</button>\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\n\t\t\tsuccess: 'Success!', \n\t\t\thideProgress: hideProgress,\n\t\t\tposition: position,\n\t\t\tduration: duration\n\t\t\t})\">success</button>\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\n\t\t\terror: 'Error!', \n\t\t\thideProgress: hideProgress,\n\t\t\tposition: position,\n\t\t\tduration: duration\n\t\t\t})\">error</button>\n\t\t<button v-on:click=\"$root.$broadcast('show::toast', {\n\t\t\tinfo: 'Info.', \n\t\t\thideProgress: hideProgress,\n\t\t\tposition: position,\n\t\t\tduration: duration\n\t\t\t})\">info</button>\n\t</div>\n\t<!-- Html markup end-->\n\n</docs-demo>\t\n";
+
+/***/ },
+/* 74 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"hljs-comment\">&lt;!-- trigger examples --&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {message: 'Default'})\"</span>&gt;</span>default<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {success: 'Success!'})\"</span>&gt;</span>success<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {error: 'Error!'})\"</span>&gt;</span>error<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::toast', {info: 'Info.'})\"</span>&gt;</span>info<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\n\n<span class=\"hljs-comment\">&lt;!-- toast element --&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-toast</span> \n  <span class=\"hljs-attribute\">:hide-progress</span>=<span class=\"hljs-value\">\"true\"</span> \n  <span class=\"hljs-attribute\">:duration</span>=<span class=\"hljs-value\">\"6000\"</span> \n  <span class=\"hljs-attribute\">position</span>=<span class=\"hljs-value\">\"bottom left\"</span> \n  <span class=\"hljs-attribute\">context</span>=<span class=\"hljs-value\">\"default\"</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-toast</span>&gt;</span>";
+
+/***/ },
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2939,19 +2980,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _truncateJson = __webpack_require__(74);
+	var _truncateJson = __webpack_require__(76);
 
 	var _truncateJson2 = _interopRequireDefault(_truncateJson);
 
-	var _truncateHtml = __webpack_require__(75);
+	var _truncateHtml = __webpack_require__(77);
 
 	var _truncateHtml2 = _interopRequireDefault(_truncateHtml);
 
-	var _snippetHtml = __webpack_require__(76);
+	var _snippetHtml = __webpack_require__(78);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsTruncate = __webpack_require__(77);
+	var _srcComponentsTruncate = __webpack_require__(79);
 
 	var _srcComponentsTruncate2 = _interopRequireDefault(_srcComponentsTruncate);
 
@@ -2982,7 +3023,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 74 */
+/* 76 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -3011,19 +3052,19 @@
 	};
 
 /***/ },
-/* 75 */
-/***/ function(module, exports) {
-
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>width\r\n\t\t\t<select v-model=\"width\">\r\n\t\t\t\t<option v-for=\"option in widths\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<vs-truncate :width=\"width\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, numquam.</vs-truncate>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
-
-/***/ },
-/* 76 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-truncate</span> <span class=\"hljs-attribute\">:width</span>=<span class=\"hljs-value\">\"10em\"</span>&gt;</span>\r\n  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, numquam.\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-truncate</span>&gt;</span>";
-
-/***/ },
 /* 77 */
+/***/ function(module, exports) {
+
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\n\n\t<!-- Html controls start-->\n\t<div slot=\"controls\">\n\t\t<label>width\n\t\t\t<select v-model=\"width\">\n\t\t\t\t<option v-for=\"option in widths\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t</div>\n\t<!-- Html controls end-->\n\t\n\t<!-- Html markup start-->\n\t<div slot=\"markup\">\n\t\t<vs-truncate :width=\"width\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, numquam.</vs-truncate>\n\t</div>\n\t<!-- Html markup end-->\n\n</docs-demo>\t\n";
+
+/***/ },
+/* 78 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-truncate</span> <span class=\"hljs-attribute\">:width</span>=<span class=\"hljs-value\">\"10em\"</span>&gt;</span>\n  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, numquam.\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-truncate</span>&gt;</span>";
+
+/***/ },
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -3035,11 +3076,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(78);
+	__webpack_require__(80);
 
 	// import template
 
-	var _truncateHtml = __webpack_require__(80);
+	var _truncateHtml = __webpack_require__(82);
 
 	var _truncateHtml2 = _interopRequireDefault(_truncateHtml);
 
@@ -3060,13 +3101,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 78 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(79);
+	var content = __webpack_require__(81);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -3086,7 +3127,7 @@
 	}
 
 /***/ },
-/* 79 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -3100,13 +3141,13 @@
 
 
 /***/ },
-/* 80 */
+/* 82 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"truncate truncate-gritcode\" v-bind:style=\"{width: truncateWidth}\"><slot></slot></span>\r\n";
+	module.exports = "<span class=\"truncate truncate-gritcode\" v-bind:style=\"{width: truncateWidth}\"><slot></slot></span>\n";
 
 /***/ },
-/* 81 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3117,21 +3158,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _spinnerJson = __webpack_require__(82);
+	var _spinnerJson = __webpack_require__(84);
 
 	var _spinnerJson2 = _interopRequireDefault(_spinnerJson);
 
-	var _spinnerHtml = __webpack_require__(83);
+	var _spinnerHtml = __webpack_require__(85);
 
 	var _spinnerHtml2 = _interopRequireDefault(_spinnerHtml);
 
-	var _srcUtils = __webpack_require__(84);
+	var _srcUtils = __webpack_require__(86);
 
-	var _snippetHtml = __webpack_require__(85);
+	var _snippetHtml = __webpack_require__(87);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsSpinner = __webpack_require__(86);
+	var _srcComponentsSpinner = __webpack_require__(88);
 
 	var _srcComponentsSpinner2 = _interopRequireDefault(_srcComponentsSpinner);
 
@@ -3172,7 +3213,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 82 */
+/* 84 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -3221,13 +3262,13 @@
 	};
 
 /***/ },
-/* 83 */
+/* 85 */
 /***/ function(module, exports) {
 
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>fixed <input type=\"checkbox\" v-model=\"fixed\"></label>\r\n\t\t<label>size\r\n\t\t\t<select v-model=\"size\">\r\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<button v-on:click=\"$broadcast('show::spinner')\">show spinner</button>\r\n\t\t<vs-spinner id=\"spinner-box\" :size=\"size\" :fixed=\"fixed\" text=\"I will close in 2 secs\"></vs-spinner>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\n\n\t<!-- Html controls start-->\n\t<div slot=\"controls\">\n\t\t<label>fixed <input type=\"checkbox\" v-model=\"fixed\"></label>\n\t\t<label>size\n\t\t\t<select v-model=\"size\">\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t</div>\n\t<!-- Html controls end-->\n\t\n\t<!-- Html markup start-->\n\t<div slot=\"markup\">\n\t\t<button v-on:click=\"$broadcast('show::spinner')\">show spinner</button>\n\t\t<vs-spinner id=\"spinner-box\" :size=\"size\" :fixed=\"fixed\" text=\"I will close in 2 secs\"></vs-spinner>\n\t</div>\n\t<!-- Html markup end-->\n\n</docs-demo>\t\n";
 
 /***/ },
-/* 84 */
+/* 86 */
 /***/ function(module, exports) {
 
 	/**
@@ -3275,13 +3316,13 @@
 	exports.sizes = sizes;
 
 /***/ },
-/* 85 */
+/* 87 */
 /***/ function(module, exports) {
 
-	module.exports = "<span class=\"hljs-comment\">&lt;!-- trigger --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::spinner')\"</span>&gt;</span>show spinner<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\r\n\r\n<span class=\"hljs-comment\">&lt;!-- spiner --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-spinner</span> <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"spinner-box\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"lg\"</span> <span class=\"hljs-attribute\">text</span>=<span class=\"hljs-value\">\"I will close in 2 secs\"</span> <span class=\"hljs-attribute\">fixed</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-spinner</span>&gt;</span>";
+	module.exports = "<span class=\"hljs-comment\">&lt;!-- trigger --&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">button</span> <span class=\"hljs-attribute\">v-on:click</span>=<span class=\"hljs-value\">\"$broadcast('show::spinner')\"</span>&gt;</span>show spinner<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">button</span>&gt;</span>\n\n<span class=\"hljs-comment\">&lt;!-- spiner --&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-spinner</span> <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"spinner-box\"</span> <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"lg\"</span> <span class=\"hljs-attribute\">text</span>=<span class=\"hljs-value\">\"I will close in 2 secs\"</span> <span class=\"hljs-attribute\">fixed</span>&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-spinner</span>&gt;</span>";
 
 /***/ },
-/* 86 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -3293,11 +3334,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(87);
+	__webpack_require__(89);
 
 	// import template
 
-	var _spinnerHtml = __webpack_require__(89);
+	var _spinnerHtml = __webpack_require__(91);
 
 	var _spinnerHtml2 = _interopRequireDefault(_spinnerHtml);
 
@@ -3391,13 +3432,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 87 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(88);
+	var content = __webpack_require__(90);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -3417,7 +3458,7 @@
 	}
 
 /***/ },
-/* 88 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -3425,19 +3466,19 @@
 
 
 	// module
-	exports.push([module.id, "/*!\r\n *\r\n * Spinner\r\n * With fallback to IE9\r\n *\r\n */\n@-webkit-keyframes spin {\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n@keyframes spin {\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.spinner-gritcode {\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  z-index: 9998;\n  position: absolute;\n  width: 100%;\n  text-align: center;\n  background: rgba(255, 255, 255, 0.9); }\n  .spinner-gritcode.spinner-fixed {\n    position: fixed; }\n  .spinner-gritcode .spinner-wrapper {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    -ms-transform: translate(-50%, -50%); }\n  .spinner-gritcode .spinner-circle {\n    position: relative;\n    border: 4px solid #ccc;\n    border-right-color: #563d7c;\n    border-radius: 50%;\n    display: inline-block;\n    -webkit-animation: spin 0.6s linear;\n            animation: spin 0.6s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    width: 3em;\n    height: 3em;\n    z-index: 2; }\n  .spinner-gritcode .spinner-text {\n    position: relative;\n    text-align: center;\n    margin-top: 0.5em;\n    z-index: 2;\n    width: 100%;\n    font-size: 95%;\n    color: #563d7c; }\n\n.spinner-gritcode.spinner-sm .spinner-circle {\n  width: 1.5em;\n  height: 1.5em; }\n\n.spinner-gritcode.spinner-md .spinner-circle {\n  width: 2em;\n  height: 2em; }\n\n.spinner-gritcode.spinner-lg .spinner-circle {\n  width: 2.5em;\n  height: 2.5em; }\n\n.spinner-gritcode.spinner-xl .spinner-circle {\n  width: 3.5em;\n  height: 3.5em; }\n\n.lt-ie10 .spinner-gritcode .spinner-circle, .ie9 .spinner-gritcode .spinner-circle, .oldie .spinner-gritcode .spinner-circle, .no-csstransitions .spinner-gritcode .spinner-circle, .no-csstransforms3d .spinner-gritcode .spinner-circle {\n  background: url(\"http://i2.wp.com/www.thegreatnovelingadventure.com/wp-content/plugins/wp-polls/images/loading.gif\") center center no-repeat;\n  -webkit-animation: none;\n          animation: none;\n  margin-left: 0;\n  margin-top: 5px;\n  border: none;\n  width: 32px;\n  height: 32px; }\n", ""]);
+	exports.push([module.id, "/*!\n *\n * Spinner\n * With fallback to IE9\n *\n */\n@-webkit-keyframes spin {\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n@keyframes spin {\n  100% {\n    -webkit-transform: rotate(360deg);\n            transform: rotate(360deg); } }\n\n.spinner-gritcode {\n  top: 0;\n  left: 0;\n  bottom: 0;\n  right: 0;\n  z-index: 9998;\n  position: absolute;\n  width: 100%;\n  text-align: center;\n  background: rgba(255, 255, 255, 0.9); }\n  .spinner-gritcode.spinner-fixed {\n    position: fixed; }\n  .spinner-gritcode .spinner-wrapper {\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    -webkit-transform: translate(-50%, -50%);\n            transform: translate(-50%, -50%);\n    -ms-transform: translate(-50%, -50%); }\n  .spinner-gritcode .spinner-circle {\n    position: relative;\n    border: 4px solid #ccc;\n    border-right-color: #563d7c;\n    border-radius: 50%;\n    display: inline-block;\n    -webkit-animation: spin 0.6s linear;\n            animation: spin 0.6s linear;\n    -webkit-animation-iteration-count: infinite;\n            animation-iteration-count: infinite;\n    width: 3em;\n    height: 3em;\n    z-index: 2; }\n  .spinner-gritcode .spinner-text {\n    position: relative;\n    text-align: center;\n    margin-top: 0.5em;\n    z-index: 2;\n    width: 100%;\n    font-size: 95%;\n    color: #563d7c; }\n\n.spinner-gritcode.spinner-sm .spinner-circle {\n  width: 1.5em;\n  height: 1.5em; }\n\n.spinner-gritcode.spinner-md .spinner-circle {\n  width: 2em;\n  height: 2em; }\n\n.spinner-gritcode.spinner-lg .spinner-circle {\n  width: 2.5em;\n  height: 2.5em; }\n\n.spinner-gritcode.spinner-xl .spinner-circle {\n  width: 3.5em;\n  height: 3.5em; }\n\n.lt-ie10 .spinner-gritcode .spinner-circle, .ie9 .spinner-gritcode .spinner-circle, .oldie .spinner-gritcode .spinner-circle, .no-csstransitions .spinner-gritcode .spinner-circle, .no-csstransforms3d .spinner-gritcode .spinner-circle {\n  background: url(\"http://i2.wp.com/www.thegreatnovelingadventure.com/wp-content/plugins/wp-polls/images/loading.gif\") center center no-repeat;\n  -webkit-animation: none;\n          animation: none;\n  margin-left: 0;\n  margin-top: 5px;\n  border: none;\n  width: 32px;\n  height: 32px; }\n", ""]);
 
 	// exports
 
 
 /***/ },
-/* 89 */
+/* 91 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"spinner spinner-gritcode {{spinnerSize}} {{fixed ? 'spinner-fixed' : ''}}\" v-show=\"active\"> \r\n\t<div class=\"spinner-wrapper\">\r\n\t  <div class=\"spinner-circle\"></div>\r\n\t  <div class=\"spinner-text\">{{text}}</div>\r\n  </div>\r\n</div>\r\n";
+	module.exports = "<div class=\"spinner spinner-gritcode {{spinnerSize}} {{fixed ? 'spinner-fixed' : ''}}\" v-show=\"active\"> \n\t<div class=\"spinner-wrapper\">\n\t  <div class=\"spinner-circle\"></div>\n\t  <div class=\"spinner-text\">{{text}}</div>\n  </div>\n</div>\n";
 
 /***/ },
-/* 90 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3448,15 +3489,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _offcanvasDrawerJson = __webpack_require__(91);
+	var _offcanvasDrawerJson = __webpack_require__(93);
 
 	var _offcanvasDrawerJson2 = _interopRequireDefault(_offcanvasDrawerJson);
 
-	var _offcanvasDrawerHtml = __webpack_require__(92);
+	var _offcanvasDrawerHtml = __webpack_require__(94);
 
 	var _offcanvasDrawerHtml2 = _interopRequireDefault(_offcanvasDrawerHtml);
 
-	var _snippetHtml = __webpack_require__(93);
+	var _snippetHtml = __webpack_require__(95);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
@@ -3485,7 +3526,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 91 */
+/* 93 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -3540,19 +3581,19 @@
 	};
 
 /***/ },
-/* 92 */
-/***/ function(module, exports) {
-
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>animation\r\n\t\t\t<select v-model=\"$root.animation\">\r\n\t\t\t\t<option v-for=\"option in $root.animations\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>align\r\n\t\t\t<select v-model=\"$root.align\">\r\n\t\t\t\t<option v-for=\"option in $root.aligns\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t<button v-on:click=\"$root.$broadcast('toggle::offcanvas-drawer', 'main')\" >toggle drawer</button>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
-
-/***/ },
-/* 93 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-comment\">&lt;!-- wrapper --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-offcanvas-wrapper</span> <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"main\"</span> <span class=\"hljs-attribute\">animation</span>=<span class=\"hljs-value\">\"ease-in\"</span> <span class=\"hljs-attribute\">align</span>=<span class=\"hljs-value\">\"right\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-offcanvas-drawer</span>&gt;</span>\r\n    <span class=\"hljs-comment\">&lt;!-- drawer content --&gt;</span>\r\n    ...\r\n    <span class=\"hljs-comment\">&lt;!-- /drawer content--&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-offcanvas-drawer</span>&gt;</span>\r\n\r\n  <span class=\"hljs-comment\">&lt;!-- page content --&gt;</span>\r\n  ...\r\n  <span class=\"hljs-comment\">&lt;!-- /page content --&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-offcanvas-wrapper</span>&gt;</span>";
-
-/***/ },
 /* 94 */
+/***/ function(module, exports) {
+
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\n\n\t<!-- Html controls start-->\n\t<div slot=\"controls\">\n\t\t<label>animation\n\t\t\t<select v-model=\"$root.animation\">\n\t\t\t\t<option v-for=\"option in $root.animations\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t\t<label>align\n\t\t\t<select v-model=\"$root.align\">\n\t\t\t\t<option v-for=\"option in $root.aligns\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t</div>\n\t<!-- Html controls end-->\n\t\n\t<!-- Html markup start-->\n\t<div slot=\"markup\">\n\t\t<button v-on:click=\"$root.$broadcast('toggle::offcanvas-drawer', 'main')\" >toggle drawer</button>\n\t</div>\n\t<!-- Html markup end-->\n\n</docs-demo>\t\n";
+
+/***/ },
+/* 95 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"hljs-comment\">&lt;!-- wrapper --&gt;</span>\n<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-offcanvas-wrapper</span> <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"main\"</span> <span class=\"hljs-attribute\">animation</span>=<span class=\"hljs-value\">\"ease-in\"</span> <span class=\"hljs-attribute\">align</span>=<span class=\"hljs-value\">\"right\"</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-offcanvas-drawer</span>&gt;</span>\n    <span class=\"hljs-comment\">&lt;!-- drawer content --&gt;</span>\n    ...\n    <span class=\"hljs-comment\">&lt;!-- /drawer content--&gt;</span>\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-offcanvas-drawer</span>&gt;</span>\n\n  <span class=\"hljs-comment\">&lt;!-- page content --&gt;</span>\n  ...\n  <span class=\"hljs-comment\">&lt;!-- /page content --&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-offcanvas-wrapper</span>&gt;</span>";
+
+/***/ },
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3563,19 +3604,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _dropdownMultiselectJson = __webpack_require__(95);
+	var _dropdownMultiselectJson = __webpack_require__(97);
 
 	var _dropdownMultiselectJson2 = _interopRequireDefault(_dropdownMultiselectJson);
 
-	var _dropdownMultiselectHtml = __webpack_require__(96);
+	var _dropdownMultiselectHtml = __webpack_require__(98);
 
 	var _dropdownMultiselectHtml2 = _interopRequireDefault(_dropdownMultiselectHtml);
 
-	var _snippetHtml = __webpack_require__(97);
+	var _snippetHtml = __webpack_require__(99);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsDropdownMultiselect = __webpack_require__(98);
+	var _srcComponentsDropdownMultiselect = __webpack_require__(100);
 
 	var _srcComponentsDropdownMultiselect2 = _interopRequireDefault(_srcComponentsDropdownMultiselect);
 
@@ -3583,7 +3624,7 @@
 
 	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
 
-	var _srcUtils = __webpack_require__(84);
+	var _srcUtils = __webpack_require__(86);
 
 	exports['default'] = {
 	  route: {
@@ -3617,7 +3658,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 95 */
+/* 97 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -3731,19 +3772,19 @@
 	};
 
 /***/ },
-/* 96 */
-/***/ function(module, exports) {
-
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>caret <input type=\"checkbox\" v-model=\"caret\"></label>\r\n\t\t<label>dropup <input type=\"checkbox\" v-model=\"dropup\"></label>\r\n\t\t<label>\r\n\t\t\tsize \r\n\t\t\t<select v-model=\"size\">\r\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>\r\n\t\t\tvariant \r\n\t\t\t<select v-model=\"variant\">\r\n\t\t\t\t<option v-for=\"option in variants\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>\r\n\t\t\tposition \r\n\t\t\t<select v-model=\"position\">\r\n\t\t\t\t<option v-for=\"option in positions\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" class=\"clearfix\">\r\n\t\t<vs-dropdown-multiselect \r\n\t\t\t:size=\"size\" \r\n\t\t\t:list=\"list\"\r\n\t\t\t:model.sync=\"model\" \r\n\t\t\tdefault-text=\"Select Countries\"\r\n\t\t\tdefault-text-multiple=\"countries selected\"\r\n\t\t\t:variant=\"variant\"\r\n\t\t\t:position=\"position\"\r\n\t\t\t:dropup=\"dropup\"\r\n\t\t\t:max-count=\"2\"\r\n\t\t\t:caret=\"caret\"\r\n\t\t\treturn-object\r\n\t\t\tv-bind:class=\"{'pull-right': position == 'right'}\">\r\n\t\t</vs-dropdown-multiselect>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
-
-/***/ },
-/* 97 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-dropdown-multiselect</span> \r\n  <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"md\"</span> \r\n  <span class=\"hljs-attribute\">:list</span>=<span class=\"hljs-value\">\"[\r\n    {text: 'Australia', value: 'AU'},\r\n    {text: 'China', value: 'CN'},\r\n    {text: 'Germany', value: 'DE'},\r\n  ]\"</span>\r\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \r\n  <span class=\"hljs-attribute\">default-text</span>=<span class=\"hljs-value\">\"Select Countries\"</span>\r\n  <span class=\"hljs-attribute\">default-text-multiple</span>=<span class=\"hljs-value\">\"countries selected\"</span>\r\n  <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"default\"</span>\r\n  <span class=\"hljs-attribute\">:max-count</span>=<span class=\"hljs-value\">\"2\"</span>\r\n  <span class=\"hljs-attribute\">return-object</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-dropdown-multiselect</span>&gt;</span>";
-
-/***/ },
 /* 98 */
+/***/ function(module, exports) {
+
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\n\n\t<!-- Html controls start-->\n\t<div slot=\"controls\">\n\t\t<label>caret <input type=\"checkbox\" v-model=\"caret\"></label>\n\t\t<label>dropup <input type=\"checkbox\" v-model=\"dropup\"></label>\n\t\t<label>\n\t\t\tsize \n\t\t\t<select v-model=\"size\">\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t\t<label>\n\t\t\tvariant \n\t\t\t<select v-model=\"variant\">\n\t\t\t\t<option v-for=\"option in variants\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t\t<label>\n\t\t\tposition \n\t\t\t<select v-model=\"position\">\n\t\t\t\t<option v-for=\"option in positions\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t</div>\n\t<!-- Html controls end-->\n\t\n\t<!-- Html markup start-->\n\t<div slot=\"markup\" class=\"clearfix\">\n\t\t<vs-dropdown-multiselect \n\t\t\t:size=\"size\" \n\t\t\t:list=\"list\"\n\t\t\t:model.sync=\"model\" \n\t\t\tdefault-text=\"Select Countries\"\n\t\t\tdefault-text-multiple=\"countries selected\"\n\t\t\t:variant=\"variant\"\n\t\t\t:position=\"position\"\n\t\t\t:dropup=\"dropup\"\n\t\t\t:max-count=\"2\"\n\t\t\t:caret=\"caret\"\n\t\t\treturn-object\n\t\t\tv-bind:class=\"{'pull-right': position == 'right'}\">\n\t\t</vs-dropdown-multiselect>\n\t</div>\n\t<!-- Html markup end-->\n\n</docs-demo>\t\n";
+
+/***/ },
+/* 99 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-dropdown-multiselect</span> \n  <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"md\"</span> \n  <span class=\"hljs-attribute\">:list</span>=<span class=\"hljs-value\">\"[\n    {text: 'Australia', value: 'AU'},\n    {text: 'China', value: 'CN'},\n    {text: 'Germany', value: 'DE'},\n  ]\"</span>\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \n  <span class=\"hljs-attribute\">default-text</span>=<span class=\"hljs-value\">\"Select Countries\"</span>\n  <span class=\"hljs-attribute\">default-text-multiple</span>=<span class=\"hljs-value\">\"countries selected\"</span>\n  <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"default\"</span>\n  <span class=\"hljs-attribute\">:max-count</span>=<span class=\"hljs-value\">\"2\"</span>\n  <span class=\"hljs-attribute\">return-object</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-dropdown-multiselect</span>&gt;</span>";
+
+/***/ },
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import styling
@@ -3755,17 +3796,17 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(99);
+	__webpack_require__(101);
 
 	// import template
 
-	var _dropdownMultiselectHtml = __webpack_require__(101);
+	var _dropdownMultiselectHtml = __webpack_require__(103);
 
 	var _dropdownMultiselectHtml2 = _interopRequireDefault(_dropdownMultiselectHtml);
 
 	// import dependencies
 
-	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(102);
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(104);
 
 	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
 
@@ -3921,13 +3962,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 99 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(100);
+	var content = __webpack_require__(102);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -3947,7 +3988,7 @@
 	}
 
 /***/ },
-/* 100 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -3961,13 +4002,13 @@
 
 
 /***/ },
-/* 101 */
+/* 103 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"dropdown-multiselect-gritcode\" v-bind:class=\"{open: show, dropdown: !dropup, dropup: dropup}\">\r\n    <button\r\n        id=\"dLabel\"\r\n        class=\"btn dropdown {{dropdownToggle}} {{btnVariant}} {{btnSize}}\"\r\n        role=\"button\"\r\n        aria-haspopup=\"true\"\r\n        aria-expanded=\"show\"\r\n        v-on:click.prevent=\"toggle($event)\"\r\n        :disabled=\"disabled\">\r\n        <span class=\"checked-items\" v-html=\"displayItem\"></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu\" v-bind:class=\"{'dropdown-menu-right' : position == 'right'}\" aria-labelledby=\"dLabel\">\r\n        <li v-for=\"item in list\">\r\n            <button class=\"dropdown-item\" v-on:click.stop.prevent=\"select($index)\" title=\"{{item.text}}\">{{item.text}} <vs-icon name=\"check\" v-show=\"checked($index) !== false\" class=\"pull-right\"></vs-icon></button>\r\n        </li>\r\n    </ul>\r\n</div>";
+	module.exports = "<div class=\"dropdown-multiselect-gritcode\" v-bind:class=\"{open: show, dropdown: !dropup, dropup: dropup}\">\n    <button\n        id=\"dLabel\"\n        class=\"btn dropdown {{dropdownToggle}} {{btnVariant}} {{btnSize}}\"\n        role=\"button\"\n        aria-haspopup=\"true\"\n        aria-expanded=\"show\"\n        v-on:click.prevent=\"toggle($event)\"\n        :disabled=\"disabled\">\n        <span class=\"checked-items\" v-html=\"displayItem\"></span>\n    </button>\n    <ul class=\"dropdown-menu\" v-bind:class=\"{'dropdown-menu-right' : position == 'right'}\" aria-labelledby=\"dLabel\">\n        <li v-for=\"item in list\">\n            <button class=\"dropdown-item\" v-on:click.stop.prevent=\"select($index)\" title=\"{{item.text}}\">{{item.text}} <vs-icon name=\"check\" v-show=\"checked($index) !== false\" class=\"pull-right\"></vs-icon></button>\n        </li>\n    </ul>\n</div>";
 
 /***/ },
-/* 102 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -3979,15 +4020,15 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(103);
+	__webpack_require__(105);
 
-	var _iconsHtml = __webpack_require__(105);
+	var _iconsHtml = __webpack_require__(107);
 
 	var _iconsHtml2 = _interopRequireDefault(_iconsHtml);
 
 	// enable support for svg in all browsers
 
-	__webpack_require__(106);
+	__webpack_require__(108);
 
 	// export component object
 	exports['default'] = {
@@ -4036,6 +4077,9 @@
 	    path: {
 	      type: String,
 	      'default': function _default() {
+	        if (this.$options.vuestrapIconsPath) {
+	          return this.path = this.$options.vuestrapIconsPath;
+	        }
 	        if (false) {
 	          return 'bower_components/vuestrap-icons/assets/icons.min.svg';
 	        }
@@ -4050,13 +4094,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 103 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(104);
+	var content = __webpack_require__(106);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -4076,7 +4120,7 @@
 	}
 
 /***/ },
-/* 104 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -4090,13 +4134,13 @@
 
 
 /***/ },
-/* 105 */
+/* 107 */
 /***/ function(module, exports) {
 
 	module.exports = "<span class=\"icons icons-vuestrap {{iconsSize}} {{iconsVariant}} {{iconsBackground}} {{iconsAlign}}\" aria-hidden=\"true\">\r\n\t<span v-if=\"name\">\r\n\t\t<svg role=\"img\" class=\"icon\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + name\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span v-if=\"background\">\r\n\t\t<svg role=\"img\" class=\"icon-background\">\r\n\t\t\t<use v-bind:xlink:href=\"path + '#' + background\"></use>\r\n\t\t</svg>\r\n\t</span>\r\n\t<span class=\"text\" v-show=\"text.length\">\r\n\t\t<span><slot>{{text}}</slot></span>\r\n\t</span>\r\n</span>";
 
 /***/ },
-/* 106 */
+/* 108 */
 /***/ function(module, exports) {
 
 	/*! svg4everybody v2.0.0 | github.com/jonathantneal/svg4everybody */
@@ -4235,7 +4279,7 @@
 	exports.svgPolyfill = svgPolyfill;
 
 /***/ },
-/* 107 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4246,19 +4290,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _buttonToggleJson = __webpack_require__(108);
+	var _buttonToggleJson = __webpack_require__(110);
 
 	var _buttonToggleJson2 = _interopRequireDefault(_buttonToggleJson);
 
-	var _buttonToggleHtml = __webpack_require__(109);
+	var _buttonToggleHtml = __webpack_require__(111);
 
 	var _buttonToggleHtml2 = _interopRequireDefault(_buttonToggleHtml);
 
-	var _snippetHtml = __webpack_require__(110);
+	var _snippetHtml = __webpack_require__(112);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsButtonToggle = __webpack_require__(111);
+	var _srcComponentsButtonToggle = __webpack_require__(113);
 
 	var _srcComponentsButtonToggle2 = _interopRequireDefault(_srcComponentsButtonToggle);
 
@@ -4266,7 +4310,7 @@
 
 	var _vuestrapDocsSrcComponentsDemo2 = _interopRequireDefault(_vuestrapDocsSrcComponentsDemo);
 
-	var _srcUtils = __webpack_require__(84);
+	var _srcUtils = __webpack_require__(86);
 
 	exports['default'] = {
 	  route: {
@@ -4294,7 +4338,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 108 */
+/* 110 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -4362,19 +4406,19 @@
 	};
 
 /***/ },
-/* 109 */
-/***/ function(module, exports) {
-
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>\r\n\t\t\tsize \r\n\t\t\t<select v-model=\"size\">\r\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t\t<label>\r\n\t\t\tvariant \r\n\t\t\t<select v-model=\"variant\">\r\n\t\t\t\t<option v-for=\"option in variants\" v-bind:value=\"option.value\">\r\n\t\t\t    {{ option.text }}\r\n\t\t\t  </option>\r\n\t\t\t</select>\r\n\t\t</label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" class=\"clearfix\">\r\n\t\t<vs-button-toggle \r\n\t\t\t:size=\"size\" \r\n\t\t\t:text=\"{on: 'Yes', off: 'No'}\" \r\n\t\t\t:model.sync=\"model\" \r\n\t\t\t:variant=\"variant\"\r\n\t\t\tstyle=\"width: 5em\">\r\n\t\t</vs-button-toggle>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
-
-/***/ },
-/* 110 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-button-toggle</span> \r\n  <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"md\"</span> \r\n  <span class=\"hljs-attribute\">:text</span>=<span class=\"hljs-value\">\"{on: 'Yes', off: 'No'}\"</span> \r\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \r\n  <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"default\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-button-toggle</span>&gt;</span>";
-
-/***/ },
 /* 111 */
+/***/ function(module, exports) {
+
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\n\n\t<!-- Html controls start-->\n\t<div slot=\"controls\">\n\t\t<label>\n\t\t\tsize \n\t\t\t<select v-model=\"size\">\n\t\t\t\t<option v-for=\"option in sizes\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t\t<label>\n\t\t\tvariant \n\t\t\t<select v-model=\"variant\">\n\t\t\t\t<option v-for=\"option in variants\" v-bind:value=\"option.value\">\n\t\t\t    {{ option.text }}\n\t\t\t  </option>\n\t\t\t</select>\n\t\t</label>\n\t</div>\n\t<!-- Html controls end-->\n\t\n\t<!-- Html markup start-->\n\t<div slot=\"markup\" class=\"clearfix\">\n\t\t<vs-button-toggle \n\t\t\t:size=\"size\" \n\t\t\t:text=\"{on: 'Yes', off: 'No'}\" \n\t\t\t:model.sync=\"model\" \n\t\t\t:variant=\"variant\"\n\t\t\tstyle=\"width: 5em\">\n\t\t</vs-button-toggle>\n\t</div>\n\t<!-- Html markup end-->\n\n</docs-demo>\t\n";
+
+/***/ },
+/* 112 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-button-toggle</span> \n  <span class=\"hljs-attribute\">size</span>=<span class=\"hljs-value\">\"md\"</span> \n  <span class=\"hljs-attribute\">:text</span>=<span class=\"hljs-value\">\"{on: 'Yes', off: 'No'}\"</span> \n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \n  <span class=\"hljs-attribute\">variant</span>=<span class=\"hljs-value\">\"default\"</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-button-toggle</span>&gt;</span>";
+
+/***/ },
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4385,9 +4429,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(112);
+	__webpack_require__(114);
 
-	var _buttonToggleHtml = __webpack_require__(114);
+	var _buttonToggleHtml = __webpack_require__(116);
 
 	var _buttonToggleHtml2 = _interopRequireDefault(_buttonToggleHtml);
 
@@ -4450,13 +4494,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 112 */
+/* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(113);
+	var content = __webpack_require__(115);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -4476,7 +4520,7 @@
 	}
 
 /***/ },
-/* 113 */
+/* 115 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -4490,13 +4534,13 @@
 
 
 /***/ },
-/* 114 */
+/* 116 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\" :disabled=\"disabled\">\r\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click.prevent=\"toggle(false)\">{{text.on}}</button><!--\r\n    --><span class=\"handle\" v-on:click.prevent=\"toggle()\"></span><!--\r\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click.prevent=\"toggle(true)\">{{text.off}}</button>\r\n</div>\r\n";
+	module.exports = "<div class=\"btn btn-toggle btn-toggle-gritcode {{btnSize}} btn-default {{active ? 'active' : ''}}\" :disabled=\"disabled\">\n    <button class=\"btn btn-block {{btnVariant}} {{btnSize}}\" v-on:click.prevent=\"toggle(false)\">{{text.on}}</button><!--\n    --><span class=\"handle\" v-on:click.prevent=\"toggle()\"></span><!--\n    --><button class=\"btn btn-block btn-default {{btnSize}}\" v-on:click.prevent=\"toggle(true)\">{{text.off}}</button>\n</div>\n";
 
 /***/ },
-/* 115 */
+/* 117 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -4507,19 +4551,19 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _fileUploadJson = __webpack_require__(116);
+	var _fileUploadJson = __webpack_require__(118);
 
 	var _fileUploadJson2 = _interopRequireDefault(_fileUploadJson);
 
-	var _fileUploadHtml = __webpack_require__(117);
+	var _fileUploadHtml = __webpack_require__(119);
 
 	var _fileUploadHtml2 = _interopRequireDefault(_fileUploadHtml);
 
-	var _snippetHtml = __webpack_require__(118);
+	var _snippetHtml = __webpack_require__(120);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsFileUpload = __webpack_require__(119);
+	var _srcComponentsFileUpload = __webpack_require__(121);
 
 	var _srcComponentsFileUpload2 = _interopRequireDefault(_srcComponentsFileUpload);
 
@@ -4554,7 +4598,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 116 */
+/* 118 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -4653,19 +4697,19 @@
 	};
 
 /***/ },
-/* 117 */
-/***/ function(module, exports) {
-
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>multiple <input type=\"checkbox\" v-model=\"multiple\"></label>\r\n\t\t<label>hide button <input type=\"checkbox\" v-model=\"hideButton\"></label>\r\n\t\t<label>auto submit <input type=\"checkbox\" v-model=\"autoSubmit\"></label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\" class=\"clearfix\">\r\n\t\t<form id=\"file-upload-test\" method=\"POST\" action=\"{{ajaxUrl}}\">\r\n\t\t\t<vs-file-upload \r\n\t    \tid=\"some-file\"\r\n\t    \tform-id=\"file-upload-test\"\r\n\t    \tmodel=\"model\" \r\n\t    \t:ajax=\"ajaxUrl\" \r\n\t    \t:multiple=\"multiple\" \r\n\t    \tname=\"files\"\r\n\t    \t:auto-submit=\"autoSubmit\" \r\n\t    \t:hide-button=\"hideButton\" \r\n\t    \t:file-list.sync=\"fileList\">\r\n\t    </vs-file-upload>\r\n\t   </form>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
-
-/***/ },
-/* 118 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-file-upload</span> \r\n  <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"some-file\"</span>\r\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \r\n  <span class=\"hljs-attribute\">ajax</span>=<span class=\"hljs-value\">\"http://localhost:3004/upload\"</span> \r\n  <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"files\"</span>\r\n  <span class=\"hljs-attribute\">:multiple</span>=<span class=\"hljs-value\">\"false\"</span> \r\n  <span class=\"hljs-attribute\">:auto-submit</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:hide-button</span>=<span class=\"hljs-value\">\"true\"</span> \r\n  <span class=\"hljs-attribute\">:file-list.sync</span>=<span class=\"hljs-value\">\"fileList\"</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-file-upload</span>&gt;</span>";
-
-/***/ },
 /* 119 */
+/***/ function(module, exports) {
+
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\n\n\t<!-- Html controls start-->\n\t<div slot=\"controls\">\n\t\t<label>multiple <input type=\"checkbox\" v-model=\"multiple\"></label>\n\t\t<label>hide button <input type=\"checkbox\" v-model=\"hideButton\"></label>\n\t\t<label>auto submit <input type=\"checkbox\" v-model=\"autoSubmit\"></label>\n\t</div>\n\t<!-- Html controls end-->\n\t\n\t<!-- Html markup start-->\n\t<div slot=\"markup\" class=\"clearfix\">\n\t\t<form id=\"file-upload-test\" method=\"POST\" action=\"{{ajaxUrl}}\">\n\t\t\t<vs-file-upload \n\t    \tid=\"some-file\"\n\t    \tform-id=\"file-upload-test\"\n\t    \tmodel=\"model\" \n\t    \t:ajax=\"ajaxUrl\" \n\t    \t:multiple=\"multiple\" \n\t    \tname=\"files\"\n\t    \t:auto-submit=\"autoSubmit\" \n\t    \t:hide-button=\"hideButton\" \n\t    \t:file-list.sync=\"fileList\">\n\t    </vs-file-upload>\n\t   </form>\n\t</div>\n\t<!-- Html markup end-->\n\n</docs-demo>\t\n";
+
+/***/ },
+/* 120 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-file-upload</span> \n  <span class=\"hljs-attribute\">id</span>=<span class=\"hljs-value\">\"some-file\"</span>\n  <span class=\"hljs-attribute\">:model.sync</span>=<span class=\"hljs-value\">\"model\"</span> \n  <span class=\"hljs-attribute\">ajax</span>=<span class=\"hljs-value\">\"http://localhost:3004/upload\"</span> \n  <span class=\"hljs-attribute\">name</span>=<span class=\"hljs-value\">\"files\"</span>\n  <span class=\"hljs-attribute\">:multiple</span>=<span class=\"hljs-value\">\"false\"</span> \n  <span class=\"hljs-attribute\">:auto-submit</span>=<span class=\"hljs-value\">\"true\"</span> \n  <span class=\"hljs-attribute\">:hide-button</span>=<span class=\"hljs-value\">\"true\"</span> \n  <span class=\"hljs-attribute\">:file-list.sync</span>=<span class=\"hljs-value\">\"fileList\"</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-file-upload</span>&gt;</span>";
+
+/***/ },
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// inspired by href='https://css-tricks.com/drag-and-drop-file-uploading/'
@@ -4679,13 +4723,13 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(120);
+	__webpack_require__(122);
 
-	var _fileUploadHtml = __webpack_require__(122);
+	var _fileUploadHtml = __webpack_require__(124);
 
 	var _fileUploadHtml2 = _interopRequireDefault(_fileUploadHtml);
 
-	var _utilsHelpersJs = __webpack_require__(123);
+	var _utilsHelpersJs = __webpack_require__(125);
 
 	// export component object
 	exports['default'] = {
@@ -4976,13 +5020,13 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 120 */
+/* 122 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(121);
+	var content = __webpack_require__(123);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -5002,7 +5046,7 @@
 	}
 
 /***/ },
-/* 121 */
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -5016,13 +5060,13 @@
 
 
 /***/ },
-/* 122 */
+/* 124 */
 /***/ function(module, exports) {
 
-	module.exports = "<div id=\"{{id}}\" class=\"gritcode-file-upload {{advancedUpload ? 'advanced-upload' : ''}} {{dragover ? 'is-dragover' : ''}}\">\r\n    <div class=\"input\" v-if=\"state == null || state == 'retry'\">\r\n        <svg class=\"icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"43\" viewBox=\"0 0 50 43\" v-if=\"advancedUpload\">\r\n            <path d=\"M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z\" />\r\n        </svg>\r\n        <input \r\n            type=\"file\" \r\n            name=\"files[]\" \r\n            id=\"file\"\r\n            accept=\"accept\" \r\n            v-bind:multiple=\"multiple && advancedUpload\" \r\n            v-on:change=\"onChange($event)\" />\r\n        <label for=\"file\">\r\n            <span v-if=\"fileList.length == 0\"><strong>{{text.action}}</strong><span v-if=\"advancedUpload\"> {{text.drag}}</span></span>\r\n            <span v-if=\"fileList.length > 0\" class=\"\">{{displaySelectionText}}</span>\r\n        </label>\r\n        <button type=\"submit\" class=\"btn btn-primary\" v-if=\"!hideButton && !autoSubmit\" v-on:click.prevent=\"submitForm($event)\">{{text.button}}</button>\r\n    </div>\r\n    <div class=\"state\" v-if=\"state != null\">\r\n        <span class=\"state-uploading animate\" v-show=\"state == 'uploading'\">{{text.uploading}}<span v-if=\"advancedUpload\">{{progress}}</span></span>\r\n        <span class=\"state-success animate\" v-show=\"state == 'success'\">\r\n            {{text.done}} <a href=\"#\" v-on:click.prevent=\"restart\" role=\"button\" v-show=\"multiple\">{{text.restart}}</a>\r\n        </span>\r\n        <span class=\"state-error animate\" v-show=\"state == 'error'\">\r\n            Error! <span>{{errorMessage}}</span> <a href=\"#\" v-on:click.prevent=\"retry\">{{text.retry}}</a>\r\n        </span>\r\n    </div>\r\n</div>";
+	module.exports = "<div id=\"{{id}}\" class=\"gritcode-file-upload {{advancedUpload ? 'advanced-upload' : ''}} {{dragover ? 'is-dragover' : ''}}\">\n    <div class=\"input\" v-if=\"state == null || state == 'retry'\">\n        <svg class=\"icon\" xmlns=\"http://www.w3.org/2000/svg\" width=\"50\" height=\"43\" viewBox=\"0 0 50 43\" v-if=\"advancedUpload\">\n            <path d=\"M48.4 26.5c-.9 0-1.7.7-1.7 1.7v11.6h-43.3v-11.6c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v13.2c0 .9.7 1.7 1.7 1.7h46.7c.9 0 1.7-.7 1.7-1.7v-13.2c0-1-.7-1.7-1.7-1.7zm-24.5 6.1c.3.3.8.5 1.2.5.4 0 .9-.2 1.2-.5l10-11.6c.7-.7.7-1.7 0-2.4s-1.7-.7-2.4 0l-7.1 8.3v-25.3c0-.9-.7-1.7-1.7-1.7s-1.7.7-1.7 1.7v25.3l-7.1-8.3c-.7-.7-1.7-.7-2.4 0s-.7 1.7 0 2.4l10 11.6z\" />\n        </svg>\n        <input \n            type=\"file\" \n            name=\"files[]\" \n            id=\"file\"\n            accept=\"accept\" \n            v-bind:multiple=\"multiple && advancedUpload\" \n            v-on:change=\"onChange($event)\" />\n        <label for=\"file\">\n            <span v-if=\"fileList.length == 0\"><strong>{{text.action}}</strong><span v-if=\"advancedUpload\"> {{text.drag}}</span></span>\n            <span v-if=\"fileList.length > 0\" class=\"\">{{displaySelectionText}}</span>\n        </label>\n        <button type=\"submit\" class=\"btn btn-primary\" v-if=\"!hideButton && !autoSubmit\" v-on:click.prevent=\"submitForm($event)\">{{text.button}}</button>\n    </div>\n    <div class=\"state\" v-if=\"state != null\">\n        <span class=\"state-uploading animate\" v-show=\"state == 'uploading'\">{{text.uploading}}<span v-if=\"advancedUpload\">{{progress}}</span></span>\n        <span class=\"state-success animate\" v-show=\"state == 'success'\">\n            {{text.done}} <a href=\"#\" v-on:click.prevent=\"restart\" role=\"button\" v-show=\"multiple\">{{text.restart}}</a>\n        </span>\n        <span class=\"state-error animate\" v-show=\"state == 'error'\">\n            Error! <span>{{errorMessage}}</span> <a href=\"#\" v-on:click.prevent=\"retry\">{{text.retry}}</a>\n        </span>\n    </div>\n</div>";
 
 /***/ },
-/* 123 */
+/* 125 */
 /***/ function(module, exports) {
 
 	/**
@@ -5112,7 +5156,7 @@
 	exports.changeLocation = changeLocation;
 
 /***/ },
-/* 124 */
+/* 126 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -5123,25 +5167,25 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(53);
+	__webpack_require__(55);
 
 	__webpack_require__(50);
 
-	var _wizardJson = __webpack_require__(125);
+	var _wizardJson = __webpack_require__(127);
 
 	var _wizardJson2 = _interopRequireDefault(_wizardJson);
 
-	var _wizardHtml = __webpack_require__(126);
+	var _wizardHtml = __webpack_require__(128);
 
 	var _wizardHtml2 = _interopRequireDefault(_wizardHtml);
 
-	var _srcUtils = __webpack_require__(84);
+	var _srcUtils = __webpack_require__(86);
 
-	var _snippetHtml = __webpack_require__(127);
+	var _snippetHtml = __webpack_require__(129);
 
 	var _snippetHtml2 = _interopRequireDefault(_snippetHtml);
 
-	var _srcComponentsWizard = __webpack_require__(128);
+	var _srcComponentsWizard = __webpack_require__(130);
 
 	var _vuestrapDocsSrcComponentsDemo = __webpack_require__(2);
 
@@ -5248,7 +5292,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 125 */
+/* 127 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -5319,19 +5363,19 @@
 	};
 
 /***/ },
-/* 126 */
-/***/ function(module, exports) {
-
-	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\r\n\r\n\t<!-- Html controls start-->\r\n\t<div slot=\"controls\">\r\n\t\t<label>icons <input type=\"checkbox\" v-model=\"icons\"></label>\r\n\t</div>\r\n\t<!-- Html controls end-->\r\n\t\r\n\t<!-- Html markup start-->\r\n\t<div slot=\"markup\">\r\n\t\t\r\n\t\t<!-- icons -->\r\n\t\t<vs-wizard :current-index.sync=\"currentStep\" v-if=\"icons\">\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Personal Information\" \r\n\t\t\t\tdescription=\"Enter your details\"\r\n\t\t\t\t:progress=\"progress.step1\" \r\n\t\t\t\ticon=\"person\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Payment\" \r\n\t\t\t\tdescription=\"Pay with credit card or Paypal\" \r\n\t\t\t\t:progress=\"progress.step2\"\r\n\t\t\t\ticon=\"credit-card\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Confirmation\" \r\n\t\t\t\tdescription=\"Your order details\" \r\n\t\t\t\t:progress=\"progress.step3\"\r\n\t\t\t\t:disable-previous=\"true\"\r\n\t\t\t\ticon=\"check\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t</vs-wizard>\r\n\r\n\t\t<!-- no icons -->\r\n\t\t<vs-wizard :current-index.sync=\"currentStep\" v-if=\"!icons\">\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Personal Information\" \r\n\t\t\t\tdescription=\"Enter your details\"\r\n\t\t\t\t:progress=\"progress.step1\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Payment\" \r\n\t\t\t\tdescription=\"Pay with credit card or Paypal\" \r\n\t\t\t\t:progress=\"progress.step2\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t\t<vs-wizard-step \r\n\t\t\t\ttitle=\"Confirmation\" \r\n\t\t\t\tdescription=\"Your order details\" \r\n\t\t\t\t:progress=\"progress.step3\"\r\n\t\t\t\t:disable-previous=\"true\">\r\n\t\t\t</vs-wizard-step>\r\n\t\t</vs-wizard>\r\n\t\t<hr class=\"hidden-xs-down\">\r\n\t\t<form class=\"m-b row clearfix\" v-if=\"currentStep == 0\">\r\n\t\t\t<div class=\"col-xs-12 col-md-8 col-md-offset-2\">  \r\n\t\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"firstName\">First Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"e.g. Jon\" v-model=\"models.firstName\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"lastName\">Last Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"lastName\" placeholder=\"e.g. Doe\" v-model=\"models.lastName\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"email\">Email address</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"e.g. joe@doe.com\" v-model=\"models.email\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <button class=\"btn btn-default pull-right\" v-bind:disabled=\"progress.step1 < 100\" v-on:click.prevent=\"currentStep++\">Next</button>\r\n\t\t \t</div>\r\n\t  </form>\r\n\t  <form class=\"m-b row clearfix\" v-if=\"currentStep == 1\">\r\n\t  \t<div class=\"col-xs-12 col-md-8 col-md-offset-2\">  \t\t\r\n\t\t\t\t<fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardType\">Card Type</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardType\" placeholder=\"e.g. Visa\" v-model=\"models.cardType\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardNumber\">Card Number</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardNumber\" placeholder=\"4141 4141 4141 4141\" v-model=\"models.cardNumber\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <fieldset class=\"form-group\">\r\n\t\t\t    <label for=\"cardHolder\">Card Holder Name</label>\r\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardHolder\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardHolder\">\r\n\t\t\t  </fieldset>\r\n\t\t\t  <div class=\"row\">\t  \t\r\n\t\t\t\t  <fieldset class=\"form-group col-xs-6\">\r\n\t\t\t\t    <label for=\"cardExpiryMonth\">Expiry Month</label>\r\n\t\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardExpiryMonth\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardExpiryMonth\">\r\n\t\t\t\t  </fieldset>\r\n\t\t\t\t  <fieldset class=\"form-group col-xs-6\">\r\n\t\t\t\t    <label for=\"cardExpiryMonth\">Expiry Year</label>\r\n\t\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardExpiryYear\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardExpiryYear\">\r\n\t\t\t\t  </fieldset>\r\n\t\t\t  </div>\r\n\t\t  \t<button class=\"btn btn-default pull-right\" v-bind:disabled=\"progress.step2 < 100\" v-on:click.prevent=\"currentStep++\">Next</button>\r\n\t  \t</div>\t\t\r\n\t  </form>\r\n\t  <div class='text-center clearfix' v-if=\"currentStep == 2\">\r\n\t\t\t<h3 class=\"m-y-lg\">Success! Your order is on its way...</h3>\r\n\t\t\t<button v-on:click=\"startAgain\">Start again</button>\r\n\t  </div>\r\n\t</div>\r\n\t<!-- Html markup end-->\r\n\r\n</docs-demo>\t\r\n";
-
-/***/ },
-/* 127 */
-/***/ function(module, exports) {
-
-	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard</span> <span class=\"hljs-attribute\">:current-index.sync</span>=<span class=\"hljs-value\">\"currentStep\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Personal Information\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Enter your details\"</span>\r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step1\"</span> \r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"person\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Payment\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Pay with credit card or Paypal\"</span> \r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step2\"</span>\r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"credit-card\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \r\n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Confirmation\"</span> \r\n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Your order details\"</span> \r\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step3\"</span>\r\n    <span class=\"hljs-attribute\">:disable-previous</span>=<span class=\"hljs-value\">\"true\"</span>\r\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"check\"</span>&gt;</span>\r\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\r\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard</span>&gt;</span>";
-
-/***/ },
 /* 128 */
+/***/ function(module, exports) {
+
+	module.exports = "<docs-demo :meta=\"meta\" :snippet=\"snippet\">\n\n\t<!-- Html controls start-->\n\t<div slot=\"controls\">\n\t\t<label>icons <input type=\"checkbox\" v-model=\"icons\"></label>\n\t</div>\n\t<!-- Html controls end-->\n\t\n\t<!-- Html markup start-->\n\t<div slot=\"markup\">\n\t\t\n\t\t<!-- icons -->\n\t\t<vs-wizard :current-index.sync=\"currentStep\" v-if=\"icons\">\n\t\t\t<vs-wizard-step \n\t\t\t\ttitle=\"Personal Information\" \n\t\t\t\tdescription=\"Enter your details\"\n\t\t\t\t:progress=\"progress.step1\" \n\t\t\t\ticon=\"person\">\n\t\t\t</vs-wizard-step>\n\t\t\t<vs-wizard-step \n\t\t\t\ttitle=\"Payment\" \n\t\t\t\tdescription=\"Pay with credit card or Paypal\" \n\t\t\t\t:progress=\"progress.step2\"\n\t\t\t\ticon=\"credit-card\">\n\t\t\t</vs-wizard-step>\n\t\t\t<vs-wizard-step \n\t\t\t\ttitle=\"Confirmation\" \n\t\t\t\tdescription=\"Your order details\" \n\t\t\t\t:progress=\"progress.step3\"\n\t\t\t\t:disable-previous=\"true\"\n\t\t\t\ticon=\"check\">\n\t\t\t</vs-wizard-step>\n\t\t</vs-wizard>\n\n\t\t<!-- no icons -->\n\t\t<vs-wizard :current-index.sync=\"currentStep\" v-if=\"!icons\">\n\t\t\t<vs-wizard-step \n\t\t\t\ttitle=\"Personal Information\" \n\t\t\t\tdescription=\"Enter your details\"\n\t\t\t\t:progress=\"progress.step1\">\n\t\t\t</vs-wizard-step>\n\t\t\t<vs-wizard-step \n\t\t\t\ttitle=\"Payment\" \n\t\t\t\tdescription=\"Pay with credit card or Paypal\" \n\t\t\t\t:progress=\"progress.step2\">\n\t\t\t</vs-wizard-step>\n\t\t\t<vs-wizard-step \n\t\t\t\ttitle=\"Confirmation\" \n\t\t\t\tdescription=\"Your order details\" \n\t\t\t\t:progress=\"progress.step3\"\n\t\t\t\t:disable-previous=\"true\">\n\t\t\t</vs-wizard-step>\n\t\t</vs-wizard>\n\t\t<hr class=\"hidden-xs-down\">\n\t\t<form class=\"m-b row clearfix\" v-if=\"currentStep == 0\">\n\t\t\t<div class=\"col-xs-12 col-md-8 col-md-offset-2\">  \n\t\t\t\t<fieldset class=\"form-group\">\n\t\t\t    <label for=\"firstName\">First Name</label>\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"firstName\" placeholder=\"e.g. Jon\" v-model=\"models.firstName\">\n\t\t\t  </fieldset>\n\t\t\t  <fieldset class=\"form-group\">\n\t\t\t    <label for=\"lastName\">Last Name</label>\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"lastName\" placeholder=\"e.g. Doe\" v-model=\"models.lastName\">\n\t\t\t  </fieldset>\n\t\t\t  <fieldset class=\"form-group\">\n\t\t\t    <label for=\"email\">Email address</label>\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"email\" placeholder=\"e.g. joe@doe.com\" v-model=\"models.email\">\n\t\t\t  </fieldset>\n\t\t\t  <button class=\"btn btn-default pull-right\" v-bind:disabled=\"progress.step1 < 100\" v-on:click.prevent=\"currentStep++\">Next</button>\n\t\t \t</div>\n\t  </form>\n\t  <form class=\"m-b row clearfix\" v-if=\"currentStep == 1\">\n\t  \t<div class=\"col-xs-12 col-md-8 col-md-offset-2\">  \t\t\n\t\t\t\t<fieldset class=\"form-group\">\n\t\t\t    <label for=\"cardType\">Card Type</label>\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardType\" placeholder=\"e.g. Visa\" v-model=\"models.cardType\">\n\t\t\t  </fieldset>\n\t\t\t  <fieldset class=\"form-group\">\n\t\t\t    <label for=\"cardNumber\">Card Number</label>\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardNumber\" placeholder=\"4141 4141 4141 4141\" v-model=\"models.cardNumber\">\n\t\t\t  </fieldset>\n\t\t\t  <fieldset class=\"form-group\">\n\t\t\t    <label for=\"cardHolder\">Card Holder Name</label>\n\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardHolder\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardHolder\">\n\t\t\t  </fieldset>\n\t\t\t  <div class=\"row\">\t  \t\n\t\t\t\t  <fieldset class=\"form-group col-xs-6\">\n\t\t\t\t    <label for=\"cardExpiryMonth\">Expiry Month</label>\n\t\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardExpiryMonth\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardExpiryMonth\">\n\t\t\t\t  </fieldset>\n\t\t\t\t  <fieldset class=\"form-group col-xs-6\">\n\t\t\t\t    <label for=\"cardExpiryMonth\">Expiry Year</label>\n\t\t\t\t    <input autocomplete=\"off\" type=\"text\" class=\"form-control\" id=\"cardExpiryYear\" placeholder=\"e.g. Joe Doe\" v-model=\"models.cardExpiryYear\">\n\t\t\t\t  </fieldset>\n\t\t\t  </div>\n\t\t  \t<button class=\"btn btn-default pull-right\" v-bind:disabled=\"progress.step2 < 100\" v-on:click.prevent=\"currentStep++\">Next</button>\n\t  \t</div>\t\t\n\t  </form>\n\t  <div class='text-center clearfix' v-if=\"currentStep == 2\">\n\t\t\t<h3 class=\"m-y-lg\">Success! Your order is on its way...</h3>\n\t\t\t<button v-on:click=\"startAgain\">Start again</button>\n\t  </div>\n\t</div>\n\t<!-- Html markup end-->\n\n</docs-demo>\t\n";
+
+/***/ },
+/* 129 */
+/***/ function(module, exports) {
+
+	module.exports = "<span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard</span> <span class=\"hljs-attribute\">:current-index.sync</span>=<span class=\"hljs-value\">\"currentStep\"</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Personal Information\"</span> \n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Enter your details\"</span>\n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step1\"</span> \n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"person\"</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Payment\"</span> \n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Pay with credit card or Paypal\"</span> \n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step2\"</span>\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"credit-card\"</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;<span class=\"hljs-title\">vs-wizard-step</span> \n    <span class=\"hljs-attribute\">title</span>=<span class=\"hljs-value\">\"Confirmation\"</span> \n    <span class=\"hljs-attribute\">description</span>=<span class=\"hljs-value\">\"Your order details\"</span> \n    <span class=\"hljs-attribute\">:progress</span>=<span class=\"hljs-value\">\"progress.step3\"</span>\n    <span class=\"hljs-attribute\">:disable-previous</span>=<span class=\"hljs-value\">\"true\"</span>\n    <span class=\"hljs-attribute\">icon</span>=<span class=\"hljs-value\">\"check\"</span>&gt;</span>\n  <span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard-step</span>&gt;</span>\n<span class=\"hljs-tag\">&lt;/<span class=\"hljs-title\">vs-wizard</span>&gt;</span>";
+
+/***/ },
+/* 130 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// import dependencies
@@ -5343,21 +5387,21 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	__webpack_require__(129);
+	__webpack_require__(131);
 
-	var _wizardHtml = __webpack_require__(131);
+	var _wizardHtml = __webpack_require__(133);
 
 	var _wizardHtml2 = _interopRequireDefault(_wizardHtml);
 
-	var _wizardStepHtml = __webpack_require__(132);
+	var _wizardStepHtml = __webpack_require__(134);
 
 	var _wizardStepHtml2 = _interopRequireDefault(_wizardStepHtml);
 
-	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(102);
+	var _vuestrapIconsSrcComponentsIcons = __webpack_require__(104);
 
 	var _vuestrapIconsSrcComponentsIcons2 = _interopRequireDefault(_vuestrapIconsSrcComponentsIcons);
 
-	var _utilsHelpersJs = __webpack_require__(123);
+	var _utilsHelpersJs = __webpack_require__(125);
 
 	// export component object
 	var wizard = {
@@ -5488,13 +5532,13 @@
 	exports.wizardStep = wizardStep;
 
 /***/ },
-/* 129 */
+/* 131 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(130);
+	var content = __webpack_require__(132);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(6)(content, {});
@@ -5514,7 +5558,7 @@
 	}
 
 /***/ },
-/* 130 */
+/* 132 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(5)();
@@ -5528,16 +5572,16 @@
 
 
 /***/ },
-/* 131 */
+/* 133 */
 /***/ function(module, exports) {
 
-	module.exports = "<div class=\"gritcode-wizard\">\r\n   <slot></slot>\r\n</div>\r\n";
+	module.exports = "<div class=\"gritcode-wizard\">\n   <slot></slot>\n</div>\n";
 
 /***/ },
-/* 132 */
+/* 134 */
 /***/ function(module, exports) {
 
-	module.exports = "<div v-bind:class=\"{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}\" v-on:click.prevent=\"changeCurrentIndex()\">\r\n\t<div class=\"wizard-progress\">\r\n\t\t<div class=\"wizard-progress-value\"></div>\r\n\t</div>\r\n\t<div class=\"wizard-icon\">\r\n\t\t<div class=\"icon-icon\"><vs-icon :name=\"icon\" v-if=\"icon\"></vs-icon></div>\r\n\t\t<div class=\"icon-number\" v-if=\"!icon\">{{iconNumber || index +1}}</div>\r\n\t</div>\r\n\t<div class=\"wizard-content\">\r\n\t\t<div class=\"title\">{{title}}</div>\r\n\t\t<div class=\"description\">{{description}}</div>\r\n\t</div>\r\n\t<div class=\"step-info\">\r\n\t\tStep {{index+1}}/{{$parent.countItems}}\r\n\t</div>\r\n</div>";
+	module.exports = "<div v-bind:class=\"{'wizard-step': true, 'active': isActive, 'previous' : isPrevious, 'next' : isNext}\" v-on:click.prevent=\"changeCurrentIndex()\">\n\t<div class=\"wizard-progress\">\n\t\t<div class=\"wizard-progress-value\"></div>\n\t</div>\n\t<div class=\"wizard-icon\">\n\t\t<div class=\"icon-icon\"><vs-icon :name=\"icon\" v-if=\"icon\"></vs-icon></div>\n\t\t<div class=\"icon-number\" v-if=\"!icon\">{{iconNumber || index +1}}</div>\n\t</div>\n\t<div class=\"wizard-content\">\n\t\t<div class=\"title\">{{title}}</div>\n\t\t<div class=\"description\">{{description}}</div>\n\t</div>\n\t<div class=\"step-info\">\n\t\tStep {{index+1}}/{{$parent.countItems}}\n\t</div>\n</div>";
 
 /***/ }
 /******/ ]);

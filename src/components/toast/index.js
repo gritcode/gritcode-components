@@ -93,12 +93,12 @@ export default {
     show(options) {
       this.context = 'default'
       this.animationInProgress = true
-      this.message = options.message || 'Done!'
-      this.context = options.context || ''
-      this.debounce = options.debounce || DEBOUNCE
-      this.duration = options.duration || DURATION
-      this.hideProgress = options.hideProgress || false
-      this.position = options.position || 'bottom left'
+      this.message = options.message || this.message
+      this.context = options.context || this.context
+      this.debounce = options.debounce || this.debounce
+      this.duration = options.duration || this.duration
+      this.hideProgress = options.hideProgress || this.hideProgress
+      this.position = options.position || this.position
       if (options.success) {
         this.context = 'success'
         this.message = options.success

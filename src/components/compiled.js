@@ -2,7 +2,7 @@
  * IMPORT EACH COMPONENT
  */
 import toast from './toast'
-import buttonToggle from './button-Toggle'
+import buttonToggle from './button-toggle'
 import dropdownMultiselect from './dropdown-multiselect'
 import {offcanvasDrawer, offcanvasWrapper} from './offcanvas-drawer'
 import spinner from './spinner'

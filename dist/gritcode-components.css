@@ -13,7 +13,6 @@
   margin: 12px;
   font-size: 14px;
   cursor: default;
-  -webkit-transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;
   transition: visibility 0.3s, opacity 0.3s, -webkit-transform 0.3s;
   transition: visibility 0.3s, transform 0.3s, opacity 0.3s;
   transition: visibility 0.3s, transform 0.3s, opacity 0.3s, -webkit-transform 0.3s;
@@ -49,7 +48,6 @@
     height: 0.4em;
     background: rgba(255, 255, 255, 0.3);
     width: 0;
-    -webkit-transition: width 3s;
     transition: width 3s; }
     .toast-gritcode .progress-bar.active {
       width: 100%; }
@@ -92,7 +90,6 @@
     margin: 0;
     display: inline-block;
     outline: none;
-    -webkit-transition: -webkit-transform .35s;
     transition: -webkit-transform .35s;
     transition: transform .35s;
     transition: transform .35s, -webkit-transform .35s;
@@ -139,7 +136,6 @@
     left: 0%;
     top: 0;
     z-index: 2;
-    -webkit-transition: left .35s;
     transition: left .35s; }
 .dropdown-multiselect-gritcode .dropdown-toggle {
   width: 200px; }
@@ -415,7 +411,6 @@
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   -ms-transform: translate(0, 0);
-  -webkit-transition: 300ms ease transform;
   transition: 300ms ease transform;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden; }
@@ -471,45 +466,36 @@
       -ms-transform: translate(-300px, 0); } }
 
 .gritcode-offcanvas-drawer.ease {
-  -webkit-transition: 300ms ease transform;
   transition: 300ms ease transform; }
 
 .gritcode-offcanvas-drawer.linear {
-  -webkit-transition: 300ms linear transform;
   transition: 300ms linear transform; }
 
 .gritcode-offcanvas-drawer.ease-in {
-  -webkit-transition: 300ms ease-in transform;
   transition: 300ms ease-in transform; }
 
 .gritcode-offcanvas-drawer.ease-out {
-  -webkit-transition: 300ms ease-out transform;
   transition: 300ms ease-out transform; }
 
 .gritcode-offcanvas-drawer.ease-in-out {
-  -webkit-transition: 300ms ease-out transform;
   transition: 300ms ease-out transform; }
 
 .gritcode-offcanvas-drawer.bounce {
-  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);
   transition: -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);
   transition: transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15);
   transition: transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15), -webkit-transform 300ms cubic-bezier(0.32, 1.25, 0.375, 1.15); }
 
 .gritcode-offcanvas-drawer.snappy {
-  -webkit-transition: -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);
   transition: -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);
   transition: transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1);
   transition: transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1), -webkit-transform 300ms cubic-bezier(0.694, 0.0482, 0.335, 1); }
 
 .gritcode-offcanvas-drawer.out-of-orbit {
-  -webkit-transition: -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15);
   transition: -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15);
   transition: transform 300ms cubic-bezier(1, 0, 0.61, 0.15);
   transition: transform 300ms cubic-bezier(1, 0, 0.61, 0.15), -webkit-transform 300ms cubic-bezier(1, 0, 0.61, 0.15); }
 
 .gritcode-offcanvas-drawer.none {
-  -webkit-transition: none;
   transition: none; }
 
 .lt-ie10 .gritcode-offcanvas-drawer.active .offcanvas-drawer, .ie9 .gritcode-offcanvas-drawer.active .offcanvas-drawer, .oldie .gritcode-offcanvas-drawer.active .offcanvas-drawer, .no-csstransitions .gritcode-offcanvas-drawer.active .offcanvas-drawer {
@@ -646,7 +632,6 @@
   .gritcode-file-upload.advanced-upload {
     outline: 2px dashed #92b0b3;
     outline-offset: -10px;
-    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear; }
   .gritcode-file-upload .input .icon {
     width: 100%;
@@ -748,7 +733,6 @@
       background: #42b983;
       z-index: 11;
       padding: 0;
-      -webkit-transition: 0.45s width ease;
       transition: 0.45s width ease; }
     .gritcode-wizard .wizard-step .step-info {
       text-align: right; }
